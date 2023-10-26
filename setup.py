@@ -229,6 +229,8 @@ setuptools.setup(
             "wekeo-ecmwf-sis-water-level-change-indicators=climetlab_wekeo_datasets.ecmwf.sis_water_level_change_indicators:sis_water_level_change_indicators",  # noqa: E501
             "wekeo-ecmwf-sis-water-level-change-timeseries-cmip6=climetlab_wekeo_datasets.ecmwf.sis_water_level_change_timeseries_cmip6:sis_water_level_change_timeseries_cmip6",  # noqa: E501
             "wekeo-ecmwf-sis-water-level-change-timeseries=climetlab_wekeo_datasets.ecmwf.sis_water_level_change_timeseries:sis_water_level_change_timeseries",  # noqa: E501
+            # Eumetsat
+            "wekeo-eum-metop-glb-sst-nc=climetlab_wekeo_datasets.eumetsat.eum_metop_glb_sst_nc:eum_metop_glb_sst_nc",  # noqa: E501
             # Mercator
             "wekeo-mercator-test-clms=climetlab_wekeo_datasets.mercator.test_clms:test_clms",  # noqa: E501
             "wekeo-mercator-arctic-analysis-forecast-phys=climetlab_wekeo_datasets.mercator.arctic_analysis_forecast_phys:arctic_analysis_forecast_phys",  # noqa: E501
