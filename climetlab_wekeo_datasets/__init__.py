@@ -1,5 +1,6 @@
 import os
 
+from .utils import hda2cml
 
 def get_version():
     version_file = os.path.join(os.path.dirname(__file__), "version")
@@ -11,3 +12,8 @@ def get_version():
 
 
 __version__ = get_version()
+
+__all__ = [
+    "__version__",
+    "hda2cml",
+]
