@@ -60,7 +60,7 @@ class Main(Dataset):
 
         if start is not None and end is not None:
             query["dateRangeSelectValues"] = [
-                {"name": "date", "start": f"{start}", "end": f"{end}"}
+                {"name": "position", "start": f"{start}", "end": f"{end}"}
             ]
 
         choices = dict(zip(self.choices, [kwargs[c] for c in self.choices]))
