@@ -25,7 +25,7 @@ PREFIXES = {
     "eo:cgls": "clms",
     "eo:clms": "clms",
     "eo:ecmwf": "ecmwf",
-    "eo:eum": "eumetsat",
+    "eo:eum": "eum",
     "eo:mo": "mercator",
 }
 
@@ -101,7 +101,7 @@ def payload_to_entry(payload) -> str:
     except KeyError:
         raise UnsupportedDatasetError(f"Dataset {dataset_id} unsupported.")
 
-    name = dataset_id.split(":")[-1].replace("_", "-")
+    name = "-".join(dataset_id.split(":")[3:]).replace("_", "-")
 
     if PATTERN_SHORT.match(name[-8:]):
         name = name[:-8]
