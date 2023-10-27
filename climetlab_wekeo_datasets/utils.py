@@ -1,5 +1,13 @@
 import re
-from functools import cache
+
+try:
+    from functools import cache
+except ImportError:
+    # Python 3.8
+    from functools import lru_cache
+
+    cache = lru_cache(maxsize=None)
+
 from importlib.metadata import entry_points
 from typing import Dict, List, Tuple
 
@@ -29,8 +37,9 @@ PREFIXES = {
     "eo:mo": "mercator",
 }
 
-PATTERN_SHORT = re.compile("^-[\d]{3}-[\d]{3}$")
-PATTERN_LONG = re.compile("^-[\d]{3}-[\d]{3}-[\w]$")
+PATTERN_SHORT = re.compile(r"^-[\d]{3}-[\d]{3}$")
+PATTERN_LONG = re.compile(r"^-[\d]{3}-[\d]{3}-[\w]$")
+
 
 @cache
 def valid_entry_points() -> List[str]:
@@ -54,10 +63,10 @@ def payload_to_args(payload) -> Dict:
                 area = values[0]
                 bbox = area["bbox"]
                 arguments["area"] = [
-                    bbox[3], # N
-                    bbox[0], # W
-                    bbox[1], # S
-                    bbox[2], # E
+                    bbox[3],  # N
+                    bbox[0],  # W
+                    bbox[1],  # S
+                    bbox[2],  # E
                 ]
             except KeyError:
                 pass
@@ -143,5 +152,3 @@ def hda2cml(payload) -> Tuple[str, Dict]:
     dataset = cml.load_dataset(entry_point, **arguments)
     """
     return payload_to_entry(payload), payload_to_args(payload)
-
-
