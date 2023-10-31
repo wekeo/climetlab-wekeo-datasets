@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -91,89 +90,12 @@ class wind_glo_wind_l3_rep_observations(Main):
         start=None,
         end=None,
     ):
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_ERS-2_SCAT_25_DES_202007":
-            if start is None:
-                start = "1996-03-20T00:00:00Z"
-
-            if end is None:
-                end = "2001-01-15T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_OCEANSAT2_OSCAT_50_DES_202007":
-            if start is None:
-                start = "2009-12-15T00:00:00Z"
-
-            if end is None:
-                end = "2014-02-20T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-B_ASCAT_25_ASC_202112":
-            if start is None:
-                start = "2019-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-05-31T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_OCEANSAT2_OSCAT_50_ASC_202007":
-            if start is None:
-                start = "2009-12-15T00:00:00Z"
-
-            if end is None:
-                end = "2014-02-20T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_ERS-2_SCAT_25_ASC_202007":
-            if start is None:
-                start = "1996-03-20T00:00:00Z"
-
-            if end is None:
-                end = "2001-01-15T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-B_ASCAT_12_DES_202112":
-            if start is None:
-                start = "2019-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-05-31T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-A_ASCAT_25_ASC_202007":
-            if start is None:
-                start = "2007-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2021-11-15T00:00:00Z"
-
         if layer == "KNMI-GLO-WIND_L3-REP-OBS_ERS-1_SCAT_25_ASC_202007":
             if start is None:
                 start = "1992-03-02T00:00:00Z"
 
             if end is None:
                 end = "1996-06-03T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-A_ASCAT_12_ASC_202007":
-            if start is None:
-                start = "2007-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2021-11-15T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_OCEANSAT2_OSCAT_25_DES_202007":
-            if start is None:
-                start = "2009-12-15T00:00:00Z"
-
-            if end is None:
-                end = "2014-02-20T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_QUIKSCAT_SEAWINDS_50_DES_202007":
-            if start is None:
-                start = "2003-11-23T00:00:00Z"
-
-            if end is None:
-                end = "2009-11-21T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-A_ASCAT_12_DES_202007":
-            if start is None:
-                start = "2007-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2021-11-15T00:00:00Z"
 
         if layer == "KNMI-GLO-WIND_L3-REP-OBS_ERS-1_SCAT_25_DES_202007":
             if start is None:
@@ -182,12 +104,40 @@ class wind_glo_wind_l3_rep_observations(Main):
             if end is None:
                 end = "1996-06-03T00:00:00Z"
 
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-B_ASCAT_12_ASC_202112":
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_ERS-2_SCAT_25_ASC_202007":
             if start is None:
-                start = "2019-01-01T00:00:00Z"
+                start = "1996-03-20T00:00:00Z"
 
             if end is None:
-                end = "2023-05-31T00:00:00Z"
+                end = "2001-01-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_ERS-2_SCAT_25_DES_202007":
+            if start is None:
+                start = "1996-03-20T00:00:00Z"
+
+            if end is None:
+                end = "2001-01-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-A_ASCAT_12_ASC_202007":
+            if start is None:
+                start = "2007-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-11-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-A_ASCAT_12_DES_202007":
+            if start is None:
+                start = "2007-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-11-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-A_ASCAT_25_ASC_202007":
+            if start is None:
+                start = "2007-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-11-15T00:00:00Z"
 
         if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-A_ASCAT_25_DES_202007":
             if start is None:
@@ -196,21 +146,56 @@ class wind_glo_wind_l3_rep_observations(Main):
             if end is None:
                 end = "2021-11-15T00:00:00Z"
 
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-B_ASCAT_12_ASC_202112":
+            if start is None:
+                start = "2019-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-06-30T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-B_ASCAT_12_DES_202112":
+            if start is None:
+                start = "2019-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-06-30T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-B_ASCAT_25_ASC_202112":
+            if start is None:
+                start = "2019-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-06-30T00:00:00Z"
+
         if layer == "KNMI-GLO-WIND_L3-REP-OBS_METOP-B_ASCAT_25_DES_202112":
             if start is None:
                 start = "2019-01-01T00:00:00Z"
 
             if end is None:
-                end = "2023-05-31T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-REP-OBS_QUIKSCAT_SEAWINDS_25_DES_202007":
-            if start is None:
-                start = "1999-07-19T00:00:00Z"
-
-            if end is None:
-                end = "2009-11-21T00:00:00Z"
+                end = "2023-06-30T00:00:00Z"
 
         if layer == "KNMI-GLO-WIND_L3-REP-OBS_OCEANSAT2_OSCAT_25_ASC_202007":
+            if start is None:
+                start = "2009-12-15T00:00:00Z"
+
+            if end is None:
+                end = "2014-02-20T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_OCEANSAT2_OSCAT_25_DES_202007":
+            if start is None:
+                start = "2009-12-15T00:00:00Z"
+
+            if end is None:
+                end = "2014-02-20T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_OCEANSAT2_OSCAT_50_ASC_202007":
+            if start is None:
+                start = "2009-12-15T00:00:00Z"
+
+            if end is None:
+                end = "2014-02-20T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_OCEANSAT2_OSCAT_50_DES_202007":
             if start is None:
                 start = "2009-12-15T00:00:00Z"
 
@@ -224,9 +209,23 @@ class wind_glo_wind_l3_rep_observations(Main):
             if end is None:
                 end = "2009-11-21T00:00:00Z"
 
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_QUIKSCAT_SEAWINDS_25_DES_202007":
+            if start is None:
+                start = "1999-07-19T00:00:00Z"
+
+            if end is None:
+                end = "2009-11-21T00:00:00Z"
+
         if layer == "KNMI-GLO-WIND_L3-REP-OBS_QUIKSCAT_SEAWINDS_50_ASC_202007":
             if start is None:
                 start = "1999-07-19T00:00:00Z"
+
+            if end is None:
+                end = "2009-11-21T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-REP-OBS_QUIKSCAT_SEAWINDS_50_DES_202007":
+            if start is None:
+                start = "2003-11-23T00:00:00Z"
 
             if end is None:
                 end = "2009-11-21T00:00:00Z"

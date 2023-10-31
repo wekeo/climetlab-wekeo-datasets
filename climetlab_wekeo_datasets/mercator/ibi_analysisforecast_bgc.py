@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -63,17 +62,17 @@ class ibi_analysisforecast_bgc(Main):
     ):
         if layer == "cmems_mod_ibi_bgc_anfc_0.027deg-3D_P1D-m_202211":
             if start is None:
-                start = "2021-09-27T00:00:00Z"
+                start = "2021-10-25T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-26T00:00:00Z"
 
         if layer == "cmems_mod_ibi_bgc_anfc_0.027deg-3D_P1M-m_202211":
             if start is None:
                 start = "2020-12-31T00:00:00Z"
 
             if end is None:
-                end = "2023-08-31T00:00:00Z"
+                end = "2023-09-30T00:00:00Z"
 
         super().__init__(
             layer=layer,

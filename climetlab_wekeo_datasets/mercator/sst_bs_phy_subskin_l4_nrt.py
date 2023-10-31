@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -54,7 +53,7 @@ class sst_bs_phy_subskin_l4_nrt(Main):
                 start = "2019-12-31T23:30:00Z"
 
             if end is None:
-                end = "2023-09-24T23:30:00Z"
+                end = "2023-10-24T23:30:00Z"
 
         super().__init__(
             layer=layer,

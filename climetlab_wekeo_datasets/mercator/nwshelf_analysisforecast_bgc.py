@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -63,68 +62,68 @@ class nwshelf_analysisforecast_bgc(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_mod_nws_bgc-spco2_anfc_7km-2D_P1D-m_202105":
-            if start is None:
-                start = "2019-05-03T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-30T00:00:00Z"
-
-        if layer == "cmems_mod_nws_bgc-po4_anfc_7km-3D_P1D-m_202105":
-            if start is None:
-                start = "2019-05-03T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-30T00:00:00Z"
-
-        if layer == "cmems_mod_nws_bgc-o2_anfc_7km-3D_P1D-m_202105":
-            if start is None:
-                start = "2019-05-03T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-30T00:00:00Z"
-
-        if layer == "cmems_mod_nws_bgc-ph_anfc_7km-3D_P1D-m_202105":
-            if start is None:
-                start = "2019-05-03T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-30T00:00:00Z"
-
         if layer == "cmems_mod_nws_bgc-chl_anfc_7km-3D_P1D-m_202105":
             if start is None:
                 start = "2019-05-03T00:00:00Z"
 
             if end is None:
-                end = "2023-09-30T00:00:00Z"
+                end = "2023-11-02T00:00:00Z"
 
         if layer == "cmems_mod_nws_bgc-kd_anfc_7km-3D_P1D-m_202105":
             if start is None:
                 start = "2019-05-03T00:00:00Z"
 
             if end is None:
-                end = "2023-09-30T00:00:00Z"
-
-        if layer == "cmems_mod_nws_bgc-pp_anfc_7km-3D_P1D-m_202105":
-            if start is None:
-                start = "2019-05-03T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-30T00:00:00Z"
-
-        if layer == "cmems_mod_nws_bgc-phyc_anfc_7km-3D_P1D-m_202105":
-            if start is None:
-                start = "2019-05-03T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-30T00:00:00Z"
+                end = "2023-11-02T00:00:00Z"
 
         if layer == "cmems_mod_nws_bgc-no3_anfc_7km-3D_P1D-m_202105":
             if start is None:
                 start = "2019-05-03T00:00:00Z"
 
             if end is None:
-                end = "2023-09-30T00:00:00Z"
+                end = "2023-11-02T00:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-o2_anfc_7km-3D_P1D-m_202105":
+            if start is None:
+                start = "2019-05-03T00:00:00Z"
+
+            if end is None:
+                end = "2023-11-02T00:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-ph_anfc_7km-3D_P1D-m_202105":
+            if start is None:
+                start = "2019-05-03T00:00:00Z"
+
+            if end is None:
+                end = "2023-11-02T00:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-phyc_anfc_7km-3D_P1D-m_202105":
+            if start is None:
+                start = "2019-05-03T00:00:00Z"
+
+            if end is None:
+                end = "2023-11-02T00:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-po4_anfc_7km-3D_P1D-m_202105":
+            if start is None:
+                start = "2019-05-03T00:00:00Z"
+
+            if end is None:
+                end = "2023-11-02T00:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-pp_anfc_7km-3D_P1D-m_202105":
+            if start is None:
+                start = "2019-05-03T00:00:00Z"
+
+            if end is None:
+                end = "2023-11-02T00:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-spco2_anfc_7km-2D_P1D-m_202105":
+            if start is None:
+                start = "2019-05-03T00:00:00Z"
+
+            if end is None:
+                end = "2023-11-02T00:00:00Z"
 
         super().__init__(
             layer=layer,

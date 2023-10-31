@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -53,7 +52,7 @@ class oceancolour_atl_bgc_l4_my(Main):
                 start = "1997-09-06T16:08:10Z"
 
             if end is None:
-                end = "2023-09-17T17:11:59Z"
+                end = "2023-10-20T16:59:58Z"
 
         super().__init__(
             layer=layer,

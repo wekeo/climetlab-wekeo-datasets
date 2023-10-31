@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -85,110 +84,110 @@ class global_analysisforecast_phy(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m_202211":
+        if layer == "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-08-28T00:00:00Z"
-
-        if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202211":
-            if start is None:
-                start = "2020-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m_202211":
-            if start is None:
-                start = "2020-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202211":
-            if start is None:
-                start = "2020-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202211":
-            if start is None:
-                start = "2020-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202211":
-            if start is None:
-                start = "2020-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202211":
-            if start is None:
-                start = "2020-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-08-28T00:00:00Z"
+                end = "2023-10-28T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-08-28T00:00:00Z"
+                end = "2023-09-28T00:00:00Z"
+
+        if layer == "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202211":
+            if start is None:
+                start = "2020-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-28T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-28T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-08-28T00:00:00Z"
+                end = "2023-09-28T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-28T00:00:00Z"
 
-        if layer == "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m_202211":
+        if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-28T00:00:00Z"
 
-        if layer == "cmems_mod_glo_phy_anfc_merged-uv_PT1H-i_202211":
+        if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-09-28T00:00:00Z"
 
-        if layer == "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m_202211":
+        if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-08-28T00:00:00Z"
+                end = "2023-10-28T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m_202211":
             if start is None:
                 start = "2020-11-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-28T00:00:00Z"
+
+        if layer == "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m_202211":
+            if start is None:
+                start = "2020-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-09-28T00:00:00Z"
+
+        if layer == "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202211":
+            if start is None:
+                start = "2020-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-28T00:00:00Z"
+
+        if layer == "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202211":
+            if start is None:
+                start = "2020-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-09-28T00:00:00Z"
+
+        if layer == "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202211":
+            if start is None:
+                start = "2020-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-30T00:00:00Z"
+
+        if layer == "cmems_mod_glo_phy_anfc_merged-uv_PT1H-i_202211":
+            if start is None:
+                start = "2020-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-27T00:00:00Z"
 
         super().__init__(
             layer=layer,

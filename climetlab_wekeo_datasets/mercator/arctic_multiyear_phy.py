@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -65,6 +64,13 @@ class arctic_multiyear_phy(Main):
         start=None,
         end=None,
     ):
+        if layer == "cmems_mod_arc_phy_my_topaz4_P1D-m_202211":
+            if start is None:
+                start = "1991-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-12-31T00:00:00Z"
+
         if layer == "cmems_mod_arc_phy_my_topaz4_P1M_202012":
             if start is None:
                 start = "1991-01-15T00:00:00Z"
@@ -78,13 +84,6 @@ class arctic_multiyear_phy(Main):
 
             if end is None:
                 end = "2022-01-01T00:00:00Z"
-
-        if layer == "cmems_mod_arc_phy_my_topaz4_P1D-m_202211":
-            if start is None:
-                start = "1991-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-12-31T00:00:00Z"
 
         super().__init__(
             layer=layer,

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -72,7 +71,77 @@ class blksea_reanalysis_bio(Main):
         start=None,
         end=None,
     ):
+        if layer == "bs-ulg-bio-int-m_202105":
+            if start is None:
+                start = "2021-03-26T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-09T00:00:00Z"
+
+        if layer == "bs-ulg-bio-rean-d_202007":
+            if start is None:
+                start = "2020-05-19T00:00:00Z"
+
+            if end is None:
+                end = "2022-03-30T00:00:00Z"
+
+        if layer == "bs-ulg-bio-rean-m_202007":
+            if start is None:
+                start = "2020-05-19T00:00:00Z"
+
+            if end is None:
+                end = "2022-03-30T00:00:00Z"
+
+        if layer == "bs-ulg-car-int-m_202105":
+            if start is None:
+                start = "2021-03-26T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-09T00:00:00Z"
+
         if layer == "bs-ulg-car-rean-d_202007":
+            if start is None:
+                start = "2020-05-19T00:00:00Z"
+
+            if end is None:
+                end = "2022-03-30T00:00:00Z"
+
+        if layer == "bs-ulg-car-rean-m_202007":
+            if start is None:
+                start = "2020-05-19T00:00:00Z"
+
+            if end is None:
+                end = "2022-03-30T00:00:00Z"
+
+        if layer == "bs-ulg-co2-int-m_202105":
+            if start is None:
+                start = "2021-03-26T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-09T00:00:00Z"
+
+        if layer == "bs-ulg-co2-rean-d_202007":
+            if start is None:
+                start = "2020-05-19T00:00:00Z"
+
+            if end is None:
+                end = "2022-03-30T00:00:00Z"
+
+        if layer == "bs-ulg-co2-rean-m_202007":
+            if start is None:
+                start = "2020-05-19T00:00:00Z"
+
+            if end is None:
+                end = "2022-03-30T00:00:00Z"
+
+        if layer == "bs-ulg-nut-int-m_202105":
+            if start is None:
+                start = "2021-03-26T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-09T00:00:00Z"
+
+        if layer == "bs-ulg-nut-rean-d_202007":
             if start is None:
                 start = "2020-05-19T00:00:00Z"
 
@@ -86,91 +155,21 @@ class blksea_reanalysis_bio(Main):
             if end is None:
                 end = "2022-03-30T00:00:00Z"
 
-        if layer == "bs-ulg-pft-rean-m_202007":
-            if start is None:
-                start = "2020-05-19T00:00:00Z"
-
-            if end is None:
-                end = "2022-03-30T00:00:00Z"
-
-        if layer == "bs-ulg-nut-rean-d_202007":
-            if start is None:
-                start = "2020-05-19T00:00:00Z"
-
-            if end is None:
-                end = "2022-03-30T00:00:00Z"
-
-        if layer == "bs-ulg-bio-int-m_202105":
-            if start is None:
-                start = "2021-03-26T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-14T00:00:00Z"
-
-        if layer == "bs-ulg-car-rean-m_202007":
-            if start is None:
-                start = "2020-05-19T00:00:00Z"
-
-            if end is None:
-                end = "2022-03-30T00:00:00Z"
-
         if layer == "bs-ulg-pft-int-m_202105":
             if start is None:
                 start = "2021-03-26T00:00:00Z"
 
             if end is None:
-                end = "2023-09-14T00:00:00Z"
-
-        if layer == "bs-ulg-co2-rean-m_202007":
-            if start is None:
-                start = "2020-05-19T00:00:00Z"
-
-            if end is None:
-                end = "2022-03-30T00:00:00Z"
-
-        if layer == "bs-ulg-co2-rean-d_202007":
-            if start is None:
-                start = "2020-05-19T00:00:00Z"
-
-            if end is None:
-                end = "2022-03-30T00:00:00Z"
-
-        if layer == "bs-ulg-bio-rean-d_202007":
-            if start is None:
-                start = "2020-05-19T00:00:00Z"
-
-            if end is None:
-                end = "2022-03-30T00:00:00Z"
-
-        if layer == "bs-ulg-car-int-m_202105":
-            if start is None:
-                start = "2021-03-26T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-14T00:00:00Z"
-
-        if layer == "bs-ulg-co2-int-m_202105":
-            if start is None:
-                start = "2021-03-26T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-14T00:00:00Z"
-
-        if layer == "bs-ulg-nut-int-m_202105":
-            if start is None:
-                start = "2021-03-26T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-14T00:00:00Z"
-
-        if layer == "bs-ulg-bio-rean-m_202007":
-            if start is None:
-                start = "2020-05-19T00:00:00Z"
-
-            if end is None:
-                end = "2022-03-30T00:00:00Z"
+                end = "2023-10-09T00:00:00Z"
 
         if layer == "bs-ulg-pft-rean-d_202007":
+            if start is None:
+                start = "2020-05-19T00:00:00Z"
+
+            if end is None:
+                end = "2022-03-30T00:00:00Z"
+
+        if layer == "bs-ulg-pft-rean-m_202007":
             if start is None:
                 start = "2020-05-19T00:00:00Z"
 

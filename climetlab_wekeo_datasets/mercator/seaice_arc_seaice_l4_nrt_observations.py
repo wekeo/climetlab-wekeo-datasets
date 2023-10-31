@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -69,19 +68,19 @@ class seaice_arc_seaice_l4_nrt_observations(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_obs-si_arc_physic_nrt_1km-grl_P1D-irr_202012":
-            if start is None:
-                start = "0090-11-21T00:00:00Z"
-
-            if end is None:
-                end = "3012-12-03T00:00:00Z"
-
         if layer == "METNO-ARC-SEAICE_CONC-L4-NRT-OBS":
             if start is None:
                 start = "2023-03-20T00:00:00Z"
 
             if end is None:
                 end = "2023-03-20T00:00:00Z"
+
+        if layer == "cmems_obs-si_arc_physic_nrt_1km-grl_P1D-irr_202012":
+            if start is None:
+                start = "0090-11-21T00:00:00Z"
+
+            if end is None:
+                end = "3012-12-03T00:00:00Z"
 
         if layer == "cmems_obs-si_arc_physic_nrt_1km-grl_P1WT3D-m_202012":
             if start is None:

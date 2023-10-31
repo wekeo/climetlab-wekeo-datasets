@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -125,6 +124,27 @@ class oceancolour_glo_bgc_l4_my(Main):
         start=None,
         end=None,
     ):
+        if layer == "cmems_obs-oc_glo_bgc-optics_my_l4-multi-4km_P1M_202211":
+            if start is None:
+                start = "1997-09-04T16:26:34Z"
+
+            if end is None:
+                end = "2023-10-01T03:14:16Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-plankton_my_l4-gapfree-multi-4km_P1D_202207":
+            if start is None:
+                start = "1997-09-04T16:26:34Z"
+
+            if end is None:
+                end = "2023-10-18T04:12:00Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-plankton_my_l4-multi-4km_P1M_202207":
+            if start is None:
+                start = "1997-09-04T16:26:34Z"
+
+            if end is None:
+                end = "2023-10-01T03:43:42Z"
+
         if (
             layer
             == "cmems_obs-oc_glo_bgc-plankton_my_l4-multi-climatology-4km_P1D_202207"
@@ -135,89 +155,68 @@ class oceancolour_glo_bgc_l4_my(Main):
             if end is None:
                 end = "2017-01-01T08:38:26Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-transp_my_l4-olci-4km_P1M_202207":
+        if layer == "cmems_obs-oc_glo_bgc-plankton_my_l4-olci-300m_P1M_202211":
             if start is None:
-                start = "2016-04-25T11:34:53Z"
+                start = "2016-04-25T11:40:53Z"
 
             if end is None:
-                end = "2023-09-01T00:43:43Z"
+                end = "2023-10-01T00:05:36Z"
 
         if layer == "cmems_obs-oc_glo_bgc-plankton_my_l4-olci-4km_P1M_202207":
             if start is None:
                 start = "2016-04-25T11:34:53Z"
 
             if end is None:
-                end = "2023-09-01T00:43:43Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-reflectance_my_l4-olci-4km_P1M_202207":
-            if start is None:
-                start = "2016-04-25T11:34:53Z"
-
-            if end is None:
-                end = "2023-09-01T00:43:43Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-reflectance_my_l4-olci-300m_P1M_202211":
-            if start is None:
-                start = "2016-04-25T11:40:53Z"
-
-            if end is None:
-                end = "2023-08-31T23:44:19Z"
+                end = "2023-09-30T23:29:01Z"
 
         if layer == "cmems_obs-oc_glo_bgc-pp_my_l4-multi-4km_P1M_202207":
             if start is None:
                 start = "1997-09-04T16:26:34Z"
 
             if end is None:
-                end = "2023-09-01T04:02:00Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-transp_my_l4-multi-4km_P1M_202207":
-            if start is None:
-                start = "1997-09-04T16:26:34Z"
-
-            if end is None:
-                end = "2023-09-01T04:02:00Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-transp_my_l4-gapfree-multi-4km_P1D_202207":
-            if start is None:
-                start = "1997-09-04T16:26:34Z"
-
-            if end is None:
-                end = "2023-09-18T03:54:58Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-optics_my_l4-multi-4km_P1M_202211":
-            if start is None:
-                start = "1997-09-04T16:26:34Z"
-
-            if end is None:
-                end = "2023-09-01T02:19:59Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-plankton_my_l4-gapfree-multi-4km_P1D_202207":
-            if start is None:
-                start = "1997-09-04T16:26:34Z"
-
-            if end is None:
-                end = "2023-09-18T03:54:58Z"
+                end = "2023-10-01T03:43:42Z"
 
         if layer == "cmems_obs-oc_glo_bgc-reflectance_my_l4-multi-4km_P1M_202207":
             if start is None:
                 start = "1997-09-04T16:26:34Z"
 
             if end is None:
-                end = "2023-09-01T02:19:59Z"
+                end = "2023-10-01T03:14:16Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-plankton_my_l4-olci-300m_P1M_202211":
+        if layer == "cmems_obs-oc_glo_bgc-reflectance_my_l4-olci-300m_P1M_202211":
             if start is None:
                 start = "2016-04-25T11:40:53Z"
 
             if end is None:
-                end = "2023-08-31T23:44:19Z"
+                end = "2023-10-01T00:05:36Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-plankton_my_l4-multi-4km_P1M_202207":
+        if layer == "cmems_obs-oc_glo_bgc-reflectance_my_l4-olci-4km_P1M_202207":
+            if start is None:
+                start = "2016-04-25T11:34:53Z"
+
+            if end is None:
+                end = "2023-09-30T23:29:01Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-transp_my_l4-gapfree-multi-4km_P1D_202207":
             if start is None:
                 start = "1997-09-04T16:26:34Z"
 
             if end is None:
-                end = "2023-09-01T04:02:00Z"
+                end = "2023-10-18T04:12:00Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-transp_my_l4-multi-4km_P1M_202207":
+            if start is None:
+                start = "1997-09-04T16:26:34Z"
+
+            if end is None:
+                end = "2023-10-01T03:43:42Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-transp_my_l4-olci-4km_P1M_202207":
+            if start is None:
+                start = "2016-04-25T11:34:53Z"
+
+            if end is None:
+                end = "2023-09-30T23:29:01Z"
 
         super().__init__(
             layer=layer,

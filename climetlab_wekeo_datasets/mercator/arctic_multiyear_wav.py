@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -70,7 +69,7 @@ class arctic_multiyear_wav(Main):
     ):
         if layer == "cmems_mod_arc_wav_my_3km_PT1H-i_202012":
             if start is None:
-                start = "1985-01-01T00:00:00Z"
+                start = "1980-01-01T00:00:00Z"
 
             if end is None:
                 end = "2022-12-31T00:00:00Z"

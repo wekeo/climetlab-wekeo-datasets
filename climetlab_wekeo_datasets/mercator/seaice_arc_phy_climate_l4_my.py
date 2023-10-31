@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -58,7 +57,7 @@ class seaice_arc_phy_climate_l4_my(Main):
                 start = "1982-01-01T00:00:00Z"
 
             if end is None:
-                end = "2021-06-01T00:00:00Z"
+                end = "2022-07-01T00:00:00Z"
 
         super().__init__(
             layer=layer,

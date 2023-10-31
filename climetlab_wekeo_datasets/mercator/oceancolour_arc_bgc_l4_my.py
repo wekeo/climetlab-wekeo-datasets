@@ -11,13 +11,13 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-sl_blk_phy-mdt_my_l4-0.0625deg_P20Y_202105",  # noqa: E501 Mdt cmems 2020 blk
+    "cmems_obs-oc_arc_bgc-plankton_my_l4-olci-300m_P1M_202303",  # noqa: E501 cmems_obs-oc_arc_bgc-plankton_my_l4-olci-300m_P1M_202303
 ]
 
 
-class sealevel_blk_phy_mdt_l4_static(Main):
-    name = "EO:MO:DAT:SEALEVEL_BLK_PHY_MDT_L4_STATIC_008_067"
-    dataset = "EO:MO:DAT:SEALEVEL_BLK_PHY_MDT_L4_STATIC_008_067"
+class oceancolour_arc_bgc_l4_my(Main):
+    name = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L4_MY_009_124"
+    dataset = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L4_MY_009_124"
 
     string_selects = [
         "variables",
@@ -28,20 +28,15 @@ class sealevel_blk_phy_mdt_l4_static(Main):
     @normalize(
         "variables",
         [
-            "climatology_bnds",
-            "crs",
-            "err_mdt",
-            "err_u",
-            "err_v",
-            "lat_bnds",
-            "latitude",
-            "lon_bnds",
-            "longitude",
-            "mdt",
-            "nv",
+            "CHL",
+            "CHL_count",
+            "CHL_error",
+            "lat",
+            "lon",
+            "stereographic",
             "time",
-            "u",
-            "v",
+            "x",
+            "y",
         ],
         multiple=True,
     )
@@ -49,18 +44,18 @@ class sealevel_blk_phy_mdt_l4_static(Main):
     @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        layer="cmems_obs-sl_blk_phy-mdt_my_l4-0.0625deg_P20Y_202105",
+        layer="cmems_obs-oc_arc_bgc-plankton_my_l4-olci-300m_P1M_202303",
         area=None,
         variables=None,
         start=None,
         end=None,
     ):
-        if layer == "cmems_obs-sl_blk_phy-mdt_my_l4-0.0625deg_P20Y_202105":
+        if layer == "cmems_obs-oc_arc_bgc-plankton_my_l4-olci-300m_P1M_202303":
             if start is None:
-                start = "1993-01-01T00:00:00Z"
+                start = "2016-04-01T00:00:00Z"
 
             if end is None:
-                end = "2013-01-01T00:00:00Z"
+                end = "2023-08-31T00:00:00Z"
 
         super().__init__(
             layer=layer,

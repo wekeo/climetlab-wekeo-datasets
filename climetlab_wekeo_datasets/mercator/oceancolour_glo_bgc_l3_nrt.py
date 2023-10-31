@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -110,68 +109,68 @@ class oceancolour_glo_bgc_l3_nrt(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l3-multi-4km_P1D_202207":
+        if layer == "cmems_obs-oc_glo_bgc-optics_nrt_l3-multi-4km_P1D_202207":
             if start is None:
-                start = "2023-09-16T20:04:11Z"
+                start = "2023-10-17T00:36:01Z"
 
             if end is None:
-                end = "2023-09-25T03:09:10Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l3-multi-4km_P1D_202207":
-            if start is None:
-                start = "2023-09-16T22:36:01Z"
-
-            if end is None:
-                end = "2023-09-25T02:29:59Z"
+                end = "2023-10-24T02:54:59Z"
 
         if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l3-multi-4km_P1D_202207":
             if start is None:
-                start = "2023-09-16T20:04:11Z"
+                start = "2023-10-16T19:27:00Z"
 
             if end is None:
-                end = "2023-09-25T03:09:10Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l3-olci-4km_P1D_202207":
-            if start is None:
-                start = "2023-09-17T21:09:05Z"
-
-            if end is None:
-                end = "2023-09-24T23:23:33Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l3-olci-4km_P1D_202207":
-            if start is None:
-                start = "2023-09-17T21:09:05Z"
-
-            if end is None:
-                end = "2023-09-24T23:23:33Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-optics_nrt_l3-multi-4km_P1D_202207":
-            if start is None:
-                start = "2023-09-16T22:36:01Z"
-
-            if end is None:
-                end = "2023-09-25T02:29:59Z"
-
-        if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l3-olci-300m_P1D_202211":
-            if start is None:
-                start = "2023-09-16T20:39:18Z"
-
-            if end is None:
-                end = "2023-09-23T23:47:52Z"
+                end = "2023-10-24T04:22:35Z"
 
         if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l3-olci-300m_P1D_202207":
             if start is None:
-                start = "2023-09-16T20:39:18Z"
+                start = "2023-10-16T20:24:44Z"
 
             if end is None:
-                end = "2023-09-24T23:23:19Z"
+                end = "2023-10-24T23:06:53Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l3-olci-4km_P1D_202207":
+            if start is None:
+                start = "2023-10-17T20:00:47Z"
+
+            if end is None:
+                end = "2023-10-23T22:38:29Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l3-multi-4km_P1D_202207":
+            if start is None:
+                start = "2023-10-17T00:36:01Z"
+
+            if end is None:
+                end = "2023-10-24T02:54:59Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l3-olci-300m_P1D_202211":
+            if start is None:
+                start = "2023-10-16T20:24:44Z"
+
+            if end is None:
+                end = "2023-10-23T23:32:33Z"
 
         if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l3-olci-4km_P1D_202207":
             if start is None:
-                start = "2023-09-17T21:09:05Z"
+                start = "2023-10-17T20:00:47Z"
 
             if end is None:
-                end = "2023-09-24T23:23:33Z"
+                end = "2023-10-23T22:38:29Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l3-multi-4km_P1D_202207":
+            if start is None:
+                start = "2023-10-16T19:27:00Z"
+
+            if end is None:
+                end = "2023-10-24T04:22:35Z"
+
+        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l3-olci-4km_P1D_202207":
+            if start is None:
+                start = "2023-10-17T20:00:47Z"
+
+            if end is None:
+                end = "2023-10-23T22:38:29Z"
 
         super().__init__(
             layer=layer,

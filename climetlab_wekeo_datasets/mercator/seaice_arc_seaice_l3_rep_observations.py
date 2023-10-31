@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -58,19 +57,15 @@ class seaice_arc_seaice_l3_rep_observations(Main):
         start=None,
         end=None,
     ):
-        if layer == "CERSAT-GLO-SEAICE_6DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE":
+        if (
+            layer
+            == "CERSAT-GLO-SEAICE_30DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE"
+        ):
             if start is None:
-                start = "2007-01-31T00:00:00Z"
+                start = "2007-02-01T00:00:00Z"
 
             if end is None:
-                end = "2022-11-15T00:00:00Z"
-
-        if layer == "cmems_obs-si_arc_phy_my_drift-amsr_P2D_202012":
-            if start is None:
-                start = "2002-10-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-05-02T00:00:00Z"
+                end = "2022-10-01T00:00:00Z"
 
         if (
             layer
@@ -82,12 +77,29 @@ class seaice_arc_seaice_l3_rep_observations(Main):
             if end is None:
                 end = "2012-04-01T00:00:00Z"
 
-        if layer == "CERSAT-GLO-SEAICE_6DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE":
+        if layer == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE":
             if start is None:
-                start = "1999-09-25T00:00:00Z"
+                start = "2007-01-31T00:00:00Z"
 
             if end is None:
-                end = "2009-11-15T00:00:00Z"
+                end = "2022-11-18T00:00:00Z"
+
+        if (
+            layer
+            == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE"
+        ):
+            if start is None:
+                start = "2007-01-31T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-18T00:00:00Z"
+
+        if layer == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE":
+            if start is None:
+                start = "1999-09-28T00:00:00Z"
+
+            if end is None:
+                end = "2009-11-18T00:00:00Z"
 
         if (
             layer
@@ -99,22 +111,26 @@ class seaice_arc_seaice_l3_rep_observations(Main):
             if end is None:
                 end = "2012-04-30T00:00:00Z"
 
-        if (
-            layer
-            == "CERSAT-GLO-SEAICE_30DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE"
-        ):
-            if start is None:
-                start = "2007-02-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-10-01T00:00:00Z"
-
-        if layer == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE":
+        if layer == "CERSAT-GLO-SEAICE_6DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE":
             if start is None:
                 start = "2007-01-31T00:00:00Z"
 
             if end is None:
-                end = "2022-11-18T00:00:00Z"
+                end = "2022-11-15T00:00:00Z"
+
+        if layer == "CERSAT-GLO-SEAICE_6DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE":
+            if start is None:
+                start = "1999-09-25T00:00:00Z"
+
+            if end is None:
+                end = "2009-11-15T00:00:00Z"
+
+        if layer == "cmems_obs-si_arc_phy_my_drift-amsr_P2D_202012":
+            if start is None:
+                start = "2002-10-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-05-02T00:00:00Z"
 
         if layer == "cmems_obs-si_arc_phy_my_drift-amsr_P3D_202012":
             if start is None:
@@ -129,23 +145,6 @@ class seaice_arc_seaice_l3_rep_observations(Main):
 
             if end is None:
                 end = "2023-05-06T00:00:00Z"
-
-        if layer == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE":
-            if start is None:
-                start = "1999-09-28T00:00:00Z"
-
-            if end is None:
-                end = "2009-11-18T00:00:00Z"
-
-        if (
-            layer
-            == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE"
-        ):
-            if start is None:
-                start = "2007-01-31T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-18T00:00:00Z"
 
         super().__init__(
             layer=layer,

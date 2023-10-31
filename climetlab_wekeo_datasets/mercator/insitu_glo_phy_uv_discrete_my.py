@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -99,6 +98,13 @@ class insitu_glo_phy_uv_discrete_my(Main):
         start=None,
         end=None,
     ):
+        if layer == "cmems_obs-ins_glo_phy-cur_my_adcp_irr_202211":
+            if start is None:
+                start = "2001-01-04T16:47:52Z"
+
+            if end is None:
+                end = "2021-11-16T21:30:00Z"
+
         if layer == "cmems_obs-ins_glo_phy-cur_my_drifter_PT6H_202211":
             if start is None:
                 start = "1990-01-01T00:00:00Z"
@@ -119,13 +125,6 @@ class insitu_glo_phy_uv_discrete_my(Main):
 
             if end is None:
                 end = "2021-12-31T23:30:00Z"
-
-        if layer == "cmems_obs-ins_glo_phy-cur_my_adcp_irr_202211":
-            if start is None:
-                start = "2001-01-04T16:47:52Z"
-
-            if end is None:
-                end = "2021-11-16T21:30:00Z"
 
         super().__init__(
             layer=layer,

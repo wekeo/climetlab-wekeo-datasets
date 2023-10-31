@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -72,96 +71,96 @@ class blksea_analysisforecast_bgc(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_mod_blk_bgc-pft_anfc_3km_P1D-m_202211":
-            if start is None:
-                start = "2022-11-10T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-co2_anfc_3km_P1D-m_202211":
-            if start is None:
-                start = "2022-11-10T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-nut_anfc_3km_P1D-m_202211":
-            if start is None:
-                start = "2022-11-10T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-nut_anfc_3km_P1M-m_202211":
-            if start is None:
-                start = "2022-11-13T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-12T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-opt_anfc_3km_P1D-m_202211":
-            if start is None:
-                start = "2022-11-10T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-car_anfc_3km_P1D-m_202211":
-            if start is None:
-                start = "2022-11-10T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-opt_anfc_3km_P1M-m_202211":
-            if start is None:
-                start = "2022-11-13T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-12T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-car_anfc_3km_P1M-m_202211":
-            if start is None:
-                start = "2022-11-13T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-12T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-pft_anfc_3km_P1M-m_202211":
-            if start is None:
-                start = "2022-11-13T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-12T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-co2_anfc_3km_PT1H-m_202211":
-            if start is None:
-                start = "2022-11-13T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
-
         if layer == "cmems_mod_blk_bgc-bio_anfc_3km_P1D-m_202211":
             if start is None:
                 start = "2022-11-10T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-co2_anfc_3km_P1M-m_202211":
-            if start is None:
-                start = "2022-11-13T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-12T00:00:00Z"
+                end = "2023-10-27T00:00:00Z"
 
         if layer == "cmems_mod_blk_bgc-bio_anfc_3km_P1M-m_202211":
             if start is None:
                 start = "2022-11-13T00:00:00Z"
 
             if end is None:
-                end = "2023-09-12T00:00:00Z"
+                end = "2023-10-04T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-car_anfc_3km_P1D-m_202211":
+            if start is None:
+                start = "2022-11-10T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-27T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-car_anfc_3km_P1M-m_202211":
+            if start is None:
+                start = "2022-11-13T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-04T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-co2_anfc_3km_P1D-m_202211":
+            if start is None:
+                start = "2022-11-10T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-27T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-co2_anfc_3km_P1M-m_202211":
+            if start is None:
+                start = "2022-11-13T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-04T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-co2_anfc_3km_PT1H-m_202211":
+            if start is None:
+                start = "2022-11-13T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-27T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-nut_anfc_3km_P1D-m_202211":
+            if start is None:
+                start = "2022-11-10T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-27T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-nut_anfc_3km_P1M-m_202211":
+            if start is None:
+                start = "2022-11-13T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-04T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-opt_anfc_3km_P1D-m_202211":
+            if start is None:
+                start = "2022-11-10T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-27T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-opt_anfc_3km_P1M-m_202211":
+            if start is None:
+                start = "2022-11-13T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-04T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-pft_anfc_3km_P1D-m_202211":
+            if start is None:
+                start = "2022-11-10T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-27T00:00:00Z"
+
+        if layer == "cmems_mod_blk_bgc-pft_anfc_3km_P1M-m_202211":
+            if start is None:
+                start = "2022-11-13T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-04T00:00:00Z"
 
         super().__init__(
             layer=layer,

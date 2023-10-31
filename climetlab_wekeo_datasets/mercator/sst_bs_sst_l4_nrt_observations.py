@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -58,28 +57,28 @@ class sst_bs_sst_l4_nrt_observations(Main):
                 start = "2007-12-31T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "SST_BS_SST_L4_NRT_OBSERVATIONS_010_006_a_V2":
-            if start is None:
-                start = "2007-12-31T19:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T07:00:00Z"
-
-        if layer == "SST_BS_SST_L4_NRT_OBSERVATIONS_010_006_c_V2":
-            if start is None:
-                start = "2007-12-31T19:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T07:00:00Z"
+                end = "2023-10-28T00:00:00Z"
 
         if layer == "SST_BS_SSTA_L4_NRT_OBSERVATIONS_010_006_d":
             if start is None:
                 start = "2007-12-31T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-28T00:00:00Z"
+
+        if layer == "SST_BS_SST_L4_NRT_OBSERVATIONS_010_006_a_V2":
+            if start is None:
+                start = "2007-12-31T19:00:00Z"
+
+            if end is None:
+                end = "2023-10-28T07:00:00Z"
+
+        if layer == "SST_BS_SST_L4_NRT_OBSERVATIONS_010_006_c_V2":
+            if start is None:
+                start = "2007-12-31T19:00:00Z"
+
+            if end is None:
+                end = "2023-10-28T07:00:00Z"
 
         super().__init__(
             layer=layer,

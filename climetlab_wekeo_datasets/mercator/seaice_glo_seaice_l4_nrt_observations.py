@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -69,47 +68,47 @@ class seaice_glo_seaice_l4_nrt_observations(Main):
         start=None,
         end=None,
     ):
-        if layer == "osisaf_obs-si_glo_phy-siedge_nrt_sh-P1D_202107":
+        if layer == "METNO-GLO-SEAICE_DRIFT-NORTH-L4-NRT-OBS":
             if start is None:
-                start = "2021-06-01T00:00:00Z"
+                start = "2017-12-30T12:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
-
-        if layer == "osisaf_obs-si_glo_phy-siedge_nrt_nh-P1D_202107":
-            if start is None:
-                start = "2021-06-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-24T12:00:00Z"
 
         if layer == "METNO-GLO-SEAICE_DRIFT-SOUTH-L4-NRT-OBS":
             if start is None:
                 start = "2017-12-30T12:00:00Z"
 
             if end is None:
-                end = "2023-09-24T12:00:00Z"
+                end = "2023-10-24T12:00:00Z"
 
-        if layer == "METNO-GLO-SEAICE_DRIFT-NORTH-L4-NRT-OBS":
-            if start is None:
-                start = "2017-12-30T12:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T12:00:00Z"
-
-        if layer == "osisaf_obs-si_glo_phy-sitype_nrt_sh-P1D_202107":
+        if layer == "osisaf_obs-si_glo_phy-siedge_nrt_nh-P1D_202107":
             if start is None:
                 start = "2021-06-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-25T00:00:00Z"
+
+        if layer == "osisaf_obs-si_glo_phy-siedge_nrt_sh-P1D_202107":
+            if start is None:
+                start = "2021-06-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-25T00:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-sitype_nrt_nh-P1D_202107":
             if start is None:
                 start = "2021-06-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-25T00:00:00Z"
+                end = "2023-10-25T00:00:00Z"
+
+        if layer == "osisaf_obs-si_glo_phy-sitype_nrt_sh-P1D_202107":
+            if start is None:
+                start = "2021-06-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-25T00:00:00Z"
 
         super().__init__(
             layer=layer,

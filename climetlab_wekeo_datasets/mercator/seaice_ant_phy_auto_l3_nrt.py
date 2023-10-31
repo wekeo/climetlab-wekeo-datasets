@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -56,7 +55,7 @@ class seaice_ant_phy_auto_l3_nrt(Main):
                 start = "2023-02-02T13:35:15Z"
 
             if end is None:
-                end = "2023-09-24T19:22:58Z"
+                end = "2023-10-23T19:29:02Z"
 
         super().__init__(
             layer=layer,

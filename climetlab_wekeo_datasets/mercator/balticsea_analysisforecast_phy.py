@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -65,28 +64,28 @@ class balticsea_analysisforecast_phy(Main):
                 start = "2021-01-01T12:00:00Z"
 
             if end is None:
-                end = "2023-09-30T12:00:00Z"
-
-        if layer == "cmems_mod_bal_phy_anfc_PT1h-i_202211":
-            if start is None:
-                start = "2021-01-01T01:00:00Z"
-
-            if end is None:
-                end = "2023-10-01T12:00:00Z"
+                end = "2023-11-01T12:00:00Z"
 
         if layer == "cmems_mod_bal_phy_anfc_P1M-m_202211":
             if start is None:
                 start = "2021-01-16T12:00:00Z"
 
             if end is None:
-                end = "2023-08-16T18:00:00Z"
+                end = "2023-09-16T06:00:00Z"
 
         if layer == "cmems_mod_bal_phy_anfc_PT15m-i_202211":
             if start is None:
                 start = "2021-01-01T00:15:00Z"
 
             if end is None:
-                end = "2023-10-01T12:00:00Z"
+                end = "2023-11-02T12:00:00Z"
+
+        if layer == "cmems_mod_bal_phy_anfc_PT1h-i_202211":
+            if start is None:
+                start = "2021-01-01T01:00:00Z"
+
+            if end is None:
+                end = "2023-11-02T12:00:00Z"
 
         super().__init__(
             layer=layer,

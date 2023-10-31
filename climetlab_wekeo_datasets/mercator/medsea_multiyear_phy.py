@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -90,121 +89,9 @@ class medsea_multiyear_phy(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_mod_med_phy-ssh_my_4.2km_P1Y-m_202211":
+        if layer == "cmems_mod_med_phy-cur_my_4.2km_P1Y-m_202211":
             if start is None:
                 start = "2022-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-tem-int-m_202112":
-            if start is None:
-                start = "2022-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-cur-rean-m_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-cur-rean-d_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-tem-rean-d_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-ssh-rean-m_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "cmems_mod_med_phy_my_4.2km-climatology_P1M-m_202211":
-            if start is None:
-                start = "2022-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-mld-int-m_202112":
-            if start is None:
-                start = "2022-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-ssh-int-m_202112":
-            if start is None:
-                start = "2022-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-tem-rean-m_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-cur-int-m_202112":
-            if start is None:
-                start = "2022-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-sal-rean-m_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-sal-int-m_202112":
-            if start is None:
-                start = "2022-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-cur-rean-h_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-mld-rean-m_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-sal-rean-d_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-09-01T00:00:00Z"
-
-        if layer == "med-cmcc-ssh-rean-d_202012":
-            if start is None:
-                start = "2020-09-01T00:00:00Z"
 
             if end is None:
                 end = "2022-09-01T00:00:00Z"
@@ -216,14 +103,14 @@ class medsea_multiyear_phy(Main):
             if end is None:
                 end = "2022-09-01T00:00:00Z"
 
-        if layer == "med-cmcc-mld-rean-d_202012":
+        if layer == "cmems_mod_med_phy-sal_my_4.2km_P1Y-m_202211":
             if start is None:
-                start = "2020-09-01T00:00:00Z"
+                start = "2022-09-01T00:00:00Z"
 
             if end is None:
                 end = "2022-09-01T00:00:00Z"
 
-        if layer == "cmems_mod_med_phy-cur_my_4.2km_P1Y-m_202211":
+        if layer == "cmems_mod_med_phy-ssh_my_4.2km_P1Y-m_202211":
             if start is None:
                 start = "2022-09-01T00:00:00Z"
 
@@ -237,6 +124,97 @@ class medsea_multiyear_phy(Main):
             if end is None:
                 end = "2022-09-01T00:00:00Z"
 
+        if layer == "cmems_mod_med_phy_my_4.2km-climatology_P1M-m_202211":
+            if start is None:
+                start = "2022-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-cur-int-m_202112":
+            if start is None:
+                start = "2022-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-cur-rean-d_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-cur-rean-h_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-cur-rean-m_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-mld-int-m_202112":
+            if start is None:
+                start = "2022-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-mld-rean-d_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-mld-rean-m_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-sal-int-m_202112":
+            if start is None:
+                start = "2022-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-sal-rean-d_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-sal-rean-m_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-ssh-int-m_202112":
+            if start is None:
+                start = "2022-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-ssh-rean-d_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
         if layer == "med-cmcc-ssh-rean-h_202012":
             if start is None:
                 start = "2020-09-01T00:00:00Z"
@@ -244,9 +222,30 @@ class medsea_multiyear_phy(Main):
             if end is None:
                 end = "2022-09-01T00:00:00Z"
 
-        if layer == "cmems_mod_med_phy-sal_my_4.2km_P1Y-m_202211":
+        if layer == "med-cmcc-ssh-rean-m_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-tem-int-m_202112":
             if start is None:
                 start = "2022-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-tem-rean-d_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-09-01T00:00:00Z"
+
+        if layer == "med-cmcc-tem-rean-m_202012":
+            if start is None:
+                start = "2020-09-01T00:00:00Z"
 
             if end is None:
                 end = "2022-09-01T00:00:00Z"

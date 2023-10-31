@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -68,7 +67,7 @@ class medsea_multiyear_wav(Main):
                 start = "2022-09-20T00:00:00Z"
 
             if end is None:
-                end = "2023-09-20T00:00:00Z"
+                end = "2023-10-20T00:00:00Z"
 
         if layer == "med-hcmr-wav-rean-h_202105":
             if start is None:

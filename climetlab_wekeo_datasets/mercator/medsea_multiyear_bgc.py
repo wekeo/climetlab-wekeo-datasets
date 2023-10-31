@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -77,7 +76,91 @@ class medsea_multiyear_bgc(Main):
         start=None,
         end=None,
     ):
-        if layer == "med-ogs-pft-rean-m_202105":
+        if layer == "cmems_mod_med_bgc-bio_my_4.2km_P1Y-m_202211":
+            if start is None:
+                start = "2022-10-04T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-20T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-bio_myint_4.2km_P1M-m_202112":
+            if start is None:
+                start = "2022-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-09-01T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-car_my_4.2km_P1Y-m_202211":
+            if start is None:
+                start = "2022-10-04T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-20T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-car_myint_4.2km_P1M-m_202112":
+            if start is None:
+                start = "2022-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-09-01T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-co2_my_4.2km_P1Y-m_202211":
+            if start is None:
+                start = "2022-10-04T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-20T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-co2_myint_4.2km_P1M-m_202112":
+            if start is None:
+                start = "2022-02-21T00:00:00Z"
+
+            if end is None:
+                end = "2023-09-01T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-nut_my_4.2km_P1Y-m_202211":
+            if start is None:
+                start = "2022-10-04T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-20T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-nut_myint_4.2km_P1M-m_202112":
+            if start is None:
+                start = "2022-03-21T00:00:00Z"
+
+            if end is None:
+                end = "2023-09-01T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-pft_myint_4.2km_P1M-m_202112":
+            if start is None:
+                start = "2022-11-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-09-01T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc-plankton_my_4.2km_P1Y-m_202211":
+            if start is None:
+                start = "2022-10-04T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-20T00:00:00Z"
+
+        if layer == "med-ogs-bio-rean-d_202105":
+            if start is None:
+                start = "2021-03-23T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-01T00:00:00Z"
+
+        if layer == "med-ogs-bio-rean-m_202105":
+            if start is None:
+                start = "2021-03-23T00:00:00Z"
+
+            if end is None:
+                end = "2022-11-01T00:00:00Z"
+
+        if layer == "med-ogs-car-rean-d_202105":
             if start is None:
                 start = "2021-03-23T00:00:00Z"
 
@@ -91,13 +174,6 @@ class medsea_multiyear_bgc(Main):
             if end is None:
                 end = "2022-11-01T00:00:00Z"
 
-        if layer == "cmems_mod_med_bgc-car_myint_4.2km_P1M-m_202112":
-            if start is None:
-                start = "2022-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-08-01T00:00:00Z"
-
         if layer == "med-ogs-co2-rean-d_202105":
             if start is None:
                 start = "2021-03-23T00:00:00Z"
@@ -105,28 +181,7 @@ class medsea_multiyear_bgc(Main):
             if end is None:
                 end = "2022-11-01T00:00:00Z"
 
-        if layer == "cmems_mod_med_bgc-nut_my_4.2km_P1Y-m_202211":
-            if start is None:
-                start = "2022-10-04T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-20T00:00:00Z"
-
-        if layer == "cmems_mod_med_bgc-co2_myint_4.2km_P1M-m_202112":
-            if start is None:
-                start = "2022-02-21T00:00:00Z"
-
-            if end is None:
-                end = "2023-08-01T00:00:00Z"
-
-        if layer == "cmems_mod_med_bgc-car_my_4.2km_P1Y-m_202211":
-            if start is None:
-                start = "2022-10-04T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-20T00:00:00Z"
-
-        if layer == "med-ogs-bio-rean-m_202105":
+        if layer == "med-ogs-co2-rean-m_202105":
             if start is None:
                 start = "2021-03-23T00:00:00Z"
 
@@ -139,13 +194,6 @@ class medsea_multiyear_bgc(Main):
 
             if end is None:
                 end = "2022-11-01T00:00:00Z"
-
-        if layer == "cmems_mod_med_bgc-plankton_my_4.2km_P1Y-m_202211":
-            if start is None:
-                start = "2022-10-04T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-20T00:00:00Z"
 
         if layer == "med-ogs-nut-rean-m_202105":
             if start is None:
@@ -161,61 +209,12 @@ class medsea_multiyear_bgc(Main):
             if end is None:
                 end = "2022-11-01T00:00:00Z"
 
-        if layer == "cmems_mod_med_bgc-bio_my_4.2km_P1Y-m_202211":
-            if start is None:
-                start = "2022-10-04T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-20T00:00:00Z"
-
-        if layer == "cmems_mod_med_bgc-bio_myint_4.2km_P1M-m_202112":
-            if start is None:
-                start = "2022-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-08-01T00:00:00Z"
-
-        if layer == "med-ogs-co2-rean-m_202105":
+        if layer == "med-ogs-pft-rean-m_202105":
             if start is None:
                 start = "2021-03-23T00:00:00Z"
 
             if end is None:
                 end = "2022-11-01T00:00:00Z"
-
-        if layer == "med-ogs-car-rean-d_202105":
-            if start is None:
-                start = "2021-03-23T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-01T00:00:00Z"
-
-        if layer == "cmems_mod_med_bgc-co2_my_4.2km_P1Y-m_202211":
-            if start is None:
-                start = "2022-10-04T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-20T00:00:00Z"
-
-        if layer == "med-ogs-bio-rean-d_202105":
-            if start is None:
-                start = "2021-03-23T00:00:00Z"
-
-            if end is None:
-                end = "2022-11-01T00:00:00Z"
-
-        if layer == "cmems_mod_med_bgc-pft_myint_4.2km_P1M-m_202112":
-            if start is None:
-                start = "2022-11-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-08-01T00:00:00Z"
-
-        if layer == "cmems_mod_med_bgc-nut_myint_4.2km_P1M-m_202112":
-            if start is None:
-                start = "2022-03-21T00:00:00Z"
-
-            if end is None:
-                end = "2023-08-01T00:00:00Z"
 
         super().__init__(
             layer=layer,

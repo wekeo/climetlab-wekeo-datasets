@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -51,14 +50,14 @@ class multiobs_glo_phy_rep(Main):
         start=None,
         end=None,
     ):
-        if layer == "dataset-uv-rep-hourly_201912":
+        if layer == "dataset-uv-rep-daily_201912":
             if start is None:
                 start = "2019-10-19T00:00:00Z"
 
             if end is None:
                 end = "2023-05-11T00:00:00Z"
 
-        if layer == "dataset-uv-rep-daily_201912":
+        if layer == "dataset-uv-rep-hourly_201912":
             if start is None:
                 start = "2019-10-19T00:00:00Z"
 

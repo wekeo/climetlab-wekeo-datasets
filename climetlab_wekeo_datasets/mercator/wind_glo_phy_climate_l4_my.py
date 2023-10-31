@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -60,10 +59,10 @@ class wind_glo_phy_climate_l4_my(Main):
     ):
         if layer == "cmems_obs-wind_glo_phy_my_l4_P1M_202211":
             if start is None:
-                start = "2007-01-01T00:00:00Z"
+                start = "1999-08-01T00:00:00Z"
 
             if end is None:
-                end = "2023-05-31T23:59:59Z"
+                end = "2023-06-30T23:59:59Z"
 
         super().__init__(
             layer=layer,

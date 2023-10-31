@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -55,10 +54,10 @@ class sst_atl_phy_l3s_my(Main):
     ):
         if layer == "cmems_obs-sst_atl_phy_my_l3s_P1D-m_202211":
             if start is None:
-                start = "1981-12-31T12:00:00Z"
+                start = "1982-01-01T00:00:00Z"
 
             if end is None:
-                end = "2021-12-31T12:00:00Z"
+                end = "2022-01-02T00:00:00Z"
 
         super().__init__(
             layer=layer,

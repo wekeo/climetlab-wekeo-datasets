@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -99,6 +98,174 @@ class wind_glo_wind_l3_nrt_observations(Main):
         start=None,
         end=None,
     ):
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_25_ASC_V2_202012":
+            if start is None:
+                start = "2020-11-11T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_25_DES_V2_202012":
+            if start is None:
+                start = "2020-11-11T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_50_ASC_V2_202012":
+            if start is None:
+                start = "2020-11-11T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_50_DES_V2_202012":
+            if start is None:
+                start = "2020-11-11T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_25_ASC_V2_202112":
+            if start is None:
+                start = "2021-11-08T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_25_DES_V2_202112":
+            if start is None:
+                start = "2021-11-08T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_50_ASC_V2_202112":
+            if start is None:
+                start = "2021-11-08T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_50_DES_V2_202112":
+            if start is None:
+                start = "2021-11-08T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_25_ASC_V2_202211":
+            if start is None:
+                start = "2022-10-15T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_25_DES_V2_202211":
+            if start is None:
+                start = "2022-10-15T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_50_ASC_V2_202211":
+            if start is None:
+                start = "2022-10-15T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_50_DES_V2_202211":
+            if start is None:
+                start = "2022-10-15T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_12_ASC_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-11-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_12_DES_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-11-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_25_ASC_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-11-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_25_DES_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-11-15T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_12_ASC_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_12_DES_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_25_ASC_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_25_DES_V2":
+            if start is None:
+                start = "2016-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_12_ASC_V2_201912":
+            if start is None:
+                start = "2019-10-28T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_12_DES_V2_201912":
+            if start is None:
+                start = "2019-10-28T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_25_ASC_V2_201912":
+            if start is None:
+                start = "2019-10-28T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
+        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_25_DES_V2_201912":
+            if start is None:
+                start = "2019-10-28T00:00:00Z"
+
+            if end is None:
+                end = "2023-10-24T00:00:00Z"
+
         if layer == "KNMI-GLO-WIND_L3-OBS_SCATSAT-1_OSCAT_25_ASC_V2_201811":
             if start is None:
                 start = "2018-10-21T00:00:00Z"
@@ -113,41 +280,6 @@ class wind_glo_wind_l3_nrt_observations(Main):
             if end is None:
                 end = "2021-02-28T00:00:00Z"
 
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_12_ASC_V2_201912":
-            if start is None:
-                start = "2019-10-28T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_50_ASC_V2_202012":
-            if start is None:
-                start = "2020-11-11T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_50_DES_V2_202012":
-            if start is None:
-                start = "2020-11-11T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_12_DES_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_25_DES_V2_201912":
-            if start is None:
-                start = "2019-10-28T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
         if layer == "KNMI-GLO-WIND_L3-OBS_SCATSAT-1_OSCAT_50_ASC_V2_201811":
             if start is None:
                 start = "2018-10-21T00:00:00Z"
@@ -155,145 +287,12 @@ class wind_glo_wind_l3_nrt_observations(Main):
             if end is None:
                 end = "2021-02-28T00:00:00Z"
 
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_12_ASC_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_50_DES_V2_202211":
-            if start is None:
-                start = "2022-10-15T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_50_ASC_V2_202211":
-            if start is None:
-                start = "2022-10-15T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_12_DES_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2021-11-15T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_25_ASC_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_25_ASC_V2_201912":
-            if start is None:
-                start = "2019-10-28T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-B_ASCAT_25_DES_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_25_DES_V2_202012":
-            if start is None:
-                start = "2020-11-11T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
         if layer == "KNMI-GLO-WIND_L3-OBS_SCATSAT-1_OSCAT_50_DES_V2_201811":
             if start is None:
                 start = "2018-10-21T00:00:00Z"
 
             if end is None:
                 end = "2021-02-28T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_25_DES_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2021-11-15T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_25_ASC_V2_202211":
-            if start is None:
-                start = "2022-10-15T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_50_DES_V2_202112":
-            if start is None:
-                start = "2021-11-08T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2D_HSCAT_25_DES_V2_202211":
-            if start is None:
-                start = "2022-10-15T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_25_DES_V2_202112":
-            if start is None:
-                start = "2021-11-08T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2B_HSCAT_25_ASC_V2_202012":
-            if start is None:
-                start = "2020-11-11T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-C_ASCAT_12_DES_V2_201912":
-            if start is None:
-                start = "2019-10-28T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_50_ASC_V2_202112":
-            if start is None:
-                start = "2021-11-08T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_25_ASC_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2021-11-15T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_HY-2C_HSCAT_25_ASC_V2_202112":
-            if start is None:
-                start = "2021-11-08T00:00:00Z"
-
-            if end is None:
-                end = "2023-09-24T00:00:00Z"
-
-        if layer == "KNMI-GLO-WIND_L3-OBS_METOP-A_ASCAT_12_ASC_V2":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2021-11-15T00:00:00Z"
 
         super().__init__(
             layer=layer,

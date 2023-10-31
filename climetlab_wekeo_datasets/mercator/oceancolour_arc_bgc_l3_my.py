@@ -11,15 +11,15 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_arc_bgc_my_ecosmo_P1D-m_202105",  # noqa: E501 Arctic ocean biogeochemistry reanalysis, 25km surface daily mean
-    "cmems_mod_arc_bgc_my_ecosmo_P1M_202105",  # noqa: E501 Arctic ocean biogeochemistry reanalysis, 25km monthly mean
-    "cmems_mod_arc_bgc_my_ecosmo_P1Y_202211",  # noqa: E501 Arctic ocean biogeochemistry reanalysis, 25km yearly mean
+    "cmems_obs-oc_arc_bgc-plankton_my_l3-olci-300m_P1D_202303",  # noqa: E501 cmems_obs-oc_arc_bgc-plankton_my_l3-olci-300m_P1D_202303
+    "cmems_obs-oc_arc_bgc-reflectance_my_l3-olci-300m_P1D_202303",  # noqa: E501 cmems_obs-oc_arc_bgc-reflectance_my_l3-olci-300m_P1D_202303
+    "cmems_obs-oc_arc_bgc-transp_my_l3-olci-300m_P1D_202303",  # noqa: E501 cmems_obs-oc_arc_bgc-transp_my_l3-olci-300m_P1D_202303
 ]
 
 
-class arctic_multiyear_bgc(Main):
-    name = "EO:MO:DAT:ARCTIC_MULTIYEAR_BGC_002_005"
-    dataset = "EO:MO:DAT:ARCTIC_MULTIYEAR_BGC_002_005"
+class oceancolour_arc_bgc_l3_my(Main):
+    name = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L3_MY_009_123"
+    dataset = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L3_MY_009_123"
 
     string_selects = [
         "variables",
@@ -30,23 +30,26 @@ class arctic_multiyear_bgc(Main):
     @normalize(
         "variables",
         [
-            "chl",
-            "depth",
-            "kd",
-            "latitude",
-            "longitude",
-            "model_depth",
-            "no3",
-            "nppv",
-            "o2",
-            "phyc",
-            "po4",
-            "si",
+            "CHL",
+            "KD490",
+            "RRS400",
+            "RRS412_5",
+            "RRS442_5",
+            "RRS490",
+            "RRS510",
+            "RRS560",
+            "RRS620",
+            "RRS665",
+            "RRS673_75",
+            "RRS681_25",
+            "RRS708_75",
+            "SENSORMASK",
+            "lat",
+            "lon",
             "stereographic",
             "time",
             "x",
             "y",
-            "zooc",
         ],
         multiple=True,
     )
@@ -60,26 +63,26 @@ class arctic_multiyear_bgc(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_mod_arc_bgc_my_ecosmo_P1D-m_202105":
+        if layer == "cmems_obs-oc_arc_bgc-plankton_my_l3-olci-300m_P1D_202303":
             if start is None:
-                start = "2007-01-01T00:00:00Z"
+                start = "2016-04-26T00:00:00Z"
 
             if end is None:
-                end = "2020-12-31T00:00:00Z"
+                end = "2023-10-17T00:00:00Z"
 
-        if layer == "cmems_mod_arc_bgc_my_ecosmo_P1M_202105":
+        if layer == "cmems_obs-oc_arc_bgc-reflectance_my_l3-olci-300m_P1D_202303":
             if start is None:
-                start = "2007-01-15T00:00:00Z"
+                start = "2016-04-26T00:00:00Z"
 
             if end is None:
-                end = "2020-12-15T00:00:00Z"
+                end = "2023-10-17T00:00:00Z"
 
-        if layer == "cmems_mod_arc_bgc_my_ecosmo_P1Y_202211":
+        if layer == "cmems_obs-oc_arc_bgc-transp_my_l3-olci-300m_P1D_202303":
             if start is None:
-                start = "2007-01-01T00:00:00Z"
+                start = "2016-04-26T00:00:00Z"
 
             if end is None:
-                end = "2020-01-01T00:00:00Z"
+                end = "2023-10-17T00:00:00Z"
 
         super().__init__(
             layer=layer,

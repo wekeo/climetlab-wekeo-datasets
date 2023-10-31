@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -76,19 +75,12 @@ class nwshelf_multiyear_phy(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_mod_nws_phy-mld_my_7km-2D_P1M-m_202012":
+        if layer == "cmems_mod_nws_phy-bottomt_my_7km-2D_P1D-m_202012":
             if start is None:
-                start = "2020-12-01T00:00:00Z"
+                start = "0001-01-01T00:00:00Z"
 
             if end is None:
-                end = "2022-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_P1M-m_202012":
-            if start is None:
-                start = "2020-12-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-12-28T00:00:00Z"
+                end = "9991-12-28T00:00:00Z"
 
         if layer == "cmems_mod_nws_phy-bottomt_my_7km-2D_P1M-m_202012":
             if start is None:
@@ -97,41 +89,6 @@ class nwshelf_multiyear_phy(Main):
             if end is None:
                 end = "2022-12-28T00:00:00Z"
 
-        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_PT1H-i_202112":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
-
-            if end is None:
-                end = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-t_my_7km-3D_P1D-m_202012":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
-
-            if end is None:
-                end = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-uv_my_7km-3D_P1D-m_202012":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
-
-            if end is None:
-                end = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-bottomt_my_7km-2D_P1D-m_202012":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
-
-            if end is None:
-                end = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-ssh_myint_7km-2D_P1M-m_202105":
-            if start is None:
-                start = "2021-05-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-07-28T00:00:00Z"
-
         if layer == "cmems_mod_nws_phy-bottomt_my_7km-2D_PT1H-i_202112":
             if start is None:
                 start = "0001-01-01T00:00:00Z"
@@ -139,47 +96,26 @@ class nwshelf_multiyear_phy(Main):
             if end is None:
                 end = "9991-12-28T00:00:00Z"
 
-        if layer == "cmems_mod_nws_phy-sss_my_7km-2D_PT1H-i_202112":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
-
-            if end is None:
-                end = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-t_my_7km-3D_P1M-m_202012":
-            if start is None:
-                start = "2020-12-01T00:00:00Z"
-
-            if end is None:
-                end = "2022-12-28T00:00:00Z"
-
         if layer == "cmems_mod_nws_phy-bottomt_myint_7km-2D_P1M-m_202105":
             if start is None:
                 start = "2021-05-01T00:00:00Z"
 
             if end is None:
-                end = "2023-07-28T00:00:00Z"
+                end = "2023-08-28T00:00:00Z"
 
-        if layer == "cmems_mod_nws_phy-uv_myint_7km-3D_P1M-m_202105":
-            if start is None:
-                start = "2021-05-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-07-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-s_my_7km-3D_P1D-m_202012":
+        if layer == "cmems_mod_nws_phy-mld_my_7km-2D_P1D-m_202012":
             if start is None:
                 start = "0001-01-01T00:00:00Z"
 
             if end is None:
                 end = "9991-12-28T00:00:00Z"
 
-        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_P1D-m_202012":
+        if layer == "cmems_mod_nws_phy-mld_my_7km-2D_P1M-m_202012":
             if start is None:
-                start = "0001-01-01T00:00:00Z"
+                start = "2020-12-01T00:00:00Z"
 
             if end is None:
-                end = "9991-12-28T00:00:00Z"
+                end = "2022-12-28T00:00:00Z"
 
         if layer == "cmems_mod_nws_phy-mld_my_7km-2D_PT1H-i_202112":
             if start is None:
@@ -193,7 +129,14 @@ class nwshelf_multiyear_phy(Main):
                 start = "2021-05-01T00:00:00Z"
 
             if end is None:
-                end = "2023-07-28T00:00:00Z"
+                end = "2023-08-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-s_my_7km-3D_P1D-m_202012":
+            if start is None:
+                start = "0001-01-01T00:00:00Z"
+
+            if end is None:
+                end = "9991-12-28T00:00:00Z"
 
         if layer == "cmems_mod_nws_phy-s_my_7km-3D_P1M-m_202012":
             if start is None:
@@ -202,6 +145,48 @@ class nwshelf_multiyear_phy(Main):
             if end is None:
                 end = "2022-12-28T00:00:00Z"
 
+        if layer == "cmems_mod_nws_phy-s_myint_7km-3D_P1M-m_202105":
+            if start is None:
+                start = "2021-05-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-08-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_P1D-m_202012":
+            if start is None:
+                start = "0001-01-01T00:00:00Z"
+
+            if end is None:
+                end = "9991-12-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_P1M-m_202012":
+            if start is None:
+                start = "2020-12-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-12-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_PT1H-i_202112":
+            if start is None:
+                start = "0001-01-01T00:00:00Z"
+
+            if end is None:
+                end = "9991-12-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-ssh_myint_7km-2D_P1M-m_202105":
+            if start is None:
+                start = "2021-05-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-08-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-sss_my_7km-2D_PT1H-i_202112":
+            if start is None:
+                start = "0001-01-01T00:00:00Z"
+
+            if end is None:
+                end = "9991-12-28T00:00:00Z"
+
         if layer == "cmems_mod_nws_phy-sst_my_7km-2D_PT1H-i_202112":
             if start is None:
                 start = "0001-01-01T00:00:00Z"
@@ -209,28 +194,35 @@ class nwshelf_multiyear_phy(Main):
             if end is None:
                 end = "9991-12-28T00:00:00Z"
 
-        if layer == "cmems_mod_nws_phy-t_myint_7km-3D_P1M-m_202105":
-            if start is None:
-                start = "2021-05-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-07-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-s_myint_7km-3D_P1M-m_202105":
-            if start is None:
-                start = "2021-05-01T00:00:00Z"
-
-            if end is None:
-                end = "2023-07-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-mld_my_7km-2D_P1D-m_202012":
+        if layer == "cmems_mod_nws_phy-t_my_7km-3D_P1D-m_202012":
             if start is None:
                 start = "0001-01-01T00:00:00Z"
 
             if end is None:
                 end = "9991-12-28T00:00:00Z"
 
+        if layer == "cmems_mod_nws_phy-t_my_7km-3D_P1M-m_202012":
+            if start is None:
+                start = "2020-12-01T00:00:00Z"
+
+            if end is None:
+                end = "2022-12-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-t_myint_7km-3D_P1M-m_202105":
+            if start is None:
+                start = "2021-05-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-08-28T00:00:00Z"
+
         if layer == "cmems_mod_nws_phy-uv_my_7km-2D_PT1H-i_202112":
+            if start is None:
+                start = "0001-01-01T00:00:00Z"
+
+            if end is None:
+                end = "9991-12-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-uv_my_7km-3D_P1D-m_202012":
             if start is None:
                 start = "0001-01-01T00:00:00Z"
 
@@ -243,6 +235,13 @@ class nwshelf_multiyear_phy(Main):
 
             if end is None:
                 end = "2022-12-28T00:00:00Z"
+
+        if layer == "cmems_mod_nws_phy-uv_myint_7km-3D_P1M-m_202105":
+            if start is None:
+                start = "2021-05-01T00:00:00Z"
+
+            if end is None:
+                end = "2023-08-28T00:00:00Z"
 
         super().__init__(
             layer=layer,

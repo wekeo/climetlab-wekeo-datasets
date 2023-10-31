@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -91,14 +90,14 @@ class global_reanalysis_phy(Main):
             if end is None:
                 end = "2020-12-15T00:00:00Z"
 
-        if layer == "global-reanalysis-phy-001-026-grepv1-uv-monthly_202003":
+        if layer == "global-reanalysis-phy-001-026-grepv1-monthly_202003":
             if start is None:
                 start = "1993-01-15T00:00:00Z"
 
             if end is None:
                 end = "2020-12-15T00:00:00Z"
 
-        if layer == "global-reanalysis-phy-001-026-grepv1-monthly_202003":
+        if layer == "global-reanalysis-phy-001-026-grepv1-uv-monthly_202003":
             if start is None:
                 start = "1993-01-15T00:00:00Z"
 

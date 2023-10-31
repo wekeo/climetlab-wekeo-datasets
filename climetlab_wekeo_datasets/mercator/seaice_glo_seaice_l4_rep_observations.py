@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -63,23 +62,23 @@ class seaice_glo_seaice_l4_rep_observations(Main):
                 start = "2021-01-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-10T00:00:00Z"
-
-        if layer == "OSISAF-GLO-SEAICE_CONC_TIMESERIES-SH-LA-OBS_202003":
-            if start is None:
-                start = "1978-10-25T00:00:00Z"
-
-            if end is None:
-                end = "2021-01-01T00:00:00Z"
+                end = "2023-10-10T00:00:00Z"
 
         if layer == "OSISAF-GLO-SEAICE_CONC_CONT_TIMESERIES-SH-LA-OBS_202003":
             if start is None:
                 start = "2021-01-01T00:00:00Z"
 
             if end is None:
-                end = "2023-09-10T00:00:00Z"
+                end = "2023-10-10T00:00:00Z"
 
         if layer == "OSISAF-GLO-SEAICE_CONC_TIMESERIES-NH-LA-OBS_202003":
+            if start is None:
+                start = "1978-10-25T00:00:00Z"
+
+            if end is None:
+                end = "2021-01-01T00:00:00Z"
+
+        if layer == "OSISAF-GLO-SEAICE_CONC_TIMESERIES-SH-LA-OBS_202003":
             if start is None:
                 start = "1978-10-25T00:00:00Z"
 

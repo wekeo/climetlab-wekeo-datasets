@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -73,10 +72,10 @@ class arctic_analysis_forecast_wav(Main):
     ):
         if layer == "dataset-wam-arctic-1hr3km-be_201912":
             if start is None:
-                start = "2018-01-01T00:00:00Z"
+                start = "2021-01-01T00:00:00Z"
 
             if end is None:
-                end = "2023-10-04T12:00:00Z"
+                end = "2023-11-03T12:00:00Z"
 
         super().__init__(
             layer=layer,

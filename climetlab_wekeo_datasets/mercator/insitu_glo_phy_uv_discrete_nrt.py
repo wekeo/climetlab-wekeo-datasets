@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -115,19 +114,19 @@ class insitu_glo_phy_uv_discrete_nrt(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_obs-ins_glo_phy-cur_nrt_radar-total_irr_202211":
-            if start is None:
-                start = "2012-03-20T00:45:00Z"
-
-            if end is None:
-                end = "2023-06-27T20:35:00Z"
-
         if layer == "cmems_obs-ins_glo_phy-cur_nrt_argo_irr_202211":
             if start is None:
                 start = "1997-07-20T07:27:03Z"
 
             if end is None:
                 end = "2023-06-22T08:28:05Z"
+
+        if layer == "cmems_obs-ins_glo_phy-cur_nrt_drifter_irr_202211":
+            if start is None:
+                start = "1986-06-02T09:00:00Z"
+
+            if end is None:
+                end = "2023-06-25T12:00:00Z"
 
         if layer == "cmems_obs-ins_glo_phy-cur_nrt_radar-radial_irr_202211":
             if start is None:
@@ -136,12 +135,12 @@ class insitu_glo_phy_uv_discrete_nrt(Main):
             if end is None:
                 end = "2023-06-27T21:45:00Z"
 
-        if layer == "cmems_obs-ins_glo_phy-cur_nrt_drifter_irr_202211":
+        if layer == "cmems_obs-ins_glo_phy-cur_nrt_radar-total_irr_202211":
             if start is None:
-                start = "1986-06-02T09:00:00Z"
+                start = "2012-03-20T00:45:00Z"
 
             if end is None:
-                end = "2023-06-25T12:00:00Z"
+                end = "2023-06-27T20:35:00Z"
 
         super().__init__(
             layer=layer,

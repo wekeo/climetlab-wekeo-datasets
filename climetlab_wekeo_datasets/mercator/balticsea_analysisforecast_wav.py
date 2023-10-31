@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -67,7 +66,7 @@ class balticsea_analysisforecast_wav(Main):
                 start = "0190-10-10T00:00:00Z"
 
             if end is None:
-                end = "2310-01-01T00:00:00Z"
+                end = "2311-02-01T00:00:00Z"
 
         super().__init__(
             layer=layer,

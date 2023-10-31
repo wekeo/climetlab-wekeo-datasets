@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -86,19 +85,19 @@ class insitu_glo_bgc_carbon_discrete_my(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_obs-ins_glo_bgc-car_my_socat-obs_irr_202211":
-            if start is None:
-                start = "1957-10-22T22:00:00Z"
-
-            if end is None:
-                end = "2021-12-30T09:28:20Z"
-
         if layer == "cmems_obs-ins_glo_bgc-car_my_glodap-obs_irr_202211":
             if start is None:
                 start = "1972-07-24T00:00:00Z"
 
             if end is None:
                 end = "2021-11-16T00:00:00Z"
+
+        if layer == "cmems_obs-ins_glo_bgc-car_my_socat-obs_irr_202211":
+            if start is None:
+                start = "1957-10-22T22:00:00Z"
+
+            if end is None:
+                end = "2021-12-30T09:28:20Z"
 
         super().__init__(
             layer=layer,

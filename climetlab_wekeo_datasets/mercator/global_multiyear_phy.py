@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -59,19 +58,19 @@ class global_multiyear_phy(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_mod_glo_phy_my_0.083_P1D-m_202112":
-            if start is None:
-                start = "1993-01-01T00:00:00Z"
-
-            if end is None:
-                end = "2020-12-31T00:00:00Z"
-
         if layer == "cmems_mod_glo_phy_my_0.083-climatology_P1M-m_202112":
             if start is None:
                 start = "2021-12-01T00:00:00Z"
 
             if end is None:
                 end = "2021-12-28T00:00:00Z"
+
+        if layer == "cmems_mod_glo_phy_my_0.083_P1D-m_202112":
+            if start is None:
+                start = "1993-01-01T00:00:00Z"
+
+            if end is None:
+                end = "2021-01-13T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy_my_0.083_P1M-m_202112":
             if start is None:

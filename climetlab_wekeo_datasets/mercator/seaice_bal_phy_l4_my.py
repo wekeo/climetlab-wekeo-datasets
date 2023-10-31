@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -54,19 +53,19 @@ class seaice_bal_phy_l4_my(Main):
         start=None,
         end=None,
     ):
-        if layer == "cmems_obs-si_bal_seaice-conc_my_1km_202112":
-            if start is None:
-                start = "1980-11-03T14:00:00Z"
-
-            if end is None:
-                end = "2022-05-30T14:00:00Z"
-
         if layer == "cmems_obs-si_bal_phy-sit_my_l4-1km_P1D-m_202211":
             if start is None:
                 start = "1980-11-03T14:00:00Z"
 
             if end is None:
-                end = "2022-05-30T14:00:00Z"
+                end = "2023-05-28T14:00:00Z"
+
+        if layer == "cmems_obs-si_bal_seaice-conc_my_1km_202112":
+            if start is None:
+                start = "1980-11-03T14:00:00Z"
+
+            if end is None:
+                end = "2023-05-28T14:00:00Z"
 
         super().__init__(
             layer=layer,
