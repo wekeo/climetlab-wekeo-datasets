@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -155,10 +154,10 @@ class sis_shipping_consumption_on_routes(Main):
         statistic,
         variable,
         year,
-        product_type,
-        departure_port,
-        arrival_port,
-        format_,
+        product_type=None,
+        departure_port=None,
+        arrival_port=None,
+        format_=None,
     ):
         super().__init__(
             forecast_start_month=forecast_start_month,

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -157,6 +156,7 @@ class satellite_albedo(Main):
         ],
         multiple=True,
     )
+    @normalize("area", "bounding-box(list)")
     @normalize(
         "sensor",
         [
@@ -172,7 +172,6 @@ class satellite_albedo(Main):
             "zip",
         ],
     )
-    @normalize("area", "bounding-box(list)")
     def __init__(
         self,
         horizontal_resolution,
@@ -182,9 +181,9 @@ class satellite_albedo(Main):
         satellite,
         variable,
         year,
-        sensor,
-        format_,
         area=None,
+        sensor=None,
+        format_=None,
     ):
         super().__init__(
             horizontal_resolution=horizontal_resolution,
@@ -194,7 +193,7 @@ class satellite_albedo(Main):
             satellite=satellite,
             variable=variable,
             year=year,
+            area=area,
             sensor=sensor,
             format_=format_,
-            area=area,
         )

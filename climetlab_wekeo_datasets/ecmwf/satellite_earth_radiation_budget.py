@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -118,6 +117,7 @@ class satellite_earth_radiation_budget(Main):
         ],
         multiple=True,
     )
+    @normalize("area", "bounding-box(list)")
     @normalize(
         "origin",
         [
@@ -135,23 +135,22 @@ class satellite_earth_radiation_budget(Main):
             "zip",
         ],
     )
-    @normalize("area", "bounding-box(list)")
     def __init__(
         self,
         month,
         sensor,
         variable,
         year,
-        origin,
-        format_,
         area=None,
+        origin=None,
+        format_=None,
     ):
         super().__init__(
             month=month,
             sensor=sensor,
             variable=variable,
             year=year,
+            area=area,
             origin=origin,
             format_=format_,
-            area=area,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -139,10 +138,10 @@ class sis_tourism_climate_suitability_indicators(Main):
         period,
         time_aggregation,
         variable,
-        climate_index,
-        product_type,
-        experiment,
-        format_,
+        climate_index=None,
+        product_type=None,
+        experiment=None,
+        format_=None,
     ):
         super().__init__(
             gcm=gcm,

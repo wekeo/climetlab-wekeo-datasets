@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -189,10 +188,10 @@ class satellite_sea_surface_temperature(Main):
         day,
         month,
         year,
-        processinglevel,
-        sensor_on_satellite,
-        version,
-        format_,
+        processinglevel=None,
+        sensor_on_satellite=None,
+        version=None,
+        format_=None,
         variable="all",
     ):
         super().__init__(

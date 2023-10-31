@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -177,9 +176,9 @@ class sis_agroproductivity_indicators(Main):
         month,
         product_family,
         variable,
-        year,
-        harvest_year,
-        format_,
+        year=None,
+        harvest_year=None,
+        format_=None,
     ):
         super().__init__(
             crop_type=crop_type,

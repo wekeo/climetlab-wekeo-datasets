@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -59,7 +58,7 @@ class insitu_gridded_observations_alpine_precipitation(Main):
         self,
         dataset_issue,
         version,
-        format_,
+        format_=None,
         variable="precipitation",
     ):
         super().__init__(

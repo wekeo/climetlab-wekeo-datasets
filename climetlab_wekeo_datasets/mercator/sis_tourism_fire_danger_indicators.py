@@ -8,7 +8,8 @@
 from __future__ import annotations
 
 from climetlab.decorators import normalize
-from climetlab_wekeo_ecmwf.main import Main
+
+from climetlab_wekeo_datasets.ecmwf.main import Main
 
 
 class sis_tourism_fire_danger_indicators(Main):

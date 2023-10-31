@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -271,7 +270,7 @@ class sis_extreme_indices_cmip6(Main):
         temporal_aggregation,
         variable,
         version,
-        format_,
+        format_=None,
     ):
         super().__init__(
             ensemble_member=ensemble_member,

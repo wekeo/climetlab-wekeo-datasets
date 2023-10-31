@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,7 +16,6 @@ class efas_historical(Main):
     dataset = "EO:ECMWF:DAT:EFAS_HISTORICAL"
 
     choices = [
-        "system_version",
         "variable",
         "model_levels",
         "format_",
@@ -28,6 +26,7 @@ class efas_historical(Main):
         "hmonth",
         "hyear",
         "soil_level",
+        "system_version",
         "time",
     ]
 
@@ -135,16 +134,6 @@ class efas_historical(Main):
         multiple=True,
     )
     @normalize(
-        "time",
-        [
-            "00:00",
-            "06:00",
-            "12:00",
-            "18:00",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "system_version",
         [
             "version_2_0",
@@ -153,6 +142,17 @@ class efas_historical(Main):
             "version_4_0",
             "version_5_0",
         ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "06:00",
+            "12:00",
+            "18:00",
+        ],
+        multiple=True,
     )
     @normalize(
         "variable",
@@ -188,19 +188,19 @@ class efas_historical(Main):
         hmonth,
         hyear,
         soil_level,
-        time,
         system_version,
-        variable,
-        model_levels,
-        format_,
+        time,
+        variable=None,
+        model_levels=None,
+        format_=None,
     ):
         super().__init__(
             hday=hday,
             hmonth=hmonth,
             hyear=hyear,
             soil_level=soil_level,
-            time=time,
             system_version=system_version,
+            time=time,
             variable=variable,
             model_levels=model_levels,
             format_=format_,

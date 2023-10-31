@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -207,8 +206,8 @@ class sis_water_level_change_timeseries_cmip6(Main):
         temporal_aggregation,
         variable,
         year,
-        experiment,
-        format_,
+        experiment=None,
+        format_=None,
     ):
         super().__init__(
             model=model,

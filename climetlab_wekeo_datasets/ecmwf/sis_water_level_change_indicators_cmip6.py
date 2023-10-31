@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -252,7 +251,7 @@ class sis_water_level_change_indicators_cmip6(Main):
         product_type,
         statistic,
         variable,
-        format_,
+        format_=None,
     ):
         super().__init__(
             confidence_interval=confidence_interval,

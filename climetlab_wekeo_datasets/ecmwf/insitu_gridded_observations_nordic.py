@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,7 +16,6 @@ class insitu_gridded_observations_nordic(Main):
     dataset = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_NORDIC"
 
     choices = [
-        "version",
         "format_",
     ]
 
@@ -27,6 +25,7 @@ class insitu_gridded_observations_nordic(Main):
         "product_type",
         "spatial_interpolation_method",
         "variable",
+        "version",
         "year",
     ]
 
@@ -112,8 +111,28 @@ class insitu_gridded_observations_nordic(Main):
         multiple=True,
     )
     @normalize(
+        "version",
+        [
+            "22.03",
+            "22_09",
+            "23_03",
+            "23_09",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "year",
         [
+            "1961",
+            "1962",
+            "1963",
+            "1964",
+            "1965",
+            "1966",
+            "1967",
+            "1968",
+            "1969",
+            "1970",
             "1971",
             "1972",
             "1973",
@@ -171,13 +190,6 @@ class insitu_gridded_observations_nordic(Main):
         multiple=True,
     )
     @normalize(
-        "version",
-        [
-            "22.09",
-            "22_03",
-        ],
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -191,9 +203,9 @@ class insitu_gridded_observations_nordic(Main):
         product_type,
         spatial_interpolation_method,
         variable,
-        year,
         version,
-        format_,
+        year,
+        format_=None,
     ):
         super().__init__(
             day=day,
@@ -201,7 +213,7 @@ class insitu_gridded_observations_nordic(Main):
             product_type=product_type,
             spatial_interpolation_method=spatial_interpolation_method,
             variable=variable,
-            year=year,
             version=version,
+            year=year,
             format_=format_,
         )

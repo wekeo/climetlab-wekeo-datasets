@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -184,9 +183,9 @@ class satellite_carbon_dioxide(Main):
         processing_level,
         version,
         year,
-        variable,
-        sensor_and_algorithm,
-        format_,
+        variable=None,
+        sensor_and_algorithm=None,
+        format_=None,
     ):
         super().__init__(
             day=day,

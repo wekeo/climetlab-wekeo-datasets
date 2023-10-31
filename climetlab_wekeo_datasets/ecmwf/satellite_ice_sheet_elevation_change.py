@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -48,6 +47,7 @@ class satellite_ice_sheet_elevation_change(Main):
         [
             "2_0",
             "3_0",
+            "4_0",
         ],
     )
     @normalize(
@@ -67,8 +67,8 @@ class satellite_ice_sheet_elevation_change(Main):
         self,
         climate_data_record_type,
         domain,
-        version,
-        format_,
+        version=None,
+        format_=None,
         variable="all",
     ):
         super().__init__(

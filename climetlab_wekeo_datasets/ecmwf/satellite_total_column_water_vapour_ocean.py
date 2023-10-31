@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -124,10 +123,10 @@ class satellite_total_column_water_vapour_ocean(Main):
         self,
         month,
         year,
-        origin,
-        climate_data_record_type,
-        temporal_aggregation,
-        format_,
+        origin=None,
+        climate_data_record_type=None,
+        temporal_aggregation=None,
+        format_=None,
         variable="all",
     ):
         super().__init__(

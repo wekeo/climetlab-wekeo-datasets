@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -538,14 +537,14 @@ class projections_cordex_domains_single_levels(Main):
         end_year,
         start_year,
         variable,
-        domain,
-        experiment,
-        horizontal_resolution,
-        temporal_resolution,
-        gcm_model,
-        rcm_model,
-        ensemble_member,
-        format_,
+        domain=None,
+        experiment=None,
+        horizontal_resolution=None,
+        temporal_resolution=None,
+        gcm_model=None,
+        rcm_model=None,
+        ensemble_member=None,
+        format_=None,
     ):
         super().__init__(
             end_year=end_year,

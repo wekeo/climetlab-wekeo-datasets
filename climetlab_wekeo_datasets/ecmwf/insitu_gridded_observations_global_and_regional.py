@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -396,10 +395,10 @@ class insitu_gridded_observations_global_and_regional(Main):
         variable,
         version,
         year,
-        origin,
-        region,
-        time_aggregation,
-        format_,
+        origin=None,
+        region=None,
+        time_aggregation=None,
+        format_=None,
     ):
         super().__init__(
             horizontal_aggregation=horizontal_aggregation,

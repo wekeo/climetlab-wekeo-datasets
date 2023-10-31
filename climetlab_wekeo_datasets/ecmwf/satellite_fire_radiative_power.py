@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -140,11 +139,11 @@ class satellite_fire_radiative_power(Main):
         day,
         month,
         version,
-        product_type,
-        time_aggregation,
-        horizontal_aggregation,
-        year,
-        format_,
+        product_type=None,
+        time_aggregation=None,
+        horizontal_aggregation=None,
+        year=None,
+        format_=None,
         variable="all",
     ):
         super().__init__(

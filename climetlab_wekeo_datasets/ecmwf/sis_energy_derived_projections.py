@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -133,10 +132,10 @@ class sis_energy_derived_projections(Main):
         experiment,
         gcm,
         variable,
-        spatial_aggregation,
-        temporal_aggregation,
-        rcm,
-        format_,
+        spatial_aggregation=None,
+        temporal_aggregation=None,
+        rcm=None,
+        format_=None,
     ):
         super().__init__(
             energy_product_type=energy_product_type,

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -209,9 +208,9 @@ class derived_utci_historical(Main):
         month,
         variable,
         year,
-        version,
-        product_type,
-        format_,
+        version=None,
+        product_type=None,
+        format_=None,
     ):
         super().__init__(
             day=day,

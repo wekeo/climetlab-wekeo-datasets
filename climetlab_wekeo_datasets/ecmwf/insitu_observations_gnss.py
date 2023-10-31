@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -132,6 +131,7 @@ class insitu_observations_gnss(Main):
             "2020",
             "2021",
             "2022",
+            "2023",
         ],
     )
     @normalize(

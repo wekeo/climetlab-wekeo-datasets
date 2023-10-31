@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -307,12 +306,12 @@ class sis_hydrology_variables_derived_projections(Main):
         hydrological_model,
         period,
         variable,
-        product_type,
-        variable_type,
-        time_aggregation,
-        rcm,
-        gcm,
-        format_,
+        product_type=None,
+        variable_type=None,
+        time_aggregation=None,
+        rcm=None,
+        gcm=None,
+        format_=None,
     ):
         super().__init__(
             ensemble_member=ensemble_member,

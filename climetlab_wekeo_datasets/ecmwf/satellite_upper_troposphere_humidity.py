@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -112,6 +111,7 @@ class satellite_upper_troposphere_humidity(Main):
         ],
         multiple=True,
     )
+    @normalize("area", "bounding-box(list)")
     @normalize(
         "sensor_on_satellite",
         [
@@ -138,23 +138,22 @@ class satellite_upper_troposphere_humidity(Main):
             "all",
         ],
     )
-    @normalize("area", "bounding-box(list)")
     def __init__(
         self,
         day,
         month,
         year,
-        sensor_on_satellite,
-        format_,
-        variable="all",
         area=None,
+        sensor_on_satellite=None,
+        format_=None,
+        variable="all",
     ):
         super().__init__(
             day=day,
             month=month,
             year=year,
+            area=area,
             sensor_on_satellite=sensor_on_satellite,
             format_=format_,
             variable=variable,
-            area=area,
         )

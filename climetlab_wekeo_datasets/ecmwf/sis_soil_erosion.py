@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -130,7 +129,7 @@ class sis_soil_erosion(Main):
         product_type,
         rcm,
         variable,
-        format_,
+        format_=None,
     ):
         super().__init__(
             experiment=experiment,

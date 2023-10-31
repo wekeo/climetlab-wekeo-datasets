@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -103,7 +102,7 @@ class sis_european_wind_storm_synthetic_events(Main):
         variable,
         version_id,
         year,
-        format_,
+        format_=None,
     ):
         super().__init__(
             month=month,

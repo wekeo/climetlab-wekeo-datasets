@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -568,6 +567,7 @@ class projections_cmip6(Main):
         ],
         multiple=True,
     )
+    @normalize("area", "bounding-box(list)")
     @normalize(
         "temporal_resolution",
         [
@@ -715,29 +715,28 @@ class projections_cmip6(Main):
             "zip",
         ],
     )
-    @normalize("area", "bounding-box(list)")
     def __init__(
         self,
         day,
         level,
         month,
         year,
-        temporal_resolution,
-        experiment,
-        variable,
-        model,
-        format_="zip",
         area=None,
+        temporal_resolution=None,
+        experiment=None,
+        variable=None,
+        model=None,
+        format_="zip",
     ):
         super().__init__(
             day=day,
             level=level,
             month=month,
             year=year,
+            area=area,
             temporal_resolution=temporal_resolution,
             experiment=experiment,
             variable=variable,
             model=model,
             format_=format_,
-            area=area,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -145,6 +144,7 @@ class satellite_lai_fapar(Main):
         ],
         multiple=True,
     )
+    @normalize("area", "bounding-box(list)")
     @normalize(
         "sensor",
         [
@@ -170,7 +170,6 @@ class satellite_lai_fapar(Main):
             "zip",
         ],
     )
-    @normalize("area", "bounding-box(list)")
     def __init__(
         self,
         horizontal_resolution,
@@ -179,10 +178,10 @@ class satellite_lai_fapar(Main):
         satellite,
         variable,
         year,
-        sensor,
-        product_version,
-        format_,
         area=None,
+        sensor=None,
+        product_version=None,
+        format_=None,
     ):
         super().__init__(
             horizontal_resolution=horizontal_resolution,
@@ -191,8 +190,8 @@ class satellite_lai_fapar(Main):
             satellite=satellite,
             variable=variable,
             year=year,
+            area=area,
             sensor=sensor,
             product_version=product_version,
             format_=format_,
-            area=area,
         )

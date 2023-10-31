@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -18,6 +17,7 @@ class sis_agrometeorological_indicators(Main):
 
     choices = [
         "variable",
+        "version",
         "format_",
     ]
 
@@ -159,6 +159,7 @@ class sis_agrometeorological_indicators(Main):
         ],
         multiple=True,
     )
+    @normalize("area", "bounding-box(list)")
     @normalize(
         "variable",
         [
@@ -177,13 +178,19 @@ class sis_agrometeorological_indicators(Main):
         ],
     )
     @normalize(
+        "version",
+        [
+            "1_0",
+            "1_1",
+        ],
+    )
+    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    @normalize("area", "bounding-box(list)")
     def __init__(
         self,
         day,
@@ -191,9 +198,10 @@ class sis_agrometeorological_indicators(Main):
         statistic,
         time,
         year,
-        variable,
-        format_,
         area=None,
+        variable=None,
+        version=None,
+        format_=None,
     ):
         super().__init__(
             day=day,
@@ -201,7 +209,8 @@ class sis_agrometeorological_indicators(Main):
             statistic=statistic,
             time=time,
             year=year,
-            variable=variable,
-            format_=format_,
             area=area,
+            variable=variable,
+            version=version,
+            format_=format_,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -220,6 +219,7 @@ class reanalysis_era5_land_monthly_means(Main):
         ],
         multiple=True,
     )
+    @normalize("area", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -228,7 +228,6 @@ class reanalysis_era5_land_monthly_means(Main):
             "netcdf.zip",
         ],
     )
-    @normalize("area", "bounding-box(list)")
     def __init__(
         self,
         month,
@@ -236,8 +235,8 @@ class reanalysis_era5_land_monthly_means(Main):
         time,
         variable,
         year,
-        format_,
         area=None,
+        format_=None,
     ):
         super().__init__(
             month=month,
@@ -245,6 +244,6 @@ class reanalysis_era5_land_monthly_means(Main):
             time=time,
             variable=variable,
             year=year,
-            format_=format_,
             area=area,
+            format_=format_,
         )

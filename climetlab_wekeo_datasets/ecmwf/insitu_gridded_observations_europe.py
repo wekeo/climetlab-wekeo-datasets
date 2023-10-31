@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -46,8 +45,6 @@ class insitu_gridded_observations_europe(Main):
     @normalize(
         "version",
         [
-            "19.0e",
-            "20.0e",
             "21.0e",
             "22.0e",
             "23.1e",
@@ -55,7 +52,8 @@ class insitu_gridded_observations_europe(Main):
             "25.0e",
             "26.0e",
             "27.0e",
-            "27.0e",
+            "28.0e",
+            "28.0e",
         ],
         multiple=True,
     )
@@ -81,7 +79,6 @@ class insitu_gridded_observations_europe(Main):
             "1965_1979",
             "1980_1994",
             "1995_2010",
-            "2011_2018",
             "2011_2019",
             "2011_2020",
             "2011_2021",
@@ -100,10 +97,10 @@ class insitu_gridded_observations_europe(Main):
         self,
         variable,
         version,
-        product_type,
-        grid_resolution,
-        period,
-        format_,
+        product_type=None,
+        grid_resolution=None,
+        period=None,
+        format_=None,
     ):
         super().__init__(
             variable=variable,

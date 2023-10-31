@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -209,12 +208,12 @@ class satellite_surface_radiation_budget(Main):
         sensor_on_satellite,
         variable,
         year,
-        product_family,
-        origin,
-        climate_data_record_type,
-        time_aggregation,
-        version,
-        format_,
+        product_family=None,
+        origin=None,
+        climate_data_record_type=None,
+        time_aggregation=None,
+        version=None,
+        format_=None,
     ):
         super().__init__(
             day=day,

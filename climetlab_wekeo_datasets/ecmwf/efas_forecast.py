@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -29,6 +28,7 @@ class efas_forecast(Main):
         "month",
         "product_type",
         "soil_level",
+        "system_version",
         "time",
         "year",
     ]
@@ -174,6 +174,14 @@ class efas_forecast(Main):
         multiple=True,
     )
     @normalize(
+        "system_version",
+        [
+            "operational",
+            "version_4_0",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "time",
         [
             "00:00",
@@ -208,10 +216,12 @@ class efas_forecast(Main):
             "elevation_v3_0",
             "elevation_v3_5",
             "elevation_v4_0",
+            "elevation_v5_0",
             "field_capacity_v2_0",
             "field_capacity_v3_0",
             "field_capacity_v3_5",
             "field_capacity_v4_0",
+            "field_capacity_v5_0",
             "river_discharge_in_the_last_24_hours",
             "river_discharge_in_the_last_6_hours",
             "snow_depth_water_equivalent",
@@ -219,15 +229,18 @@ class efas_forecast(Main):
             "soil_depth_v3_0",
             "soil_depth_v3_5",
             "soil_depth_v4_0",
+            "soil_depth_v5_0",
             "upstream_area_v2_0",
             "upstream_area_v3_0",
             "upstream_area_v3_5",
             "upstream_area_v4_0",
+            "upstream_area_v5_0",
             "volumetric_soil_moisture",
             "wilting_point_v2_0",
             "wilting_point_v3_0",
             "wilting_point_v3_5",
             "wilting_point_v4_0",
+            "wilting_point_v5_0",
         ],
     )
     @normalize(
@@ -251,12 +264,13 @@ class efas_forecast(Main):
         month,
         product_type,
         soil_level,
+        system_version,
         time,
         year,
-        originating_centre,
-        variable,
-        model_levels,
-        format_,
+        originating_centre=None,
+        variable=None,
+        model_levels=None,
+        format_=None,
     ):
         super().__init__(
             day=day,
@@ -264,6 +278,7 @@ class efas_forecast(Main):
             month=month,
             product_type=product_type,
             soil_level=soil_level,
+            system_version=system_version,
             time=time,
             year=year,
             originating_centre=originating_centre,
