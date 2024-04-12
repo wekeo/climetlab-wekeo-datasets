@@ -52,60 +52,15 @@ class Main(Dataset):
 
     def __init__(self, *args, **kwargs):
         query = {
-            "datasetId": f"{self.dataset}",
+            "dataset_id": f"{self.dataset}",
         }
 
-        start = kwargs.get("start")
-        end = kwargs.get("end")
+        for key, value in kwargs.items():
+            query[key] = value
 
-        if start is not None and end is not None:
-            query["dateRangeSelectValues"] = [
-                {"name": "date", "start": f"{start}", "end": f"{end}"}
-            ]
+        limit = kwargs.get("limit")
 
-        choices = dict(zip(self.choices, [kwargs[c] for c in self.choices]))
-        if any(c is not None for c in choices.values()):
-            query["stringChoiceValues"] = []
-
-            for choice in choices:
-                if choices.get(choice) is not None:
-                    if choice == "format_":
-                        label = "format"
-                    else:
-                        label = choice
-
-                    query["stringChoiceValues"].append(
-                        {"name": label, "value": choices[choice]}
-                    )
-
-        string_selects = dict(
-            zip(self.string_selects, [kwargs[v] for v in self.string_selects])
-        )
-        if any(v is not None for v in string_selects.values()):
-            query["multiStringSelectValues"] = []
-
-            for variable in string_selects:
-                if string_selects.get(variable) is not None:
-                    if variable == "format_":
-                        label = "format"
-                    else:
-                        label = variable
-
-                    query["multiStringSelectValues"].append(
-                        {"name": label, "value": string_selects[variable]}
-                    )
-
-        inputs = dict(zip(self.inputs, [kwargs[i] for i in self.inputs]))
-        if any(c is not None for c in inputs.values()):
-            query["stringInputValues"] = []
-
-            for input in inputs:
-                if inputs.get(input) is not None:
-                    query["stringInputValues"].append(
-                        {"name": input, "value": f"{inputs[input]}"}
-                    )
-
-        self.source = cml.load_source("wekeo", query)
+        self.source = cml.load_source("wekeo", query, limit)
         self._xarray = None
 
     def to_xarray(self, **kwargs):

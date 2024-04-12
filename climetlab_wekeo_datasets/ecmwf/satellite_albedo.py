@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,73 +15,13 @@ class satellite_albedo(Main):
     name = "EO:ECMWF:DAT:SATELLITE_ALBEDO"
     dataset = "EO:ECMWF:DAT:SATELLITE_ALBEDO"
 
-    choices = [
-        "sensor",
-        "format_",
-    ]
-
-    string_selects = [
-        "horizontal_resolution",
-        "month",
-        "nominal_day",
-        "product_version",
-        "satellite",
+    @normalize(
         "variable",
-        "year",
-    ]
-
-    @normalize(
-        "horizontal_resolution",
         [
-            "1km",
-            "300m",
-            "4km",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "nominal_day",
-        [
-            "03",
-            "10",
-            "13",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_version",
-        [
-            "v0",
-            "v1",
-            "v2",
-            "v3",
+            "albb_bh",
+            "albb_dh",
+            "alsp_bh",
+            "alsp_dh",
         ],
         multiple=True,
     )
@@ -102,12 +41,29 @@ class satellite_albedo(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
+        "sensor",
         [
-            "albb_bh",
-            "albb_dh",
-            "alsp_bh",
-            "alsp_dh",
+            "avhrr",
+            "olci_and_slstr",
+            "vgt",
+        ],
+    )
+    @normalize(
+        "product_version",
+        [
+            "v0",
+            "v1",
+            "v2",
+            "v3",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "horizontal_resolution",
+        [
+            "1km",
+            "300m",
+            "4km",
         ],
         multiple=True,
     )
@@ -157,15 +113,43 @@ class satellite_albedo(Main):
         ],
         multiple=True,
     )
-    @normalize("area", "bounding-box(list)")
     @normalize(
-        "sensor",
+        "month",
         [
-            "avhrr",
-            "olci_and_slstr",
-            "vgt",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
+    @normalize(
+        "nominal_day",
+        [
+            "03",
+            "10",
+            "13",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -175,26 +159,28 @@ class satellite_albedo(Main):
     )
     def __init__(
         self,
+        variable,
+        satellite,
+        sensor,
+        product_version,
         horizontal_resolution,
+        year,
         month,
         nominal_day,
-        product_version,
-        satellite,
-        variable,
-        year,
-        area=None,
-        sensor=None,
+        bbox=None,
         format_=None,
+        limit=None,
     ):
         super().__init__(
+            variable=variable,
+            satellite=satellite,
+            sensor=sensor,
+            product_version=product_version,
             horizontal_resolution=horizontal_resolution,
+            year=year,
             month=month,
             nominal_day=nominal_day,
-            product_version=product_version,
-            satellite=satellite,
-            variable=variable,
-            year=year,
-            area=area,
-            sensor=sensor,
+            bbox=bbox,
             format_=format_,
+            limit=limit,
         )

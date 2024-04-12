@@ -6,13 +6,12 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-si_arc_phy_my_L3S-DMIOI_P1D-m_202211",  # noqa: E501 Dmi arctic sst/ist, l3s , (seaice arc phy climate l3 my 011 021)
+    "cmems_obs-si_arc_phy_my_L3S-DMIOI_P1D-m_202211",  # noqa: E501 cmems_obs-si_arc_phy_my_L3S-DMIOI_P1D-m
 ]
 
 
@@ -20,12 +19,10 @@ class seaice_arc_phy_climate_l3_my(Main):
     name = "EO:MO:DAT:SEAICE_ARC_PHY_CLIMATE_L3_MY_011_021"
     dataset = "EO:MO:DAT:SEAICE_ARC_PHY_CLIMATE_L3_MY_011_021"
 
-    string_selects = [
-        "variables",
-    ]
-
+    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -46,27 +43,27 @@ class seaice_arc_phy_climate_l3_my(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
+        bbox,
         layer="cmems_obs-si_arc_phy_my_L3S-DMIOI_P1D-m_202211",
-        area=None,
+        max_date="2022-06-30T12:00:00Z",
+        min_date="1982-01-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "cmems_obs-si_arc_phy_my_L3S-DMIOI_P1D-m_202211":
-            if start is None:
-                start = "1982-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "1982-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2021-06-01T00:00:00Z"
+            if max_date is None:
+                max_date = "2022-06-30T12:00:00Z"
 
         super().__init__(
+            bbox=bbox,
             layer=layer,
-            area=area,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

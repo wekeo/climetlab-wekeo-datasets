@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,17 +15,45 @@ class sis_ecv_cmip5_bias_corrected(Main):
     name = "EO:ECMWF:DAT:SIS_ECV_CMIP5_BIAS_CORRECTED"
     dataset = "EO:ECMWF:DAT:SIS_ECV_CMIP5_BIAS_CORRECTED"
 
-    choices = [
+    @normalize(
         "variable",
+        [
+            "maximum_2m_temperature",
+            "mean_2m_temperature",
+            "minimum_2m_temperature",
+            "precipitation_flux",
+        ],
+    )
+    @normalize(
         "model",
+        [
+            "access1_0",
+            "access1_3",
+            "bcc_csm1_1",
+            "bcc_csm1_1_m",
+            "bnu_esm",
+            "cnrm_cm5",
+            "ec_earth",
+            "gfdl_cm3",
+            "gfdl_esm2g",
+            "gfdl_esm2m",
+            "hadgem2_cc",
+            "hadgem2_es",
+            "ipsl_cm5a_lr",
+            "ipsl_cm5a_mr",
+            "ipsl_cm5b_lr",
+            "mpi_esm_lr",
+            "mpi_esm_mr",
+            "noresm1_m",
+        ],
+    )
+    @normalize(
         "experiment",
-        "format_",
-    ]
-
-    string_selects = [
-        "period",
-    ]
-
+        [
+            "rcp_4_5",
+            "rcp_8_5",
+        ],
+    )
     @normalize(
         "period",
         [
@@ -150,63 +177,18 @@ class sis_ecv_cmip5_bias_corrected(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
-        [
-            "maximum_2m_temperature",
-            "mean_2m_temperature",
-            "minimum_2m_temperature",
-            "precipitation_flux",
-        ],
-    )
-    @normalize(
-        "model",
-        [
-            "access1_0",
-            "access1_3",
-            "bcc_csm1_1",
-            "bcc_csm1_1_m",
-            "bnu_esm",
-            "cnrm_cm5",
-            "ec_earth",
-            "gfdl_cm3",
-            "gfdl_esm2g",
-            "gfdl_esm2m",
-            "hadgem2_cc",
-            "hadgem2_es",
-            "ipsl_cm5a_lr",
-            "ipsl_cm5a_mr",
-            "ipsl_cm5b_lr",
-            "mpi_esm_lr",
-            "mpi_esm_mr",
-            "noresm1_m",
-        ],
-    )
-    @normalize(
-        "experiment",
-        [
-            "rcp_4_5",
-            "rcp_8_5",
-        ],
-    )
-    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    def __init__(
-        self,
-        period,
-        variable=None,
-        model=None,
-        experiment=None,
-        format_=None,
-    ):
+    def __init__(self, variable, model, experiment, period, format_=None, limit=None):
         super().__init__(
-            period=period,
             variable=variable,
             model=model,
             experiment=experiment,
+            period=period,
             format_=format_,
+            limit=limit,
         )

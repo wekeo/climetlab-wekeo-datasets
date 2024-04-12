@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,72 +15,13 @@ class insitu_gridded_observations_nordic(Main):
     name = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_NORDIC"
     dataset = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_NORDIC"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
-        "product_type",
-        "spatial_interpolation_method",
+    @normalize(
         "variable",
-        "version",
-        "year",
-    ]
-
-    @normalize(
-        "day",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "maximum_temperature",
+            "mean_temperature",
+            "minimum_temperature",
+            "precipitation",
         ],
         multiple=True,
     )
@@ -98,26 +38,6 @@ class insitu_gridded_observations_nordic(Main):
         [
             "type_1",
             "type_2",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "maximum_temperature",
-            "mean_temperature",
-            "minimum_temperature",
-            "precipitation",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "22.03",
-            "22_09",
-            "23_03",
-            "23_09",
         ],
         multiple=True,
     )
@@ -187,6 +107,72 @@ class insitu_gridded_observations_nordic(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "22_09",
+            "23_03",
+            "23_09",
+            "24_03",
         ],
         multiple=True,
     )
@@ -199,22 +185,24 @@ class insitu_gridded_observations_nordic(Main):
     )
     def __init__(
         self,
-        day,
-        month,
+        variable,
         product_type,
         spatial_interpolation_method,
-        variable,
-        version,
         year,
+        month,
+        day,
+        version,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
+            variable=variable,
             product_type=product_type,
             spatial_interpolation_method=spatial_interpolation_method,
-            variable=variable,
-            version=version,
             year=year,
+            month=month,
+            day=day,
+            version=version,
             format_=format_,
+            limit=limit,
         )

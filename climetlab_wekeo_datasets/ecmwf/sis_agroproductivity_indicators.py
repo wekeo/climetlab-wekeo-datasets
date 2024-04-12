@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,73 +15,6 @@ class sis_agroproductivity_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_AGROPRODUCTIVITY_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_AGROPRODUCTIVITY_INDICATORS"
 
-    choices = [
-        "year",
-        "harvest_year",
-        "format_",
-    ]
-
-    string_selects = [
-        "crop_type",
-        "day",
-        "growing_season",
-        "month",
-        "product_family",
-        "variable",
-    ]
-
-    @normalize(
-        "crop_type",
-        [
-            "maize",
-            "soybean",
-            "spring_wheat",
-            "wet_rice",
-            "winter_wheat",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "10",
-            "11",
-            "20",
-            "21",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "growing_season",
-        [
-            "1st_season_per_campaign",
-            "2nd_season_per_campaign",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "product_family",
         [
@@ -99,6 +31,17 @@ class sis_agroproductivity_indicators(Main):
             "potential_evaporation",
             "total_above_ground_production",
             "total_weight_storage_organs",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "crop_type",
+        [
+            "maize",
+            "soybean",
+            "spring_wheat",
+            "wet_rice",
+            "winter_wheat",
         ],
         multiple=True,
     )
@@ -130,7 +73,49 @@ class sis_agroproductivity_indicators(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
         ],
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "10",
+            "11",
+            "20",
+            "21",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "growing_season",
+        [
+            "1st_season_per_campaign",
+            "2nd_season_per_campaign",
+        ],
+        multiple=True,
     )
     @normalize(
         "harvest_year",
@@ -171,24 +156,26 @@ class sis_agroproductivity_indicators(Main):
     )
     def __init__(
         self,
-        crop_type,
-        day,
-        growing_season,
-        month,
         product_family,
         variable,
-        year=None,
-        harvest_year=None,
+        crop_type,
+        year,
+        month,
+        day,
+        growing_season,
+        harvest_year,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            crop_type=crop_type,
-            day=day,
-            growing_season=growing_season,
-            month=month,
             product_family=product_family,
             variable=variable,
+            crop_type=crop_type,
             year=year,
+            month=month,
+            day=day,
+            growing_season=growing_season,
             harvest_year=harvest_year,
             format_=format_,
+            limit=limit,
         )

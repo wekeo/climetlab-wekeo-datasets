@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,127 +15,6 @@ class reanalysis_cerra_single_levels(Main):
     name = "EO:ECMWF:DAT:REANALYSIS_CERRA_SINGLE_LEVELS"
     dataset = "EO:ECMWF:DAT:REANALYSIS_CERRA_SINGLE_LEVELS"
 
-    choices = [
-        "level_type",
-        "product_type",
-        "format_",
-    ]
-
-    string_selects = [
-        "data_type",
-        "day",
-        "leadtime_hour",
-        "month",
-        "soil_layer",
-        "time",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "data_type",
-        [
-            "ensemble_members",
-            "reanalysis",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "leadtime_hour",
-        [
-            "1",
-            "12",
-            "15",
-            "18",
-            "2",
-            "21",
-            "24",
-            "27",
-            "3",
-            "30",
-            "4",
-            "5",
-            "6",
-            "9",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "soil_layer",
-        [
-            "top_layer",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "03:00",
-            "06:00",
-            "09:00",
-            "12:00",
-            "15:00",
-            "18:00",
-            "21:00",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -183,6 +61,28 @@ class reanalysis_cerra_single_levels(Main):
         multiple=True,
     )
     @normalize(
+        "level_type",
+        [
+            "soil",
+            "surface_or_atmosphere",
+        ],
+    )
+    @normalize(
+        "data_type",
+        [
+            "ensemble_members",
+            "reanalysis",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product_type",
+        [
+            "analysis",
+            "forecast",
+        ],
+    )
+    @normalize(
         "year",
         [
             "1984",
@@ -227,18 +127,100 @@ class reanalysis_cerra_single_levels(Main):
         multiple=True,
     )
     @normalize(
-        "level_type",
+        "month",
         [
-            "soil",
-            "surface_or_atmosphere",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
-        "product_type",
+        "day",
         [
-            "analysis",
-            "forecast",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
         ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "leadtime_hour",
+        [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "9",
+            "12",
+            "15",
+            "18",
+            "21",
+            "24",
+            "27",
+            "30",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "soil_layer",
+        [
+            "top_layer",
+        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -249,28 +231,30 @@ class reanalysis_cerra_single_levels(Main):
     )
     def __init__(
         self,
-        data_type,
-        day,
-        leadtime_hour,
-        month,
-        soil_layer,
-        time,
         variable,
+        level_type,
+        data_type,
+        product_type,
         year,
-        level_type=None,
-        product_type=None,
+        month,
+        day,
+        time,
+        leadtime_hour,
+        soil_layer="top_layer",
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            data_type=data_type,
-            day=day,
-            leadtime_hour=leadtime_hour,
-            month=month,
-            soil_layer=soil_layer,
-            time=time,
             variable=variable,
-            year=year,
             level_type=level_type,
+            data_type=data_type,
             product_type=product_type,
+            year=year,
+            month=month,
+            day=day,
+            time=time,
+            leadtime_hour=leadtime_hour,
+            soil_layer=soil_layer,
             format_=format_,
+            limit=limit,
         )

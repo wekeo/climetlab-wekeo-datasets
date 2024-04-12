@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,30 +15,6 @@ class cams_global_emission_inventories(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_EMISSION_INVENTORIES"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_EMISSION_INVENTORIES"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "source",
-        "variable",
-        "version",
-        "year",
-    ]
-
-    @normalize(
-        "source",
-        [
-            "anthropogenic",
-            "aviation",
-            "biogenic",
-            "oceanic",
-            "shipping",
-            "soil",
-            "termites",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -109,6 +84,19 @@ class cams_global_emission_inventories(Main):
         multiple=True,
     )
     @normalize(
+        "source",
+        [
+            "anthropogenic",
+            "aviation",
+            "biogenic",
+            "oceanic",
+            "shipping",
+            "soil",
+            "termites",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "version",
         [
             "latest",
@@ -156,18 +144,12 @@ class cams_global_emission_inventories(Main):
             "zip",
         ],
     )
-    def __init__(
-        self,
-        source,
-        variable,
-        version,
-        year,
-        format_,
-    ):
+    def __init__(self, variable, source, version, year, format_=None, limit=None):
         super().__init__(
-            source=source,
             variable=variable,
+            source=source,
             version=version,
             year=year,
             format_=format_,
+            limit=limit,
         )

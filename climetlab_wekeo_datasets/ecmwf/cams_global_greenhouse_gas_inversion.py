@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,37 +15,61 @@ class cams_global_greenhouse_gas_inversion(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_GREENHOUSE_GAS_INVERSION"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_GREENHOUSE_GAS_INVERSION"
 
-    choices = [
-        "variable",
-        "quantity",
-        "input_observations",
-        "time_aggregation",
-        "version",
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "year",
-    ]
-
     @normalize(
-        "month",
+        "variable",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "carbon_dioxide",
+            "methane",
+            "nitrous_oxide",
         ],
-        multiple=True,
+    )
+    @normalize(
+        "quantity",
+        [
+            "concentration",
+            "loss_rate",
+            "mean_column",
+            "surface_flux",
+        ],
+    )
+    @normalize(
+        "input_observations",
+        [
+            "first_guess",
+            "satellite",
+            "surface",
+            "surface_satellite",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "daily_mean",
+            "instantaneous",
+            "monthly_mean",
+        ],
+    )
+    @normalize(
+        "version",
+        [
+            "latest",
+            "v16r1",
+            "v17r1",
+            "v18r1",
+            "v18r2",
+            "v18r3",
+            "v19r1",
+            "v20r1",
+            "v20r2",
+            "v20r3",
+            "v21r1",
+            "v21r2",
+            "v22r1",
+            "v22r2",
+            "v23r1",
+            "v23r2",
+            "v23r3",
+        ],
     )
     @normalize(
         "year",
@@ -100,57 +123,22 @@ class cams_global_greenhouse_gas_inversion(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
+        "month",
         [
-            "carbon_dioxide",
-            "methane",
-            "nitrous_oxide",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
-    )
-    @normalize(
-        "quantity",
-        [
-            "concentration",
-            "loss_rate",
-            "mean_column",
-            "surface_flux",
-        ],
-    )
-    @normalize(
-        "input_observations",
-        [
-            "first_guess",
-            "satellite",
-            "surface",
-            "surface_satellite",
-        ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "daily_mean",
-            "instantaneous",
-            "monthly_mean",
-        ],
-    )
-    @normalize(
-        "version",
-        [
-            "latest",
-            "v16r1",
-            "v17r1",
-            "v18r1",
-            "v18r2",
-            "v18r3",
-            "v19r1",
-            "v20r1",
-            "v20r2",
-            "v20r3",
-            "v21r1",
-            "v21r2",
-            "v22r1",
-            "v23r1",
-        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -161,22 +149,24 @@ class cams_global_greenhouse_gas_inversion(Main):
     )
     def __init__(
         self,
-        month,
-        year,
         variable,
         quantity,
         input_observations,
         time_aggregation,
         version,
-        format_,
+        year,
+        month,
+        format_=None,
+        limit=None,
     ):
         super().__init__(
-            month=month,
-            year=year,
             variable=variable,
             quantity=quantity,
             input_observations=input_observations,
             time_aggregation=time_aggregation,
             version=version,
+            year=year,
+            month=month,
             format_=format_,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,21 +15,99 @@ class efas_reforecast(Main):
     name = "EO:ECMWF:DAT:EFAS_REFORECAST"
     dataset = "EO:ECMWF:DAT:EFAS_REFORECAST"
 
-    choices = [
-        "variable",
-        "model_levels",
-        "format_",
-    ]
-
-    string_selects = [
-        "hday",
-        "hmonth",
-        "hyear",
-        "leadtime_hour",
+    @normalize(
+        "system_version",
+        [
+            "version_4_0",
+            "version_5_0",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "product_type",
+        [
+            "control_forecast",
+            "ensemble_perturbed_forecasts",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "elevation",
+            "field_capacity",
+            "river_discharge_in_the_last_6_hours",
+            "snow_depth_water_equivalent",
+            "soil_depth",
+            "upstream_area",
+            "volumetric_soil_moisture",
+            "wilting_point",
+        ],
+    )
+    @normalize(
+        "model_levels",
+        [
+            "soil_levels",
+            "surface_level",
+        ],
+    )
+    @normalize(
         "soil_level",
-    ]
-
+        [
+            "1",
+            "2",
+            "3",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hyear",
+        [
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hmonth",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
     @normalize(
         "hday",
         [
@@ -69,75 +146,28 @@ class efas_reforecast(Main):
         multiple=True,
     )
     @normalize(
-        "hmonth",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hyear",
-        [
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "leadtime_hour",
         [
             "0",
-            "1002",
-            "1008",
-            "1014",
-            "102",
-            "1020",
-            "1026",
-            "1032",
-            "1038",
-            "1044",
-            "1050",
-            "1056",
-            "1062",
-            "1068",
-            "1074",
-            "108",
-            "1080",
-            "1086",
-            "1092",
-            "1098",
-            "1104",
-            "114",
+            "6",
             "12",
+            "18",
+            "24",
+            "30",
+            "36",
+            "42",
+            "48",
+            "54",
+            "60",
+            "66",
+            "72",
+            "78",
+            "84",
+            "90",
+            "96",
+            "102",
+            "108",
+            "114",
             "120",
             "126",
             "132",
@@ -148,7 +178,6 @@ class efas_reforecast(Main):
             "162",
             "168",
             "174",
-            "18",
             "180",
             "186",
             "192",
@@ -159,7 +188,6 @@ class efas_reforecast(Main):
             "222",
             "228",
             "234",
-            "24",
             "240",
             "246",
             "252",
@@ -170,7 +198,6 @@ class efas_reforecast(Main):
             "282",
             "288",
             "294",
-            "30",
             "300",
             "306",
             "312",
@@ -181,7 +208,6 @@ class efas_reforecast(Main):
             "342",
             "348",
             "354",
-            "36",
             "360",
             "366",
             "372",
@@ -192,7 +218,6 @@ class efas_reforecast(Main):
             "402",
             "408",
             "414",
-            "42",
             "420",
             "426",
             "432",
@@ -203,7 +228,6 @@ class efas_reforecast(Main):
             "462",
             "468",
             "474",
-            "48",
             "480",
             "486",
             "492",
@@ -214,7 +238,6 @@ class efas_reforecast(Main):
             "522",
             "528",
             "534",
-            "54",
             "540",
             "546",
             "552",
@@ -225,8 +248,6 @@ class efas_reforecast(Main):
             "582",
             "588",
             "594",
-            "6",
-            "60",
             "600",
             "606",
             "612",
@@ -237,7 +258,6 @@ class efas_reforecast(Main):
             "642",
             "648",
             "654",
-            "66",
             "660",
             "666",
             "672",
@@ -248,7 +268,6 @@ class efas_reforecast(Main):
             "702",
             "708",
             "714",
-            "72",
             "720",
             "726",
             "732",
@@ -259,7 +278,6 @@ class efas_reforecast(Main):
             "762",
             "768",
             "774",
-            "78",
             "780",
             "786",
             "792",
@@ -270,7 +288,6 @@ class efas_reforecast(Main):
             "822",
             "828",
             "834",
-            "84",
             "840",
             "846",
             "852",
@@ -281,7 +298,6 @@ class efas_reforecast(Main):
             "882",
             "888",
             "894",
-            "90",
             "900",
             "906",
             "912",
@@ -292,7 +308,6 @@ class efas_reforecast(Main):
             "942",
             "948",
             "954",
-            "96",
             "960",
             "966",
             "972",
@@ -300,45 +315,26 @@ class efas_reforecast(Main):
             "984",
             "990",
             "996",
+            "1002",
+            "1008",
+            "1014",
+            "1020",
+            "1026",
+            "1032",
+            "1038",
+            "1044",
+            "1050",
+            "1056",
+            "1062",
+            "1068",
+            "1074",
+            "1080",
+            "1086",
+            "1092",
+            "1098",
+            "1104",
         ],
         multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "control_forecast",
-            "ensemble_perturbed_forecasts",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "soil_level",
-        [
-            "1",
-            "2",
-            "3",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "elevation",
-            "field_capacity",
-            "river_discharge_in_the_last_6_hours",
-            "snow_depth_water_equivalent",
-            "soil_depth",
-            "upstream_area",
-            "volumetric_soil_moisture",
-            "wilting_point",
-        ],
-    )
-    @normalize(
-        "model_levels",
-        [
-            "soil_levels",
-            "surface_level",
-        ],
     )
     @normalize(
         "format_",
@@ -347,26 +343,33 @@ class efas_reforecast(Main):
             "netcdf4.zip",
         ],
     )
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        hday,
-        hmonth,
-        hyear,
-        leadtime_hour,
+        system_version,
         product_type,
+        variable,
+        model_levels,
         soil_level,
-        variable=None,
-        model_levels=None,
+        hyear,
+        hmonth,
+        hday,
+        leadtime_hour,
         format_=None,
+        bbox=None,
+        limit=None,
     ):
         super().__init__(
-            hday=hday,
-            hmonth=hmonth,
-            hyear=hyear,
-            leadtime_hour=leadtime_hour,
+            system_version=system_version,
             product_type=product_type,
-            soil_level=soil_level,
             variable=variable,
             model_levels=model_levels,
+            soil_level=soil_level,
+            hyear=hyear,
+            hmonth=hmonth,
+            hday=hday,
+            leadtime_hour=leadtime_hour,
             format_=format_,
+            bbox=bbox,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -15,14 +14,6 @@ from climetlab_wekeo_datasets.ecmwf.main import Main
 class cams_global_fire_emissions_gfas(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_FIRE_EMISSIONS_GFAS"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_FIRE_EMISSIONS_GFAS"
-
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "variable",
-    ]
 
     @normalize(
         "variable",
@@ -78,6 +69,8 @@ class cams_global_fire_emissions_gfas(Main):
         ],
         multiple=True,
     )
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "format_",
         [
@@ -85,18 +78,18 @@ class cams_global_fire_emissions_gfas(Main):
             "netcdf",
         ],
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         variable,
-        format_,
-        start="2003-01-01",
-        end="2023-09-11",
+        dtstart="2003-01-01",
+        dtend="2024-04-11",
+        format_=None,
+        limit=None,
     ):
         super().__init__(
             variable=variable,
+            dtstart=dtstart,
+            dtend=dtend,
             format_=format_,
-            start=start,
-            end=end,
+            limit=limit,
         )

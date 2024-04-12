@@ -6,24 +6,23 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-oc_glo_bgc-optics_nrt_l4-multi-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-optics NRT l4-multi-4km p1m
-    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-gapfree-multi-4km_P1D_202207",  # noqa: E501 Cmems obs-oc glo bgc-plankton NRT l4-gapfree-multi-4km p1d
-    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-multi-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-plankton NRT l4-multi-4km p1m
-    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-300m_P1M_202211",  # noqa: E501 Cmems obs-oc glo bgc-plankton NRT l4-olci-300m p1m
-    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-plankton NRT l4-olci-4km p1m
-    "cmems_obs-oc_glo_bgc-pp_nrt_l4-multi-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-pp NRT l4-multi-4km p1m
-    "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-multi-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-reflectance NRT l4-multi-4km p1m
-    "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-300m_P1M_202211",  # noqa: E501 Cmems obs-oc glo bgc-reflectance NRT l4-olci-300m p1m
-    "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-reflectance NRT l4-olci-4km p1m
-    "cmems_obs-oc_glo_bgc-transp_nrt_l4-gapfree-multi-4km_P1D_202207",  # noqa: E501 Cmems obs-oc glo bgc-transp NRT l4-gapfree-multi-4km p1d
-    "cmems_obs-oc_glo_bgc-transp_nrt_l4-multi-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-transp NRT l4-multi-4km p1m
-    "cmems_obs-oc_glo_bgc-transp_nrt_l4-olci-4km_P1M_202207",  # noqa: E501 Cmems obs-oc glo bgc-transp NRT l4-olci-4km p1m
+    "cmems_obs-oc_glo_bgc-optics_nrt_l4-multi-4km_P1M_202311",  # noqa: E501 cmems_obs-oc_glo_bgc-optics_nrt_l4-multi-4km_P1M
+    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-gapfree-multi-4km_P1D_202311",  # noqa: E501 cmems_obs-oc_glo_bgc-plankton_nrt_l4-gapfree-multi-4km_P1D
+    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-multi-4km_P1M_202311",  # noqa: E501 cmems_obs-oc_glo_bgc-plankton_nrt_l4-multi-4km_P1M
+    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-300m_P1M_202211",  # noqa: E501 cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-300m_P1M
+    "cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-4km_P1M_202207",  # noqa: E501 cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-4km_P1M
+    "cmems_obs-oc_glo_bgc-pp_nrt_l4-multi-4km_P1M_202311",  # noqa: E501 cmems_obs-oc_glo_bgc-pp_nrt_l4-multi-4km_P1M
+    "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-multi-4km_P1M_202311",  # noqa: E501 cmems_obs-oc_glo_bgc-reflectance_nrt_l4-multi-4km_P1M
+    "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-300m_P1M_202211",  # noqa: E501 cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-300m_P1M
+    "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-4km_P1M_202207",  # noqa: E501 cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-4km_P1M
+    "cmems_obs-oc_glo_bgc-transp_nrt_l4-gapfree-multi-4km_P1D_202311",  # noqa: E501 cmems_obs-oc_glo_bgc-transp_nrt_l4-gapfree-multi-4km_P1D
+    "cmems_obs-oc_glo_bgc-transp_nrt_l4-multi-4km_P1M_202311",  # noqa: E501 cmems_obs-oc_glo_bgc-transp_nrt_l4-multi-4km_P1M
+    "cmems_obs-oc_glo_bgc-transp_nrt_l4-olci-4km_P1M_202207",  # noqa: E501 cmems_obs-oc_glo_bgc-transp_nrt_l4-olci-4km_P1M
 ]
 
 
@@ -31,12 +30,10 @@ class oceancolour_glo_bgc_l4_nrt(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_GLO_BGC_L4_NRT_009_102"
     dataset = "EO:MO:DAT:OCEANCOLOUR_GLO_BGC_L4_NRT_009_102"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -105,104 +102,104 @@ class oceancolour_glo_bgc_l4_nrt(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
-        area=None,
+        bbox,
+        max_date="2024-03-01T00:00:00Z",
+        min_date="2023-10-31T17:22:34Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "cmems_obs-oc_glo_bgc-optics_nrt_l4-multi-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T22:36:05Z"
+        if layer == "cmems_obs-oc_glo_bgc-optics_nrt_l4-multi-4km_P1M_202311":
+            if min_date is None:
+                min_date = "2023-10-31T19:37:40Z"
 
-            if end is None:
-                end = "2023-10-01T03:14:16Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l4-gapfree-multi-4km_P1D_202207":
-            if start is None:
-                start = "2023-10-16T19:27:00Z"
+        if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l4-gapfree-multi-4km_P1D_202311":
+            if min_date is None:
+                min_date = "2023-12-02T15:13:46Z"
 
-            if end is None:
-                end = "2023-10-25T03:42:00Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l4-multi-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T20:17:56Z"
+        if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l4-multi-4km_P1M_202311":
+            if min_date is None:
+                min_date = "2023-10-31T17:22:34Z"
 
-            if end is None:
-                end = "2023-10-01T03:43:42Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-300m_P1M_202211":
-            if start is None:
-                start = "2023-08-31T20:52:04Z"
+            if min_date is None:
+                min_date = "2023-10-31T20:39:37Z"
 
-            if end is None:
-                end = "2023-10-01T00:05:36Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_glo_bgc-plankton_nrt_l4-olci-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T20:52:04Z"
+            if min_date is None:
+                min_date = "2023-10-31T19:37:40Z"
 
-            if end is None:
-                end = "2023-09-30T23:29:01Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-pp_nrt_l4-multi-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T20:17:56Z"
+        if layer == "cmems_obs-oc_glo_bgc-pp_nrt_l4-multi-4km_P1M_202311":
+            if min_date is None:
+                min_date = "2023-10-31T17:22:34Z"
 
-            if end is None:
-                end = "2023-10-01T03:43:42Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-multi-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T22:36:05Z"
+        if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-multi-4km_P1M_202311":
+            if min_date is None:
+                min_date = "2023-10-31T19:37:40Z"
 
-            if end is None:
-                end = "2023-10-01T03:14:16Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-300m_P1M_202211":
-            if start is None:
-                start = "2023-08-31T20:52:04Z"
+            if min_date is None:
+                min_date = "2023-10-31T20:39:37Z"
 
-            if end is None:
-                end = "2023-10-01T00:05:36Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_glo_bgc-reflectance_nrt_l4-olci-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T20:52:04Z"
+            if min_date is None:
+                min_date = "2023-10-31T19:37:40Z"
 
-            if end is None:
-                end = "2023-09-30T23:29:01Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l4-gapfree-multi-4km_P1D_202207":
-            if start is None:
-                start = "2023-10-16T19:27:00Z"
+        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l4-gapfree-multi-4km_P1D_202311":
+            if min_date is None:
+                min_date = "2023-12-02T15:13:46Z"
 
-            if end is None:
-                end = "2023-10-25T03:42:00Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l4-multi-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T20:17:56Z"
+        if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l4-multi-4km_P1M_202311":
+            if min_date is None:
+                min_date = "2023-10-31T17:22:34Z"
 
-            if end is None:
-                end = "2023-10-01T03:43:42Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_glo_bgc-transp_nrt_l4-olci-4km_P1M_202207":
-            if start is None:
-                start = "2023-08-31T20:52:04Z"
+            if min_date is None:
+                min_date = "2023-10-31T19:37:40Z"
 
-            if end is None:
-                end = "2023-09-30T23:29:01Z"
+            if max_date is None:
+                max_date = "2024-03-01T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

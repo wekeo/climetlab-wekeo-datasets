@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,33 +15,21 @@ class sis_temperature_statistics(Main):
     name = "EO:ECMWF:DAT:SIS_TEMPERATURE_STATISTICS"
     dataset = "EO:ECMWF:DAT:SIS_TEMPERATURE_STATISTICS"
 
-    choices = [
-        "variable",
-        "period",
-        "format_",
-    ]
-
-    string_selects = [
-        "ensemble_statistic",
-        "experiment",
-        "statistic",
-    ]
-
     @normalize(
-        "ensemble_statistic",
+        "variable",
         [
-            "ensemble_members_average",
-            "ensemble_members_standard_deviation",
+            "average_temperature",
+            "maximum_temperature",
+            "minimum_temperature",
         ],
-        multiple=True,
     )
     @normalize(
-        "experiment",
+        "period",
         [
-            "rcp4_5",
-            "rcp8_5",
+            "summer",
+            "winter",
+            "year",
         ],
-        multiple=True,
     )
     @normalize(
         "statistic",
@@ -62,20 +49,20 @@ class sis_temperature_statistics(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
+        "experiment",
         [
-            "average_temperature",
-            "maximum_temperature",
-            "minimum_temperature",
+            "rcp4_5",
+            "rcp8_5",
         ],
+        multiple=True,
     )
     @normalize(
-        "period",
+        "ensemble_statistic",
         [
-            "summer",
-            "winter",
-            "year",
+            "ensemble_members_average",
+            "ensemble_members_standard_deviation",
         ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -86,18 +73,20 @@ class sis_temperature_statistics(Main):
     )
     def __init__(
         self,
-        ensemble_statistic,
-        experiment,
+        variable,
+        period,
         statistic,
-        variable=None,
-        period=None,
+        experiment,
+        ensemble_statistic,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            ensemble_statistic=ensemble_statistic,
-            experiment=experiment,
-            statistic=statistic,
             variable=variable,
             period=period,
+            statistic=statistic,
+            experiment=experiment,
+            ensemble_statistic=ensemble_statistic,
             format_=format_,
+            limit=limit,
         )

@@ -6,15 +6,15 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_bal_bgc_my_P1D-m_202303",  # noqa: E501 Cmems ergom daily integrated model fields
-    "cmems_mod_bal_bgc_my_P1M-m_202303",  # noqa: E501 Cmems ergom monthly integrated model fields
-    "cmems_mod_bal_bgc_my_P1Y-m_202303",  # noqa: E501 Cmems ergom annual integrated model fields
+    "cmems_mod_bal_bgc_my_P1D-m_202303",  # noqa: E501 cmems_mod_bal_bgc_my_P1D-m
+    "cmems_mod_bal_bgc_my_P1M-m_202303",  # noqa: E501 cmems_mod_bal_bgc_my_P1M-m
+    "cmems_mod_bal_bgc_my_P1Y-m_202303",  # noqa: E501 cmems_mod_bal_bgc_my_P1Y-m
+    "cmems_mod_bal_bgc_my_static_202303",  # noqa: E501 cmems_mod_bal_bgc_my_static
 ]
 
 
@@ -22,19 +22,22 @@ class balticsea_multiyear_bgc(Main):
     name = "EO:MO:DAT:BALTICSEA_MULTIYEAR_BGC_003_012"
     dataset = "EO:MO:DAT:BALTICSEA_MULTIYEAR_BGC_003_012"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "chl",
             "depth",
+            "deptho",
+            "deptho_lev",
             "lat",
+            "latitude",
             "lon",
+            "longitude",
+            "mask",
             "nh4",
             "no3",
             "nppv",
@@ -48,41 +51,46 @@ class balticsea_multiyear_bgc(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
-        area=None,
+        bbox,
+        max_date="2023-03-28T00:00:00Z",
+        min_date="2023-03-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
     ):
         if layer == "cmems_mod_bal_bgc_my_P1D-m_202303":
-            if start is None:
-                start = "1993-01-01T12:00:00Z"
+            if min_date is None:
+                min_date = "1993-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2021-12-31T12:00:00Z"
+            if max_date is None:
+                max_date = "2021-12-31T12:00:00Z"
 
         if layer == "cmems_mod_bal_bgc_my_P1M-m_202303":
-            if start is None:
-                start = "1993-01-01T12:00:00Z"
+            if min_date is None:
+                min_date = "1993-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2021-12-01T12:00:00Z"
+            if max_date is None:
+                max_date = "2021-12-01T12:00:00Z"
 
         if layer == "cmems_mod_bal_bgc_my_P1Y-m_202303":
-            if start is None:
-                start = "1993-01-01T12:00:00Z"
+            if min_date is None:
+                min_date = "1993-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2021-01-01T12:00:00Z"
+            if max_date is None:
+                max_date = "2021-01-01T12:00:00Z"
+
+        if layer == "cmems_mod_bal_bgc_my_static_202303":
+            if min_date is None:
+                min_date = "2023-03-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-03-28T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,21 +15,53 @@ class satellite_fire_radiative_power(Main):
     name = "EO:ECMWF:DAT:SATELLITE_FIRE_RADIATIVE_POWER"
     dataset = "EO:ECMWF:DAT:SATELLITE_FIRE_RADIATIVE_POWER"
 
-    choices = [
+    @normalize(
         "product_type",
+        [
+            "gridded",
+            "table_summary",
+        ],
+    )
+    @normalize(
         "time_aggregation",
+        [
+            "27_days",
+            "day",
+            "month",
+        ],
+    )
+    @normalize(
         "horizontal_aggregation",
+        [
+            "0_1_degree_x_0_1_degree",
+            "0_25_degree_x_0_25_degree",
+        ],
+    )
+    @normalize(
         "year",
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
+        [
+            "2020",
+            "2021",
+        ],
+    )
+    @normalize(
         "month",
-        "version",
-    ]
-
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
     @normalize(
         "day",
         [
@@ -69,22 +100,10 @@ class satellite_fire_radiative_power(Main):
         multiple=True,
     )
     @normalize(
-        "month",
+        "variable",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "all",
         ],
-        multiple=True,
     )
     @normalize(
         "version",
@@ -94,67 +113,34 @@ class satellite_fire_radiative_power(Main):
         multiple=True,
     )
     @normalize(
-        "product_type",
-        [
-            "gridded",
-            "table_summary",
-        ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "27_days",
-            "day",
-            "month",
-        ],
-    )
-    @normalize(
-        "horizontal_aggregation",
-        [
-            "0_1_degree_x_0_1_degree",
-            "0_25_degree_x_0_25_degree",
-        ],
-    )
-    @normalize(
-        "year",
-        [
-            "2020",
-            "2021",
-        ],
-    )
-    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
     def __init__(
         self,
-        day,
+        product_type,
+        time_aggregation,
+        horizontal_aggregation,
+        year,
         month,
-        version,
-        product_type=None,
-        time_aggregation=None,
-        horizontal_aggregation=None,
-        year=None,
-        format_=None,
+        day,
         variable="all",
+        version="1.0",
+        format_=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
-            version=version,
             product_type=product_type,
             time_aggregation=time_aggregation,
             horizontal_aggregation=horizontal_aggregation,
             year=year,
-            format_=format_,
+            month=month,
+            day=day,
             variable=variable,
+            version=version,
+            format_=format_,
+            limit=limit,
         )

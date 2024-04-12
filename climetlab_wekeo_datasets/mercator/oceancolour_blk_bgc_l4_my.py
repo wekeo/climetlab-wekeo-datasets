@@ -6,15 +6,14 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202207",  # noqa: E501 Cmems obs-oc blk bgc-plankton my l4-gapfree-multi-1km p1d
-    "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202207",  # noqa: E501 Cmems obs-oc blk bgc-plankton my l4-multi-1km p1m
-    "cmems_obs-oc_blk_bgc-plankton_my_l4-olci-300m_P1M_202211",  # noqa: E501 Cmems obs-oc blk bgc-plankton my l4-olci-300m p1m
+    "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D
+    "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202311",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M
+    "cmems_obs-oc_blk_bgc-plankton_my_l4-olci-300m_P1M_202211",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-olci-300m_P1M
 ]
 
 
@@ -22,12 +21,10 @@ class oceancolour_blk_bgc_l4_my(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_BLK_BGC_L4_MY_009_154"
     dataset = "EO:MO:DAT:OCEANCOLOUR_BLK_BGC_L4_MY_009_154"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -40,41 +37,41 @@ class oceancolour_blk_bgc_l4_my(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
-        area=None,
+        bbox,
+        max_date="2024-02-01T00:00:00Z",
+        min_date="1997-09-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202207":
-            if start is None:
-                start = "1997-09-16T00:00:00Z"
+        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202311":
+            if min_date is None:
+                min_date = "1997-09-16T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-16T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-03-21T00:00:00Z"
 
-        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202207":
-            if start is None:
-                start = "1997-09-01T00:00:00Z"
+        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202311":
+            if min_date is None:
+                min_date = "1997-09-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-07-31T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-olci-300m_P1M_202211":
-            if start is None:
-                start = "2016-04-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2016-04-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-07-31T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

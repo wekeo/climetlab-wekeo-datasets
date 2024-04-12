@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,74 +15,6 @@ class reanalysis_era5_single_levels(Main):
     name = "EO:ECMWF:DAT:REANALYSIS_ERA5_SINGLE_LEVELS"
     dataset = "EO:ECMWF:DAT:REANALYSIS_ERA5_SINGLE_LEVELS"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
-        "product_type",
-        "time",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "product_type",
         [
@@ -91,36 +22,6 @@ class reanalysis_era5_single_levels(Main):
             "ensemble_members",
             "ensemble_spread",
             "reanalysis",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00",
         ],
         multiple=True,
     )
@@ -496,10 +397,95 @@ class reanalysis_era5_single_levels(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
+        ],
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
         multiple=True,
     )
-    @normalize("area", "bounding-box(list)")
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -509,22 +495,24 @@ class reanalysis_era5_single_levels(Main):
     )
     def __init__(
         self,
-        day,
-        month,
         product_type,
-        time,
         variable,
         year,
-        area=None,
+        month,
+        day,
+        time,
+        bbox=None,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
             product_type=product_type,
-            time=time,
             variable=variable,
             year=year,
-            area=area,
+            month=month,
+            day=day,
+            time=time,
+            bbox=bbox,
             format_=format_,
+            limit=limit,
         )

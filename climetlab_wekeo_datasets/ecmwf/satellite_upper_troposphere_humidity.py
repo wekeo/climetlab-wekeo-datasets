@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,18 +15,66 @@ class satellite_upper_troposphere_humidity(Main):
     name = "EO:ECMWF:DAT:SATELLITE_UPPER_TROPOSPHERE_HUMIDITY"
     dataset = "EO:ECMWF:DAT:SATELLITE_UPPER_TROPOSPHERE_HUMIDITY"
 
-    choices = [
+    @normalize(
         "sensor_on_satellite",
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
+        [
+            "amsu_b_on_noaa_15",
+            "amsu_b_on_noaa_16",
+            "amsu_b_on_noaa_17",
+            "mhs_on_metop_a",
+            "mhs_on_metop_b",
+            "mhs_on_metop_c",
+            "mhs_on_noaa_18",
+            "mhs_on_noaa_19",
+        ],
+    )
+    @normalize(
         "year",
-    ]
-
+        [
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
     @normalize(
         "day",
         [
@@ -66,64 +113,9 @@ class satellite_upper_troposphere_humidity(Main):
         multiple=True,
     )
     @normalize(
-        "month",
+        "variable",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "year",
-        [
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-        ],
-        multiple=True,
-    )
-    @normalize("area", "bounding-box(list)")
-    @normalize(
-        "sensor_on_satellite",
-        [
-            "amsu_b_on_noaa_15",
-            "amsu_b_on_noaa_16",
-            "amsu_b_on_noaa_17",
-            "mhs_on_metop_a",
-            "mhs_on_metop_b",
-            "mhs_on_metop_c",
-            "mhs_on_noaa_18",
-            "mhs_on_noaa_19",
+            "all",
         ],
     )
     @normalize(
@@ -133,28 +125,25 @@ class satellite_upper_troposphere_humidity(Main):
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        day,
-        month,
+        sensor_on_satellite,
         year,
-        area=None,
-        sensor_on_satellite=None,
-        format_=None,
+        month,
+        day,
         variable="all",
+        format_=None,
+        bbox=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
-            year=year,
-            area=area,
             sensor_on_satellite=sensor_on_satellite,
-            format_=format_,
+            year=year,
+            month=month,
+            day=day,
             variable=variable,
+            format_=format_,
+            bbox=bbox,
+            limit=limit,
         )

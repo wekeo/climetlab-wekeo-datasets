@@ -6,13 +6,12 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "MetO-NWS-WAV-RAN_202007",  # noqa: E501 3-hourly-instantaneous wave
+    "MetO-NWS-WAV-RAN_202007",  # noqa: E501 MetO-NWS-WAV-RAN
 ]
 
 
@@ -20,12 +19,10 @@ class nwshelf_reanalysis_wav(Main):
     name = "EO:MO:DAT:NWSHELF_REANALYSIS_WAV_004_015"
     dataset = "EO:MO:DAT:NWSHELF_REANALYSIS_WAV_004_015"
 
-    string_selects = [
-        "variables",
-    ]
-
+    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -53,27 +50,27 @@ class nwshelf_reanalysis_wav(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
+        bbox,
         layer="MetO-NWS-WAV-RAN_202007",
-        area=None,
+        max_date="2023-11-30T00:00:00Z",
+        min_date="1980-01-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "MetO-NWS-WAV-RAN_202007":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "1980-01-01T00:00:00Z"
 
-            if end is None:
-                end = "9991-12-28T00:00:00Z"
+            if max_date is None:
+                max_date = "2023-11-30T00:00:00Z"
 
         super().__init__(
+            bbox=bbox,
             layer=layer,
-            area=area,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

@@ -6,18 +6,17 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-oc_atl_bgc-optics_nrt_l3-multi-1km_P1D_202303",  # noqa: E501 Cmems obs-oc atl bgc-optics NRT l3-multi-1km p1d
-    "cmems_obs-oc_atl_bgc-plankton_nrt_l3-multi-1km_P1D_202303",  # noqa: E501 Cmems obs-oc atl bgc-plankton NRT l3-multi-1km p1d
-    "cmems_obs-oc_atl_bgc-plankton_nrt_l3-olci-300m_P1D_202303",  # noqa: E501 Cmems obs-oc atl bgc-plankton NRT l3-olci-300m p1d
-    "cmems_obs-oc_atl_bgc-reflectance_nrt_l3-multi-1km_P1D_202303",  # noqa: E501 Cmems obs-oc atl bgc-reflectance NRT l3-multi-1km p1d
-    "cmems_obs-oc_atl_bgc-reflectance_nrt_l3-olci-300m_P1D_202303",  # noqa: E501 Cmems obs-oc atl bgc-reflectance NRT l3-olci-300m p1d
-    "cmems_obs-oc_atl_bgc-transp_nrt_l3-multi-1km_P1D_202303",  # noqa: E501 Cmems obs-oc atl bgc-transp NRT l3-multi-1km p1d
+    "cmems_obs-oc_atl_bgc-optics_nrt_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_atl_bgc-optics_nrt_l3-multi-1km_P1D
+    "cmems_obs-oc_atl_bgc-plankton_nrt_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_atl_bgc-plankton_nrt_l3-multi-1km_P1D
+    "cmems_obs-oc_atl_bgc-plankton_nrt_l3-olci-300m_P1D_202303",  # noqa: E501 cmems_obs-oc_atl_bgc-plankton_nrt_l3-olci-300m_P1D
+    "cmems_obs-oc_atl_bgc-reflectance_nrt_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_atl_bgc-reflectance_nrt_l3-multi-1km_P1D
+    "cmems_obs-oc_atl_bgc-reflectance_nrt_l3-olci-300m_P1D_202303",  # noqa: E501 cmems_obs-oc_atl_bgc-reflectance_nrt_l3-olci-300m_P1D
+    "cmems_obs-oc_atl_bgc-transp_nrt_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_atl_bgc-transp_nrt_l3-multi-1km_P1D
 ]
 
 
@@ -25,12 +24,10 @@ class oceancolour_atl_bgc_l3_nrt(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_ATL_BGC_L3_NRT_009_111"
     dataset = "EO:MO:DAT:OCEANCOLOUR_ATL_BGC_L3_NRT_009_111"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -40,8 +37,26 @@ class oceancolour_atl_bgc_l3_nrt(Main):
             "CDM_uncertainty",
             "CHL",
             "CHL_uncertainty",
+            "DIATO",
+            "DIATO_uncertainty",
+            "DINO",
+            "DINO_uncertainty",
+            "GREEN",
+            "GREEN_uncertainty",
+            "HAPTO",
+            "HAPTO_uncertainty",
             "KD490",
             "KD490_uncertainty",
+            "MICRO",
+            "MICRO_uncertainty",
+            "NANO",
+            "NANO_uncertainty",
+            "PICO",
+            "PICO_uncertainty",
+            "PROCHLO",
+            "PROCHLO_uncertainty",
+            "PROKAR",
+            "PROKAR_uncertainty",
             "RRS400",
             "RRS400_uncertainty",
             "RRS412",
@@ -77,62 +92,62 @@ class oceancolour_atl_bgc_l3_nrt(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
-        area=None,
+        bbox,
+        max_date="2024-04-01T00:00:00Z",
+        min_date="2023-10-03T20:03:42Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "cmems_obs-oc_atl_bgc-optics_nrt_l3-multi-1km_P1D_202303":
-            if start is None:
-                start = "2023-10-04T09:54:32Z"
+        if layer == "cmems_obs-oc_atl_bgc-optics_nrt_l3-multi-1km_P1D_202311":
+            if min_date is None:
+                min_date = "2023-12-03T07:21:39Z"
 
-            if end is None:
-                end = "2023-10-27T16:54:59Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_atl_bgc-plankton_nrt_l3-multi-1km_P1D_202303":
-            if start is None:
-                start = "2023-10-20T07:02:15Z"
+        if layer == "cmems_obs-oc_atl_bgc-plankton_nrt_l3-multi-1km_P1D_202311":
+            if min_date is None:
+                min_date = "2023-12-03T07:21:39Z"
 
-            if end is None:
-                end = "2023-10-27T17:11:59Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_atl_bgc-plankton_nrt_l3-olci-300m_P1D_202303":
-            if start is None:
-                start = "2023-10-03T20:03:42Z"
+            if min_date is None:
+                min_date = "2023-10-03T20:03:42Z"
 
-            if end is None:
-                end = "2023-10-27T22:33:15Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_atl_bgc-reflectance_nrt_l3-multi-1km_P1D_202303":
-            if start is None:
-                start = "2023-10-04T09:54:32Z"
+        if layer == "cmems_obs-oc_atl_bgc-reflectance_nrt_l3-multi-1km_P1D_202311":
+            if min_date is None:
+                min_date = "2023-12-03T07:21:39Z"
 
-            if end is None:
-                end = "2023-10-27T16:54:59Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
         if layer == "cmems_obs-oc_atl_bgc-reflectance_nrt_l3-olci-300m_P1D_202303":
-            if start is None:
-                start = "2023-10-03T20:03:42Z"
+            if min_date is None:
+                min_date = "2023-10-03T20:03:42Z"
 
-            if end is None:
-                end = "2023-10-27T22:33:15Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
-        if layer == "cmems_obs-oc_atl_bgc-transp_nrt_l3-multi-1km_P1D_202303":
-            if start is None:
-                start = "2023-10-20T07:02:15Z"
+        if layer == "cmems_obs-oc_atl_bgc-transp_nrt_l3-multi-1km_P1D_202311":
+            if min_date is None:
+                min_date = "2023-12-03T07:21:39Z"
 
-            if end is None:
-                end = "2023-10-27T17:11:59Z"
+            if max_date is None:
+                max_date = "2024-04-01T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

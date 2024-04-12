@@ -6,13 +6,13 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "dataset-bal-reanalysis-wav-hourly_202003",  # noqa: E501 Cmems wam hindcast (hourly)
+    "cmems_mod_bal_wav_my_static_202112",  # noqa: E501 cmems_mod_bal_wav_my_static
+    "dataset-bal-reanalysis-wav-hourly_202003",  # noqa: E501 dataset-bal-reanalysis-wav-hourly
 ]
 
 
@@ -20,12 +20,10 @@ class balticsea_reanalysis_wav(Main):
     name = "EO:MO:DAT:BALTICSEA_REANALYSIS_WAV_003_015"
     dataset = "EO:MO:DAT:BALTICSEA_REANALYSIS_WAV_003_015"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -46,33 +44,40 @@ class balticsea_reanalysis_wav(Main):
             "VTM02",
             "VTM10",
             "VTPK",
+            "deptho",
             "lat",
             "lon",
+            "mask",
             "time",
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        layer="dataset-bal-reanalysis-wav-hourly_202003",
-        area=None,
+        layer,
+        bbox,
+        max_date="2023-06-30T01:00:00Z",
+        min_date="1993-01-01T01:00:00Z",
         variables=None,
-        start=None,
-        end=None,
     ):
-        if layer == "dataset-bal-reanalysis-wav-hourly_202003":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
+        if layer == "cmems_mod_bal_wav_my_static_202112":
+            if min_date is None:
+                min_date = "2021-12-01T00:00:00Z"
 
-            if end is None:
-                end = "9991-12-30T00:00:00Z"
+            if max_date is None:
+                max_date = "2021-12-28T00:00:00Z"
+
+        if layer == "dataset-bal-reanalysis-wav-hourly_202003":
+            if min_date is None:
+                min_date = "1993-01-01T01:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-06-30T01:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
         )

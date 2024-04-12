@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,21 +15,11 @@ class sis_health_vector(Main):
     name = "EO:ECMWF:DAT:SIS_HEALTH_VECTOR"
     dataset = "EO:ECMWF:DAT:SIS_HEALTH_VECTOR"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "ensemble_statistic",
-        "experiment",
-        "variable",
-    ]
-
     @normalize(
-        "ensemble_statistic",
+        "variable",
         [
-            "ensemble_members_average",
-            "ensemble_members_standard_deviation",
+            "season_length",
+            "suitability",
         ],
         multiple=True,
     )
@@ -43,10 +32,10 @@ class sis_health_vector(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
+        "ensemble_statistic",
         [
-            "season_length",
-            "suitability",
+            "ensemble_members_average",
+            "ensemble_members_standard_deviation",
         ],
         multiple=True,
     )
@@ -58,15 +47,12 @@ class sis_health_vector(Main):
         ],
     )
     def __init__(
-        self,
-        ensemble_statistic,
-        experiment,
-        variable,
-        format_=None,
+        self, variable, experiment, ensemble_statistic, format_=None, limit=None
     ):
         super().__init__(
-            ensemble_statistic=ensemble_statistic,
-            experiment=experiment,
             variable=variable,
+            experiment=experiment,
+            ensemble_statistic=ensemble_statistic,
             format_=format_,
+            limit=limit,
         )

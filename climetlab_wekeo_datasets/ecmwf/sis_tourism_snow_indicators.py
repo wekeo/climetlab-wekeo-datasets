@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,57 +15,12 @@ class sis_tourism_snow_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_TOURISM_SNOW_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_TOURISM_SNOW_INDICATORS"
 
-    choices = [
+    @normalize(
         "time_aggregation",
-        "experiment",
-        "rcm",
-        "format_",
-    ]
-
-    string_selects = [
-        "gcm",
-        "period",
-        "statistic",
-        "variable",
-        "version",
-        "year",
-    ]
-
-    @normalize(
-        "gcm",
         [
-            "cm5a_mr",
-            "cnrm_cm5",
-            "ec_earth",
-            "hadgem2_es",
-            "mpi_esm_lr",
+            "annual_data",
+            "climatology",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "period",
-        [
-            "1961-1990",
-            "1986-2005",
-            "1990-2015",
-            "2021-2040",
-            "2041-2060",
-            "2081-2100",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "statistic",
-        [
-            "10th_percentile",
-            "20th_percentile",
-            "50th_percentile",
-            "80th_percentile",
-            "90th_percentile",
-            "mean",
-            "standard_deviation",
-        ],
-        multiple=True,
     )
     @normalize(
         "variable",
@@ -114,10 +68,58 @@ class sis_tourism_snow_indicators(Main):
         multiple=True,
     )
     @normalize(
-        "version",
+        "experiment",
         [
-            "1_0",
-            "1_1",
+            "historical",
+            "rcp2_6",
+            "rcp4_5",
+            "rcp8_5",
+            "uerra_reanalysis",
+        ],
+    )
+    @normalize(
+        "rcm",
+        [
+            "aladin53",
+            "cclm4_8_17",
+            "rca4",
+            "remo2009",
+            "wrf331f",
+        ],
+    )
+    @normalize(
+        "gcm",
+        [
+            "cm5a_mr",
+            "cnrm_cm5",
+            "ec_earth",
+            "hadgem2_es",
+            "mpi_esm_lr",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "period",
+        [
+            "1961-1990",
+            "1986-2005",
+            "1990-2015",
+            "2021-2040",
+            "2041-2060",
+            "2081-2100",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "statistic",
+        [
+            "10th_percentile",
+            "20th_percentile",
+            "50th_percentile",
+            "80th_percentile",
+            "90th_percentile",
+            "mean",
+            "standard_deviation",
         ],
         multiple=True,
     )
@@ -279,31 +281,12 @@ class sis_tourism_snow_indicators(Main):
         multiple=True,
     )
     @normalize(
-        "time_aggregation",
+        "version",
         [
-            "annual_data",
-            "climatology",
+            "1_0",
+            "1_1",
         ],
-    )
-    @normalize(
-        "experiment",
-        [
-            "historical",
-            "rcp2_6",
-            "rcp4_5",
-            "rcp8_5",
-            "uerra_reanalysis",
-        ],
-    )
-    @normalize(
-        "rcm",
-        [
-            "aladin53",
-            "cclm4_8_17",
-            "rca4",
-            "remo2009",
-            "wrf331f",
-        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -314,26 +297,28 @@ class sis_tourism_snow_indicators(Main):
     )
     def __init__(
         self,
+        time_aggregation,
+        variable,
+        experiment,
+        rcm,
         gcm,
         period,
         statistic,
-        variable,
-        version,
         year,
-        time_aggregation=None,
-        experiment=None,
-        rcm=None,
+        version,
         format_=None,
+        limit=None,
     ):
         super().__init__(
+            time_aggregation=time_aggregation,
+            variable=variable,
+            experiment=experiment,
+            rcm=rcm,
             gcm=gcm,
             period=period,
             statistic=statistic,
-            variable=variable,
-            version=version,
             year=year,
-            time_aggregation=time_aggregation,
-            experiment=experiment,
-            rcm=rcm,
+            version=version,
             format_=format_,
+            limit=limit,
         )

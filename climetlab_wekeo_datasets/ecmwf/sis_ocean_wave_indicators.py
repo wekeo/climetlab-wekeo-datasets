@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,17 +15,23 @@ class sis_ocean_wave_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_OCEAN_WAVE_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_OCEAN_WAVE_INDICATORS"
 
-    choices = [
-        "experiment",
-        "format_",
-    ]
-
-    string_selects = [
-        "period",
-        "statistic",
+    @normalize(
         "variable",
-    ]
-
+        [
+            "peak_wave_period",
+            "significant_wave_height",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "era5_reanalysis",
+            "historical",
+            "rcp4_5",
+            "rcp8_5",
+        ],
+    )
     @normalize(
         "period",
         [
@@ -49,23 +54,6 @@ class sis_ocean_wave_indicators(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
-        [
-            "peak_wave_period",
-            "significant_wave_height",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "experiment",
-        [
-            "era5_reanalysis",
-            "historical",
-            "rcp4_5",
-            "rcp8_5",
-        ],
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -73,17 +61,13 @@ class sis_ocean_wave_indicators(Main):
         ],
     )
     def __init__(
-        self,
-        period,
-        statistic,
-        variable,
-        experiment=None,
-        format_=None,
+        self, variable, experiment, period, statistic, format_=None, limit=None
     ):
         super().__init__(
-            period=period,
-            statistic=statistic,
             variable=variable,
             experiment=experiment,
+            period=period,
+            statistic=statistic,
             format_=format_,
+            limit=limit,
         )

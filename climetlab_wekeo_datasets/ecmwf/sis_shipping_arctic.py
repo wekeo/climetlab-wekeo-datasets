@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,23 +15,13 @@ class sis_shipping_arctic(Main):
     name = "EO:ECMWF:DAT:SIS_SHIPPING_ARCTIC"
     dataset = "EO:ECMWF:DAT:SIS_SHIPPING_ARCTIC"
 
-    choices = [
-        "product_type",
-        "format_",
-    ]
-
-    string_selects = [
-        "experiment",
-        "variable",
-    ]
-
     @normalize(
-        "experiment",
+        "product_type",
         [
-            "RCP4.5",
-            "RCP8.5",
+            "ensemble_mean",
+            "ensemble_mean_minus_ensemble_standard_deviation",
+            "ensemble_mean_plus_ensemble_standard_deviation",
         ],
-        multiple=True,
     )
     @normalize(
         "variable",
@@ -59,12 +48,12 @@ class sis_shipping_arctic(Main):
         multiple=True,
     )
     @normalize(
-        "product_type",
+        "experiment",
         [
-            "ensemble_mean",
-            "ensemble_mean_minus_ensemble_standard_deviation",
-            "ensemble_mean_plus_ensemble_standard_deviation",
+            "RCP4.5",
+            "RCP8.5",
         ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -73,16 +62,11 @@ class sis_shipping_arctic(Main):
             "zip",
         ],
     )
-    def __init__(
-        self,
-        experiment,
-        variable,
-        product_type=None,
-        format_=None,
-    ):
+    def __init__(self, product_type, variable, experiment, format_=None, limit=None):
         super().__init__(
-            experiment=experiment,
-            variable=variable,
             product_type=product_type,
+            variable=variable,
+            experiment=experiment,
             format_=format_,
+            limit=limit,
         )

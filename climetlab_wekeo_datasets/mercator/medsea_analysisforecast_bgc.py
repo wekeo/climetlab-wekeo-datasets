@@ -6,24 +6,24 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_med_bgc-bio_anfc_4.2km_P1D-m_202211",  # noqa: E501 Primary production and oxygen (3d) - daily mean
-    "cmems_mod_med_bgc-bio_anfc_4.2km_P1M-m_202211",  # noqa: E501 Primary production and oxygen (3d) - monthly mean
-    "cmems_mod_med_bgc-car_anfc_4.2km_P1D-m_202211",  # noqa: E501 Dissolved inorganic carbon, ph and alkalinity (3d) - daily mean
-    "cmems_mod_med_bgc-car_anfc_4.2km_P1M-m_202211",  # noqa: E501 Dissolved inorganic carbon, ph and alkalinity (3d) - monthly mean
-    "cmems_mod_med_bgc-co2_anfc_4.2km_P1D-m_202211",  # noqa: E501 Surface partial pressure of co2 and surface co2 flux (2d) - daily mean
-    "cmems_mod_med_bgc-co2_anfc_4.2km_P1M-m_202211",  # noqa: E501 Surface partial pressure of co2 and surface co2 flux (2d) - monthly mean
-    "cmems_mod_med_bgc-nut_anfc_4.2km_P1D-m_202211",  # noqa: E501 Nitrate, phosphate, ammonium and silicate (3d) - daily mean
-    "cmems_mod_med_bgc-nut_anfc_4.2km_P1M-m_202211",  # noqa: E501 Nitrate, phosphate, ammonium and silicate (3d) - monthly mean
-    "cmems_mod_med_bgc-optics_anfc_4.2km_P1D-m_202211",  # noqa: E501 Attenuation coefficient of downwelling radiative flux (2d) - daily mean
-    "cmems_mod_med_bgc-optics_anfc_4.2km_P1M-m_202211",  # noqa: E501 Attenuation coefficient of downwelling radiative flux (2d) - monthly mean
-    "cmems_mod_med_bgc-pft_anfc_4.2km_P1D-m_202211",  # noqa: E501 Phytoplankton carbon biomass, zooplankton carbon biomass and chlorophyll (3d) - daily mean
-    "cmems_mod_med_bgc-pft_anfc_4.2km_P1M-m_202211",  # noqa: E501 Phytoplankton carbon biomass, zooplankton carbon biomass and chlorophyll (3d) - monthly mean
+    "cmems_mod_med_bgc-bio_anfc_4.2km_P1D-m_202211",  # noqa: E501 cmems_mod_med_bgc-bio_anfc_4.2km_P1D-m
+    "cmems_mod_med_bgc-bio_anfc_4.2km_P1M-m_202211",  # noqa: E501 cmems_mod_med_bgc-bio_anfc_4.2km_P1M-m
+    "cmems_mod_med_bgc-car_anfc_4.2km_P1D-m_202211",  # noqa: E501 cmems_mod_med_bgc-car_anfc_4.2km_P1D-m
+    "cmems_mod_med_bgc-car_anfc_4.2km_P1M-m_202211",  # noqa: E501 cmems_mod_med_bgc-car_anfc_4.2km_P1M-m
+    "cmems_mod_med_bgc-co2_anfc_4.2km_P1D-m_202211",  # noqa: E501 cmems_mod_med_bgc-co2_anfc_4.2km_P1D-m
+    "cmems_mod_med_bgc-co2_anfc_4.2km_P1M-m_202211",  # noqa: E501 cmems_mod_med_bgc-co2_anfc_4.2km_P1M-m
+    "cmems_mod_med_bgc-nut_anfc_4.2km_P1D-m_202211",  # noqa: E501 cmems_mod_med_bgc-nut_anfc_4.2km_P1D-m
+    "cmems_mod_med_bgc-nut_anfc_4.2km_P1M-m_202211",  # noqa: E501 cmems_mod_med_bgc-nut_anfc_4.2km_P1M-m
+    "cmems_mod_med_bgc-optics_anfc_4.2km_P1D-m_202211",  # noqa: E501 cmems_mod_med_bgc-optics_anfc_4.2km_P1D-m
+    "cmems_mod_med_bgc-optics_anfc_4.2km_P1M-m_202211",  # noqa: E501 cmems_mod_med_bgc-optics_anfc_4.2km_P1M-m
+    "cmems_mod_med_bgc-pft_anfc_4.2km_P1D-m_202311",  # noqa: E501 cmems_mod_med_bgc-pft_anfc_4.2km_P1D-m
+    "cmems_mod_med_bgc-pft_anfc_4.2km_P1M-m_202311",  # noqa: E501 cmems_mod_med_bgc-pft_anfc_4.2km_P1M-m
+    "cmems_mod_med_bgc_anfc_4.2km_static_202211",  # noqa: E501 cmems_mod_med_bgc_anfc_4.2km_static
 ]
 
 
@@ -31,28 +31,37 @@ class medsea_analysisforecast_bgc(Main):
     name = "EO:MO:DAT:MEDSEA_ANALYSISFORECAST_BGC_006_014"
     dataset = "EO:MO:DAT:MEDSEA_ANALYSISFORECAST_BGC_006_014"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "chl",
             "depth",
+            "deptho",
+            "deptho_lev",
+            "diatoC",
+            "diatoChla",
+            "dinoC",
+            "dinoChla",
             "dissic",
             "fgco2",
             "kd490",
             "latitude",
             "longitude",
+            "mask",
+            "nanoC",
+            "nanoChla",
             "nh4",
             "no3",
             "nppv",
             "o2",
             "ph",
             "phyc",
+            "picoC",
+            "picoChla",
             "po4",
             "si",
             "spco2",
@@ -62,104 +71,111 @@ class medsea_analysisforecast_bgc(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
-        area=None,
+        bbox,
+        max_date="2024-02-01T00:00:00Z",
+        min_date="2020-01-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "cmems_mod_med_bgc-bio_anfc_4.2km_P1D-m_202211":
-            if start is None:
-                start = "2022-10-13T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-11T12:00:00Z"
 
         if layer == "cmems_mod_med_bgc-bio_anfc_4.2km_P1M-m_202211":
-            if start is None:
-                start = "2022-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-10T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
 
         if layer == "cmems_mod_med_bgc-car_anfc_4.2km_P1D-m_202211":
-            if start is None:
-                start = "2022-10-13T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-11T12:00:00Z"
 
         if layer == "cmems_mod_med_bgc-car_anfc_4.2km_P1M-m_202211":
-            if start is None:
-                start = "2022-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-10T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
 
         if layer == "cmems_mod_med_bgc-co2_anfc_4.2km_P1D-m_202211":
-            if start is None:
-                start = "2022-10-13T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-11T12:00:00Z"
 
         if layer == "cmems_mod_med_bgc-co2_anfc_4.2km_P1M-m_202211":
-            if start is None:
-                start = "2022-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-10T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
 
         if layer == "cmems_mod_med_bgc-nut_anfc_4.2km_P1D-m_202211":
-            if start is None:
-                start = "2022-10-13T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-11T12:00:00Z"
 
         if layer == "cmems_mod_med_bgc-nut_anfc_4.2km_P1M-m_202211":
-            if start is None:
-                start = "2022-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-10T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
 
         if layer == "cmems_mod_med_bgc-optics_anfc_4.2km_P1D-m_202211":
-            if start is None:
-                start = "2022-10-13T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T12:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-11T12:00:00Z"
 
         if layer == "cmems_mod_med_bgc-optics_anfc_4.2km_P1M-m_202211":
-            if start is None:
-                start = "2022-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2020-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-10T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
 
-        if layer == "cmems_mod_med_bgc-pft_anfc_4.2km_P1D-m_202211":
-            if start is None:
-                start = "2022-10-13T00:00:00Z"
+        if layer == "cmems_mod_med_bgc-pft_anfc_4.2km_P1D-m_202311":
+            if min_date is None:
+                min_date = "2021-10-01T12:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-11T12:00:00Z"
 
-        if layer == "cmems_mod_med_bgc-pft_anfc_4.2km_P1M-m_202211":
-            if start is None:
-                start = "2022-01-01T00:00:00Z"
+        if layer == "cmems_mod_med_bgc-pft_anfc_4.2km_P1M-m_202311":
+            if min_date is None:
+                min_date = "2021-10-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-10T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-02-01T00:00:00Z"
+
+        if layer == "cmems_mod_med_bgc_anfc_4.2km_static_202211":
+            if min_date is None:
+                min_date = "2022-11-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2022-11-28T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

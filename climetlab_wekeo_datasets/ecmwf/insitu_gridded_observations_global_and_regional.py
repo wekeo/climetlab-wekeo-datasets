@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,30 +15,35 @@ class insitu_gridded_observations_global_and_regional(Main):
     name = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_GLOBAL_AND_REGIONAL"
     dataset = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_GLOBAL_AND_REGIONAL"
 
-    choices = [
-        "origin",
-        "region",
-        "time_aggregation",
-        "format_",
-    ]
-
-    string_selects = [
-        "horizontal_aggregation",
-        "statistic",
-        "variable",
-        "version",
-        "year",
-    ]
-
     @normalize(
-        "horizontal_aggregation",
+        "origin",
         [
-            "0_25_x_0_25",
-            "0_2_x_0_2",
-            "0_5_x_0_5",
-            "1_x_1",
-            "2_5_x_2_5",
-            "horizontal_average",
+            "berkearth",
+            "chirps",
+            "cmorph",
+            "cpc",
+            "cpc_conus",
+            "cru",
+            "gistemp",
+            "gpcc",
+            "imerg",
+        ],
+    )
+    @normalize(
+        "region",
+        [
+            "africa",
+            "conus",
+            "global",
+            "quasi_global",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "precipitation",
+            "temperature",
+            "temperature_anomaly",
         ],
         multiple=True,
     )
@@ -53,24 +57,21 @@ class insitu_gridded_observations_global_and_regional(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
+        "time_aggregation",
         [
-            "precipitation",
-            "temperature",
-            "temperature_anomaly",
+            "daily",
+            "monthly",
         ],
-        multiple=True,
     )
     @normalize(
-        "version",
+        "horizontal_aggregation",
         [
-            "v1.0",
-            "v2.0",
-            "v2020.0",
-            "v2020.0-v6.0-fg",
-            "v4.0",
-            "v4.03",
-            "v6.0",
+            "0_25_x_0_25",
+            "0_2_x_0_2",
+            "0_5_x_0_5",
+            "1_x_1",
+            "2_5_x_2_5",
+            "horizontal_average",
         ],
         multiple=True,
     )
@@ -353,34 +354,17 @@ class insitu_gridded_observations_global_and_regional(Main):
         multiple=True,
     )
     @normalize(
-        "origin",
+        "version",
         [
-            "berkearth",
-            "chirps",
-            "cmorph",
-            "cpc",
-            "cpc_conus",
-            "cru",
-            "gistemp",
-            "gpcc",
-            "imerg",
+            "v1.0",
+            "v2.0",
+            "v2020.0",
+            "v2020.0-v6.0-fg",
+            "v4.0",
+            "v4.03",
+            "v6.0",
         ],
-    )
-    @normalize(
-        "region",
-        [
-            "africa",
-            "conus",
-            "global",
-            "quasi_global",
-        ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "daily",
-            "monthly",
-        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -391,24 +375,26 @@ class insitu_gridded_observations_global_and_regional(Main):
     )
     def __init__(
         self,
-        horizontal_aggregation,
-        statistic,
+        origin,
+        region,
         variable,
-        version,
+        statistic,
+        time_aggregation,
+        horizontal_aggregation,
         year,
-        origin=None,
-        region=None,
-        time_aggregation=None,
+        version,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            horizontal_aggregation=horizontal_aggregation,
-            statistic=statistic,
-            variable=variable,
-            version=version,
-            year=year,
             origin=origin,
             region=region,
+            variable=variable,
+            statistic=statistic,
             time_aggregation=time_aggregation,
+            horizontal_aggregation=horizontal_aggregation,
+            year=year,
+            version=version,
             format_=format_,
+            limit=limit,
         )

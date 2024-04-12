@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,17 +15,27 @@ class sis_european_risk_flood_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_EUROPEAN_RISK_FLOOD_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_EUROPEAN_RISK_FLOOD_INDICATORS"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "city",
-        "dem",
-        "return_period",
+    @normalize(
         "variable",
-    ]
-
+        [
+            "expected_damage",
+            "urban_depression",
+            "water_depth",
+            "water_mask",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "return_period",
+        [
+            "10-yrs",
+            "100-yrs",
+            "25-yrs",
+            "5-yrs",
+            "50-yrs",
+        ],
+        multiple=True,
+    )
     @normalize(
         "city",
         [
@@ -62,45 +71,18 @@ class sis_european_risk_flood_indicators(Main):
         multiple=True,
     )
     @normalize(
-        "return_period",
-        [
-            "10-yrs",
-            "100-yrs",
-            "25-yrs",
-            "5-yrs",
-            "50-yrs",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "expected_damage",
-            "urban_depression",
-            "water_depth",
-            "water_mask",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    def __init__(
-        self,
-        city,
-        dem,
-        return_period,
-        variable,
-        format_=None,
-    ):
+    def __init__(self, variable, return_period, city, dem, format_=None, limit=None):
         super().__init__(
+            variable=variable,
+            return_period=return_period,
             city=city,
             dem=dem,
-            return_period=return_period,
-            variable=variable,
             format_=format_,
+            limit=limit,
         )

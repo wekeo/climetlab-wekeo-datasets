@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,31 +15,6 @@ class cams_global_ghg_reanalysis_egg4(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_GHG_REANALYSIS_EGG4"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_GHG_REANALYSIS_EGG4"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "model_level",
-        "pressure_level",
-        "step",
-        "variable",
-    ]
-
-    @normalize(
-        "step",
-        [
-            "0",
-            "12",
-            "15",
-            "18",
-            "21",
-            "3",
-            "6",
-            "9",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -130,17 +104,64 @@ class cams_global_ghg_reanalysis_egg4(Main):
         multiple=True,
     )
     @normalize(
-        "format_",
+        "step",
         [
-            "grib",
-            "netcdf",
+            "0",
+            "3",
+            "6",
+            "9",
+            "12",
+            "15",
+            "18",
+            "21",
         ],
+        multiple=True,
     )
-    @normalize("area", "bounding-box(list)")
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize(
+        "pressure_level",
+        [
+            "1",
+            "2",
+            "3",
+            "5",
+            "7",
+            "10",
+            "20",
+            "30",
+            "50",
+            "70",
+            "100",
+            "150",
+            "200",
+            "250",
+            "300",
+            "400",
+            "500",
+            "600",
+            "700",
+            "800",
+            "850",
+            "900",
+            "925",
+            "950",
+            "1000",
+        ],
+        multiple=True,
+    )
     @normalize(
         "model_level",
         [
             "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
             "10",
             "11",
             "12",
@@ -151,7 +172,6 @@ class cams_global_ghg_reanalysis_egg4(Main):
             "17",
             "18",
             "19",
-            "2",
             "20",
             "21",
             "22",
@@ -162,7 +182,6 @@ class cams_global_ghg_reanalysis_egg4(Main):
             "27",
             "28",
             "29",
-            "3",
             "30",
             "31",
             "32",
@@ -173,7 +192,6 @@ class cams_global_ghg_reanalysis_egg4(Main):
             "37",
             "38",
             "39",
-            "4",
             "40",
             "41",
             "42",
@@ -184,7 +202,6 @@ class cams_global_ghg_reanalysis_egg4(Main):
             "47",
             "48",
             "49",
-            "5",
             "50",
             "51",
             "52",
@@ -195,65 +212,38 @@ class cams_global_ghg_reanalysis_egg4(Main):
             "57",
             "58",
             "59",
-            "6",
             "60",
-            "7",
-            "8",
-            "9",
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
-        "pressure_level",
+        "format_",
         [
-            "1",
-            "10",
-            "100",
-            "1000",
-            "150",
-            "2",
-            "20",
-            "200",
-            "250",
-            "3",
-            "30",
-            "300",
-            "400",
-            "5",
-            "50",
-            "500",
-            "600",
-            "7",
-            "70",
-            "700",
-            "800",
-            "850",
-            "900",
-            "925",
-            "950",
+            "grib",
+            "netcdf",
         ],
-        multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        step,
         variable,
-        format_,
-        area=None,
-        model_level=None,
+        step,
+        dtstart="2003-01-01",
+        dtend="2020-12-31",
         pressure_level=None,
-        start="2003-01-01",
-        end="2020-12-31",
+        model_level=None,
+        bbox=None,
+        format_=None,
+        limit=None,
     ):
         super().__init__(
-            step=step,
             variable=variable,
-            format_=format_,
-            area=area,
-            model_level=model_level,
+            step=step,
+            dtstart=dtstart,
+            dtend=dtend,
             pressure_level=pressure_level,
-            start=start,
-            end=end,
+            model_level=model_level,
+            bbox=bbox,
+            format_=format_,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,88 +15,21 @@ class satellite_surface_radiation_budget(Main):
     name = "EO:ECMWF:DAT:SATELLITE_SURFACE_RADIATION_BUDGET"
     dataset = "EO:ECMWF:DAT:SATELLITE_SURFACE_RADIATION_BUDGET"
 
-    choices = [
+    @normalize(
         "product_family",
+        [
+            "cci",
+            "clara_a2",
+            "clara_a3",
+        ],
+    )
+    @normalize(
         "origin",
-        "climate_data_record_type",
-        "time_aggregation",
-        "version",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
-        "sensor_on_satellite",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "day",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
+            "c3s",
+            "esa",
+            "eumetsat",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "sensor_on_satellite",
-        [
-            "aatsr_on_envisat",
-            "atsr2_on_ers2",
-            "avhrr_on_multiple_satellites",
-            "slstr_on_sentinel_3a_is_under_investigation",
-            "slstr_on_sentinel_3b_is_under_investigation",
-        ],
-        multiple=True,
     )
     @normalize(
         "variable",
@@ -114,8 +46,36 @@ class satellite_surface_radiation_budget(Main):
         multiple=True,
     )
     @normalize(
+        "sensor_on_satellite",
+        [
+            "aatsr_on_envisat",
+            "atsr2_on_ers2",
+            "slstr_on_sentinel_3a",
+            "slstr_on_sentinel_3a_3b",
+            "slstr_on_sentinel_3b",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "climate_data_record_type",
+        [
+            "interim_climate_data_record",
+            "thematic_climate_data_record",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "daily_mean",
+            "monthly_mean",
+        ],
+    )
+    @normalize(
         "year",
         [
+            "1979",
+            "1980",
+            "1981",
             "1982",
             "1983",
             "1984",
@@ -156,44 +116,65 @@ class satellite_surface_radiation_budget(Main):
             "2019",
             "2020",
             "2021",
+            "2022",
+            "2023",
         ],
         multiple=True,
     )
     @normalize(
-        "product_family",
+        "month",
         [
-            "cci",
-            "clara",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
-        "origin",
+        "day",
         [
-            "c3s",
-            "esa",
-            "eumetsat",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
         ],
-    )
-    @normalize(
-        "climate_data_record_type",
-        [
-            "interim_climate_data_record",
-            "thematic_climate_data_record",
-        ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "daily_mean",
-            "monthly_mean",
-        ],
-    )
-    @normalize(
-        "version",
-        [
-            "v2_0",
-            "v2_0_1",
-        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -202,30 +183,33 @@ class satellite_surface_radiation_budget(Main):
             "zip",
         ],
     )
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        day,
-        month,
-        sensor_on_satellite,
+        product_family,
+        origin,
         variable,
+        sensor_on_satellite,
+        climate_data_record_type,
+        time_aggregation,
         year,
-        product_family=None,
-        origin=None,
-        climate_data_record_type=None,
-        time_aggregation=None,
-        version=None,
+        month,
+        day,
         format_=None,
+        bbox=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
-            sensor_on_satellite=sensor_on_satellite,
-            variable=variable,
-            year=year,
             product_family=product_family,
             origin=origin,
+            variable=variable,
+            sensor_on_satellite=sensor_on_satellite,
             climate_data_record_type=climate_data_record_type,
             time_aggregation=time_aggregation,
-            version=version,
+            year=year,
+            month=month,
+            day=day,
             format_=format_,
+            bbox=bbox,
+            limit=limit,
         )

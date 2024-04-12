@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,17 +15,58 @@ class satellite_sea_level_mediterranean(Main):
     name = "EO:ECMWF:DAT:SATELLITE_SEA_LEVEL_MEDITERRANEAN"
     dataset = "EO:ECMWF:DAT:SATELLITE_SEA_LEVEL_MEDITERRANEAN"
 
-    choices = [
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
+    @normalize(
         "year",
-    ]
-
+        [
+            "1993",
+            "1994",
+            "1995",
+            "1996",
+            "1997",
+            "1998",
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
     @normalize(
         "day",
         [
@@ -65,56 +105,10 @@ class satellite_sea_level_mediterranean(Main):
         multiple=True,
     )
     @normalize(
-        "month",
+        "variable",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "all",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "year",
-        [
-            "1993",
-            "1994",
-            "1995",
-            "1996",
-            "1997",
-            "1998",
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-        ],
-        multiple=True,
     )
     @normalize(
         "format_",
@@ -123,24 +117,12 @@ class satellite_sea_level_mediterranean(Main):
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
-    def __init__(
-        self,
-        day,
-        month,
-        year,
-        format_=None,
-        variable="all",
-    ):
+    def __init__(self, year, month, day, variable="all", format_=None, limit=None):
         super().__init__(
-            day=day,
-            month=month,
             year=year,
-            format_=format_,
+            month=month,
+            day=day,
             variable=variable,
+            format_=format_,
+            limit=limit,
         )

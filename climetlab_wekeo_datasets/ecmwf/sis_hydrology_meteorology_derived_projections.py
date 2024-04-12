@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,32 +15,54 @@ class sis_hydrology_meteorology_derived_projections(Main):
     name = "EO:ECMWF:DAT:SIS_HYDROLOGY_METEOROLOGY_DERIVED_PROJECTIONS"
     dataset = "EO:ECMWF:DAT:SIS_HYDROLOGY_METEOROLOGY_DERIVED_PROJECTIONS"
 
-    choices = [
-        "product_type",
-        "processing_type",
-        "variable_type",
-        "horizontal_resolution",
-        "rcm",
-        "gcm",
-        "format_",
-    ]
-
-    string_selects = [
-        "ensemble_member",
-        "experiment",
-        "period",
-        "time_aggregation",
-        "variable",
-    ]
-
     @normalize(
-        "ensemble_member",
+        "product_type",
         [
-            "r12i1p1",
-            "r1i1p1",
-            "r2i1p1",
+            "climate_impact_indicators",
+            "essential_climate_variables",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "2m_air_temperature",
+            "highest_5_day_precipitation_amount",
+            "longest_dry_spells",
+            "number_of_dry_spells",
+            "precipitation",
         ],
         multiple=True,
+    )
+    @normalize(
+        "processing_type",
+        [
+            "bias_corrected",
+            "original",
+        ],
+    )
+    @normalize(
+        "variable_type",
+        [
+            "absolute_change_from_reference_period",
+            "absolute_values",
+            "relative_change_from_reference_period",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "annual_mean",
+            "daily",
+            "monthly_mean",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "horizontal_resolution",
+        [
+            "0_11_degrees",
+            "5_km",
+        ],
     )
     @normalize(
         "experiment",
@@ -51,6 +72,32 @@ class sis_hydrology_meteorology_derived_projections(Main):
             "rcp_2_6",
             "rcp_4_5",
             "rcp_8_5",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "rcm",
+        [
+            "cclm4_8_17",
+            "csc_remo2009",
+            "racmo22e",
+            "rca4",
+        ],
+    )
+    @normalize(
+        "gcm",
+        [
+            "ec_earth",
+            "hadgem2_es",
+            "mpi_esm_lr",
+        ],
+    )
+    @normalize(
+        "ensemble_member",
+        [
+            "r12i1p1",
+            "r1i1p1",
+            "r2i1p1",
         ],
         multiple=True,
     )
@@ -199,72 +246,6 @@ class sis_hydrology_meteorology_derived_projections(Main):
         multiple=True,
     )
     @normalize(
-        "time_aggregation",
-        [
-            "annual_mean",
-            "daily",
-            "monthly_mean",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "2m_air_temperature",
-            "highest_5_day_precipitation_amount",
-            "longest_dry_spells",
-            "number_of_dry_spells",
-            "precipitation",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "climate_impact_indicators",
-            "essential_climate_variables",
-        ],
-    )
-    @normalize(
-        "processing_type",
-        [
-            "bias_corrected",
-            "original",
-        ],
-    )
-    @normalize(
-        "variable_type",
-        [
-            "absolute_change_from_reference_period",
-            "absolute_values",
-            "relative_change_from_reference_period",
-        ],
-    )
-    @normalize(
-        "horizontal_resolution",
-        [
-            "0_11_degrees",
-            "5_km",
-        ],
-    )
-    @normalize(
-        "rcm",
-        [
-            "cclm4_8_17",
-            "csc_remo2009",
-            "racmo22e",
-            "rca4",
-        ],
-    )
-    @normalize(
-        "gcm",
-        [
-            "ec_earth",
-            "hadgem2_es",
-            "mpi_esm_lr",
-        ],
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -273,30 +254,32 @@ class sis_hydrology_meteorology_derived_projections(Main):
     )
     def __init__(
         self,
-        ensemble_member,
-        experiment,
-        period,
-        time_aggregation,
+        product_type,
         variable,
-        product_type=None,
-        processing_type=None,
-        variable_type=None,
-        horizontal_resolution=None,
-        rcm=None,
-        gcm=None,
+        processing_type,
+        variable_type,
+        time_aggregation,
+        horizontal_resolution,
+        experiment,
+        rcm,
+        gcm,
+        ensemble_member,
+        period,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            ensemble_member=ensemble_member,
-            experiment=experiment,
-            period=period,
-            time_aggregation=time_aggregation,
-            variable=variable,
             product_type=product_type,
+            variable=variable,
             processing_type=processing_type,
             variable_type=variable_type,
+            time_aggregation=time_aggregation,
             horizontal_resolution=horizontal_resolution,
+            experiment=experiment,
             rcm=rcm,
             gcm=gcm,
+            ensemble_member=ensemble_member,
+            period=period,
             format_=format_,
+            limit=limit,
         )

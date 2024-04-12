@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,72 +15,12 @@ class satellite_precipitation(Main):
     name = "EO:ECMWF:DAT:SATELLITE_PRECIPITATION"
     dataset = "EO:ECMWF:DAT:SATELLITE_PRECIPITATION"
 
-    choices = [
+    @normalize(
         "time_aggregation",
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
-        "year",
-    ]
-
-    @normalize(
-        "day",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
+            "daily_mean",
+            "monthly_mean",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
     )
     @normalize(
         "year",
@@ -133,20 +72,60 @@ class satellite_precipitation(Main):
         ],
         multiple=True,
     )
-    @normalize("area", "bounding-box(list)")
     @normalize(
-        "time_aggregation",
+        "month",
         [
-            "daily_mean",
-            "monthly_mean",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
-        "format_",
+        "day",
         [
-            "tgz",
-            "zip",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
         ],
+        multiple=True,
     )
     @normalize(
         "variable",
@@ -154,22 +133,32 @@ class satellite_precipitation(Main):
             "all",
         ],
     )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "format_",
+        [
+            "tgz",
+            "zip",
+        ],
+    )
     def __init__(
         self,
-        day,
-        month,
+        time_aggregation,
         year,
-        area=None,
-        time_aggregation=None,
-        format_=None,
+        month,
+        day,
         variable="all",
+        bbox=None,
+        format_=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
-            year=year,
-            area=area,
             time_aggregation=time_aggregation,
-            format_=format_,
+            year=year,
+            month=month,
+            day=day,
             variable=variable,
+            bbox=bbox,
+            format_=format_,
+            limit=limit,
         )

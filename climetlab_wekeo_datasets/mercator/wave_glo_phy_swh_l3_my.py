@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -26,12 +25,10 @@ class wave_glo_phy_swh_l3_my(Main):
     name = "EO:MO:DAT:WAVE_GLO_PHY_SWH_L3_MY_014_005"
     dataset = "EO:MO:DAT:WAVE_GLO_PHY_SWH_L3_MY_014_005"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -43,69 +40,69 @@ class wave_glo_phy_swh_l3_my(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
-        area=None,
+        bbox,
+        max_date="2017-05-17T22:00:53Z",
+        min_date="2008-07-04T12:19:19Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "cci_obs-wave_glo_phy-swh_my_al-l3_PT1S_202112":
-            if start is None:
-                start = "2013-03-14T05:44:48.774000Z"
+            if min_date is None:
+                min_date = "2013-03-14T05:44:48Z"
 
-            if end is None:
-                end = "2019-11-11T17:39:14.564000Z"
+            if max_date is None:
+                max_date = "2019-11-11T17:39:14Z"
 
         if layer == "cci_obs-wave_glo_phy-swh_my_c2-l3_PT1S_202112":
-            if start is None:
-                start = "2010-07-16T00:22:29.676000Z"
+            if min_date is None:
+                min_date = "2010-07-16T00:22:29Z"
 
-            if end is None:
-                end = "2020-07-08T23:43:04.637000Z"
+            if max_date is None:
+                max_date = "2020-07-08T23:43:04Z"
 
         if layer == "cci_obs-wave_glo_phy-swh_my_en-l3_PT1S_202112":
-            if start is None:
-                start = "2002-05-14T18:45:41.467000Z"
+            if min_date is None:
+                min_date = "2002-05-14T18:45:41Z"
 
-            if end is None:
-                end = "2012-04-08T10:55:53.869000Z"
+            if max_date is None:
+                max_date = "2012-04-08T10:55:53Z"
 
         if layer == "cci_obs-wave_glo_phy-swh_my_j1-l3_PT1S_202112":
-            if start is None:
-                start = "2002-01-15T06:29:22.022000Z"
+            if min_date is None:
+                min_date = "2002-01-15T06:29:22Z"
 
-            if end is None:
-                end = "2012-03-03T12:59:11.022000Z"
+            if max_date is None:
+                max_date = "2012-03-03T12:59:11Z"
 
         if layer == "cci_obs-wave_glo_phy-swh_my_j2-l3_PT1S_202112":
-            if start is None:
-                start = "2008-07-04T12:19:19.570000Z"
+            if min_date is None:
+                min_date = "2008-07-04T12:19:19Z"
 
-            if end is None:
-                end = "2017-05-17T22:00:53.348000Z"
+            if max_date is None:
+                max_date = "2017-05-17T22:00:53Z"
 
         if layer == "cci_obs-wave_glo_phy-swh_my_j3-l3_PT1S_202112":
-            if start is None:
-                start = "2016-02-17T10:28:45.235000Z"
+            if min_date is None:
+                min_date = "2016-02-17T10:28:45Z"
 
-            if end is None:
-                end = "2019-06-01T05:28:13.147000Z"
+            if max_date is None:
+                max_date = "2019-06-01T05:28:13Z"
 
         if layer == "cmems_obs-wave_glo_phy-swh_my_cfo-l3_PT1S_202112":
-            if start is None:
-                start = "2018-11-03T08:42:31Z"
+            if min_date is None:
+                min_date = "2018-11-03T08:42:31Z"
 
-            if end is None:
-                end = "2020-12-31T23:59:14Z"
+            if max_date is None:
+                max_date = "2020-12-31T23:59:14Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,34 +15,12 @@ class satellite_humidity_profiles(Main):
     name = "EO:ECMWF:DAT:SATELLITE_HUMIDITY_PROFILES"
     dataset = "EO:ECMWF:DAT:SATELLITE_HUMIDITY_PROFILES"
 
-    choices = [
-        "product_type",
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "year",
-    ]
-
     @normalize(
-        "month",
+        "product_type",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "radio_occultation_data",
+            "reanalysis_data",
         ],
-        multiple=True,
     )
     @normalize(
         "year",
@@ -70,10 +47,27 @@ class satellite_humidity_profiles(Main):
         multiple=True,
     )
     @normalize(
-        "product_type",
+        "month",
         [
-            "radio_occultation_data",
-            "reanalysis_data",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "all",
         ],
     )
     @normalize(
@@ -83,24 +77,14 @@ class satellite_humidity_profiles(Main):
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
     def __init__(
-        self,
-        month,
-        year,
-        product_type=None,
-        format_=None,
-        variable="all",
+        self, product_type, year, month, variable="all", format_=None, limit=None
     ):
         super().__init__(
-            month=month,
-            year=year,
             product_type=product_type,
-            format_=format_,
+            year=year,
+            month=month,
             variable=variable,
+            format_=format_,
+            limit=limit,
         )

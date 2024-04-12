@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -20,12 +19,10 @@ class sst_bal_sst_l4_nrt_observations(Main):
     name = "EO:MO:DAT:SST_BAL_SST_L4_NRT_OBSERVATIONS_010_007_b"
     dataset = "EO:MO:DAT:SST_BAL_SST_L4_NRT_OBSERVATIONS_010_007_b"
 
-    string_selects = [
-        "variables",
-    ]
-
+    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -39,27 +36,27 @@ class sst_bal_sst_l4_nrt_observations(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
+        bbox,
         layer="DMI-BALTIC-SST-L4-NRT-OBS_FULL_TIME_SERIE",
-        area=None,
+        max_date="2024-04-02T00:00:00Z",
+        min_date="2016-01-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "DMI-BALTIC-SST-L4-NRT-OBS_FULL_TIME_SERIE":
-            if start is None:
-                start = "2016-01-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2016-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-26T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-02T00:00:00Z"
 
         super().__init__(
+            bbox=bbox,
             layer=layer,
-            area=area,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

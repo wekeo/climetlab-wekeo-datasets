@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,19 +15,24 @@ class sis_water_level_change_timeseries_cmip6(Main):
     name = "EO:ECMWF:DAT:SIS_WATER_LEVEL_CHANGE_TIMESERIES_CMIP6"
     dataset = "EO:ECMWF:DAT:SIS_WATER_LEVEL_CHANGE_TIMESERIES_CMIP6"
 
-    choices = [
-        "experiment",
-        "format_",
-    ]
-
-    string_selects = [
-        "model",
-        "month",
-        "temporal_aggregation",
+    @normalize(
         "variable",
-        "year",
-    ]
-
+        [
+            "mean_sea_level",
+            "storm_surge_residual",
+            "tidal_elevation",
+            "total_water_level",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "future",
+            "historical",
+            "reanalysis",
+        ],
+    )
     @normalize(
         "model",
         [
@@ -41,40 +45,12 @@ class sis_water_level_change_timeseries_cmip6(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "temporal_aggregation",
         [
             "10_min",
             "annual",
             "daily_maximum",
             "hourly",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "mean_sea_level",
-            "storm_surge_residual",
-            "tidal_elevation",
-            "total_water_level",
         ],
         multiple=True,
     )
@@ -186,12 +162,22 @@ class sis_water_level_change_timeseries_cmip6(Main):
         multiple=True,
     )
     @normalize(
-        "experiment",
+        "month",
         [
-            "future",
-            "historical",
-            "reanalysis",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -202,20 +188,22 @@ class sis_water_level_change_timeseries_cmip6(Main):
     )
     def __init__(
         self,
-        model,
-        month,
-        temporal_aggregation,
         variable,
+        experiment,
+        model,
+        temporal_aggregation,
         year,
-        experiment=None,
+        month,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            model=model,
-            month=month,
-            temporal_aggregation=temporal_aggregation,
             variable=variable,
-            year=year,
             experiment=experiment,
+            model=model,
+            temporal_aggregation=temporal_aggregation,
+            year=year,
+            month=month,
             format_=format_,
+            limit=limit,
         )

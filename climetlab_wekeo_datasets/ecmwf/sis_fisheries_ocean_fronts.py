@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,24 +15,12 @@ class sis_fisheries_ocean_fronts(Main):
     name = "EO:ECMWF:DAT:SIS_FISHERIES_OCEAN_FRONTS"
     dataset = "EO:ECMWF:DAT:SIS_FISHERIES_OCEAN_FRONTS"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "experiment",
-        "indicator",
-        "month",
-        "origin",
-        "variable",
-        "year",
-    ]
-
     @normalize(
-        "experiment",
+        "origin",
         [
-            "rcp4_5",
-            "rcp8_5",
+            "nemo_ersem",
+            "polcoms_cci",
+            "polcoms_ersem",
         ],
         multiple=True,
     )
@@ -46,33 +33,6 @@ class sis_fisheries_ocean_fronts(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "origin",
-        [
-            "nemo_ersem",
-            "polcoms_cci",
-            "polcoms_ersem",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "variable",
         [
             "change_in_distance_to_nearest_major_front",
@@ -81,6 +41,14 @@ class sis_fisheries_ocean_fronts(Main):
             "distance_to_nearest_major_front",
             "frontal_gradient_magnitude",
             "frontal_persistence",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "rcp4_5",
+            "rcp8_5",
         ],
         multiple=True,
     )
@@ -200,6 +168,24 @@ class sis_fisheries_ocean_fronts(Main):
         multiple=True,
     )
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -208,20 +194,22 @@ class sis_fisheries_ocean_fronts(Main):
     )
     def __init__(
         self,
-        experiment,
-        indicator,
-        month,
         origin,
+        indicator,
         variable,
+        experiment,
         year,
+        month,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            experiment=experiment,
-            indicator=indicator,
-            month=month,
             origin=origin,
+            indicator=indicator,
             variable=variable,
+            experiment=experiment,
             year=year,
+            month=month,
             format_=format_,
+            limit=limit,
         )

@@ -6,13 +6,12 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-sst_bal_phy-subskin_nrt_l4_PT1H-m_202211",  # noqa: E501 North sea/baltic sea sst l4 diurnal sub-skin sea surface temperature analysis (sst bal phy subskin l4 NRT 010 034, cmems obs-sst bal phy-subskin NRT l4 pt1h-m)
+    "cmems_obs-sst_bal_phy-subskin_nrt_l4_PT1H-m_202211",  # noqa: E501 cmems_obs-sst_bal_phy-subskin_nrt_l4_PT1H-m
 ]
 
 
@@ -20,12 +19,10 @@ class sst_bal_phy_subskin_l4_nrt(Main):
     name = "EO:MO:DAT:SST_BAL_PHY_SUBSKIN_L4_NRT_010_034"
     dataset = "EO:MO:DAT:SST_BAL_PHY_SUBSKIN_L4_NRT_010_034"
 
-    string_selects = [
-        "variables",
-    ]
-
+    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -39,27 +36,27 @@ class sst_bal_phy_subskin_l4_nrt(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
+        bbox,
         layer="cmems_obs-sst_bal_phy-subskin_nrt_l4_PT1H-m_202211",
-        area=None,
+        max_date="2024-04-01T23:00:00Z",
+        min_date="2022-05-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "cmems_obs-sst_bal_phy-subskin_nrt_l4_PT1H-m_202211":
-            if start is None:
-                start = "2022-05-01T00:00:00Z"
+            if min_date is None:
+                min_date = "2022-05-01T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-25T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-01T23:00:00Z"
 
         super().__init__(
+            bbox=bbox,
             layer=layer,
-            area=area,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

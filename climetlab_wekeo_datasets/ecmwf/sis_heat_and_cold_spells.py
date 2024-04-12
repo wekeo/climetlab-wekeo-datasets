@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,33 +15,6 @@ class sis_heat_and_cold_spells(Main):
     name = "EO:ECMWF:DAT:SIS_HEAT_AND_COLD_SPELLS"
     dataset = "EO:ECMWF:DAT:SIS_HEAT_AND_COLD_SPELLS"
 
-    choices = [
-        "definition",
-        "format_",
-    ]
-
-    string_selects = [
-        "ensemble_statistic",
-        "experiment",
-        "variable",
-    ]
-
-    @normalize(
-        "ensemble_statistic",
-        [
-            "ensemble_members_average",
-            "ensemble_members_standard_deviation",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "experiment",
-        [
-            "rcp4_5",
-            "rcp8_5",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -60,6 +32,22 @@ class sis_heat_and_cold_spells(Main):
         ],
     )
     @normalize(
+        "experiment",
+        [
+            "rcp4_5",
+            "rcp8_5",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "ensemble_statistic",
+        [
+            "ensemble_members_average",
+            "ensemble_members_standard_deviation",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -68,16 +56,18 @@ class sis_heat_and_cold_spells(Main):
     )
     def __init__(
         self,
-        ensemble_statistic,
-        experiment,
         variable,
-        definition=None,
+        definition,
+        experiment,
+        ensemble_statistic,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            ensemble_statistic=ensemble_statistic,
-            experiment=experiment,
             variable=variable,
             definition=definition,
+            experiment=experiment,
+            ensemble_statistic=ensemble_statistic,
             format_=format_,
+            limit=limit,
         )

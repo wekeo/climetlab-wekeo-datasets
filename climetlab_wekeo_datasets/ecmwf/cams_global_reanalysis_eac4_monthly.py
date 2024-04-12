@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,60 +15,6 @@ class cams_global_reanalysis_eac4_monthly(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_REANALYSIS_EAC4_MONTHLY"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_REANALYSIS_EAC4_MONTHLY"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "model_level",
-        "month",
-        "pressure_level",
-        "product_type",
-        "time",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "monthly_mean",
-            "monthly_mean_by_hour_of_day",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "03:00",
-            "06:00",
-            "09:00",
-            "12:00",
-            "15:00",
-            "18:00",
-            "21:00",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -184,17 +129,42 @@ class cams_global_reanalysis_eac4_monthly(Main):
         multiple=True,
     )
     @normalize(
-        "format_",
+        "month",
         [
-            "grib",
-            "netcdf",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
-    @normalize("area", "bounding-box(list)")
     @normalize(
-        "model_level",
+        "product_type",
         [
-            "60",
+            "monthly_mean",
+            "monthly_mean_by_hour_of_day",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
         ],
         multiple=True,
     )
@@ -202,53 +172,70 @@ class cams_global_reanalysis_eac4_monthly(Main):
         "pressure_level",
         [
             "1",
-            "10",
-            "100",
-            "1000",
-            "150",
             "2",
+            "3",
+            "5",
+            "7",
+            "10",
             "20",
+            "30",
+            "50",
+            "70",
+            "100",
+            "150",
             "200",
             "250",
-            "3",
-            "30",
             "300",
             "400",
-            "5",
-            "50",
             "500",
             "600",
-            "7",
-            "70",
             "700",
             "800",
             "850",
             "900",
             "925",
             "950",
+            "1000",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "format_",
+        [
+            "grib",
+            "netcdf",
+        ],
+    )
+    @normalize(
+        "model_level",
+        [
+            "60",
         ],
         multiple=True,
     )
     def __init__(
         self,
+        variable,
+        year,
         month,
         product_type,
         time,
-        variable,
-        year,
-        format_,
-        area=None,
-        model_level=None,
         pressure_level=None,
+        bbox=None,
+        format_=None,
+        model_level="60",
+        limit=None,
     ):
         super().__init__(
+            variable=variable,
+            year=year,
             month=month,
             product_type=product_type,
             time=time,
-            variable=variable,
-            year=year,
-            format_=format_,
-            area=area,
-            model_level=model_level,
             pressure_level=pressure_level,
+            bbox=bbox,
+            format_=format_,
+            model_level=model_level,
+            limit=limit,
         )

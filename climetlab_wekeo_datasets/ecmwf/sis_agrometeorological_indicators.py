@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,74 +15,22 @@ class sis_agrometeorological_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_AGROMETEOROLOGICAL_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_AGROMETEOROLOGICAL_INDICATORS"
 
-    choices = [
+    @normalize(
         "variable",
-        "version",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
-        "statistic",
-        "time",
-        "year",
-    ]
-
-    @normalize(
-        "day",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
+            "10m_wind_speed",
+            "2m_dewpoint_temperature",
+            "2m_relative_humidity",
+            "2m_temperature",
+            "cloud_cover",
+            "liquid_precipitation_duration_fraction",
+            "precipitation_flux",
+            "snow_thickness",
+            "snow_thickness_lwe",
+            "solar_radiation_flux",
+            "solid_precipitation_duration_fraction",
+            "vapour_pressure",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
     )
     @normalize(
         "statistic",
@@ -95,17 +42,6 @@ class sis_agrometeorological_indicators(Main):
             "day_time_mean",
             "night_time_mean",
             "night_time_minimum",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "06_00",
-            "09_00",
-            "12_00",
-            "15_00",
-            "18_00",
         ],
         multiple=True,
     )
@@ -157,26 +93,75 @@ class sis_agrometeorological_indicators(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
         ],
         multiple=True,
     )
-    @normalize("area", "bounding-box(list)")
     @normalize(
-        "variable",
+        "month",
         [
-            "10m_wind_speed",
-            "2m_dewpoint_temperature",
-            "2m_relative_humidity",
-            "2m_temperature",
-            "cloud_cover",
-            "liquid_precipitation_duration_fraction",
-            "precipitation_flux",
-            "snow_thickness",
-            "snow_thickness_lwe",
-            "solar_radiation_flux",
-            "solid_precipitation_duration_fraction",
-            "vapour_pressure",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "06_00",
+            "09_00",
+            "12_00",
+            "15_00",
+            "18_00",
+        ],
+        multiple=True,
     )
     @normalize(
         "version",
@@ -185,6 +170,7 @@ class sis_agrometeorological_indicators(Main):
             "1_1",
         ],
     )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -194,24 +180,26 @@ class sis_agrometeorological_indicators(Main):
     )
     def __init__(
         self,
-        day,
-        month,
+        variable,
         statistic,
-        time,
         year,
-        area=None,
-        variable=None,
-        version=None,
+        month,
+        day,
+        time,
+        version,
+        bbox=None,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
-            statistic=statistic,
-            time=time,
-            year=year,
-            area=area,
             variable=variable,
+            statistic=statistic,
+            year=year,
+            month=month,
+            day=day,
+            time=time,
             version=version,
+            bbox=bbox,
             format_=format_,
+            limit=limit,
         )

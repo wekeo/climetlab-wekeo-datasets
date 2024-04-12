@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,30 +15,19 @@ class satellite_ice_sheet_elevation_change(Main):
     name = "EO:ECMWF:DAT:SATELLITE_ICE_SHEET_ELEVATION_CHANGE"
     dataset = "EO:ECMWF:DAT:SATELLITE_ICE_SHEET_ELEVATION_CHANGE"
 
-    choices = [
-        "version",
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "climate_data_record_type",
-        "domain",
-    ]
-
-    @normalize(
-        "climate_data_record_type",
-        [
-            "icdr",
-            "tcdr",
-        ],
-        multiple=True,
-    )
     @normalize(
         "domain",
         [
             "antarctica",
             "greenland",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "climate_data_record_type",
+        [
+            "icdr",
+            "tcdr",
         ],
         multiple=True,
     )
@@ -52,30 +40,32 @@ class satellite_ice_sheet_elevation_change(Main):
         ],
     )
     @normalize(
+        "variable",
+        [
+            "all",
+        ],
+    )
+    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
     def __init__(
         self,
-        climate_data_record_type,
         domain,
-        version=None,
-        format_=None,
+        climate_data_record_type,
+        version,
         variable="all",
+        format_=None,
+        limit=None,
     ):
         super().__init__(
-            climate_data_record_type=climate_data_record_type,
             domain=domain,
+            climate_data_record_type=climate_data_record_type,
             version=version,
-            format_=format_,
             variable=variable,
+            format_=format_,
+            limit=limit,
         )

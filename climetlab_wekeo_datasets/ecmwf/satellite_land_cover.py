@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,24 +15,6 @@ class satellite_land_cover(Main):
     name = "EO:ECMWF:DAT:SATELLITE_LAND_COVER"
     dataset = "EO:ECMWF:DAT:SATELLITE_LAND_COVER"
 
-    choices = [
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "version",
-        "year",
-    ]
-
-    @normalize(
-        "version",
-        [
-            "v2.0.7cds",
-            "v2.1.1",
-        ],
-        multiple=True,
-    )
     @normalize(
         "year",
         [
@@ -66,8 +47,24 @@ class satellite_land_cover(Main):
             "2018",
             "2019",
             "2020",
+            "2021",
+            "2022",
         ],
         multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "v2.0.7cds",
+            "v2.1.1",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "all",
+        ],
     )
     @normalize(
         "format_",
@@ -76,22 +73,7 @@ class satellite_land_cover(Main):
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
-    def __init__(
-        self,
-        version,
-        year,
-        format_=None,
-        variable="all",
-    ):
+    def __init__(self, year, version, variable="all", format_=None, limit=None):
         super().__init__(
-            version=version,
-            year=year,
-            format_=format_,
-            variable=variable,
+            year=year, version=version, variable=variable, format_=format_, limit=limit
         )

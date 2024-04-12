@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,60 +15,6 @@ class sis_energy_derived_projections(Main):
     name = "EO:ECMWF:DAT:SIS_ENERGY_DERIVED_PROJECTIONS"
     dataset = "EO:ECMWF:DAT:SIS_ENERGY_DERIVED_PROJECTIONS"
 
-    choices = [
-        "spatial_aggregation",
-        "temporal_aggregation",
-        "rcm",
-        "format_",
-    ]
-
-    string_selects = [
-        "energy_product_type",
-        "ensemble_member",
-        "experiment",
-        "gcm",
-        "variable",
-    ]
-
-    @normalize(
-        "energy_product_type",
-        [
-            "capacity_factor_ratio",
-            "energy",
-            "power",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "ensemble_member",
-        [
-            "r12i1p1",
-            "r1i1p1",
-            "r3i1p1",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "experiment",
-        [
-            "rcp_2_6",
-            "rcp_4_5",
-            "rcp_8_5",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "gcm",
-        [
-            "cnrm_cm5",
-            "ec_earth",
-            "hadgem2_es",
-            "ipsl_cm5a_mr",
-            "mpi_esm_lr",
-            "noresm1_m",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -98,6 +43,15 @@ class sis_energy_derived_projections(Main):
         ],
     )
     @normalize(
+        "energy_product_type",
+        [
+            "capacity_factor_ratio",
+            "energy",
+            "power",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "temporal_aggregation",
         [
             "3_hourly",
@@ -106,6 +60,15 @@ class sis_energy_derived_projections(Main):
             "monthly",
             "seasonal",
         ],
+    )
+    @normalize(
+        "experiment",
+        [
+            "rcp_2_6",
+            "rcp_4_5",
+            "rcp_8_5",
+        ],
+        multiple=True,
     )
     @normalize(
         "rcm",
@@ -120,6 +83,27 @@ class sis_energy_derived_projections(Main):
         ],
     )
     @normalize(
+        "gcm",
+        [
+            "cnrm_cm5",
+            "ec_earth",
+            "hadgem2_es",
+            "ipsl_cm5a_mr",
+            "mpi_esm_lr",
+            "noresm1_m",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "ensemble_member",
+        [
+            "r12i1p1",
+            "r1i1p1",
+            "r3i1p1",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -128,24 +112,26 @@ class sis_energy_derived_projections(Main):
     )
     def __init__(
         self,
-        energy_product_type,
-        ensemble_member,
-        experiment,
-        gcm,
         variable,
-        spatial_aggregation=None,
-        temporal_aggregation=None,
-        rcm=None,
+        spatial_aggregation,
+        energy_product_type,
+        temporal_aggregation,
+        experiment,
+        rcm,
+        gcm,
+        ensemble_member,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            energy_product_type=energy_product_type,
-            ensemble_member=ensemble_member,
-            experiment=experiment,
-            gcm=gcm,
             variable=variable,
             spatial_aggregation=spatial_aggregation,
+            energy_product_type=energy_product_type,
             temporal_aggregation=temporal_aggregation,
+            experiment=experiment,
             rcm=rcm,
+            gcm=gcm,
+            ensemble_member=ensemble_member,
             format_=format_,
+            limit=limit,
         )

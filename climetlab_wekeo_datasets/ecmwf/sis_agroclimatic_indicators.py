@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,29 +15,16 @@ class sis_agroclimatic_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_AGROCLIMATIC_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_AGROCLIMATIC_INDICATORS"
 
-    choices = [
-        "origin",
-        "experiment",
-        "temporal_aggregation",
-        "format_",
-    ]
-
-    string_selects = [
-        "period",
-        "variable",
-        "version",
-    ]
-
     @normalize(
-        "period",
+        "origin",
         [
-            "195101_198012",
-            "198101_201012",
-            "201101_204012",
-            "204101_207012",
-            "207101_209912",
+            "era_interim_reanalysis",
+            "gfdl_esm2m_model",
+            "hadgem2_es_model",
+            "ipsl_cm5a_lr_model",
+            "miroc_esm_chem_model",
+            "noresm1_m_model",
         ],
-        multiple=True,
     )
     @normalize(
         "variable",
@@ -73,25 +59,6 @@ class sis_agroclimatic_indicators(Main):
         multiple=True,
     )
     @normalize(
-        "version",
-        [
-            "1.0",
-            "1.1",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "origin",
-        [
-            "era_interim_reanalysis",
-            "gfdl_esm2m_model",
-            "hadgem2_es_model",
-            "ipsl_cm5a_lr_model",
-            "miroc_esm_chem_model",
-            "noresm1_m_model",
-        ],
-    )
-    @normalize(
         "experiment",
         [
             "historical",
@@ -110,6 +77,25 @@ class sis_agroclimatic_indicators(Main):
         ],
     )
     @normalize(
+        "period",
+        [
+            "195101_198012",
+            "198101_201012",
+            "201101_204012",
+            "204101_207012",
+            "207101_209912",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "1.0",
+            "1.1",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -118,20 +104,22 @@ class sis_agroclimatic_indicators(Main):
     )
     def __init__(
         self,
-        period,
+        origin,
         variable,
+        experiment,
+        temporal_aggregation,
+        period,
         version,
-        origin=None,
-        experiment=None,
-        temporal_aggregation=None,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            period=period,
-            variable=variable,
-            version=version,
             origin=origin,
+            variable=variable,
             experiment=experiment,
             temporal_aggregation=temporal_aggregation,
+            period=period,
+            version=version,
             format_=format_,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,35 +15,6 @@ class sis_water_level_change_timeseries(Main):
     name = "EO:ECMWF:DAT:SIS_WATER_LEVEL_CHANGE_TIMESERIES"
     dataset = "EO:ECMWF:DAT:SIS_WATER_LEVEL_CHANGE_TIMESERIES"
 
-    choices = [
-        "experiment",
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -54,6 +24,15 @@ class sis_water_level_change_timeseries(Main):
             "total_water_level",
         ],
         multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "era5_reanalysis",
+            "historical",
+            "rcp4_5",
+            "rcp8_5",
+        ],
     )
     @normalize(
         "year",
@@ -163,13 +142,22 @@ class sis_water_level_change_timeseries(Main):
         multiple=True,
     )
     @normalize(
-        "experiment",
+        "month",
         [
-            "era5_reanalysis",
-            "historical",
-            "rcp4_5",
-            "rcp8_5",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -178,18 +166,12 @@ class sis_water_level_change_timeseries(Main):
             "zip",
         ],
     )
-    def __init__(
-        self,
-        month,
-        variable,
-        year,
-        experiment=None,
-        format_=None,
-    ):
+    def __init__(self, variable, experiment, year, month, format_=None, limit=None):
         super().__init__(
-            month=month,
             variable=variable,
-            year=year,
             experiment=experiment,
+            year=year,
+            month=month,
             format_=format_,
+            limit=limit,
         )

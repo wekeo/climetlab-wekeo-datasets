@@ -6,13 +6,12 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i_202211",  # noqa: E501 Cmems mod glo wav anfc 0.083deg pt3h-i
+    "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i_202311",  # noqa: E501 cmems_mod_glo_wav_anfc_0.083deg_PT3H-i
 ]
 
 
@@ -20,15 +19,14 @@ class global_analysisforecast_wav(Main):
     name = "EO:MO:DAT:GLOBAL_ANALYSISFORECAST_WAV_001_027"
     dataset = "EO:MO:DAT:GLOBAL_ANALYSISFORECAST_WAV_001_027"
 
-    string_selects = [
-        "variables",
-    ]
-
+    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
+            "VCMX",
             "VHM0",
             "VHM0_SW1",
             "VHM0_SW2",
@@ -52,27 +50,27 @@ class global_analysisforecast_wav(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        layer="cmems_mod_glo_wav_anfc_0.083deg_PT3H-i_202211",
-        area=None,
+        bbox,
+        layer="cmems_mod_glo_wav_anfc_0.083deg_PT3H-i_202311",
+        max_date="2024-04-12T00:00:00Z",
+        min_date="2021-10-01T03:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i_202211":
-            if start is None:
-                start = "2021-01-01T03:00:00Z"
+        if layer == "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i_202311":
+            if min_date is None:
+                min_date = "2021-10-01T03:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-12T00:00:00Z"
 
         super().__init__(
+            bbox=bbox,
             layer=layer,
-            area=area,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

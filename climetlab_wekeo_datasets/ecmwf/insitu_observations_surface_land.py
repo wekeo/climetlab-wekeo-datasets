@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,73 +15,13 @@ class insitu_observations_surface_land(Main):
     name = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_SURFACE_LAND"
     dataset = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_SURFACE_LAND"
 
-    choices = [
+    @normalize(
         "time_aggregation",
-        "month",
-        "format_",
-    ]
-
-    string_selects = [
-        "data_quality",
-        "day",
-        "usage_restrictions",
-        "variable",
-        "year",
-    ]
-
-    @normalize("area", "bounding-box(list)")
-    @normalize(
-        "data_quality",
         [
-            "failed",
-            "passed",
+            "daily",
+            "monthly",
+            "sub_daily",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "usage_restrictions",
-        [
-            "restricted",
-            "unrestricted",
-        ],
-        multiple=True,
     )
     @normalize(
         "variable",
@@ -97,6 +36,22 @@ class insitu_observations_surface_land(Main):
             "snow_water_equivalent",
             "wind_from_direction",
             "wind_speed",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "usage_restrictions",
+        [
+            "restricted",
+            "unrestricted",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "data_quality",
+        [
+            "failed",
+            "passed",
         ],
         multiple=True,
     )
@@ -373,14 +328,6 @@ class insitu_observations_surface_land(Main):
         multiple=True,
     )
     @normalize(
-        "time_aggregation",
-        [
-            "daily",
-            "monthly",
-            "sub_daily",
-        ],
-    )
-    @normalize(
         "month",
         [
             "01",
@@ -398,6 +345,44 @@ class insitu_observations_surface_land(Main):
         ],
     )
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "zip",
@@ -405,24 +390,26 @@ class insitu_observations_surface_land(Main):
     )
     def __init__(
         self,
-        area=None,
-        data_quality=None,
-        day=None,
-        usage_restrictions=None,
-        variable=None,
-        year=None,
         time_aggregation=None,
+        variable=None,
+        usage_restrictions=None,
+        data_quality=None,
+        year=None,
         month=None,
+        day=None,
+        bbox=None,
         format_="zip",
+        limit=None,
     ):
         super().__init__(
-            area=area,
-            data_quality=data_quality,
-            day=day,
-            usage_restrictions=usage_restrictions,
-            variable=variable,
-            year=year,
             time_aggregation=time_aggregation,
+            variable=variable,
+            usage_restrictions=usage_restrictions,
+            data_quality=data_quality,
+            year=year,
             month=month,
+            day=day,
+            bbox=bbox,
             format_=format_,
+            limit=limit,
         )

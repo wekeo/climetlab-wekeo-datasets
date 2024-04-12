@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,74 +15,43 @@ class satellite_sea_surface_temperature(Main):
     name = "EO:ECMWF:DAT:SATELLITE_SEA_SURFACE_TEMPERATURE"
     dataset = "EO:ECMWF:DAT:SATELLITE_SEA_SURFACE_TEMPERATURE"
 
-    choices = [
-        "processinglevel",
-        "sensor_on_satellite",
-        "version",
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
-        "year",
-    ]
-
     @normalize(
-        "day",
+        "processinglevel",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
+            "level_3c",
+            "level_4",
         ],
-        multiple=True,
     )
     @normalize(
-        "month",
+        "sensor_on_satellite",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "aatsr_on_envisat",
+            "atsr1_on_ers_1",
+            "atsr2_on_ers_2",
+            "avhrr_on_metop_a",
+            "avhrr_on_metop_b",
+            "avhrr_on_noaa_07",
+            "avhrr_on_noaa_09",
+            "avhrr_on_noaa_11",
+            "avhrr_on_noaa_12",
+            "avhrr_on_noaa_14",
+            "avhrr_on_noaa_15",
+            "avhrr_on_noaa_16",
+            "avhrr_on_noaa_17",
+            "avhrr_on_noaa_18",
+            "avhrr_on_noaa_19",
+            "combined_product",
+            "slstr_on_sentinel_3a",
+            "slstr_on_sentinel_3b",
         ],
-        multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "1_1",
+            "2_0",
+            "2_1",
+        ],
     )
     @normalize(
         "year",
@@ -134,41 +102,64 @@ class satellite_sea_surface_temperature(Main):
         multiple=True,
     )
     @normalize(
-        "processinglevel",
+        "month",
         [
-            "level_3c",
-            "level_4",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
-        "sensor_on_satellite",
+        "day",
         [
-            "aatsr_on_envisat",
-            "atsr1_on_ers_1",
-            "atsr2_on_ers_2",
-            "avhrr_on_metop_a",
-            "avhrr_on_metop_b",
-            "avhrr_on_noaa_07",
-            "avhrr_on_noaa_09",
-            "avhrr_on_noaa_11",
-            "avhrr_on_noaa_12",
-            "avhrr_on_noaa_14",
-            "avhrr_on_noaa_15",
-            "avhrr_on_noaa_16",
-            "avhrr_on_noaa_17",
-            "avhrr_on_noaa_18",
-            "avhrr_on_noaa_19",
-            "combined_product",
-            "slstr_on_sentinel_3a",
-            "slstr_on_sentinel_3b",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
         ],
+        multiple=True,
     )
     @normalize(
-        "version",
+        "variable",
         [
-            "1_1",
-            "2_0",
-            "2_1",
+            "all",
         ],
     )
     @normalize(
@@ -178,30 +169,26 @@ class satellite_sea_surface_temperature(Main):
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
     def __init__(
         self,
-        day,
-        month,
+        processinglevel,
+        sensor_on_satellite,
+        version,
         year,
-        processinglevel=None,
-        sensor_on_satellite=None,
-        version=None,
-        format_=None,
+        month,
+        day,
         variable="all",
+        format_=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            month=month,
-            year=year,
             processinglevel=processinglevel,
             sensor_on_satellite=sensor_on_satellite,
             version=version,
-            format_=format_,
+            year=year,
+            month=month,
+            day=day,
             variable=variable,
+            format_=format_,
+            limit=limit,
         )

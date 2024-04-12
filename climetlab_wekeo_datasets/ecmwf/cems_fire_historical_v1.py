@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,90 +15,12 @@ class cems_fire_historical_v1(Main):
     name = "EO:ECMWF:DAT:CEMS_FIRE_HISTORICAL_V1"
     dataset = "EO:ECMWF:DAT:CEMS_FIRE_HISTORICAL_V1"
 
-    choices = [
+    @normalize(
         "product_type",
-        "dataset_type",
-        "grid",
-    ]
-
-    string_selects = [
-        "day",
-        "format_",
-        "month",
-        "system_version",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "day",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
+            "ensemble_members",
+            "reanalysis",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "format_",
-        [
-            "grib",
-            "netcdf",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "system_version",
-        [
-            "4_1",
-        ],
-        multiple=True,
     )
     @normalize(
         "variable",
@@ -120,6 +41,13 @@ class cems_fire_historical_v1(Main):
             "spread_component",
         ],
         multiple=True,
+    )
+    @normalize(
+        "dataset_type",
+        [
+            "consolidated_dataset",
+            "intermediate_dataset",
+        ],
     )
     @normalize(
         "year",
@@ -208,22 +136,64 @@ class cems_fire_historical_v1(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
         ],
         multiple=True,
     )
     @normalize(
-        "product_type",
+        "month",
         [
-            "ensemble_members",
-            "reanalysis",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
-        "dataset_type",
+        "day",
         [
-            "consolidated_dataset",
-            "intermediate_dataset",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
         ],
+        multiple=True,
     )
     @normalize(
         "grid",
@@ -233,29 +203,46 @@ class cems_fire_historical_v1(Main):
             "original_grid",
         ],
     )
-    @normalize("area", "bounding-box(list)")
+    @normalize(
+        "system_version",
+        [
+            "4_1",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "format_",
+        [
+            "grib",
+            "netcdf",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        day,
-        format_,
-        month,
-        system_version,
-        variable,
-        year,
         product_type,
+        variable,
         dataset_type,
+        year,
+        month,
+        day,
         grid,
-        area=None,
+        system_version="4_1",
+        format_=None,
+        bbox=None,
+        limit=None,
     ):
         super().__init__(
-            day=day,
-            format_=format_,
-            month=month,
-            system_version=system_version,
-            variable=variable,
-            year=year,
             product_type=product_type,
+            variable=variable,
             dataset_type=dataset_type,
+            year=year,
+            month=month,
+            day=day,
             grid=grid,
-            area=area,
+            system_version=system_version,
+            format_=format_,
+            bbox=bbox,
+            limit=limit,
         )

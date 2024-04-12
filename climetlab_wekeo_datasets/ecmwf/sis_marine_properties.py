@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,45 +15,26 @@ class sis_marine_properties(Main):
     name = "EO:ECMWF:DAT:SIS_MARINE_PROPERTIES"
     dataset = "EO:ECMWF:DAT:SIS_MARINE_PROPERTIES"
 
-    choices = [
-        "origin",
-        "vertical_resolution",
-        "time_aggregation",
-        "format_",
-    ]
-
-    string_selects = [
-        "experiment",
-        "month",
-        "variable",
-        "year",
-    ]
-
     @normalize(
-        "experiment",
+        "origin",
         [
-            "rcp4_5",
-            "rcp8_5",
+            "nemo_ersem",
+            "polcoms_ersem",
         ],
-        multiple=True,
     )
     @normalize(
-        "month",
+        "vertical_resolution",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "surface",
+            "water_column",
         ],
-        multiple=True,
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "day",
+            "month",
+        ],
     )
     @normalize(
         "variable",
@@ -79,6 +59,14 @@ class sis_marine_properties(Main):
             "u_component_of_water_velocity",
             "v_component_of_water_velocity",
             "zooplankton_carbon",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "rcp4_5",
+            "rcp8_5",
         ],
         multiple=True,
     )
@@ -183,25 +171,22 @@ class sis_marine_properties(Main):
         multiple=True,
     )
     @normalize(
-        "origin",
+        "month",
         [
-            "nemo_ersem",
-            "polcoms_ersem",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
-    )
-    @normalize(
-        "vertical_resolution",
-        [
-            "surface",
-            "water_column",
-        ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "day",
-            "month",
-        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -212,22 +197,24 @@ class sis_marine_properties(Main):
     )
     def __init__(
         self,
-        experiment,
-        month,
+        origin,
+        vertical_resolution,
+        time_aggregation,
         variable,
+        experiment,
         year,
-        origin=None,
-        vertical_resolution=None,
-        time_aggregation=None,
+        month,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            experiment=experiment,
-            month=month,
-            variable=variable,
-            year=year,
             origin=origin,
             vertical_resolution=vertical_resolution,
             time_aggregation=time_aggregation,
+            variable=variable,
+            experiment=experiment,
+            year=year,
+            month=month,
             format_=format_,
+            limit=limit,
         )

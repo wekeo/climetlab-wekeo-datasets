@@ -6,13 +6,13 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "med-hcmr-wav-an-fc-h_202105",  # noqa: E501 Wave fields (2d) - hourly instantaneous
+    "cmems_mod_med_wav_anfc_4.2km_PT1H-i_202311",  # noqa: E501 cmems_mod_med_wav_anfc_4.2km_PT1H-i
+    "cmems_mod_med_wav_anfc_4.2km_static_202311",  # noqa: E501 cmems_mod_med_wav_anfc_4.2km_static
 ]
 
 
@@ -20,15 +20,14 @@ class medsea_analysisforecast_wav(Main):
     name = "EO:MO:DAT:MEDSEA_ANALYSISFORECAST_WAV_006_017"
     dataset = "EO:MO:DAT:MEDSEA_ANALYSISFORECAST_WAV_006_017"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
+            "VCMX",
             "VHM0",
             "VHM0_SW1",
             "VHM0_SW2",
@@ -37,6 +36,7 @@ class medsea_analysisforecast_wav(Main):
             "VMDR_SW1",
             "VMDR_SW2",
             "VMDR_WW",
+            "VMXL",
             "VPED",
             "VSDX",
             "VSDY",
@@ -46,33 +46,43 @@ class medsea_analysisforecast_wav(Main):
             "VTM02",
             "VTM10",
             "VTPK",
+            "depth",
+            "deptho",
             "latitude",
             "longitude",
+            "mask",
             "time",
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        layer="med-hcmr-wav-an-fc-h_202105",
-        area=None,
+        layer,
+        bbox,
+        max_date="2023-11-28T00:00:00Z",
+        min_date="2023-11-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "med-hcmr-wav-an-fc-h_202105":
-            if start is None:
-                start = "2021-10-28T00:00:00Z"
+        if layer == "cmems_mod_med_wav_anfc_4.2km_PT1H-i_202311":
+            if min_date is None:
+                min_date = "2022-01-24T00:00:00Z"
 
-            if end is None:
-                end = "2023-10-27T00:00:00Z"
+            if max_date is None:
+                max_date = "2024-04-11T23:00:00Z"
+
+        if layer == "cmems_mod_med_wav_anfc_4.2km_static_202311":
+            if min_date is None:
+                min_date = "2023-11-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-11-28T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

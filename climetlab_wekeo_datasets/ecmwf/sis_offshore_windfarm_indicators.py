@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,39 +15,6 @@ class sis_offshore_windfarm_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_OFFSHORE_WINDFARM_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_OFFSHORE_WINDFARM_INDICATORS"
 
-    choices = [
-        "variable",
-        "sea",
-        "time_aggregation",
-        "format_",
-    ]
-
-    string_selects = [
-        "epoch",
-        "stat",
-    ]
-
-    @normalize(
-        "epoch",
-        [
-            "historical",
-            "rcp4_5_end_century",
-            "rcp4_5_mid_century",
-            "rcp8_5_end_century",
-            "rcp8_5_mid_century",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "stat",
-        [
-            "10th_percentile",
-            "50th_percentile",
-            "90th_percentile",
-            "mean",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -72,12 +38,33 @@ class sis_offshore_windfarm_indicators(Main):
         ],
     )
     @normalize(
+        "epoch",
+        [
+            "historical",
+            "rcp4_5_end_century",
+            "rcp4_5_mid_century",
+            "rcp8_5_end_century",
+            "rcp8_5_mid_century",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "time_aggregation",
         [
             "annual",
             "campaign",
             "monthly",
         ],
+    )
+    @normalize(
+        "stat",
+        [
+            "10th_percentile",
+            "50th_percentile",
+            "90th_percentile",
+            "mean",
+        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -87,19 +74,14 @@ class sis_offshore_windfarm_indicators(Main):
         ],
     )
     def __init__(
-        self,
-        epoch,
-        stat,
-        variable=None,
-        sea=None,
-        time_aggregation=None,
-        format_=None,
+        self, variable, sea, epoch, time_aggregation, stat, format_=None, limit=None
     ):
         super().__init__(
-            epoch=epoch,
-            stat=stat,
             variable=variable,
             sea=sea,
+            epoch=epoch,
             time_aggregation=time_aggregation,
+            stat=stat,
             format_=format_,
+            limit=limit,
         )

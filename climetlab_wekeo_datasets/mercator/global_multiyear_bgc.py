@@ -6,75 +6,76 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_glo_bgc_my_0.25_P1D-m_202112",  # noqa: E501 Daily mean fields for product global reanalysis bio 001 029
-    "cmems_mod_glo_bgc_my_0.25_P1M-m_202112",  # noqa: E501 Monthly mean fields for product global reanalysis bio 001 029
+    "cmems_mod_glo_bgc_my_0.083deg-lmtl-Fphy_PT1D-i_202211",  # noqa: E501 cmems_mod_glo_bgc_my_0.083deg-lmtl-Fphy_PT1D-i
+    "cmems_mod_glo_bgc_my_0.083deg-lmtl-Fphy_PT1D-i_202211",  # noqa: E501 Physical forcings of global ocean low and mid trophic levels biomass content hindcast
+    "cmems_mod_glo_bgc_my_0.083deg-lmtl_PT1D-i_202211",  # noqa: E501 cmems_mod_glo_bgc_my_0.083deg-lmtl_PT1D-i
 ]
 
 
 class global_multiyear_bgc(Main):
-    name = "EO:MO:DAT:GLOBAL_MULTIYEAR_BGC_001_029"
-    dataset = "EO:MO:DAT:GLOBAL_MULTIYEAR_BGC_001_029"
-
-    string_selects = [
-        "variables",
-    ]
+    name = "EO:MO:DAT:GLOBAL_MULTIYEAR_BGC_001_033"
+    dataset = "EO:MO:DAT:GLOBAL_MULTIYEAR_BGC_001_033"
 
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
-            "chl",
+            "T",
+            "U",
+            "V",
             "depth",
-            "fe",
             "latitude",
             "longitude",
-            "no3",
-            "nppv",
-            "o2",
-            "ph",
-            "phyc",
-            "po4",
-            "si",
-            "spco2",
+            "mnkc_epi",
+            "mnkc_hmlmeso",
+            "mnkc_lmeso",
+            "mnkc_mlmeso",
+            "mnkc_mumeso",
+            "mnkc_umeso",
+            "npp",
+            "pelagic_layer_depth",
             "time",
+            "zeu",
+            "zooc",
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
-        area=None,
+        bbox,
+        max_date="9991-12-28T00:00:00Z",
+        min_date="1-01-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "cmems_mod_glo_bgc_my_0.25_P1D-m_202112":
-            if start is None:
-                start = "0001-01-01T00:00:00Z"
+        if layer == "cmems_mod_glo_bgc_my_0.083deg-lmtl-Fphy_PT1D-i_202211":
+            if min_date is None:
+                min_date = "1-01-01T00:00:00Z"
 
-            if end is None:
-                end = "9991-12-28T00:00:00Z"
+            if max_date is None:
+                max_date = "9991-12-28T00:00:00Z"
 
-        if layer == "cmems_mod_glo_bgc_my_0.25_P1M-m_202112":
-            if start is None:
-                start = "2021-12-01T00:00:00Z"
+        if layer == "cmems_mod_glo_bgc_my_0.083deg-lmtl_PT1D-i_202211":
+            if min_date is None:
+                min_date = "1-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2021-12-28T00:00:00Z"
+            if max_date is None:
+                max_date = "9991-12-28T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

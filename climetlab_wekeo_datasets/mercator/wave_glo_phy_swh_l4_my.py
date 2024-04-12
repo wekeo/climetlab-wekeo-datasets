@@ -6,13 +6,12 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-wave_glo_phy-swh_my_multi-l4-2deg_P1D_202112",  # noqa: E501 Multi-year merged all satellites global ocean gridded significant wave height l4 product and derived variables
+    "cmems_obs-wave_glo_phy-swh_my_multi-l4-2deg_P1D_202112",  # noqa: E501 cmems_obs-wave_glo_phy-swh_my_multi-l4-2deg_P1D
 ]
 
 
@@ -20,12 +19,10 @@ class wave_glo_phy_swh_l4_my(Main):
     name = "EO:MO:DAT:WAVE_GLO_PHY_SWH_L4_MY_014_007"
     dataset = "EO:MO:DAT:WAVE_GLO_PHY_SWH_L4_MY_014_007"
 
-    string_selects = [
-        "variables",
-    ]
-
+    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -45,27 +42,27 @@ class wave_glo_phy_swh_l4_my(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
+        bbox,
         layer="cmems_obs-wave_glo_phy-swh_my_multi-l4-2deg_P1D_202112",
-        area=None,
+        max_date="2020-12-31T12:00:00Z",
+        min_date="2002-01-15T12:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "cmems_obs-wave_glo_phy-swh_my_multi-l4-2deg_P1D_202112":
-            if start is None:
-                start = "2002-01-15T12:00:00Z"
+            if min_date is None:
+                min_date = "2002-01-15T12:00:00Z"
 
-            if end is None:
-                end = "2020-12-31T12:00:00Z"
+            if max_date is None:
+                max_date = "2020-12-31T12:00:00Z"
 
         super().__init__(
+            bbox=bbox,
             layer=layer,
-            area=area,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

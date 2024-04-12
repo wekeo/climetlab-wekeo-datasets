@@ -6,13 +6,13 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_glo_wav_my_0.2_PT3H-i_202112",  # noqa: E501 Mean fields from global wave model mfwam of meteo-france with ecmwf forcing
+    "cmems_mod_glo_wav_my_0.2deg_PT3H-i_202311",  # noqa: E501 cmems_mod_glo_wav_my_0.2deg_PT3H-i
+    "cmems_mod_glo_wav_myint_0.2deg_PT3H-i_202311",  # noqa: E501 cmems_mod_glo_wav_myint_0.2deg_PT3H-i
 ]
 
 
@@ -20,12 +20,10 @@ class global_multiyear_wav(Main):
     name = "EO:MO:DAT:GLOBAL_MULTIYEAR_WAV_001_032"
     dataset = "EO:MO:DAT:GLOBAL_MULTIYEAR_WAV_001_032"
 
-    string_selects = [
-        "variables",
-    ]
-
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -52,27 +50,34 @@ class global_multiyear_wav(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        layer="cmems_mod_glo_wav_my_0.2_PT3H-i_202112",
-        area=None,
+        layer,
+        bbox,
+        max_date="2023-11-30T21:00:00Z",
+        min_date="2023-05-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "cmems_mod_glo_wav_my_0.2_PT3H-i_202112":
-            if start is None:
-                start = "1993-01-01T00:00:00Z"
+        if layer == "cmems_mod_glo_wav_my_0.2deg_PT3H-i_202311":
+            if min_date is None:
+                min_date = "1993-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2021-12-31T21:00:00Z"
+            if max_date is None:
+                max_date = "2023-04-30T21:00:00Z"
+
+        if layer == "cmems_mod_glo_wav_myint_0.2deg_PT3H-i_202311":
+            if min_date is None:
+                min_date = "2023-05-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-11-30T21:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

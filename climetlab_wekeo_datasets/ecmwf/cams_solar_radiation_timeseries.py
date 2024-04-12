@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -15,17 +14,6 @@ from climetlab_wekeo_datasets.ecmwf.main import Main
 class cams_solar_radiation_timeseries(Main):
     name = "EO:ECMWF:DAT:CAMS_SOLAR_RADIATION_TIMESERIES"
     dataset = "EO:ECMWF:DAT:CAMS_SOLAR_RADIATION_TIMESERIES"
-    inputs = [
-        "latitude",
-        "longitude",
-        "altitude",
-    ]
-    choices = [
-        "sky_type",
-        "time_step",
-        "time_reference",
-        "format_",
-    ]
 
     @normalize(
         "sky_type",
@@ -51,6 +39,8 @@ class cams_solar_radiation_timeseries(Main):
             "universal_time",
         ],
     )
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "format_",
         [
@@ -59,31 +49,22 @@ class cams_solar_radiation_timeseries(Main):
             "netcdf",
         ],
     )
-    @normalize("latitude")
-    @normalize("longitude")
-    @normalize("altitude")
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         sky_type,
         time_step,
         time_reference,
-        format_,
-        latitude=None,
-        longitude=None,
-        altitude=None,
-        start="2004-01-01",
-        end="2023-09-10",
+        dtstart="2004-01-01",
+        dtend="2024-04-10",
+        format_=None,
+        limit=None,
     ):
         super().__init__(
             sky_type=sky_type,
             time_step=time_step,
             time_reference=time_reference,
+            dtstart=dtstart,
+            dtend=dtend,
             format_=format_,
-            latitude=latitude,
-            longitude=longitude,
-            altitude=altitude,
-            start=start,
-            end=end,
+            limit=limit,
         )

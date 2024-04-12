@@ -36,17 +36,15 @@ class Main(Dataset):
     }
 
     def __init__(self, *args, **kwargs):
-        start = kwargs["start"]
-        end = kwargs["end"]
+        query = {"dataset_id": f"{self.dataset}"}
 
-        query = {
-            "datasetId": f"{self.dataset}",
-            "dateRangeSelectValues": [
-                {"name": "dtrange", "start": f"{start}", "end": f"{end}"}
-            ],
-        }
+        for key, value in kwargs.items():
+            if value is not None:
+                query[key] = value
 
-        self.source = cml.load_source("wekeo", query)
+        limit = kwargs.get("limit")
+
+        self.source = cml.load_source("wekeo", query, limit)
         self._xarray = None
 
     def to_xarray(self, **kwargs):

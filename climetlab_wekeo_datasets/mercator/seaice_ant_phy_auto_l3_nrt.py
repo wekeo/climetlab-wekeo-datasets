@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
@@ -20,12 +19,10 @@ class seaice_ant_phy_auto_l3_nrt(Main):
     name = "EO:MO:DAT:SEAICE_ANT_PHY_AUTO_L3_NRT_011_012"
     dataset = "EO:MO:DAT:SEAICE_ANT_PHY_AUTO_L3_NRT_011_012"
 
-    string_selects = [
-        "variables",
-    ]
-
+    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -41,27 +38,27 @@ class seaice_ant_phy_auto_l3_nrt(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
+        bbox,
         layer="cmems_obs-si_ant_phy_nrt_l3-1km_P1D_202303",
-        area=None,
+        max_date="2024-04-01T12:00:00Z",
+        min_date="2023-02-02T12:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
         if layer == "cmems_obs-si_ant_phy_nrt_l3-1km_P1D_202303":
-            if start is None:
-                start = "2023-02-02T13:35:15Z"
+            if min_date is None:
+                min_date = "2023-02-02T12:00:00Z"
 
-            if end is None:
-                end = "2023-10-23T19:29:02Z"
+            if max_date is None:
+                max_date = "2024-04-01T12:00:00Z"
 
         super().__init__(
+            bbox=bbox,
             layer=layer,
-            area=area,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

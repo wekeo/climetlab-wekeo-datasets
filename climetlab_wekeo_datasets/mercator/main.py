@@ -38,36 +38,20 @@ class Main(Dataset):
 
     def __init__(self, *args, **kwargs):
         layer = kwargs["layer"]
-        area = kwargs.get("area")
-        start = kwargs["start"]
-        end = kwargs["end"]
-        variables = kwargs.get("variables")
 
-        query = {
-            "datasetId": f"{self.dataset}:{layer}",
-            "dateRangeSelectValues": [
-                {"name": "position", "start": f"{start}", "end": f"{end}"}
-            ],
-        }
+        query = {"dataset_id": f"{self.dataset}:{layer}"}
 
-        if area is not None:
-            query["boundingBoxValues"] = [
-                {
-                    "name": "bbox",
-                    "bbox": [
-                        area[1],
-                        area[2],
-                        area[3],
-                        area[0],
-                    ],
-                }
-            ]
+        for key, value in kwargs.items():
+            query[key] = value
 
-        if variables is not None:
-            query["multiStringSelectValues"] = [
-                {"name": "variables", "value": variables}
-            ]
-        self.source = cml.load_source("wekeo", query)
+        if query["variables"] is None:
+            # Remove completely the variables argument
+            # or the API will return an Unprocessable Entity
+            del query["variables"]
+
+        limit = kwargs.get("limit")
+
+        self.source = cml.load_source("wekeo", query, limit)
         self._xarray = None
 
     def to_xarray(self, **kwargs):

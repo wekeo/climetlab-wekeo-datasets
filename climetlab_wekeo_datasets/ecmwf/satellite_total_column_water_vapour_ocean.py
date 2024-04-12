@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,36 +15,26 @@ class satellite_total_column_water_vapour_ocean(Main):
     name = "EO:ECMWF:DAT:SATELLITE_TOTAL_COLUMN_WATER_VAPOUR_OCEAN"
     dataset = "EO:ECMWF:DAT:SATELLITE_TOTAL_COLUMN_WATER_VAPOUR_OCEAN"
 
-    choices = [
-        "origin",
-        "climate_data_record_type",
-        "temporal_aggregation",
-        "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "year",
-    ]
-
     @normalize(
-        "month",
+        "origin",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "c3s",
+            "eumetsat",
         ],
-        multiple=True,
+    )
+    @normalize(
+        "climate_data_record_type",
+        [
+            "icdr",
+            "tcdr",
+        ],
+    )
+    @normalize(
+        "temporal_aggregation",
+        [
+            "6_hourly",
+            "monthly",
+        ],
     )
     @normalize(
         "year",
@@ -87,24 +76,27 @@ class satellite_total_column_water_vapour_ocean(Main):
         multiple=True,
     )
     @normalize(
-        "origin",
+        "month",
         [
-            "c3s",
-            "eumetsat",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
-        "climate_data_record_type",
+        "variable",
         [
-            "icdr",
-            "tcdr",
-        ],
-    )
-    @normalize(
-        "temporal_aggregation",
-        [
-            "6_hourly",
-            "monthly",
+            "all",
         ],
     )
     @normalize(
@@ -114,28 +106,24 @@ class satellite_total_column_water_vapour_ocean(Main):
             "zip",
         ],
     )
-    @normalize(
-        "variable",
-        [
-            "all",
-        ],
-    )
     def __init__(
         self,
-        month,
+        origin,
+        climate_data_record_type,
+        temporal_aggregation,
         year,
-        origin=None,
-        climate_data_record_type=None,
-        temporal_aggregation=None,
-        format_=None,
+        month,
         variable="all",
+        format_=None,
+        limit=None,
     ):
         super().__init__(
-            month=month,
-            year=year,
             origin=origin,
             climate_data_record_type=climate_data_record_type,
             temporal_aggregation=temporal_aggregation,
-            format_=format_,
+            year=year,
+            month=month,
             variable=variable,
+            format_=format_,
+            limit=limit,
         )

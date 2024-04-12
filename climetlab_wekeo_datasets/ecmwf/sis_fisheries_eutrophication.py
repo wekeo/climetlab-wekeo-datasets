@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,42 +15,19 @@ class sis_fisheries_eutrophication(Main):
     name = "EO:ECMWF:DAT:SIS_FISHERIES_EUTROPHICATION"
     dataset = "EO:ECMWF:DAT:SIS_FISHERIES_EUTROPHICATION"
 
-    choices = [
+    @normalize(
         "origin",
-        "time_aggregation",
-        "format_",
-    ]
-
-    string_selects = [
-        "experiment",
-        "month",
-        "variable",
-        "year",
-    ]
-
+        [
+            "cmems_satellite_product",
+            "nemo_ersem",
+            "polcoms_ersem",
+        ],
+    )
     @normalize(
         "experiment",
         [
             "rcp4_5",
             "rcp8_5",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
         ],
         multiple=True,
     )
@@ -65,6 +41,13 @@ class sis_fisheries_eutrophication(Main):
             "standard_error_of_the_cumulative_chlorophyll_a_anomaly",
         ],
         multiple=True,
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "all_months_in_selected_years",
+            "selected_months_in_all_available_years",
+        ],
     )
     @normalize(
         "year",
@@ -167,19 +150,22 @@ class sis_fisheries_eutrophication(Main):
         multiple=True,
     )
     @normalize(
-        "origin",
+        "month",
         [
-            "cmems_satellite_product",
-            "nemo_ersem",
-            "polcoms_ersem",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "all_months_in_selected_years",
-            "selected_months_in_all_available_years",
-        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -190,20 +176,22 @@ class sis_fisheries_eutrophication(Main):
     )
     def __init__(
         self,
+        origin,
         experiment,
-        month,
         variable,
+        time_aggregation,
         year,
-        origin=None,
-        time_aggregation=None,
+        month,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            experiment=experiment,
-            month=month,
-            variable=variable,
-            year=year,
             origin=origin,
+            experiment=experiment,
+            variable=variable,
             time_aggregation=time_aggregation,
+            year=year,
+            month=month,
             format_=format_,
+            limit=limit,
         )

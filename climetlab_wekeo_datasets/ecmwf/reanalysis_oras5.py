@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,36 +15,6 @@ class reanalysis_oras5(Main):
     name = "EO:ECMWF:DAT:REANALYSIS_ORAS5"
     dataset = "EO:ECMWF:DAT:REANALYSIS_ORAS5"
 
-    choices = [
-        "vertical_resolution",
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "product_type",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "product_type",
         [
@@ -53,6 +22,13 @@ class reanalysis_oras5(Main):
             "operational",
         ],
         multiple=True,
+    )
+    @normalize(
+        "vertical_resolution",
+        [
+            "all_levels",
+            "single_level",
+        ],
     )
     @normalize(
         "variable",
@@ -156,15 +132,27 @@ class reanalysis_oras5(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
         ],
         multiple=True,
     )
     @normalize(
-        "vertical_resolution",
+        "month",
         [
-            "all_levels",
-            "single_level",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -175,18 +163,20 @@ class reanalysis_oras5(Main):
     )
     def __init__(
         self,
-        month,
         product_type,
+        vertical_resolution,
         variable,
         year,
-        vertical_resolution=None,
+        month,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            month=month,
             product_type=product_type,
+            vertical_resolution=vertical_resolution,
             variable=variable,
             year=year,
-            vertical_resolution=vertical_resolution,
+            month=month,
             format_=format_,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,47 +15,36 @@ class satellite_fire_burned_area(Main):
     name = "EO:ECMWF:DAT:SATELLITE_FIRE_BURNED_AREA"
     dataset = "EO:ECMWF:DAT:SATELLITE_FIRE_BURNED_AREA"
 
-    choices = [
-        "origin",
-        "sensor",
-        "variable",
-        "version",
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "nominal_day",
-        "region",
-        "year",
-    ]
-
     @normalize(
-        "month",
+        "origin",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "c3s",
+            "esa_cci",
         ],
-        multiple=True,
     )
     @normalize(
-        "nominal_day",
+        "sensor",
         [
-            "01",
-            "07",
-            "22",
+            "modis",
+            "olci",
         ],
-        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "grid_variables",
+            "pixel_variables",
+        ],
+    )
+    @normalize(
+        "version",
+        [
+            "1_0",
+            "1_1",
+            "5_0cds",
+            "5_1_1cds",
+            "5_1cds",
+        ],
     )
     @normalize(
         "region",
@@ -99,35 +87,31 @@ class satellite_fire_burned_area(Main):
         multiple=True,
     )
     @normalize(
-        "origin",
+        "month",
         [
-            "c3s",
-            "esa_cci",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
     )
     @normalize(
-        "sensor",
+        "nominal_day",
         [
-            "modis",
-            "olci",
+            "01",
+            "07",
+            "22",
         ],
-    )
-    @normalize(
-        "variable",
-        [
-            "grid_variables",
-            "pixel_variables",
-        ],
-    )
-    @normalize(
-        "version",
-        [
-            "1_0",
-            "1_1",
-            "5_0cds",
-            "5_1_1cds",
-            "5_1cds",
-        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -138,24 +122,26 @@ class satellite_fire_burned_area(Main):
     )
     def __init__(
         self,
-        month,
-        nominal_day,
+        origin,
+        sensor,
+        variable,
+        version,
         region,
         year,
-        origin=None,
-        sensor=None,
-        variable=None,
-        version=None,
+        month,
+        nominal_day,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            month=month,
-            nominal_day=nominal_day,
-            region=region,
-            year=year,
             origin=origin,
             sensor=sensor,
             variable=variable,
             version=version,
+            region=region,
+            year=year,
+            month=month,
+            nominal_day=nominal_day,
             format_=format_,
+            limit=limit,
         )

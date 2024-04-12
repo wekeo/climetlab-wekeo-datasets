@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,28 +15,17 @@ class sis_water_level_change_indicators_cmip6(Main):
     name = "EO:ECMWF:DAT:SIS_WATER_LEVEL_CHANGE_INDICATORS_CMIP6"
     dataset = "EO:ECMWF:DAT:SIS_WATER_LEVEL_CHANGE_INDICATORS_CMIP6"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "confidence_interval",
-        "derived_variable",
-        "experiment",
-        "model",
-        "multi_model_ensemble_statistic",
-        "period",
-        "product_type",
-        "statistic",
-        "variable",
-    ]
-
     @normalize(
-        "confidence_interval",
+        "variable",
         [
-            "best_fit",
-            "high_bound_confidence_interval",
-            "low_bound_confidence_interval",
+            "annual_mean_of_highest_high_water",
+            "annual_mean_of_lowest_low_water",
+            "highest_astronomical_tide",
+            "lowest_astronomical_tide",
+            "mean_sea_level",
+            "surge_level",
+            "tidal_range",
+            "total_water_level",
         ],
         multiple=True,
     )
@@ -51,10 +39,23 @@ class sis_water_level_change_indicators_cmip6(Main):
         multiple=True,
     )
     @normalize(
-        "experiment",
+        "product_type",
         [
-            "future",
-            "historical",
+            "multi_model_ensemble",
+            "reanalysis",
+            "single_model",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "multi_model_ensemble_statistic",
+        [
+            "ensemble_mean",
+            "ensemble_median",
+            "ensemble_range",
+            "ensemble_standard_deviation",
+            "negative_ensemble_counts",
+            "positive_ensemble_counts",
         ],
         multiple=True,
     )
@@ -69,14 +70,40 @@ class sis_water_level_change_indicators_cmip6(Main):
         multiple=True,
     )
     @normalize(
-        "multi_model_ensemble_statistic",
+        "statistic",
         [
-            "ensemble_mean",
-            "ensemble_median",
-            "ensemble_range",
-            "ensemble_standard_deviation",
-            "negative_ensemble_counts",
-            "positive_ensemble_counts",
+            "100_year",
+            "10_year",
+            "10th",
+            "1_year",
+            "25_year",
+            "25th",
+            "2_year",
+            "50_year",
+            "50th",
+            "5_year",
+            "5th",
+            "75_year",
+            "75th",
+            "90th",
+            "95th",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "confidence_interval",
+        [
+            "best_fit",
+            "high_bound_confidence_interval",
+            "low_bound_confidence_interval",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "future",
+            "historical",
         ],
         multiple=True,
     )
@@ -191,50 +218,6 @@ class sis_water_level_change_indicators_cmip6(Main):
         multiple=True,
     )
     @normalize(
-        "product_type",
-        [
-            "multi_model_ensemble",
-            "reanalysis",
-            "single_model",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "statistic",
-        [
-            "100_year",
-            "10_year",
-            "10th",
-            "1_year",
-            "25_year",
-            "25th",
-            "2_year",
-            "50_year",
-            "50th",
-            "5_year",
-            "5th",
-            "75_year",
-            "75th",
-            "90th",
-            "95th",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "annual_mean_of_highest_high_water",
-            "annual_mean_of_lowest_low_water",
-            "highest_astronomical_tide",
-            "lowest_astronomical_tide",
-            "mean_sea_level",
-            "surge_level",
-            "tidal_range",
-            "total_water_level",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -243,26 +226,28 @@ class sis_water_level_change_indicators_cmip6(Main):
     )
     def __init__(
         self,
-        confidence_interval,
-        derived_variable,
-        experiment,
-        model,
-        multi_model_ensemble_statistic,
-        period,
-        product_type,
-        statistic,
         variable,
+        derived_variable,
+        product_type,
+        multi_model_ensemble_statistic,
+        model,
+        statistic,
+        confidence_interval,
+        experiment,
+        period,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            confidence_interval=confidence_interval,
-            derived_variable=derived_variable,
-            experiment=experiment,
-            model=model,
-            multi_model_ensemble_statistic=multi_model_ensemble_statistic,
-            period=period,
-            product_type=product_type,
-            statistic=statistic,
             variable=variable,
+            derived_variable=derived_variable,
+            product_type=product_type,
+            multi_model_ensemble_statistic=multi_model_ensemble_statistic,
+            model=model,
+            statistic=statistic,
+            confidence_interval=confidence_interval,
+            experiment=experiment,
+            period=period,
             format_=format_,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,64 +15,6 @@ class insitu_observations_surface_marine(Main):
     name = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_SURFACE_MARINE"
     dataset = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_SURFACE_MARINE"
 
-    choices = [
-        "month",
-        "format_",
-    ]
-
-    string_selects = [
-        "data_quality",
-        "day",
-        "variable",
-        "year",
-    ]
-
-    @normalize("area", "bounding-box(list)")
-    @normalize(
-        "data_quality",
-        [
-            "failed",
-            "passed",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -83,6 +24,14 @@ class insitu_observations_surface_marine(Main):
             "water_temperature",
             "wind_from_direction",
             "wind_speed",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "data_quality",
+        [
+            "failed",
+            "passed",
         ],
         multiple=True,
     )
@@ -270,6 +219,44 @@ class insitu_observations_surface_marine(Main):
         ],
     )
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "csv-obs.zip",
@@ -277,20 +264,22 @@ class insitu_observations_surface_marine(Main):
     )
     def __init__(
         self,
-        area=None,
-        data_quality=None,
-        day=None,
         variable=None,
+        data_quality=None,
         year=None,
         month=None,
+        day=None,
+        bbox=None,
         format_="csv-obs.zip",
+        limit=None,
     ):
         super().__init__(
-            area=area,
-            data_quality=data_quality,
-            day=day,
             variable=variable,
+            data_quality=data_quality,
             year=year,
             month=month,
+            day=day,
+            bbox=bbox,
             format_=format_,
+            limit=limit,
         )

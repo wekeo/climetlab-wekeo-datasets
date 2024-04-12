@@ -6,60 +6,68 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "METOFFICE-GLO-SST-L4-REP-OBS-SST_202003",  # noqa: E501 Global sst & sea ice analysis, l4 ostia, 0.05 deg daily (metoffice-glo-sst-l4-rep-obs-sst-v2)
+    "C3S-GLO-SST-L4-REP-OBS-SST_202211",  # noqa: E501 C3S-GLO-SST-L4-REP-OBS-SST
+    "ESACCI-GLO-SST-L4-REP-OBS-SST_202211",  # noqa: E501 ESACCI-GLO-SST-L4-REP-OBS-SST
 ]
 
 
 class sst_glo_sst_l4_rep_observations(Main):
-    name = "EO:MO:DAT:SST_GLO_SST_L4_REP_OBSERVATIONS_010_011"
-    dataset = "EO:MO:DAT:SST_GLO_SST_L4_REP_OBSERVATIONS_010_011"
-
-    string_selects = [
-        "variables",
-    ]
+    name = "EO:MO:DAT:SST_GLO_SST_L4_REP_OBSERVATIONS_010_024"
+    dataset = "EO:MO:DAT:SST_GLO_SST_L4_REP_OBSERVATIONS_010_024"
 
     @normalize("layer", LAYERS)
-    @normalize("area", "bounding-box(list)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "analysed_sst",
-            "analysis_error",
+            "analysed_sst_uncertainty",
             "lat",
+            "lat_bnds",
             "lon",
+            "lon_bnds",
             "mask",
             "sea_ice_fraction",
             "time",
+            "time_bnds",
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        layer="METOFFICE-GLO-SST-L4-REP-OBS-SST_202003",
-        area=None,
+        layer,
+        bbox,
+        max_date="2022-11-01T00:00:00Z",
+        min_date="2017-01-01T00:00:00Z",
         variables=None,
-        start=None,
-        end=None,
+        limit=None,
     ):
-        if layer == "METOFFICE-GLO-SST-L4-REP-OBS-SST_202003":
-            if start is None:
-                start = "1981-10-01T00:00:00Z"
+        if layer == "C3S-GLO-SST-L4-REP-OBS-SST_202211":
+            if min_date is None:
+                min_date = "2017-01-01T00:00:00Z"
 
-            if end is None:
-                end = "2022-06-01T00:00:00Z"
+            if max_date is None:
+                max_date = "2022-11-01T00:00:00Z"
+
+        if layer == "ESACCI-GLO-SST-L4-REP-OBS-SST_202211":
+            if min_date is None:
+                min_date = "1981-09-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2017-01-01T00:00:00Z"
 
         super().__init__(
             layer=layer,
-            area=area,
+            bbox=bbox,
+            max_date=max_date,
+            min_date=min_date,
             variables=variables,
-            start=start,
-            end=end,
+            limit=limit,
         )

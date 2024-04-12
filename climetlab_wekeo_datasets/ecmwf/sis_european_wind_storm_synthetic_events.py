@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,39 +15,6 @@ class sis_european_wind_storm_synthetic_events(Main):
     name = "EO:ECMWF:DAT:SIS_EUROPEAN_WIND_STORM_SYNTHETIC_EVENTS"
     dataset = "EO:ECMWF:DAT:SIS_EUROPEAN_WIND_STORM_SYNTHETIC_EVENTS"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "variable",
-        "version_id",
-        "year",
-    ]
-
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "wind_speed_of_gusts",
-        ],
-        multiple=True,
-    )
     @normalize(
         "version_id",
         [
@@ -91,6 +57,28 @@ class sis_european_wind_storm_synthetic_events(Main):
         multiple=True,
     )
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "wind_speed_of_gusts",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -99,16 +87,18 @@ class sis_european_wind_storm_synthetic_events(Main):
     )
     def __init__(
         self,
-        month,
-        variable,
         version_id,
         year,
+        month,
+        variable="wind_speed_of_gusts",
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            month=month,
-            variable=variable,
             version_id=version_id,
             year=year,
+            month=month,
+            variable=variable,
             format_=format_,
+            limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,56 +15,62 @@ class satellite_earth_radiation_budget(Main):
     name = "EO:ECMWF:DAT:SATELLITE_EARTH_RADIATION_BUDGET"
     dataset = "EO:ECMWF:DAT:SATELLITE_EARTH_RADIATION_BUDGET"
 
-    choices = [
+    @normalize(
+        "product_family",
+        [
+            "cci",
+            "ceres_ebaf",
+            "clara_a3",
+            "hirs",
+            "tsi",
+        ],
+    )
+    @normalize(
         "origin",
-        "format_",
-    ]
-
-    string_selects = [
-        "month",
-        "sensor",
-        "variable",
-        "year",
-    ]
-
-    @normalize(
-        "month",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "c3s",
+            "esa",
+            "eumetsat",
+            "nasa",
+            "noaa_ncei",
+            "rmib",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "sensor",
-        [
-            "aatsr",
-            "atsr2",
-            "slstr_on_sentinel_3a",
-            "slstr_on_sentinel_3b",
-        ],
-        multiple=True,
     )
     @normalize(
         "variable",
         [
-            "all_available_variables",
+            "all_variables",
             "incoming_shortwave_radiation",
             "outgoing_longwave_radiation",
             "outgoing_shortwave_radiation",
             "total_solar_irradiance",
         ],
         multiple=True,
+    )
+    @normalize(
+        "sensor_on_satellite",
+        [
+            "aatsr",
+            "atsr2",
+            "slstr_on_sentinel_3a",
+            "slstr_on_sentinel_3a_3b",
+            "slstr_on_sentinel_3b",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "climate_data_record_type",
+        [
+            "interim_climate_data_record",
+            "thematic_climate_data_record",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "daily_mean",
+            "monthly_mean",
+        ],
     )
     @normalize(
         "year",
@@ -115,19 +120,72 @@ class satellite_earth_radiation_budget(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
         ],
         multiple=True,
     )
-    @normalize("area", "bounding-box(list)")
     @normalize(
-        "origin",
+        "month",
         [
-            "c3s_cci",
-            "c3s_rmib",
-            "esa_cloud_cci",
-            "nasa_ceres_ebaf",
-            "noaa_ncei_hirs",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "1_2_reprocessed",
+            "2_7_reprocessed",
+        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -136,22 +194,35 @@ class satellite_earth_radiation_budget(Main):
             "zip",
         ],
     )
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        month,
-        sensor,
+        product_family,
+        origin,
         variable,
+        sensor_on_satellite,
+        climate_data_record_type,
+        time_aggregation,
         year,
-        area=None,
-        origin=None,
+        month,
+        day,
+        version,
         format_=None,
+        bbox=None,
+        limit=None,
     ):
         super().__init__(
-            month=month,
-            sensor=sensor,
-            variable=variable,
-            year=year,
-            area=area,
+            product_family=product_family,
             origin=origin,
+            variable=variable,
+            sensor_on_satellite=sensor_on_satellite,
+            climate_data_record_type=climate_data_record_type,
+            time_aggregation=time_aggregation,
+            year=year,
+            month=month,
+            day=day,
+            version=version,
             format_=format_,
+            bbox=bbox,
+            limit=limit,
         )

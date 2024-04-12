@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,100 +15,6 @@ class sis_biodiversity_cmip5_global(Main):
     name = "EO:ECMWF:DAT:SIS_BIODIVERSITY_CMIP5_GLOBAL"
     dataset = "EO:ECMWF:DAT:SIS_BIODIVERSITY_CMIP5_GLOBAL"
 
-    choices = [
-        "format_",
-    ]
-
-    string_selects = [
-        "derived_variable",
-        "ensemble_member",
-        "experiment",
-        "model",
-        "statistic",
-        "temporal_aggregation",
-        "variable",
-        "version",
-    ]
-
-    @normalize(
-        "derived_variable",
-        [
-            "annual_maximum",
-            "annual_maximum_of_daily_mean",
-            "annual_mean",
-            "annual_mean_of_daily_maximum",
-            "annual_mean_of_daily_minimum",
-            "annual_minimum",
-            "annual_sum",
-            "coldest_quarter",
-            "driest_quarter",
-            "end_of_season",
-            "length_of_season",
-            "maximum_length",
-            "mean_intensity",
-            "mean_length_with_minimum_5_days",
-            "monthly_mean",
-            "monthly_mean_of_daily_maximum",
-            "monthly_mean_of_daily_minimum",
-            "monthly_sum",
-            "number_of_occurrences",
-            "start_of_season",
-            "warmest_quarter",
-            "wettest_quarter",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "ensemble_member",
-        [
-            "r1i1p1",
-            "r2i1p1",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "experiment",
-        [
-            "rcp4_5",
-            "rcp8_5",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "model",
-        [
-            "access1_0",
-            "bcc_csm1_1_m",
-            "csiro_mk3_6_0",
-            "gfdl_esm2m",
-            "hadgem2_cc",
-            "hadgem2_es",
-            "ipsl_cm5a_lr",
-            "ipsl_cm5a_mr",
-            "ipsl_cm5b_lr",
-            "noresm1_m",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "statistic",
-        [
-            "25th_quartile",
-            "75th_quartile",
-            "mean",
-            "median",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "temporal_aggregation",
-        [
-            "annual",
-            "climatology",
-            "monthly",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -159,6 +64,85 @@ class sis_biodiversity_cmip5_global(Main):
         multiple=True,
     )
     @normalize(
+        "derived_variable",
+        [
+            "annual_maximum",
+            "annual_maximum_of_daily_mean",
+            "annual_mean",
+            "annual_mean_of_daily_maximum",
+            "annual_mean_of_daily_minimum",
+            "annual_minimum",
+            "annual_sum",
+            "coldest_quarter",
+            "driest_quarter",
+            "end_of_season",
+            "length_of_season",
+            "maximum_length",
+            "mean_intensity",
+            "mean_length_with_minimum_5_days",
+            "monthly_mean",
+            "monthly_mean_of_daily_maximum",
+            "monthly_mean_of_daily_minimum",
+            "monthly_sum",
+            "number_of_occurrences",
+            "start_of_season",
+            "warmest_quarter",
+            "wettest_quarter",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "model",
+        [
+            "access1_0",
+            "bcc_csm1_1_m",
+            "csiro_mk3_6_0",
+            "gfdl_esm2m",
+            "hadgem2_cc",
+            "hadgem2_es",
+            "ipsl_cm5a_lr",
+            "ipsl_cm5a_mr",
+            "ipsl_cm5b_lr",
+            "noresm1_m",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "ensemble_member",
+        [
+            "r1i1p1",
+            "r2i1p1",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "rcp4_5",
+            "rcp8_5",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "temporal_aggregation",
+        [
+            "annual",
+            "climatology",
+            "monthly",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "statistic",
+        [
+            "25th_quartile",
+            "75th_quartile",
+            "mean",
+            "median",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "version",
         [
             "1.0",
@@ -174,24 +158,26 @@ class sis_biodiversity_cmip5_global(Main):
     )
     def __init__(
         self,
+        variable,
         derived_variable,
+        model,
         ensemble_member,
         experiment,
-        model,
-        statistic,
         temporal_aggregation,
-        variable,
-        version,
+        statistic,
+        version="1.0",
         format_=None,
+        limit=None,
     ):
         super().__init__(
+            variable=variable,
             derived_variable=derived_variable,
+            model=model,
             ensemble_member=ensemble_member,
             experiment=experiment,
-            model=model,
-            statistic=statistic,
             temporal_aggregation=temporal_aggregation,
-            variable=variable,
+            statistic=statistic,
             version=version,
             format_=format_,
+            limit=limit,
         )

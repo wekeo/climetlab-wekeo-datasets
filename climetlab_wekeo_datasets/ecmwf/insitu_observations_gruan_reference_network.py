@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,55 +15,6 @@ class insitu_observations_gruan_reference_network(Main):
     name = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_GRUAN_REFERENCE_NETWORK"
     dataset = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_GRUAN_REFERENCE_NETWORK"
 
-    choices = [
-        "year",
-        "month",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "variable",
-    ]
-
-    @normalize("area", "bounding-box(list)")
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -134,6 +84,44 @@ class insitu_observations_gruan_reference_network(Main):
         ],
     )
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "csv-lev.zip",
@@ -142,18 +130,20 @@ class insitu_observations_gruan_reference_network(Main):
     )
     def __init__(
         self,
-        area=None,
-        day=None,
         variable=None,
         year=None,
         month=None,
+        day=None,
+        bbox=None,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            area=area,
-            day=day,
             variable=variable,
             year=year,
             month=month,
+            day=day,
+            bbox=bbox,
             format_=format_,
+            limit=limit,
         )

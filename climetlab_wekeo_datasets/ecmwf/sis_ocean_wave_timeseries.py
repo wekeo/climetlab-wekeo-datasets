@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -15,16 +14,6 @@ from climetlab_wekeo_datasets.ecmwf.main import Main
 class sis_ocean_wave_timeseries(Main):
     name = "EO:ECMWF:DAT:SIS_OCEAN_WAVE_TIMESERIES"
     dataset = "EO:ECMWF:DAT:SIS_OCEAN_WAVE_TIMESERIES"
-
-    choices = [
-        "experiment",
-        "format_",
-    ]
-
-    string_selects = [
-        "variable",
-        "year",
-    ]
 
     @normalize(
         "variable",
@@ -36,6 +25,15 @@ class sis_ocean_wave_timeseries(Main):
             "Wave spectral directional width",
         ],
         multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "ERA5 reanalysis",
+            "Historical",
+            "RCP4.5",
+            "RCP8.5",
+        ],
     )
     @normalize(
         "year",
@@ -146,31 +144,17 @@ class sis_ocean_wave_timeseries(Main):
         multiple=True,
     )
     @normalize(
-        "experiment",
-        [
-            "ERA5 reanalysis",
-            "Historical",
-            "RCP4.5",
-            "RCP8.5",
-        ],
-    )
-    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    def __init__(
-        self,
-        variable,
-        year,
-        experiment=None,
-        format_=None,
-    ):
+    def __init__(self, variable, experiment, year, format_=None, limit=None):
         super().__init__(
             variable=variable,
-            year=year,
             experiment=experiment,
+            year=year,
             format_=format_,
+            limit=limit,
         )

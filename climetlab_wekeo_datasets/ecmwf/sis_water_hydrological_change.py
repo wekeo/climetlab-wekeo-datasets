@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,70 +15,6 @@ class sis_water_hydrological_change(Main):
     name = "EO:ECMWF:DAT:SIS_WATER_HYDROLOGICAL_CHANGE"
     dataset = "EO:ECMWF:DAT:SIS_WATER_HYDROLOGICAL_CHANGE"
 
-    choices = [
-        "statistic",
-        "format_",
-    ]
-
-    string_selects = [
-        "experiment",
-        "gcm_model",
-        "hydrological_model",
-        "time_aggregation",
-        "variable",
-    ]
-
-    @normalize(
-        "experiment",
-        [
-            "rcp_2_6",
-            "rcp_8_5",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "gcm_model",
-        [
-            "esm_chem",
-            "gfdl_esm2m",
-            "hadgem2_es",
-            "ipsl_cm5a_lr",
-            "noresm1_m",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hydrological_model",
-        [
-            "mesoscale_hydrological_model",
-            "noah_mp",
-            "pcr_globwb",
-            "variable_infiltration_capacity",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "april",
-            "august",
-            "autumn",
-            "december",
-            "february",
-            "january",
-            "july",
-            "june",
-            "march",
-            "may",
-            "november",
-            "october",
-            "september",
-            "spring",
-            "summer",
-            "winter",
-        ],
-        multiple=True,
-    )
     @normalize(
         "variable",
         [
@@ -108,6 +43,57 @@ class sis_water_hydrological_change(Main):
         ],
     )
     @normalize(
+        "time_aggregation",
+        [
+            "april",
+            "august",
+            "autumn",
+            "december",
+            "february",
+            "january",
+            "july",
+            "june",
+            "march",
+            "may",
+            "november",
+            "october",
+            "september",
+            "spring",
+            "summer",
+            "winter",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "gcm_model",
+        [
+            "esm_chem",
+            "gfdl_esm2m",
+            "hadgem2_es",
+            "ipsl_cm5a_lr",
+            "noresm1_m",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "rcp_2_6",
+            "rcp_8_5",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hydrological_model",
+        [
+            "mesoscale_hydrological_model",
+            "noah_mp",
+            "pcr_globwb",
+            "variable_infiltration_capacity",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -116,20 +102,22 @@ class sis_water_hydrological_change(Main):
     )
     def __init__(
         self,
-        experiment,
-        gcm_model,
-        hydrological_model,
-        time_aggregation,
         variable,
-        statistic=None,
+        statistic,
+        time_aggregation,
+        gcm_model,
+        experiment,
+        hydrological_model,
         format_=None,
+        limit=None,
     ):
         super().__init__(
-            experiment=experiment,
-            gcm_model=gcm_model,
-            hydrological_model=hydrological_model,
-            time_aggregation=time_aggregation,
             variable=variable,
             statistic=statistic,
+            time_aggregation=time_aggregation,
+            gcm_model=gcm_model,
+            experiment=experiment,
+            hydrological_model=hydrological_model,
             format_=format_,
+            limit=limit,
         )

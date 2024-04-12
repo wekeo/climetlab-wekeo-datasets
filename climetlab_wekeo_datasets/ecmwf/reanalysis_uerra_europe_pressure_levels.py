@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,91 +15,33 @@ class reanalysis_uerra_europe_pressure_levels(Main):
     name = "EO:ECMWF:DAT:REANALYSIS_UERRA_EUROPE_PRESSURE_LEVELS"
     dataset = "EO:ECMWF:DAT:REANALYSIS_UERRA_EUROPE_PRESSURE_LEVELS"
 
-    choices = [
+    @normalize(
         "variable",
-        "format_",
-    ]
-
-    string_selects = [
-        "day",
-        "month",
-        "pressure_level",
-        "time",
-        "year",
-    ]
-
-    @normalize(
-        "day",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
+            "geopotential",
+            "geopotential_height",
+            "relative_humidity",
+            "temperature",
+            "u_component_of_wind",
+            "v_component_of_wind",
+        ],
+    )
+    @normalize(
+        "pressure_level",
+        [
             "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
             "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
             "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "pressure_level",
-        [
-            "10",
+            "50",
+            "70",
             "100",
-            "1000",
             "150",
-            "20",
             "200",
             "250",
-            "30",
             "300",
             "400",
-            "50",
             "500",
             "600",
-            "70",
             "700",
             "750",
             "800",
@@ -111,16 +52,7 @@ class reanalysis_uerra_europe_pressure_levels(Main):
             "925",
             "950",
             "975",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "06:00",
-            "12:00",
-            "18:00",
+            "1000",
         ],
         multiple=True,
     )
@@ -190,15 +122,69 @@ class reanalysis_uerra_europe_pressure_levels(Main):
         multiple=True,
     )
     @normalize(
-        "variable",
+        "month",
         [
-            "geopotential",
-            "geopotential_height",
-            "relative_humidity",
-            "temperature",
-            "u_component_of_wind",
-            "v_component_of_wind",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
+        multiple=True,
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "06:00",
+            "12:00",
+            "18:00",
+        ],
+        multiple=True,
     )
     @normalize(
         "format_",
@@ -208,21 +194,15 @@ class reanalysis_uerra_europe_pressure_levels(Main):
         ],
     )
     def __init__(
-        self,
-        day,
-        month,
-        pressure_level,
-        time,
-        year,
-        variable=None,
-        format_=None,
+        self, variable, pressure_level, year, month, day, time, format_=None, limit=None
     ):
         super().__init__(
-            day=day,
-            month=month,
-            pressure_level=pressure_level,
-            time=time,
-            year=year,
             variable=variable,
+            pressure_level=pressure_level,
+            year=year,
+            month=month,
+            day=day,
+            time=time,
             format_=format_,
+            limit=limit,
         )
