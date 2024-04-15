@@ -1,4 +1,4 @@
-Welcome to WEkEO CliMetLab CLMS Plugin!
+Welcome to WEkEO Datasets CliMetLab Plugin!
 =================================================
 
 A dataset plugin for `CliMetLab <https://climetlab.readthedocs.io/en/latest/index.html>`_ for the various datasets available on `WEkEO <https://www.wekeo.eu/>`_.

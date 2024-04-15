@@ -6,7 +6,10 @@ Building a CliMetLab query
 
 The WEkEO CliMetLab Plugin gives access to a wide range of WEkEO datasets. All WEkEO datasets can be explored in the  `WEkEO Viewer <https://www.wekeo.eu/data?view=viewer>`_.
 
-The CliMetLab WEkEO Datasets Plugin currently supports the datasets published by the Copernicus Land Monitoring Service (CLMS), ECMWF and the Copernicus Marine Service.
+The CliMetLab WEkEO Datasets Plugin currently supports a subset of datasets published by the Copernicus Land Monitoring Service (CLMS) by EEA, 
+the Copernicus Climate Change Service (C3S) and Copernicus Atmosphere Service (CAMS) by ECMWF,
+the Copernicus Marine Service (CMEMS) by Mercator Ocean, 
+and Copernicus Sentinel Data by EUMETSAT.
 
 
 A dataset can be accessed using CliMatLab with the ``load_dataset`` function.
@@ -17,26 +20,52 @@ The CliMetLab dataset id can be derived from the dataset id inside the WEkEO vie
 - WEkEO dataset id: ``EO:CLMS:DAT:CGLS_HOURLY_LST_GLOBAL_V2``
 - CliMetLab dataset id: ``wekeo-clms-cgls-hourly-lst-global-v2``
 
-.. note::
-     The datasets of the Copernicus Marine Service are structured as datasets with one to many sub-datasets, also calles **layers**, that belong in the dataset group.
-     Using the CliMetLab one layer can be downloaded at a time.
-     Therefore, the ``load_dataset`` function needs an additional argument ``layer`` for datasets which contain more than one layer.
-
-
 .. code-block:: python
 
     import climetlab as cml
 
-    ds = cml.load_dataset("wekeo-clms-cgls-hourly-lst-global-v2")
+    ds = cml.load_dataset(
+        "wekeo-clms-cgls-hourly-lst-global-v2"
+    )
+
 
 This code will download all available data in this dataset. As this means the download of large volumes of data (not advised),
 it is necessary to further subset the query by dataset attributes. There are two ways to find the available attributes for each dataset:
 
+There are two options to build up the CliMetLab Query:
+1. Using the hda2cml function
+2. Explore attributes in the Plugin source code
 
-1. Explore attributes in the `WEkEO Viewer <https://www.wekeo.eu/data?view=viewer>`_
 
-.. image:: ../images/wekeo-viewer.png
-    :width: 200
+1. Using the hda2cml function
+
+The WEkEO CliMetLab Plugin offers a translation function which translates the WEkEO Harmonized Data Access API request to a CliMetLab query. 
+
+.. code-block:: python
+
+    import climetlab as cml
+    from climetlab_wekeo_datasets import hda2cml
+
+    api_request = {
+    "datasetId": "EO:CLMS:DAT:CGLS_HOURLY_LST_GLOBAL_V2",
+    "dateRangeSelectValues": [
+            {
+            "name": "dtrange",
+            "start": "2021-07-01T00:00:00.000Z",
+            "end": "2021-07-02T00:00:00.000Z"
+            }
+        ]
+    }
+
+    ds_id, args = hda2cml(api_request) 
+
+    ds = cml.load_dataset(dsid, **args)
+
+
+For any WEkEO dataset avilable through the HDA, the API request can be viewerd and copied in the `WEkEO Viewer <https://www.wekeo.eu/data?view=viewer>`_.
+
+.. image:: ../images/viewer-dataset-subset.png
+    :width: 1000
 
 2. Explore attributes in the Plugin source code
 
@@ -59,26 +88,7 @@ Now, a CliMetLab query for WEkEO data can be created:
         end="2021-07-01T23:59:59Z",
     )
 
-Copernicus Marine Service
--------------------------
 
-To find out which layers and variables are available for a dataset, there are two options:
-
-1. Explore layers and attributes in the `WEkEO Viewer <https://www.wekeo.eu/data?view=viewer>`_
-
-The datasets are available in the WEkEO Catalogue.
-
-.. image:: ../images/mercator-wekeo-catalogue.png
-    :width: 400
-
-When klicking on "Add to map..." the available layers are shown.
-
-.. image:: ../images/wekeo-layers.png
-    :width: 400
-
-
-The layer of choice can then be added to the WEkEO Viewer, where the availabe attributes for subsetting the dataset are shown as well.
-By examining the WEkEO API request, the exact names of the layers and attributes are shown as they are requires for the CliMetLab ``load_dataset`` request.
 
 
 Accessing a single dataset through CliMetLab
@@ -162,6 +172,7 @@ If we want to compare the LST of 2021-07-01 with the LST of the previous year, i
 
 .. image:: ../images/lst-line-comparison.png
     :width: 400
+
 
 Handling Merge errors
 ---------------------
@@ -252,5 +263,228 @@ All benefits of the data management of CliMetLab remain, except the datasets are
 
 More information on caching can be found in the official documentation of CliMetLab (`Caching <https://climetlab.readthedocs.io/en/latest/guide/caching.html>`_).
 
+Usage Example: Copernicus Marine Data
+-------------------------------------
+In this example the data of the Copernicus Marine Service is accessed and analysed using the WEkEO CliMetLab Plugin.
+
+Download a one-month time series of sea surface temperature observations over the Mediterranean sea. 
+
+.. code-block:: python
+
+    import climetlab as cml
+    ds = cml.load_dataset(
+        "wekeo-mercator-sst-med-sst-l4-nrt-observations", 
+        layer="SST_MED_SST_L4_NRT_OBSERVATIONS_010_004_a_V2", # Mediterranean sst analysis, l4, 1/16deg daily (sst med sst l4 NRT observations 010 004 a v2)
+        start = "2020-01-01T00:00:00Z",
+        end = "2020-01-31T00:00:00Z"
+        )
+    xarr = ds.to_xarray()
+    xarr
+
+.. note::
+     The datasets of the Copernicus Marine Service are structured as datasets with one to many sub-datasets, also called **layers**, that belong in the dataset group.
+     Using the CliMetLab one layer can be downloaded at a time. 
+     Therefore, the ``load_dataset`` function needs an additional argument ``layer`` for datasets which contain more than one layer. 
+
+The first entry of the time series shows the sea surface temperature observations on the `01-01-2020`.
+
+.. code-block:: python
+
+    import matplotlib.pyplot as plt 
+
+    xarr.analysed_sst.isel(time=0).plot(cbar_kwargs= {'orientation': 'horizontal'})
+    plt.axis('scaled')
+
+.. image:: ../images/wekeo-plot-sst.png
+    :width: 600
+
+
+
+The observation data is merges with a second dataset - the sea surface temperature anomalies in the same time period. This creates a single xarray with two variables. 
+
+.. code-block:: python
+
+    import climetlab as cml
+    ds_anomaly = cml.load_dataset(
+        "wekeo-mercator-sst-med-sst-l4-nrt-observations", 
+        layer="SST_MED_SSTA_L4_NRT_OBSERVATIONS_010_004_b", # Mediterranean sst anomaly, l4, 1/16deg daily (sst med ssta l4 NRT observations 010 004 b)
+        start = "2020-01-01T00:00:00Z",
+        end = "2020-01-31T00:00:00Z"
+        )
+    #convert the climetlab output to xarray
+    xarr_anomaly = ds.to_xarray()
+
+    # merge both xarrays to oe dataset 
+    sst_med = xarr.merge(xarr_anomaly)
+
+
+Usage Example: Copernicus Climate Data
+--------------------------------------
+This example shows the use of multiple datasets from the ECMWF Copernicus Climate Change Service reanalysis data. 
+
+This query triggers the download of a subset (one day and one variable ``2m_temperature``) of a single dataset. 
+
+.. code-block:: python
+
+    import climetlab as cml
+
+    ds = cml.load_dataset("wekeo-ecmwf-reanalysis-era5-single-levels-monthly-means",
+        product_type="monthly_averaged_reanalysis_by_hour_of_day",
+        month="01",
+        year="2019",
+        time=[
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00", 
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00", 
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00"                          
+        ],
+        variable=[
+            "2m_temperature"
+        ],
+        format_="netcdf",
+    )
+
+    xarr = ds.to_xarray()
+    xarr
+
+Using the python `xarray` module, the dataset can be analyzed and plotted.
+
+For example, the diurnal cycle of temperature averaged across Germany can be extracted and plotted as follows: 
+
+
+.. code-block:: python
+
+    import matplotlib.pyplot as plt
+
+    xarr.t2m.sel( lat=slice( 56, 47), lon = slice(5, 16)).mean(dim=["latitude", "longitude"]).plot.line(x="time")
+    plt.title ("Diurnal Temperature Cycle for Germany, Jan. 2019")
+
+
+.. image:: ../images/plot-temp-daily-cycle.png
+    :width: 400
+
+It is possible to do arithmtic operations of the differnt time steps of the dataset. Next, the temperature difference between 00:00 UTM and 12:00 UTM is shown across the globe. 
+The temperature difference is inverted with the changing day and night cycle across the globe. 
+
+
+..  code-block:: python
+    
+    diff=xarr.t2m.isel(time=0) - xarr.t2m.isel(time=11)  
+    diff.plot()
+    plt.title("Temperature Difference between 00:00 UTM and 12:00 UTM")
+
+.. image:: ../images/plot-temp-diff.png
+    :width: 400
+
+the daily temperature data from 1st January 2019 to compare it against the monthly temperature means downloaded above. 
+
+.. code-block:: python
+
+    ds_daily = cml.load_dataset("wekeo-ecmwf-reanalysis-era5-single-levels",
+                      product_type = "reanalysis",
+                      month= "01",
+                      year = "2019",
+                      day = "01",
+                      time=[
+                          "00:00",
+                          "01:00",
+                          "02:00",
+                          "03:00",
+                          "04:00",
+                          "05:00",
+                          "06:00",
+                          "07:00",
+                          "08:00", 
+                          "09:00",
+                          "10:00",
+                          "11:00",
+                          "12:00",
+                          "13:00",
+                          "14:00",
+                          "15:00",
+                          "16:00",
+                          "17:00",
+                          "18:00", 
+                          "19:00",
+                          "20:00",
+                          "21:00",
+                          "22:00",
+                          "23:00"                          
+                      ],
+                      variable = [
+                          "2m_temperature"],
+                      format_="netcdf",
+                     )
+
+
+    xarr_daily = ds_daily.to_xarray()
+
+    #rename the variable to avoid having a dataset with two identical varibale names
+
+    xarr_daily =  xarr_daily.raname({'t2m': 't2m_daily')
+
+    xarr_merged = xarr.merge(xarr_daily)
+
+
+.. code-block:: python
+
+    import matplotlib.pyplot as plt
+
+    fig, (ax1, ax2) = plt.subplots(1,2, figsize=(15, 5))
+    fig.suptitle ("Comparison of difference in temperature between the daily temperatures on 01.01.2029 and the monthly means of January 2019over Germany")
+
+
+    xarr_full.t2m_daily.sel( latitude=slice( 56, 47), longitude = slice(5, 16)).mean(dim=["latitude", "longitude"]).plot.line(x="time", label="Daily", ax=ax1)
+    xarr_full.t2m.sel( latitude=slice( 56, 47), longitude = slice(5, 16)).mean(dim=["latitude", "longitude"]).plot.line(x="time", label="Montly Mean", ax=ax1)
+
+    diff = xarr_full.sel( latitude=slice( 56, 47), longitude = slice(5, 16)).t2m_daily - xarr_full.t2m
+    diff.isel(time=11).plot(ax=ax2)
+    plt.legend()
+
+
+.. image:: ../images/plot-merged-ds.png
+    :width: 800  
+
+
+To merge datasets or to combine xarray datasets with other sources it is sometimes necessary to adapt the coordinate system or do a reprojection. 
+If the merges dataset should be displayed together with a basemap, the longitudes have to be converted from the range `[0; 360]` to `[-180, 180]`.
+
+.. code-block:: python
+    
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.basemap import Basemap
+
+    xarr_merged.coords['longitude'] = (xarr_merged.coords['longitude'] + 180) % 360 - 180
+    xarr_merged_reshaped = xarr_merged.sortby(xarr_merged.longitude)
+
+    xarr_europe = xarr_reshaped.sel( latitude=slice(72,30), longitude = slice(-25, 35))
+
+    m = Basemap(projection='cyl', lat_0 = xarr_europe.t2m.latitude[0], lon_0=xarr_europe.t2m.longitude[0])
+    m.drawcoastlines()
+    xarr_europe.t2m.isel(time=0).plot()
+    plt.title ('Temperature on 01.01.2019 at 00:00')
+
+.. image:: ../images/plot-baseline.png
+    :width: 400
 
 
