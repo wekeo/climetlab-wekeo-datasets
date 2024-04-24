@@ -20,15 +20,6 @@ class UnsupportedDatasetError(Exception):
     pass
 
 
-KEYS = {
-    "boundingBoxValues",
-    "stringInputValues",
-    "datasetId",
-    "dateRangeSelectValues",
-    "multiStringSelectValues",
-    "stringChoiceValues",
-}
-
 PREFIXES = {
     "eo:cgls": "clms",
     "eo:clms": "clms",
@@ -48,59 +39,27 @@ def valid_entry_points() -> List[str]:
 
 
 def payload_to_args(payload) -> Dict:
-    arguments = {}
-    for key in KEYS:
-        values = payload.get(key)
-        if values is None:
-            continue
-
-        if key == "datasetId":
-            if values.startswith("EO:MO:"):
-                arguments["layer"] = values.split(":")[-1]
-
-        elif key == "boundingBoxValues":
-            try:
-                area = values[0]
-                bbox = area["bbox"]
-                arguments["area"] = [
-                    bbox[3],  # N
-                    bbox[0],  # W
-                    bbox[1],  # S
-                    bbox[2],  # E
-                ]
-            except KeyError:
-                pass
-
-        elif key in (
-            "stringInputValues",
-            "stringChoiceValues",
-            "multiStringSelectValues",
-        ):
-            for value in values:
-                arguments[value["name"]] = value["value"]
-
-        elif key == "dateRangeSelectValues":
-            try:
-                date_range = values[0]
-                arguments["start"] = date_range["start"]
-                arguments["end"] = date_range["end"]
-            except KeyError:
-                pass
-
     # Change back reserved words keys by appending an underscore
     reserved_words = ["format"]
     for key in reserved_words:
-        if key in arguments:
-            arguments[f"{key}_"] = arguments.pop(key)
+        if key in payload:
+            payload[f"{key}_"] = payload.pop(key)
 
-    return arguments
+    return payload
+
+    # arguments["area"] = [
+    #                 bbox[3],  # N
+    #                 bbox[0],  # W
+    #                 bbox[1],  # S
+    #                 bbox[2],  # E
+    #
 
 
 def payload_to_entry(payload) -> str:
-    if "datasetId" not in payload:
+    if "dataset_id" not in payload:
         raise MissingDatasetError("No dataset found in the payload.")
 
-    dataset_id: str = payload["datasetId"].lower()
+    dataset_id: str = payload["dataset_id"].lower()
 
     if dataset_id.startswith("eo:mo"):
         dataset_id = ":".join(dataset_id.split(":")[:-1])
@@ -129,7 +88,7 @@ def payload_to_entry(payload) -> str:
 def hda2cml(payload) -> Tuple[str, Dict]:
     """
     Returns an entry point name and a dictionary of arguments
-    from a valid WEkEO API request. Those can be directly
+    from a valid WEkEO v2 API request. Those can be directly
     injected into a load_dataset call.
 
     E.g:
@@ -138,14 +97,9 @@ def hda2cml(payload) -> Tuple[str, Dict]:
     from climetlab_wekeo_datasets import hda2cml
 
     query = {
-        "datasetId": "EO:MO:DAT:ARCTIC_ANALYSISFORECAST_BGC_002_004:cmems_mod_arc_bgc_anfc_ecosmo_P1D-m_202105",
-        "dateRangeSelectValues": [
-            {
-            "name": "time",
-            "start": "2019-01-01T00:00:00.000Z",
-            "end": "2023-10-25T23:59:59.999Z"
-            }
-        ]
+        "dataset_id": "EO:CLMS:DAT:CLMS_GLOBAL_ALBH_1KM_V1_10DAILY_NETCDF",
+        "start": "2019-12-26T00:00:00.000Z",
+        "end": "2020-01-25T00:00:00.000Z"
     }
 
     entry_point, arguments = hda2cml(query)

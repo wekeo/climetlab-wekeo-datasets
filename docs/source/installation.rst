@@ -10,7 +10,6 @@ Get your credentials
 
     .. code-block:: ini
 
-        url: https://wekeo-broker.apps.mercator.dpi.wekeo.eu/databroker
         user: [username]
         password: [password]
 

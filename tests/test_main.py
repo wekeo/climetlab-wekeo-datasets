@@ -13,7 +13,7 @@ import climetlab as cml
 def test_read():
     with patch("climetlab.load_source"):
         ds = cml.load_dataset(
-            "wekeo-clms-cgls-hourly-lst-global-v2",
+            "wekeo-clms-clms-global-albh-1km-v1-10daily-netcdf",
             start="2021-01-18",
             end="2021-01-19",
         )
