@@ -45,6 +45,7 @@ def payload_to_args(payload) -> Dict:
         if key in payload:
             payload[f"{key}_"] = payload.pop(key)
 
+    del payload["dataset_id"]
     return payload
 
     # arguments["area"] = [

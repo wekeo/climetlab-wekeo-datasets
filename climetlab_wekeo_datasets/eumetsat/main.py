@@ -56,7 +56,8 @@ class Main(Dataset):
         }
 
         for key, value in kwargs.items():
-            query[key] = value
+            if value is not None:
+                query[key] = value
 
         limit = kwargs.get("limit")
 
