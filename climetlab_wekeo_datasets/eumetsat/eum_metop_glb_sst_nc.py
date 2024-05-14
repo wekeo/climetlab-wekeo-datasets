@@ -15,22 +15,11 @@ from climetlab_wekeo_datasets.eumetsat.main import Main
 class eum_metop_glb_sst_nc(Main):
     name = "EO:EUM:DAT:METOP:GLB-SST-NC"
     dataset = "EO:EUM:DAT:METOP:GLB-SST-NC"
-    inputs = [
-        "relorbit",
-        "orbit",
-        "cycle",
-    ]
-    choices = [
-        "sat",
-        "type",
-    ]
 
-    @normalize("area", "bounding-box(list)")
-    @normalize("relorbit")
-    @normalize("orbit")
-    @normalize("cycle")
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("publication", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "sat",
         [
@@ -45,22 +34,20 @@ class eum_metop_glb_sst_nc(Main):
     )
     def __init__(
         self,
-        area=None,
-        relorbit=None,
-        orbit=None,
-        cycle=None,
-        start="2016-07-11T05:58:03.000Z",
-        end="2023-10-25T06:01:03.000Z",
+        bbox=None,
+        dtstart=None,
+        dtend=None,
+        publication=None,
         sat="Metop-B",
         type="OSSTGLBN",
+        limit=None,
     ):
         super().__init__(
-            area=area,
-            relorbit=relorbit,
-            orbit=orbit,
-            cycle=cycle,
-            start=start,
-            end=end,
+            bbox=bbox,
+            dtstart=dtstart,
+            dtend=dtend,
+            publication=publication,
             sat=sat,
             type=type,
+            limit=limit,
         )
