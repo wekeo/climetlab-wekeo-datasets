@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.clms.main import Main
@@ -17,28 +16,13 @@ class clms_global_ndvi_300m_v2_10daily_netcdf(Main):
     dataset = "EO:CLMS:DAT:CLMS_GLOBAL_NDVI_300M_V2_10DAILY_NETCDF"
 
     @normalize(
-        "productionStatus",
-        [
-            "ARCHIVED",
-            "CANCELLED",
-        ],
-        multiple=True,
-    )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("bbox", "bounding-box(list)")
-    @normalize(
-        "productType",
-        [
-            "NDVI300",
-        ],
-    )
-    @normalize(
         "acquisitionType",
         [
             "NOMINAL",
         ],
     )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "platform",
         [
@@ -51,26 +35,41 @@ class clms_global_ndvi_300m_v2_10daily_netcdf(Main):
             "VITO",
         ],
     )
+    @normalize(
+        "productType",
+        [
+            "NDVI300",
+        ],
+    )
+    @normalize(
+        "productionStatus",
+        [
+            "ARCHIVED",
+            "CANCELLED",
+        ],
+        multiple=True,
+    )
+    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
+        acquisitionType=None,
+        bbox=None,
+        end=None,
+        platform=None,
+        processingCenter=None,
+        productType=None,
         productionStatus=None,
         start=None,
-        end=None,
-        bbox=None,
-        productType="NDVI300",
-        acquisitionType="NOMINAL",
-        platform="SENTINEL-3",
-        processingCenter="VITO",
         limit=None,
     ):
         super().__init__(
-            productionStatus=productionStatus,
-            start=start,
-            end=end,
-            bbox=bbox,
-            productType=productType,
             acquisitionType=acquisitionType,
+            bbox=bbox,
+            end=end,
             platform=platform,
             processingCenter=processingCenter,
+            productType=productType,
+            productionStatus=productionStatus,
+            start=start,
             limit=limit,
         )

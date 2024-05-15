@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.clms.main import Main
@@ -17,13 +16,13 @@ class clms_global_gdmp_1km_v2_10daily_netcdf(Main):
     dataset = "EO:CLMS:DAT:CLMS_GLOBAL_GDMP_1KM_V2_10DAILY_NETCDF"
 
     @normalize(
-        "productionStatus",
+        "acquisitionType",
         [
-            "ARCHIVED",
-            "CANCELLED",
+            "NOMINAL",
         ],
-        multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "platform",
         [
@@ -32,6 +31,12 @@ class clms_global_gdmp_1km_v2_10daily_netcdf(Main):
             "SPOT-5",
         ],
         multiple=True,
+    )
+    @normalize(
+        "processingCenter",
+        [
+            "VITO",
+        ],
     )
     @normalize(
         "productGroupId",
@@ -43,9 +48,6 @@ class clms_global_gdmp_1km_v2_10daily_netcdf(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "productType",
         [
@@ -53,39 +55,36 @@ class clms_global_gdmp_1km_v2_10daily_netcdf(Main):
         ],
     )
     @normalize(
-        "acquisitionType",
+        "productionStatus",
         [
-            "NOMINAL",
+            "ARCHIVED",
+            "CANCELLED",
         ],
+        multiple=True,
     )
-    @normalize(
-        "processingCenter",
-        [
-            "VITO",
-        ],
-    )
+    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        productionStatus=None,
-        platform=None,
-        productGroupId=None,
-        start=None,
-        end=None,
+        acquisitionType=None,
         bbox=None,
-        productType="GDMP",
-        acquisitionType="NOMINAL",
-        processingCenter="VITO",
+        end=None,
+        platform=None,
+        processingCenter=None,
+        productGroupId=None,
+        productType=None,
+        productionStatus=None,
+        start=None,
         limit=None,
     ):
         super().__init__(
-            productionStatus=productionStatus,
-            platform=platform,
-            productGroupId=productGroupId,
-            start=start,
-            end=end,
-            bbox=bbox,
-            productType=productType,
             acquisitionType=acquisitionType,
+            bbox=bbox,
+            end=end,
+            platform=platform,
             processingCenter=processingCenter,
+            productGroupId=productGroupId,
+            productType=productType,
+            productionStatus=productionStatus,
+            start=start,
             limit=limit,
         )
