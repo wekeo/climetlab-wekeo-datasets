@@ -47,16 +47,16 @@ class Main(Dataset):
         "xarray_open_dataset_kwargs": {"chunks": "auto", "engine": "netcdf4"}
     }
 
-    string_selects = []
-    inputs = []
-
     def __init__(self, *args, **kwargs):
         query = {
             "dataset_id": f"{self.dataset}",
         }
 
         for key, value in kwargs.items():
-            query[key] = value
+            if key == "format_":
+                key = "format"
+            if value is not None:
+                query[key] = value
 
         limit = kwargs.get("limit")
 

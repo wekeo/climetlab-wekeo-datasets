@@ -42,7 +42,10 @@ class Main(Dataset):
         query = {"dataset_id": f"{self.dataset}:{layer}"}
 
         for key, value in kwargs.items():
-            query[key] = value
+            if key == "format_":
+                key = "format"
+            if value is not None:
+                query[key] = value
 
         if query["variables"] is None:
             # Remove completely the variables argument

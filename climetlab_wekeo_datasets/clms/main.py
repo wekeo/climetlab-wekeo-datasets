@@ -39,6 +39,8 @@ class Main(Dataset):
         query = {"dataset_id": f"{self.dataset}"}
 
         for key, value in kwargs.items():
+            if key == "format_":
+                key = "format"
             if value is not None:
                 query[key] = value
 
