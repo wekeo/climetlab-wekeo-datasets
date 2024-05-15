@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,85 @@ class sis_agrometeorological_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_AGROMETEOROLOGICAL_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_AGROMETEOROLOGICAL_INDICATORS"
 
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "statistic",
+        [
+            "24_hour_maximum",
+            "24_hour_mean",
+            "24_hour_minimum",
+            "day_time_maximum",
+            "day_time_mean",
+            "night_time_mean",
+            "night_time_minimum",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "06_00",
+            "09_00",
+            "12_00",
+            "15_00",
+            "18_00",
+        ],
+        multiple=True,
+    )
     @normalize(
         "variable",
         [
@@ -34,17 +112,11 @@ class sis_agrometeorological_indicators(Main):
         ],
     )
     @normalize(
-        "statistic",
+        "version",
         [
-            "24_hour_maximum",
-            "24_hour_mean",
-            "24_hour_minimum",
-            "day_time_maximum",
-            "day_time_mean",
-            "night_time_mean",
-            "night_time_minimum",
+            "1_0",
+            "1_1",
         ],
-        multiple=True,
     )
     @normalize(
         "year",
@@ -98,79 +170,6 @@ class sis_agrometeorological_indicators(Main):
         ],
         multiple=True,
     )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "06_00",
-            "09_00",
-            "12_00",
-            "15_00",
-            "18_00",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "1_0",
-            "1_1",
-        ],
-    )
     @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
@@ -181,25 +180,25 @@ class sis_agrometeorological_indicators(Main):
     )
     def __init__(
         self,
-        variable,
-        statistic,
-        year,
-        month,
         day,
+        month,
+        statistic,
         time,
+        variable,
         version,
+        year,
         bbox=None,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            statistic=statistic,
-            year=year,
-            month=month,
             day=day,
+            month=month,
+            statistic=statistic,
             time=time,
+            variable=variable,
             version=version,
+            year=year,
             bbox=bbox,
             format_=format_,
             limit=limit,

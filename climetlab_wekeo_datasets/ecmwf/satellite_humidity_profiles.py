@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,24 @@ class satellite_humidity_profiles(Main):
     name = "EO:ECMWF:DAT:SATELLITE_HUMIDITY_PROFILES"
     dataset = "EO:ECMWF:DAT:SATELLITE_HUMIDITY_PROFILES"
 
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
     @normalize(
         "product_type",
         [
@@ -48,24 +65,6 @@ class satellite_humidity_profiles(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "variable",
         [
             "all",
@@ -79,12 +78,12 @@ class satellite_humidity_profiles(Main):
         ],
     )
     def __init__(
-        self, product_type, year, month, variable="all", format_=None, limit=None
+        self, month, product_type, year, variable="all", format_=None, limit=None
     ):
         super().__init__(
+            month=month,
             product_type=product_type,
             year=year,
-            month=month,
             variable=variable,
             format_=format_,
             limit=limit,

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,12 +16,31 @@ class cams_global_greenhouse_gas_inversion(Main):
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_GREENHOUSE_GAS_INVERSION"
 
     @normalize(
-        "variable",
+        "input_observations",
         [
-            "carbon_dioxide",
-            "methane",
-            "nitrous_oxide",
+            "first_guess",
+            "satellite",
+            "surface",
+            "surface_satellite",
         ],
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
     )
     @normalize(
         "quantity",
@@ -34,20 +52,19 @@ class cams_global_greenhouse_gas_inversion(Main):
         ],
     )
     @normalize(
-        "input_observations",
-        [
-            "first_guess",
-            "satellite",
-            "surface",
-            "surface_satellite",
-        ],
-    )
-    @normalize(
         "time_aggregation",
         [
             "daily_mean",
             "instantaneous",
             "monthly_mean",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "carbon_dioxide",
+            "methane",
+            "nitrous_oxide",
         ],
     )
     @normalize(
@@ -124,24 +141,6 @@ class cams_global_greenhouse_gas_inversion(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -150,24 +149,24 @@ class cams_global_greenhouse_gas_inversion(Main):
     )
     def __init__(
         self,
-        variable,
-        quantity,
         input_observations,
+        month,
+        quantity,
         time_aggregation,
+        variable,
         version,
         year,
-        month,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            quantity=quantity,
             input_observations=input_observations,
+            month=month,
+            quantity=quantity,
             time_aggregation=time_aggregation,
+            variable=variable,
             version=version,
             year=year,
-            month=month,
             format_=format_,
             limit=limit,
         )

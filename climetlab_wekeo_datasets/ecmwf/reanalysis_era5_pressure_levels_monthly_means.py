@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,34 +16,20 @@ class reanalysis_era5_pressure_levels_monthly_means(Main):
     dataset = "EO:ECMWF:DAT:REANALYSIS_ERA5_PRESSURE_LEVELS_MONTHLY_MEANS"
 
     @normalize(
-        "product_type",
+        "month",
         [
-            "monthly_averaged_ensemble_members",
-            "monthly_averaged_ensemble_members_by_hour_of_day",
-            "monthly_averaged_reanalysis",
-            "monthly_averaged_reanalysis_by_hour_of_day",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "divergence",
-            "fraction_of_cloud_cover",
-            "geopotential",
-            "ozone_mass_mixing_ratio",
-            "potential_vorticity",
-            "relative_humidity",
-            "specific_cloud_ice_water_content",
-            "specific_cloud_liquid_water_content",
-            "specific_humidity",
-            "specific_rain_water_content",
-            "specific_snow_water_content",
-            "temperature",
-            "u_component_of_wind",
-            "v_component_of_wind",
-            "vertical_velocity",
-            "vorticity",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
         multiple=True,
     )
@@ -88,6 +73,68 @@ class reanalysis_era5_pressure_levels_monthly_means(Main):
             "950",
             "975",
             "1000",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product_type",
+        [
+            "monthly_averaged_ensemble_members",
+            "monthly_averaged_ensemble_members_by_hour_of_day",
+            "monthly_averaged_reanalysis",
+            "monthly_averaged_reanalysis_by_hour_of_day",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "divergence",
+            "fraction_of_cloud_cover",
+            "geopotential",
+            "ozone_mass_mixing_ratio",
+            "potential_vorticity",
+            "relative_humidity",
+            "specific_cloud_ice_water_content",
+            "specific_cloud_liquid_water_content",
+            "specific_humidity",
+            "specific_rain_water_content",
+            "specific_snow_water_content",
+            "temperature",
+            "u_component_of_wind",
+            "v_component_of_wind",
+            "vertical_velocity",
+            "vorticity",
         ],
         multiple=True,
     )
@@ -182,54 +229,6 @@ class reanalysis_era5_pressure_levels_monthly_means(Main):
         ],
         multiple=True,
     )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00",
-        ],
-        multiple=True,
-    )
     @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
@@ -240,23 +239,23 @@ class reanalysis_era5_pressure_levels_monthly_means(Main):
     )
     def __init__(
         self,
-        product_type,
-        variable,
-        pressure_level,
-        year,
         month,
+        pressure_level,
+        product_type,
         time,
+        variable,
+        year,
         bbox=None,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            product_type=product_type,
-            variable=variable,
-            pressure_level=pressure_level,
-            year=year,
             month=month,
+            pressure_level=pressure_level,
+            product_type=product_type,
             time=time,
+            variable=variable,
+            year=year,
             bbox=bbox,
             format_=format_,
             limit=limit,

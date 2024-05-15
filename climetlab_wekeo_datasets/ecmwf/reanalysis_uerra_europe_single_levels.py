@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,11 +16,76 @@ class reanalysis_uerra_europe_single_levels(Main):
     dataset = "EO:ECMWF:DAT:REANALYSIS_UERRA_EUROPE_SINGLE_LEVELS"
 
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "origin",
         [
             "mescan_surfex",
             "uerra_harmonie",
         ],
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "06:00",
+            "12:00",
+            "18:00",
+        ],
+        multiple=True,
     )
     @normalize(
         "variable",
@@ -113,71 +177,6 @@ class reanalysis_uerra_europe_single_levels(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "06:00",
-            "12:00",
-            "18:00",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "grib",
@@ -185,15 +184,15 @@ class reanalysis_uerra_europe_single_levels(Main):
         ],
     )
     def __init__(
-        self, origin, variable, year, month, day, time, format_=None, limit=None
+        self, day, month, origin, time, variable, year, format_=None, limit=None
     ):
         super().__init__(
+            day=day,
+            month=month,
             origin=origin,
+            time=time,
             variable=variable,
             year=year,
-            month=month,
-            day=day,
-            time=time,
             format_=format_,
             limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,46 @@ class cams_global_ghg_reanalysis_egg4_monthly(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_GHG_REANALYSIS_EGG4_MONTHLY"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_GHG_REANALYSIS_EGG4_MONTHLY"
 
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product_type",
+        [
+            "monthly_mean",
+            "monthly_mean_by_hour_of_day",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "step",
+        [
+            "3",
+            "6",
+            "9",
+            "12",
+            "15",
+            "18",
+            "21",
+            "24",
+        ],
+        multiple=True,
+    )
     @normalize(
         "variable",
         [
@@ -70,51 +109,19 @@ class cams_global_ghg_reanalysis_egg4_monthly(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "monthly_mean",
-            "monthly_mean_by_hour_of_day",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "step",
-        [
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "18",
-            "21",
-            "24",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "time",
         [
             "00:00",
         ],
         multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "format_",
+        [
+            "grib",
+            "netcdf",
+        ],
     )
     @normalize(
         "pressure_level",
@@ -147,36 +154,28 @@ class cams_global_ghg_reanalysis_egg4_monthly(Main):
         ],
         multiple=True,
     )
-    @normalize("bbox", "bounding-box(list)")
-    @normalize(
-        "format_",
-        [
-            "grib",
-            "netcdf",
-        ],
-    )
     def __init__(
         self,
-        variable,
-        year,
         month,
         product_type,
         step,
+        variable,
+        year,
         time="00:00",
-        pressure_level=None,
         bbox=None,
         format_=None,
+        pressure_level=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            year=year,
             month=month,
             product_type=product_type,
             step=step,
+            variable=variable,
+            year=year,
             time=time,
-            pressure_level=pressure_level,
             bbox=bbox,
             format_=format_,
+            pressure_level=pressure_level,
             limit=limit,
         )

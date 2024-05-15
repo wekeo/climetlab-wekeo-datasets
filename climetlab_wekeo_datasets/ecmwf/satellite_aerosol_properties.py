@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,43 +15,6 @@ class satellite_aerosol_properties(Main):
     name = "EO:ECMWF:DAT:SATELLITE_AEROSOL_PROPERTIES"
     dataset = "EO:ECMWF:DAT:SATELLITE_AEROSOL_PROPERTIES"
 
-    @normalize(
-        "time_aggregation",
-        [
-            "5_daily_composite",
-            "daily_average",
-            "monthly_average",
-        ],
-    )
-    @normalize(
-        "variable",
-        [
-            "aerosol_extinction_coefficient",
-            "aerosol_layer_height",
-            "aerosol_optical_depth",
-            "dust_aerosol_layer_height",
-            "dust_aerosol_optical_depth",
-            "fine_mode_aerosol_optical_depth",
-            "single_scattering_albedo",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "sensor_on_satellite",
-        [
-            "aatsr_on_envisat",
-            "atsr2_on_ers2",
-            "gomos_on_envisat",
-            "iasi_on_metopa",
-            "iasi_on_metopb",
-            "iasi_on_metopc",
-            "meris_on_envisat",
-            "olci_on_sentinel_3a",
-            "polder_on_parasol",
-            "slstr_on_sentinel_3a",
-            "slstr_on_sentinel_3b",
-        ],
-    )
     @normalize(
         "algorithm",
         [
@@ -71,59 +33,6 @@ class satellite_aerosol_properties(Main):
             "ulb",
             "xbaer",
         ],
-    )
-    @normalize(
-        "year",
-        [
-            "1995",
-            "1996",
-            "1997",
-            "1998",
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
     )
     @normalize(
         "day",
@@ -159,6 +68,70 @@ class satellite_aerosol_properties(Main):
             "29",
             "30",
             "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "orbit",
+        [
+            "ascending",
+            "ascending_and_descending",
+            "descending",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "sensor_on_satellite",
+        [
+            "aatsr_on_envisat",
+            "atsr2_on_ers2",
+            "gomos_on_envisat",
+            "iasi_on_metopa",
+            "iasi_on_metopb",
+            "iasi_on_metopc",
+            "meris_on_envisat",
+            "olci_on_sentinel_3a",
+            "polder_on_parasol",
+            "slstr_on_sentinel_3a",
+            "slstr_on_sentinel_3b",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "5_daily_composite",
+            "daily_average",
+            "monthly_average",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "aerosol_extinction_coefficient",
+            "aerosol_layer_height",
+            "aerosol_optical_depth",
+            "dust_aerosol_layer_height",
+            "dust_aerosol_optical_depth",
+            "fine_mode_aerosol_optical_depth",
+            "single_scattering_albedo",
         ],
         multiple=True,
     )
@@ -238,11 +211,37 @@ class satellite_aerosol_properties(Main):
         multiple=True,
     )
     @normalize(
-        "orbit",
+        "year",
         [
-            "ascending",
-            "ascending_and_descending",
-            "descending",
+            "1995",
+            "1996",
+            "1997",
+            "1998",
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
         ],
         multiple=True,
     )
@@ -255,28 +254,28 @@ class satellite_aerosol_properties(Main):
     )
     def __init__(
         self,
+        algorithm,
+        day,
+        month,
+        orbit,
+        sensor_on_satellite,
         time_aggregation,
         variable,
-        sensor_on_satellite,
-        algorithm,
-        year,
-        month,
-        day,
         version,
-        orbit,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
+            algorithm=algorithm,
+            day=day,
+            month=month,
+            orbit=orbit,
+            sensor_on_satellite=sensor_on_satellite,
             time_aggregation=time_aggregation,
             variable=variable,
-            sensor_on_satellite=sensor_on_satellite,
-            algorithm=algorithm,
-            year=year,
-            month=month,
-            day=day,
             version=version,
-            orbit=orbit,
+            year=year,
             format_=format_,
             limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,68 +15,6 @@ class satellite_total_column_water_vapour_land_ocean(Main):
     name = "EO:ECMWF:DAT:SATELLITE_TOTAL_COLUMN_WATER_VAPOUR_LAND_OCEAN"
     dataset = "EO:ECMWF:DAT:SATELLITE_TOTAL_COLUMN_WATER_VAPOUR_LAND_OCEAN"
 
-    @normalize(
-        "product",
-        [
-            "c3s_meris_and_ssm_i",
-            "near_infrared_hoaps_combined",
-        ],
-    )
-    @normalize(
-        "horizontal_aggregation",
-        [
-            "0_05_x_0_05",
-            "0_5_x_0_5",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "temporal_aggregation",
-        [
-            "daily",
-            "monthly",
-        ],
-    )
-    @normalize(
-        "year",
-        [
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "day",
         [
@@ -116,6 +53,68 @@ class satellite_total_column_water_vapour_land_ocean(Main):
         multiple=True,
     )
     @normalize(
+        "horizontal_aggregation",
+        [
+            "0_05_x_0_05",
+            "0_5_x_0_5",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product",
+        [
+            "c3s_meris_and_ssm_i",
+            "near_infrared_hoaps_combined",
+        ],
+    )
+    @normalize(
+        "temporal_aggregation",
+        [
+            "daily",
+            "monthly",
+        ],
+    )
+    @normalize(
+        "year",
+        [
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "variable",
         [
             "all",
@@ -130,23 +129,23 @@ class satellite_total_column_water_vapour_land_ocean(Main):
     )
     def __init__(
         self,
-        product,
+        day,
         horizontal_aggregation,
+        month,
+        product,
         temporal_aggregation,
         year,
-        month,
-        day,
         variable="all",
         format_=None,
         limit=None,
     ):
         super().__init__(
-            product=product,
+            day=day,
             horizontal_aggregation=horizontal_aggregation,
+            month=month,
+            product=product,
             temporal_aggregation=temporal_aggregation,
             year=year,
-            month=month,
-            day=day,
             variable=variable,
             format_=format_,
             limit=limit,

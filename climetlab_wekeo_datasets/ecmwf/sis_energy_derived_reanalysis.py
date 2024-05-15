@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,20 +16,29 @@ class sis_energy_derived_reanalysis(Main):
     dataset = "EO:ECMWF:DAT:SIS_ENERGY_DERIVED_REANALYSIS"
 
     @normalize(
-        "variable",
+        "energy_product_type",
         [
-            "2m_air_temperature",
-            "electricity_demand",
-            "hydro_power_generation_reservoirs",
-            "hydro_power_generation_rivers",
-            "pressure_at_sea_level",
-            "solar_photovoltaic_power_generation",
-            "surface_downwelling_shortwave_radiation",
-            "total_precipitation",
-            "wind_power_generation_offshore",
-            "wind_power_generation_onshore",
-            "wind_speed_at_100m",
-            "wind_speed_at_10m",
+            "capacity_factor_ratio",
+            "energy",
+            "power",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
         multiple=True,
     )
@@ -46,15 +54,6 @@ class sis_energy_derived_reanalysis(Main):
         multiple=True,
     )
     @normalize(
-        "energy_product_type",
-        [
-            "capacity_factor_ratio",
-            "energy",
-            "power",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "temporal_aggregation",
         [
             "annual",
@@ -62,6 +61,24 @@ class sis_energy_derived_reanalysis(Main):
             "hourly",
             "monthly",
             "seasonal",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "2m_air_temperature",
+            "electricity_demand",
+            "hydro_power_generation_reservoirs",
+            "hydro_power_generation_rivers",
+            "pressure_at_sea_level",
+            "solar_photovoltaic_power_generation",
+            "surface_downwelling_shortwave_radiation",
+            "total_precipitation",
+            "wind_power_generation_offshore",
+            "wind_power_generation_onshore",
+            "wind_speed_at_100m",
+            "wind_speed_at_10m",
         ],
         multiple=True,
     )
@@ -118,24 +135,6 @@ class sis_energy_derived_reanalysis(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -144,22 +143,22 @@ class sis_energy_derived_reanalysis(Main):
     )
     def __init__(
         self,
-        variable,
-        spatial_aggregation,
         energy_product_type,
-        temporal_aggregation,
-        year,
         month,
+        spatial_aggregation,
+        temporal_aggregation,
+        variable,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            spatial_aggregation=spatial_aggregation,
             energy_product_type=energy_product_type,
-            temporal_aggregation=temporal_aggregation,
-            year=year,
             month=month,
+            spatial_aggregation=spatial_aggregation,
+            temporal_aggregation=temporal_aggregation,
+            variable=variable,
+            year=year,
             format_=format_,
             limit=limit,
         )

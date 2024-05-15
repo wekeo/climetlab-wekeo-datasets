@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,80 +15,6 @@ class cems_glofas_reforecast(Main):
     name = "EO:ECMWF:DAT:CEMS_GLOFAS_REFORECAST"
     dataset = "EO:ECMWF:DAT:CEMS_GLOFAS_REFORECAST"
 
-    @normalize(
-        "system_version",
-        [
-            "version_2_2",
-            "version_3_1",
-            "version_4_0",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hydrological_model",
-        [
-            "htessel_lisflood",
-            "lisflood",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "control_reforecast",
-            "ensemble_perturbed_reforecasts",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hyear",
-        [
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hmonth",
-        [
-            "april",
-            "august",
-            "december",
-            "february",
-            "january",
-            "july",
-            "june",
-            "march",
-            "may",
-            "november",
-            "october",
-            "september",
-        ],
-        multiple=True,
-    )
     @normalize(
         "hday",
         [
@@ -124,6 +49,63 @@ class cems_glofas_reforecast(Main):
             "29",
             "30",
             "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hmonth",
+        [
+            "april",
+            "august",
+            "december",
+            "february",
+            "january",
+            "july",
+            "june",
+            "march",
+            "may",
+            "november",
+            "october",
+            "september",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hydrological_model",
+        [
+            "htessel_lisflood",
+            "lisflood",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hyear",
+        [
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
         ],
         multiple=True,
     )
@@ -180,12 +162,30 @@ class cems_glofas_reforecast(Main):
         multiple=True,
     )
     @normalize(
+        "product_type",
+        [
+            "control_reforecast",
+            "ensemble_perturbed_reforecasts",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "system_version",
+        [
+            "version_2_2",
+            "version_3_1",
+            "version_4_0",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "variable",
         [
             "river_discharge_in_the_last_24_hours",
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -193,31 +193,30 @@ class cems_glofas_reforecast(Main):
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
-        hydrological_model,
-        product_type,
-        hyear,
-        hmonth,
         hday,
+        hmonth,
+        hydrological_model,
+        hyear,
         leadtime_hour,
+        product_type,
+        system_version,
         variable="river_discharge_in_the_last_24_hours",
-        format_=None,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
-            hydrological_model=hydrological_model,
-            product_type=product_type,
-            hyear=hyear,
-            hmonth=hmonth,
             hday=hday,
+            hmonth=hmonth,
+            hydrological_model=hydrological_model,
+            hyear=hyear,
             leadtime_hour=leadtime_hour,
+            product_type=product_type,
+            system_version=system_version,
             variable=variable,
-            format_=format_,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

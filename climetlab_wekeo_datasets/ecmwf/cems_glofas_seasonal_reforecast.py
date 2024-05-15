@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,11 +16,20 @@ class cems_glofas_seasonal_reforecast(Main):
     dataset = "EO:ECMWF:DAT:CEMS_GLOFAS_SEASONAL_REFORECAST"
 
     @normalize(
-        "system_version",
+        "hmonth",
         [
-            "version_2_2",
-            "version_3_1",
-            "version_4_0",
+            "april",
+            "august",
+            "december",
+            "february",
+            "january",
+            "july",
+            "june",
+            "march",
+            "may",
+            "november",
+            "october",
+            "september",
         ],
         multiple=True,
     )
@@ -79,24 +87,6 @@ class cems_glofas_seasonal_reforecast(Main):
             "2021",
             "2022",
             "2023",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hmonth",
-        [
-            "april",
-            "august",
-            "december",
-            "february",
-            "january",
-            "july",
-            "june",
-            "march",
-            "may",
-            "november",
-            "october",
-            "september",
         ],
         multiple=True,
     )
@@ -322,12 +312,22 @@ class cems_glofas_seasonal_reforecast(Main):
         multiple=True,
     )
     @normalize(
+        "system_version",
+        [
+            "version_2_2",
+            "version_3_1",
+            "version_4_0",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "variable",
         [
             "river_discharge_in_the_last_24_hours",
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -335,27 +335,26 @@ class cems_glofas_seasonal_reforecast(Main):
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
+        hmonth,
         hydrological_model,
         hyear,
-        hmonth,
         leadtime_hour,
+        system_version,
         variable="river_discharge_in_the_last_24_hours",
-        format_=None,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
+            hmonth=hmonth,
             hydrological_model=hydrological_model,
             hyear=hyear,
-            hmonth=hmonth,
             leadtime_hour=leadtime_hour,
+            system_version=system_version,
             variable=variable,
-            format_=format_,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

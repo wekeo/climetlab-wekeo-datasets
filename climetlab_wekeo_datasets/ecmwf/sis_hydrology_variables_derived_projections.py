@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,54 +16,13 @@ class sis_hydrology_variables_derived_projections(Main):
     dataset = "EO:ECMWF:DAT:SIS_HYDROLOGY_VARIABLES_DERIVED_PROJECTIONS"
 
     @normalize(
-        "product_type",
+        "ensemble_member",
         [
-            "climate_impact_indicators",
-            "essential_climate_variables",
-        ],
-    )
-    @normalize(
-        "variable",
-        [
-            "aridity_actual",
-            "aridity_potential",
-            "flood_recurrence_10_years_return_period",
-            "flood_recurrence_2_years_return_period",
-            "flood_recurrence_50_years_return_period",
-            "flood_recurrence_5_years_return_period",
-            "maximum_river_discharge",
-            "mean_runoff",
-            "mean_soil_moisture",
-            "minimum_river_discharge",
-            "river_discharge",
-            "total_nitrogen_concentration_in_catchments",
-            "total_nitrogen_concentration_in_local_streams",
-            "total_nitrogen_load_in_catchments",
-            "total_phosphorus_concentration_in_catchments",
-            "total_phosphorus_concentration_in_local_streams",
-            "total_phosphorus_load_in_catchments",
-            "water_temperature_in_catchments",
-            "water_temperature_in_local_streams",
-            "wetness_actual",
-            "wetness_potential",
+            "r12i1p1",
+            "r1i1p1",
+            "r2i1p1",
         ],
         multiple=True,
-    )
-    @normalize(
-        "variable_type",
-        [
-            "absolute_change_from_reference_period",
-            "absolute_values",
-            "relative_change_from_reference_period",
-        ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "annual_mean",
-            "daily",
-            "monthly_mean",
-        ],
     )
     @normalize(
         "experiment",
@@ -76,6 +34,14 @@ class sis_hydrology_variables_derived_projections(Main):
             "rcp_8_5",
         ],
         multiple=True,
+    )
+    @normalize(
+        "gcm",
+        [
+            "ec_earth",
+            "hadgem2_es",
+            "mpi_esm_lr",
+        ],
     )
     @normalize(
         "hydrological_model",
@@ -90,32 +56,6 @@ class sis_hydrology_variables_derived_projections(Main):
             "e_hypecatch_m07",
             "e_hypegrid",
             "vic_wur",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "rcm",
-        [
-            "cclm4_8_17",
-            "csc_remo2009",
-            "racmo22e",
-            "rca4",
-        ],
-    )
-    @normalize(
-        "gcm",
-        [
-            "ec_earth",
-            "hadgem2_es",
-            "mpi_esm_lr",
-        ],
-    )
-    @normalize(
-        "ensemble_member",
-        [
-            "r12i1p1",
-            "r1i1p1",
-            "r2i1p1",
         ],
         multiple=True,
     )
@@ -277,6 +217,65 @@ class sis_hydrology_variables_derived_projections(Main):
         multiple=True,
     )
     @normalize(
+        "product_type",
+        [
+            "climate_impact_indicators",
+            "essential_climate_variables",
+        ],
+    )
+    @normalize(
+        "rcm",
+        [
+            "cclm4_8_17",
+            "csc_remo2009",
+            "racmo22e",
+            "rca4",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "annual_mean",
+            "daily",
+            "monthly_mean",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "aridity_actual",
+            "aridity_potential",
+            "flood_recurrence_10_years_return_period",
+            "flood_recurrence_2_years_return_period",
+            "flood_recurrence_50_years_return_period",
+            "flood_recurrence_5_years_return_period",
+            "maximum_river_discharge",
+            "mean_runoff",
+            "mean_soil_moisture",
+            "minimum_river_discharge",
+            "river_discharge",
+            "total_nitrogen_concentration_in_catchments",
+            "total_nitrogen_concentration_in_local_streams",
+            "total_nitrogen_load_in_catchments",
+            "total_phosphorus_concentration_in_catchments",
+            "total_phosphorus_concentration_in_local_streams",
+            "total_phosphorus_load_in_catchments",
+            "water_temperature_in_catchments",
+            "water_temperature_in_local_streams",
+            "wetness_actual",
+            "wetness_potential",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable_type",
+        [
+            "absolute_change_from_reference_period",
+            "absolute_values",
+            "relative_change_from_reference_period",
+        ],
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -285,30 +284,30 @@ class sis_hydrology_variables_derived_projections(Main):
     )
     def __init__(
         self,
+        ensemble_member,
+        experiment,
+        gcm,
+        hydrological_model,
+        period,
         product_type,
+        rcm,
+        time_aggregation,
         variable,
         variable_type,
-        time_aggregation,
-        experiment,
-        hydrological_model,
-        rcm,
-        gcm,
-        ensemble_member,
-        period,
         format_=None,
         limit=None,
     ):
         super().__init__(
+            ensemble_member=ensemble_member,
+            experiment=experiment,
+            gcm=gcm,
+            hydrological_model=hydrological_model,
+            period=period,
             product_type=product_type,
+            rcm=rcm,
+            time_aggregation=time_aggregation,
             variable=variable,
             variable_type=variable_type,
-            time_aggregation=time_aggregation,
-            experiment=experiment,
-            hydrological_model=hydrological_model,
-            rcm=rcm,
-            gcm=gcm,
-            ensemble_member=ensemble_member,
-            period=period,
             format_=format_,
             limit=limit,
         )

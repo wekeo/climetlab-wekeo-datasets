@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,17 +16,35 @@ class satellite_total_column_water_vapour_ocean(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_TOTAL_COLUMN_WATER_VAPOUR_OCEAN"
 
     @normalize(
-        "origin",
-        [
-            "c3s",
-            "eumetsat",
-        ],
-    )
-    @normalize(
         "climate_data_record_type",
         [
             "icdr",
             "tcdr",
+        ],
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "origin",
+        [
+            "c3s",
+            "eumetsat",
         ],
     )
     @normalize(
@@ -77,24 +94,6 @@ class satellite_total_column_water_vapour_ocean(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "variable",
         [
             "all",
@@ -109,21 +108,21 @@ class satellite_total_column_water_vapour_ocean(Main):
     )
     def __init__(
         self,
-        origin,
         climate_data_record_type,
+        month,
+        origin,
         temporal_aggregation,
         year,
-        month,
         variable="all",
         format_=None,
         limit=None,
     ):
         super().__init__(
-            origin=origin,
             climate_data_record_type=climate_data_record_type,
+            month=month,
+            origin=origin,
             temporal_aggregation=temporal_aggregation,
             year=year,
-            month=month,
             variable=variable,
             format_=format_,
             limit=limit,

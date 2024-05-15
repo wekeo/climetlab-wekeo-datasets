@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,10 +16,74 @@ class satellite_soil_moisture(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_SOIL_MOISTURE"
 
     @normalize(
-        "variable",
+        "day",
         [
-            "surface_soil_moisture",
-            "volumetric_surface_soil_moisture",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "10_day_average",
+            "day_average",
+            "month_average",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "type_of_record",
+        [
+            "cdr",
+            "icdr",
         ],
         multiple=True,
     )
@@ -34,11 +97,22 @@ class satellite_soil_moisture(Main):
         multiple=True,
     )
     @normalize(
-        "time_aggregation",
+        "variable",
         [
-            "10_day_average",
-            "day_average",
-            "month_average",
+            "surface_soil_moisture",
+            "volumetric_surface_soil_moisture",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "deprecated_v201912",
+            "v201706",
+            "v201812",
+            "v201912_1",
+            "v202012",
+            "v202212",
         ],
         multiple=True,
     )
@@ -96,81 +170,6 @@ class satellite_soil_moisture(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "type_of_record",
-        [
-            "cdr",
-            "icdr",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "deprecated_v201912",
-            "v201706",
-            "v201812",
-            "v201912_1",
-            "v202012",
-            "v202212",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -179,26 +178,26 @@ class satellite_soil_moisture(Main):
     )
     def __init__(
         self,
-        variable,
-        type_of_sensor,
-        time_aggregation,
-        year,
-        month,
         day,
+        month,
+        time_aggregation,
         type_of_record,
+        type_of_sensor,
+        variable,
         version,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            type_of_sensor=type_of_sensor,
-            time_aggregation=time_aggregation,
-            year=year,
-            month=month,
             day=day,
+            month=month,
+            time_aggregation=time_aggregation,
             type_of_record=type_of_record,
+            type_of_sensor=type_of_sensor,
+            variable=variable,
             version=version,
+            year=year,
             format_=format_,
             limit=limit,
         )

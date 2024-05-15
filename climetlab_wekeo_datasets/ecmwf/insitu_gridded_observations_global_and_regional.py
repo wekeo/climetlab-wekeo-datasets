@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,18 @@ class insitu_gridded_observations_global_and_regional(Main):
     name = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_GLOBAL_AND_REGIONAL"
     dataset = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_GLOBAL_AND_REGIONAL"
 
+    @normalize(
+        "horizontal_aggregation",
+        [
+            "0_25_x_0_25",
+            "0_2_x_0_2",
+            "0_5_x_0_5",
+            "1_x_1",
+            "2_5_x_2_5",
+            "horizontal_average",
+        ],
+        multiple=True,
+    )
     @normalize(
         "origin",
         [
@@ -40,15 +51,6 @@ class insitu_gridded_observations_global_and_regional(Main):
         ],
     )
     @normalize(
-        "variable",
-        [
-            "precipitation",
-            "temperature",
-            "temperature_anomaly",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "statistic",
         [
             "maximum",
@@ -65,14 +67,24 @@ class insitu_gridded_observations_global_and_regional(Main):
         ],
     )
     @normalize(
-        "horizontal_aggregation",
+        "variable",
         [
-            "0_25_x_0_25",
-            "0_2_x_0_2",
-            "0_5_x_0_5",
-            "1_x_1",
-            "2_5_x_2_5",
-            "horizontal_average",
+            "precipitation",
+            "temperature",
+            "temperature_anomaly",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "v1.0",
+            "v2.0",
+            "v2020.0",
+            "v2020.0-v6.0-fg",
+            "v4.0",
+            "v4.03",
+            "v6.0",
         ],
         multiple=True,
     )
@@ -355,19 +367,6 @@ class insitu_gridded_observations_global_and_regional(Main):
         multiple=True,
     )
     @normalize(
-        "version",
-        [
-            "v1.0",
-            "v2.0",
-            "v2020.0",
-            "v2020.0-v6.0-fg",
-            "v4.0",
-            "v4.03",
-            "v6.0",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -376,26 +375,26 @@ class insitu_gridded_observations_global_and_regional(Main):
     )
     def __init__(
         self,
+        horizontal_aggregation,
         origin,
         region,
-        variable,
         statistic,
         time_aggregation,
-        horizontal_aggregation,
-        year,
+        variable,
         version,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
+            horizontal_aggregation=horizontal_aggregation,
             origin=origin,
             region=region,
-            variable=variable,
             statistic=statistic,
             time_aggregation=time_aggregation,
-            horizontal_aggregation=horizontal_aggregation,
-            year=year,
+            variable=variable,
             version=version,
+            year=year,
             format_=format_,
             limit=limit,
         )

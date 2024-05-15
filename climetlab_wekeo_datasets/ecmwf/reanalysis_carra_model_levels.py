@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,6 +16,43 @@ class reanalysis_carra_model_levels(Main):
     dataset = "EO:ECMWF:DAT:REANALYSIS_CARRA_MODEL_LEVELS"
 
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "domain",
         [
             "east_domain",
@@ -24,19 +60,10 @@ class reanalysis_carra_model_levels(Main):
         ],
     )
     @normalize(
-        "variable",
+        "leadtime_hour",
         [
-            "cloud_cover",
-            "graupel",
-            "specific_cloud_ice_water_content",
-            "specific_cloud_liquid_water_content",
-            "specific_cloud_rain_water_content",
-            "specific_cloud_snow_water_content",
-            "specific_humidity",
-            "temperature",
-            "turbulent_kinetic_energy",
-            "u_component_of_wind",
-            "v_component_of_wind",
+            "1",
+            "2",
         ],
         multiple=True,
     )
@@ -112,6 +139,24 @@ class reanalysis_carra_model_levels(Main):
         multiple=True,
     )
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "product_type",
         [
             "analysis",
@@ -133,10 +178,19 @@ class reanalysis_carra_model_levels(Main):
         multiple=True,
     )
     @normalize(
-        "leadtime_hour",
+        "variable",
         [
-            "1",
-            "2",
+            "cloud_cover",
+            "graupel",
+            "specific_cloud_ice_water_content",
+            "specific_cloud_liquid_water_content",
+            "specific_cloud_rain_water_content",
+            "specific_cloud_snow_water_content",
+            "specific_humidity",
+            "temperature",
+            "turbulent_kinetic_energy",
+            "u_component_of_wind",
+            "v_component_of_wind",
         ],
         multiple=True,
     )
@@ -182,61 +236,6 @@ class reanalysis_carra_model_levels(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "grib",
@@ -245,28 +244,28 @@ class reanalysis_carra_model_levels(Main):
     )
     def __init__(
         self,
+        day,
         domain,
-        variable,
+        leadtime_hour,
         model_level,
+        month,
         product_type,
         time,
-        leadtime_hour,
+        variable,
         year,
-        month,
-        day,
         format_=None,
         limit=None,
     ):
         super().__init__(
+            day=day,
             domain=domain,
-            variable=variable,
+            leadtime_hour=leadtime_hour,
             model_level=model_level,
+            month=month,
             product_type=product_type,
             time=time,
-            leadtime_hour=leadtime_hour,
+            variable=variable,
             year=year,
-            month=month,
-            day=day,
             format_=format_,
             limit=limit,
         )

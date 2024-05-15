@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,26 +16,12 @@ class sis_soil_erosion(Main):
     dataset = "EO:ECMWF:DAT:SIS_SOIL_EROSION"
 
     @normalize(
-        "variable",
+        "experiment",
         [
-            "maximum_1_day_precipitation",
-            "maximum_5_day_precipitation",
-            "number_of_days_with_lwe_greater_than_1_mm",
-            "number_of_days_with_lwe_greater_than_20_mm",
-            "r_factor",
-            "soil_loss",
-            "spell_length_of_days_with_lwe_greater_than_1_mm",
-            "total_precipitation",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "e_obs",
-            "era5",
-            "era5_land",
-            "euro_cordex",
+            "all_rcps",
+            "rcp_2_6",
+            "rcp_4_5",
+            "rcp_8_5",
         ],
         multiple=True,
     )
@@ -53,23 +38,18 @@ class sis_soil_erosion(Main):
         multiple=True,
     )
     @normalize(
-        "rcm",
+        "horizontal_aggregation",
         [
-            "cclm4_8_17",
-            "csc_remo2009",
-            "hirham5",
-            "racmo22e",
-            "rca4",
+            "native_resolution",
+            "regridded",
         ],
         multiple=True,
     )
     @normalize(
-        "experiment",
+        "multimodel_statistic",
         [
-            "all_rcps",
-            "rcp_2_6",
-            "rcp_4_5",
-            "rcp_8_5",
+            "mean",
+            "standard_deviation",
         ],
         multiple=True,
     )
@@ -83,18 +63,37 @@ class sis_soil_erosion(Main):
         multiple=True,
     )
     @normalize(
-        "multimodel_statistic",
+        "product_type",
         [
-            "mean",
-            "standard_deviation",
+            "e_obs",
+            "era5",
+            "era5_land",
+            "euro_cordex",
         ],
         multiple=True,
     )
     @normalize(
-        "horizontal_aggregation",
+        "rcm",
         [
-            "native_resolution",
-            "regridded",
+            "cclm4_8_17",
+            "csc_remo2009",
+            "hirham5",
+            "racmo22e",
+            "rca4",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "maximum_1_day_precipitation",
+            "maximum_5_day_precipitation",
+            "number_of_days_with_lwe_greater_than_1_mm",
+            "number_of_days_with_lwe_greater_than_20_mm",
+            "r_factor",
+            "soil_loss",
+            "spell_length_of_days_with_lwe_greater_than_1_mm",
+            "total_precipitation",
         ],
         multiple=True,
     )
@@ -107,26 +106,26 @@ class sis_soil_erosion(Main):
     )
     def __init__(
         self,
-        variable,
-        product_type,
-        gcm,
-        rcm,
         experiment,
-        period,
-        multimodel_statistic,
+        gcm,
         horizontal_aggregation,
+        multimodel_statistic,
+        period,
+        product_type,
+        rcm,
+        variable,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            product_type=product_type,
-            gcm=gcm,
-            rcm=rcm,
             experiment=experiment,
-            period=period,
-            multimodel_statistic=multimodel_statistic,
+            gcm=gcm,
             horizontal_aggregation=horizontal_aggregation,
+            multimodel_statistic=multimodel_statistic,
+            period=period,
+            product_type=product_type,
+            rcm=rcm,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

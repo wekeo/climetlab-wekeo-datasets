@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,61 @@ class satellite_sea_surface_temperature(Main):
     name = "EO:ECMWF:DAT:SATELLITE_SEA_SURFACE_TEMPERATURE"
     dataset = "EO:ECMWF:DAT:SATELLITE_SEA_SURFACE_TEMPERATURE"
 
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
     @normalize(
         "processinglevel",
         [
@@ -103,61 +157,6 @@ class satellite_sea_surface_temperature(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "variable",
         [
             "all",
@@ -172,23 +171,23 @@ class satellite_sea_surface_temperature(Main):
     )
     def __init__(
         self,
+        day,
+        month,
         processinglevel,
         sensor_on_satellite,
         version,
         year,
-        month,
-        day,
         variable="all",
         format_=None,
         limit=None,
     ):
         super().__init__(
+            day=day,
+            month=month,
             processinglevel=processinglevel,
             sensor_on_satellite=sensor_on_satellite,
             version=version,
             year=year,
-            month=month,
-            day=day,
             variable=variable,
             format_=format_,
             limit=limit,

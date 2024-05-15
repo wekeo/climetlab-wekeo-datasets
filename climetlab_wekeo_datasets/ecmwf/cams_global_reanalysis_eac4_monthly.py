@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,46 @@ class cams_global_reanalysis_eac4_monthly(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_REANALYSIS_EAC4_MONTHLY"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_REANALYSIS_EAC4_MONTHLY"
 
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product_type",
+        [
+            "monthly_mean",
+            "monthly_mean_by_hour_of_day",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+        ],
+        multiple=True,
+    )
     @normalize(
         "variable",
         [
@@ -126,46 +165,22 @@ class cams_global_reanalysis_eac4_monthly(Main):
             "2020",
             "2021",
             "2022",
+            "2023",
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
-        "month",
+        "format_",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "grib",
+            "netcdf",
         ],
-        multiple=True,
     )
     @normalize(
-        "product_type",
+        "model_level",
         [
-            "monthly_mean",
-            "monthly_mean_by_hour_of_day",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "03:00",
-            "06:00",
-            "09:00",
-            "12:00",
-            "15:00",
-            "18:00",
-            "21:00",
+            "60",
         ],
         multiple=True,
     )
@@ -200,43 +215,28 @@ class cams_global_reanalysis_eac4_monthly(Main):
         ],
         multiple=True,
     )
-    @normalize("bbox", "bounding-box(list)")
-    @normalize(
-        "format_",
-        [
-            "grib",
-            "netcdf",
-        ],
-    )
-    @normalize(
-        "model_level",
-        [
-            "60",
-        ],
-        multiple=True,
-    )
     def __init__(
         self,
-        variable,
-        year,
         month,
         product_type,
         time,
-        pressure_level=None,
+        variable,
+        year,
         bbox=None,
         format_=None,
-        model_level="60",
+        model_level=None,
+        pressure_level=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            year=year,
             month=month,
             product_type=product_type,
             time=time,
-            pressure_level=pressure_level,
+            variable=variable,
+            year=year,
             bbox=bbox,
             format_=format_,
             model_level=model_level,
+            pressure_level=pressure_level,
             limit=limit,
         )

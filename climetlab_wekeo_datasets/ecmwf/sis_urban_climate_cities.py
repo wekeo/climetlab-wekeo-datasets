@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,17 +15,6 @@ class sis_urban_climate_cities(Main):
     name = "EO:ECMWF:DAT:SIS_URBAN_CLIMATE_CITIES"
     dataset = "EO:ECMWF:DAT:SIS_URBAN_CLIMATE_CITIES"
 
-    @normalize(
-        "variable",
-        [
-            "air_temperature",
-            "land_sea_mask",
-            "relative_humidity",
-            "rural_urban_mask",
-            "specific_humidity",
-            "wind_speed",
-        ],
-    )
     @normalize(
         "city",
         [
@@ -134,22 +122,6 @@ class sis_urban_climate_cities(Main):
         multiple=True,
     )
     @normalize(
-        "year",
-        [
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "month",
         [
             "01",
@@ -168,18 +140,45 @@ class sis_urban_climate_cities(Main):
         multiple=True,
     )
     @normalize(
+        "variable",
+        [
+            "air_temperature",
+            "land_sea_mask",
+            "relative_humidity",
+            "rural_urban_mask",
+            "specific_humidity",
+            "wind_speed",
+        ],
+    )
+    @normalize(
+        "year",
+        [
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    def __init__(self, variable, city, year, month, format_=None, limit=None):
+    def __init__(self, city, month, variable, year, format_=None, limit=None):
         super().__init__(
-            variable=variable,
             city=city,
-            year=year,
             month=month,
+            variable=variable,
+            year=year,
             format_=format_,
             limit=limit,
         )

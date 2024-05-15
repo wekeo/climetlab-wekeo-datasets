@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,70 +15,6 @@ class cems_glofas_forecast(Main):
     name = "EO:ECMWF:DAT:CEMS_GLOFAS_FORECAST"
     dataset = "EO:ECMWF:DAT:CEMS_GLOFAS_FORECAST"
 
-    @normalize(
-        "system_version",
-        [
-            "operational",
-            "version_2_1",
-            "version_3_1",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hydrological_model",
-        [
-            "htessel_lisflood",
-            "lisflood",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "control_forecast",
-            "ensemble_perturbed_forecasts",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "river_discharge_in_the_last_24_hours",
-            "runoff_water_equivalent",
-            "snow_depth_water_equivalent",
-            "soil_wetness_index",
-        ],
-    )
-    @normalize(
-        "year",
-        [
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "day",
         [
@@ -114,6 +49,14 @@ class cems_glofas_forecast(Main):
             "29",
             "30",
             "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hydrological_model",
+        [
+            "htessel_lisflood",
+            "lisflood",
         ],
         multiple=True,
     )
@@ -154,37 +97,93 @@ class cems_glofas_forecast(Main):
         multiple=True,
     )
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product_type",
+        [
+            "control_forecast",
+            "ensemble_perturbed_forecasts",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "system_version",
+        [
+            "operational",
+            "version_2_1",
+            "version_3_1",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "river_discharge_in_the_last_24_hours",
+            "runoff_water_equivalent",
+            "snow_depth_water_equivalent",
+            "soil_wetness_index",
+        ],
+    )
+    @normalize(
+        "year",
+        [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "grib",
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
+        day,
         hydrological_model,
+        leadtime_hour,
+        month,
         product_type,
+        system_version,
         variable,
         year,
-        month,
-        day,
-        leadtime_hour,
-        format_=None,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
+            day=day,
             hydrological_model=hydrological_model,
+            leadtime_hour=leadtime_hour,
+            month=month,
             product_type=product_type,
+            system_version=system_version,
             variable=variable,
             year=year,
-            month=month,
-            day=day,
-            leadtime_hour=leadtime_hour,
-            format_=format_,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

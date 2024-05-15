@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -24,22 +23,12 @@ class sis_tourism_climate_suitability_indicators(Main):
         ],
     )
     @normalize(
-        "variable",
+        "experiment",
         [
-            "daily_index",
-            "number_of_fair_days",
-            "number_of_good_days",
-            "number_of_unfavourable_days",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "multi_model_10th_percentile",
-            "multi_model_90th_percentile",
-            "multi_model_mean",
-            "single_model",
+            "historical",
+            "rcp2_6",
+            "rcp4_5",
+            "rcp8_5",
         ],
     )
     @normalize(
@@ -53,27 +42,6 @@ class sis_tourism_climate_suitability_indicators(Main):
             "noresm1_m",
         ],
         multiple=True,
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "10_day",
-            "autumn",
-            "monthly",
-            "spring",
-            "summer",
-            "winter",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "experiment",
-        [
-            "historical",
-            "rcp2_6",
-            "rcp4_5",
-            "rcp8_5",
-        ],
     )
     @normalize(
         "period",
@@ -113,6 +81,37 @@ class sis_tourism_climate_suitability_indicators(Main):
         multiple=True,
     )
     @normalize(
+        "product_type",
+        [
+            "multi_model_10th_percentile",
+            "multi_model_90th_percentile",
+            "multi_model_mean",
+            "single_model",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "10_day",
+            "autumn",
+            "monthly",
+            "spring",
+            "summer",
+            "winter",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "daily_index",
+            "number_of_fair_days",
+            "number_of_good_days",
+            "number_of_unfavourable_days",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -122,23 +121,23 @@ class sis_tourism_climate_suitability_indicators(Main):
     def __init__(
         self,
         climate_index,
-        variable,
-        product_type,
-        gcm,
-        time_aggregation,
         experiment,
+        gcm,
         period,
+        product_type,
+        time_aggregation,
+        variable,
         format_=None,
         limit=None,
     ):
         super().__init__(
             climate_index=climate_index,
-            variable=variable,
-            product_type=product_type,
-            gcm=gcm,
-            time_aggregation=time_aggregation,
             experiment=experiment,
+            gcm=gcm,
             period=period,
+            product_type=product_type,
+            time_aggregation=time_aggregation,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

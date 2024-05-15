@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,109 +15,6 @@ class cams_europe_air_quality_forecasts(Main):
     name = "EO:ECMWF:DAT:CAMS_EUROPE_AIR_QUALITY_FORECASTS"
     dataset = "EO:ECMWF:DAT:CAMS_EUROPE_AIR_QUALITY_FORECASTS"
 
-    @normalize(
-        "variable",
-        [
-            "alder_pollen",
-            "ammonia",
-            "birch_pollen",
-            "carbon_monoxide",
-            "dust",
-            "formaldehyde",
-            "glyoxal",
-            "grass_pollen",
-            "mugwort_pollen",
-            "nitrogen_dioxide",
-            "nitrogen_monoxide",
-            "non_methane_vocs",
-            "olive_pollen",
-            "ozone",
-            "particulate_matter_10um",
-            "particulate_matter_2.5um",
-            "peroxyacyl_nitrates",
-            "pm10_sea_salt_dry",
-            "pm10_wildfires",
-            "pm2.5_total_organic_matter",
-            "ragweed_pollen",
-            "residential_elementary_carbon",
-            "secondary_inorganic_aerosol",
-            "sulphur_dioxide",
-            "total_elementary_carbon",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "model",
-        [
-            "chimere",
-            "dehm",
-            "emep",
-            "ensemble",
-            "euradim",
-            "gemaq",
-            "lotos",
-            "match",
-            "minni",
-            "mocage",
-            "monarch",
-            "silam",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "level",
-        [
-            "0",
-            "50",
-            "100",
-            "250",
-            "500",
-            "750",
-            "1000",
-            "2000",
-            "3000",
-            "5000",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "type",
-        [
-            "analysis",
-            "forecast",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00",
-        ],
-        multiple=True,
-    )
     @normalize(
         "leadtime_hour",
         [
@@ -222,8 +118,111 @@ class cams_europe_air_quality_forecasts(Main):
         ],
         multiple=True,
     )
-    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize(
+        "level",
+        [
+            "0",
+            "50",
+            "100",
+            "250",
+            "500",
+            "750",
+            "1000",
+            "2000",
+            "3000",
+            "5000",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "model",
+        [
+            "chimere",
+            "dehm",
+            "emep",
+            "ensemble",
+            "euradim",
+            "gemaq",
+            "lotos",
+            "match",
+            "minni",
+            "mocage",
+            "monarch",
+            "silam",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "type",
+        [
+            "analysis",
+            "forecast",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "alder_pollen",
+            "ammonia",
+            "birch_pollen",
+            "carbon_monoxide",
+            "dust",
+            "formaldehyde",
+            "glyoxal",
+            "grass_pollen",
+            "mugwort_pollen",
+            "nitrogen_dioxide",
+            "nitrogen_monoxide",
+            "non_methane_vocs",
+            "olive_pollen",
+            "ozone",
+            "particulate_matter_10um",
+            "particulate_matter_2.5um",
+            "peroxyacyl_nitrates",
+            "pm10_sea_salt_dry",
+            "pm10_wildfires",
+            "pm2.5_total_organic_matter",
+            "ragweed_pollen",
+            "residential_elementary_carbon",
+            "secondary_inorganic_aerosol",
+            "sulphur_dioxide",
+            "total_elementary_carbon",
+        ],
+        multiple=True,
+    )
     @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
@@ -234,27 +233,27 @@ class cams_europe_air_quality_forecasts(Main):
     )
     def __init__(
         self,
-        variable,
-        model,
-        level,
-        type,
-        time,
         leadtime_hour,
+        level,
+        model,
+        time,
+        type,
+        variable,
+        dtend="2024-05-15",
         dtstart="2020-08-25",
-        dtend="2024-04-12",
         bbox=None,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            model=model,
-            level=level,
-            type=type,
-            time=time,
             leadtime_hour=leadtime_hour,
-            dtstart=dtstart,
+            level=level,
+            model=model,
+            time=time,
+            type=type,
+            variable=variable,
             dtend=dtend,
+            dtstart=dtstart,
             bbox=bbox,
             format_=format_,
             limit=limit,

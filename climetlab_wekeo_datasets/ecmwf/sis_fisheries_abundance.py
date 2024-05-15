@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,22 +15,6 @@ class sis_fisheries_abundance(Main):
     name = "EO:ECMWF:DAT:SIS_FISHERIES_ABUNDANCE"
     dataset = "EO:ECMWF:DAT:SIS_FISHERIES_ABUNDANCE"
 
-    @normalize(
-        "origin",
-        [
-            "ss_dbem_nemo",
-            "ss_dbem_polcoms",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "species_abundance",
-            "species_catch",
-        ],
-        multiple=True,
-    )
     @normalize(
         "experiment",
         [
@@ -45,6 +28,14 @@ class sis_fisheries_abundance(Main):
             "0_6",
             "0_8",
             "1_1",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "origin",
+        [
+            "ss_dbem_nemo",
+            "ss_dbem_polcoms",
         ],
         multiple=True,
     )
@@ -83,6 +74,14 @@ class sis_fisheries_abundance(Main):
         multiple=True,
     )
     @normalize(
+        "variable",
+        [
+            "species_abundance",
+            "species_catch",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -91,20 +90,20 @@ class sis_fisheries_abundance(Main):
     )
     def __init__(
         self,
-        origin,
-        variable,
         experiment,
         maximum_sustainable_yield,
+        origin,
         species,
+        variable,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            origin=origin,
-            variable=variable,
             experiment=experiment,
             maximum_sustainable_yield=maximum_sustainable_yield,
+            origin=origin,
             species=species,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

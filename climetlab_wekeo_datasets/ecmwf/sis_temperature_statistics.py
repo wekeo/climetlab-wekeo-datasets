@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,12 +16,20 @@ class sis_temperature_statistics(Main):
     dataset = "EO:ECMWF:DAT:SIS_TEMPERATURE_STATISTICS"
 
     @normalize(
-        "variable",
+        "ensemble_statistic",
         [
-            "average_temperature",
-            "maximum_temperature",
-            "minimum_temperature",
+            "ensemble_members_average",
+            "ensemble_members_standard_deviation",
         ],
+        multiple=True,
+    )
+    @normalize(
+        "experiment",
+        [
+            "rcp4_5",
+            "rcp8_5",
+        ],
+        multiple=True,
     )
     @normalize(
         "period",
@@ -50,20 +57,12 @@ class sis_temperature_statistics(Main):
         multiple=True,
     )
     @normalize(
-        "experiment",
+        "variable",
         [
-            "rcp4_5",
-            "rcp8_5",
+            "average_temperature",
+            "maximum_temperature",
+            "minimum_temperature",
         ],
-        multiple=True,
-    )
-    @normalize(
-        "ensemble_statistic",
-        [
-            "ensemble_members_average",
-            "ensemble_members_standard_deviation",
-        ],
-        multiple=True,
     )
     @normalize(
         "format_",
@@ -74,20 +73,20 @@ class sis_temperature_statistics(Main):
     )
     def __init__(
         self,
-        variable,
+        ensemble_statistic,
+        experiment,
         period,
         statistic,
-        experiment,
-        ensemble_statistic,
+        variable,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
+            ensemble_statistic=ensemble_statistic,
+            experiment=experiment,
             period=period,
             statistic=statistic,
-            experiment=experiment,
-            ensemble_statistic=ensemble_statistic,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,12 +16,57 @@ class satellite_albedo(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_ALBEDO"
 
     @normalize(
-        "variable",
+        "horizontal_resolution",
         [
-            "albb_bh",
-            "albb_dh",
-            "alsp_bh",
-            "alsp_dh",
+            "1km",
+            "300m",
+            "4km",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "nominal_day",
+        [
+            "03",
+            "10",
+            "13",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product_version",
+        [
+            "v0",
+            "v1",
+            "v2",
+            "v3",
         ],
         multiple=True,
     )
@@ -50,21 +94,12 @@ class satellite_albedo(Main):
         ],
     )
     @normalize(
-        "product_version",
+        "variable",
         [
-            "v0",
-            "v1",
-            "v2",
-            "v3",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "horizontal_resolution",
-        [
-            "1km",
-            "300m",
-            "4km",
+            "albb_bh",
+            "albb_dh",
+            "alsp_bh",
+            "alsp_dh",
         ],
         multiple=True,
     )
@@ -114,42 +149,6 @@ class satellite_albedo(Main):
         ],
         multiple=True,
     )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "nominal_day",
-        [
-            "03",
-            "10",
-            "13",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
     @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
@@ -160,27 +159,27 @@ class satellite_albedo(Main):
     )
     def __init__(
         self,
-        variable,
-        satellite,
-        sensor,
-        product_version,
         horizontal_resolution,
-        year,
         month,
         nominal_day,
+        product_version,
+        satellite,
+        sensor,
+        variable,
+        year,
         bbox=None,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            satellite=satellite,
-            sensor=sensor,
-            product_version=product_version,
             horizontal_resolution=horizontal_resolution,
-            year=year,
             month=month,
             nominal_day=nominal_day,
+            product_version=product_version,
+            satellite=satellite,
+            sensor=sensor,
+            variable=variable,
+            year=year,
             bbox=bbox,
             format_=format_,
             limit=limit,

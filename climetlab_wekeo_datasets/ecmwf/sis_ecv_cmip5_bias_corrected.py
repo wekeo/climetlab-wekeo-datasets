@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,12 +16,10 @@ class sis_ecv_cmip5_bias_corrected(Main):
     dataset = "EO:ECMWF:DAT:SIS_ECV_CMIP5_BIAS_CORRECTED"
 
     @normalize(
-        "variable",
+        "experiment",
         [
-            "maximum_2m_temperature",
-            "mean_2m_temperature",
-            "minimum_2m_temperature",
-            "precipitation_flux",
+            "rcp_4_5",
+            "rcp_8_5",
         ],
     )
     @normalize(
@@ -46,13 +43,6 @@ class sis_ecv_cmip5_bias_corrected(Main):
             "mpi_esm_lr",
             "mpi_esm_mr",
             "noresm1_m",
-        ],
-    )
-    @normalize(
-        "experiment",
-        [
-            "rcp_4_5",
-            "rcp_8_5",
         ],
     )
     @normalize(
@@ -178,18 +168,27 @@ class sis_ecv_cmip5_bias_corrected(Main):
         multiple=True,
     )
     @normalize(
+        "variable",
+        [
+            "maximum_2m_temperature",
+            "mean_2m_temperature",
+            "minimum_2m_temperature",
+            "precipitation_flux",
+        ],
+    )
+    @normalize(
         "format_",
         [
             "tgz",
             "zip",
         ],
     )
-    def __init__(self, variable, model, experiment, period, format_=None, limit=None):
+    def __init__(self, experiment, model, period, variable, format_=None, limit=None):
         super().__init__(
-            variable=variable,
-            model=model,
             experiment=experiment,
+            model=model,
             period=period,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

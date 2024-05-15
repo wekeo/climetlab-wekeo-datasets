@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,20 @@ class cams_global_ghg_reanalysis_egg4(Main):
     name = "EO:ECMWF:DAT:CAMS_GLOBAL_GHG_REANALYSIS_EGG4"
     dataset = "EO:ECMWF:DAT:CAMS_GLOBAL_GHG_REANALYSIS_EGG4"
 
+    @normalize(
+        "step",
+        [
+            "0",
+            "3",
+            "6",
+            "9",
+            "12",
+            "15",
+            "18",
+            "21",
+        ],
+        multiple=True,
+    )
     @normalize(
         "variable",
         [
@@ -104,52 +117,15 @@ class cams_global_ghg_reanalysis_egg4(Main):
         ],
         multiple=True,
     )
-    @normalize(
-        "step",
-        [
-            "0",
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "18",
-            "21",
-        ],
-        multiple=True,
-    )
-    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
-        "pressure_level",
+        "format_",
         [
-            "1",
-            "2",
-            "3",
-            "5",
-            "7",
-            "10",
-            "20",
-            "30",
-            "50",
-            "70",
-            "100",
-            "150",
-            "200",
-            "250",
-            "300",
-            "400",
-            "500",
-            "600",
-            "700",
-            "800",
-            "850",
-            "900",
-            "925",
-            "950",
-            "1000",
+            "grib",
+            "netcdf",
         ],
-        multiple=True,
     )
     @normalize(
         "model_level",
@@ -217,34 +193,57 @@ class cams_global_ghg_reanalysis_egg4(Main):
         ],
         multiple=True,
     )
-    @normalize("bbox", "bounding-box(list)")
     @normalize(
-        "format_",
+        "pressure_level",
         [
-            "grib",
-            "netcdf",
+            "1",
+            "2",
+            "3",
+            "5",
+            "7",
+            "10",
+            "20",
+            "30",
+            "50",
+            "70",
+            "100",
+            "150",
+            "200",
+            "250",
+            "300",
+            "400",
+            "500",
+            "600",
+            "700",
+            "800",
+            "850",
+            "900",
+            "925",
+            "950",
+            "1000",
         ],
+        multiple=True,
     )
     def __init__(
         self,
-        variable,
         step,
-        dtstart="2003-01-01",
+        variable,
         dtend="2020-12-31",
-        pressure_level=None,
-        model_level=None,
+        dtstart="2003-01-01",
         bbox=None,
         format_=None,
+        model_level=None,
+        pressure_level=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
             step=step,
-            dtstart=dtstart,
+            variable=variable,
             dtend=dtend,
-            pressure_level=pressure_level,
-            model_level=model_level,
+            dtstart=dtstart,
             bbox=bbox,
             format_=format_,
+            model_level=model_level,
+            pressure_level=pressure_level,
             limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,28 @@ class insitu_gridded_observations_europe(Main):
     name = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_EUROPE"
     dataset = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_EUROPE"
 
+    @normalize(
+        "grid_resolution",
+        [
+            "0.1deg",
+            "0.25deg",
+        ],
+    )
+    @normalize(
+        "period",
+        [
+            "1950_1964",
+            "1965_1979",
+            "1980_1994",
+            "1995_2010",
+            "2011_2019",
+            "2011_2020",
+            "2011_2021",
+            "2011_2022",
+            "2011_2023",
+            "full_period",
+        ],
+    )
     @normalize(
         "product_type",
         [
@@ -38,28 +59,6 @@ class insitu_gridded_observations_europe(Main):
             "wind_speed",
         ],
         multiple=True,
-    )
-    @normalize(
-        "grid_resolution",
-        [
-            "0.1deg",
-            "0.25deg",
-        ],
-    )
-    @normalize(
-        "period",
-        [
-            "1950_1964",
-            "1965_1979",
-            "1980_1994",
-            "1995_2010",
-            "2011_2019",
-            "2011_2020",
-            "2011_2021",
-            "2011_2022",
-            "2011_2023",
-            "full_period",
-        ],
     )
     @normalize(
         "version",
@@ -86,19 +85,19 @@ class insitu_gridded_observations_europe(Main):
     )
     def __init__(
         self,
-        product_type,
-        variable,
         grid_resolution,
         period,
+        product_type,
+        variable,
         version,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            product_type=product_type,
-            variable=variable,
             grid_resolution=grid_resolution,
             period=period,
+            product_type=product_type,
+            variable=variable,
             version=version,
             format_=format_,
             limit=limit,

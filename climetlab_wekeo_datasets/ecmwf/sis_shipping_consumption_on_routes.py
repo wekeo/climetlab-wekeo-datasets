@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,39 +16,22 @@ class sis_shipping_consumption_on_routes(Main):
     dataset = "EO:ECMWF:DAT:SIS_SHIPPING_CONSUMPTION_ON_ROUTES"
 
     @normalize(
-        "product_type",
+        "arrival_port",
         [
-            "climatology",
-            "historical",
-            "seasonal_forecast",
+            "bimini_island",
+            "bishop_rock",
+            "bombay",
+            "cape_of_good_hope",
+            "cook_strait",
+            "gibraltar",
+            "luzon",
+            "new_york",
+            "panama",
+            "san_francisco",
+            "sydney",
+            "valparaiso",
+            "yokohama",
         ],
-    )
-    @normalize(
-        "variable",
-        [
-            "fuel_consumption_at_fixed_shaft_power",
-            "fuel_consumption_at_fixed_speed",
-            "shaft_power_at_fixed_speed",
-            "ship_speed_at_fixed_shaft_power",
-            "trip_duration_at_fixed_shaft_power",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "statistic",
-        [
-            "daily",
-            "monthly_10th_percentile",
-            "monthly_25th_percentile",
-            "monthly_5th_percentile",
-            "monthly_75th_percentile",
-            "monthly_90th_percentile",
-            "monthly_95th_percentile",
-            "monthly_average",
-            "seasonal_forecast_ensemble_average",
-            "seasonal_forecast_monthly_average",
-        ],
-        multiple=True,
     )
     @normalize(
         "departure_port",
@@ -70,22 +52,48 @@ class sis_shipping_consumption_on_routes(Main):
         ],
     )
     @normalize(
-        "arrival_port",
+        "forecast_start_month",
         [
-            "bimini_island",
-            "bishop_rock",
-            "bombay",
-            "cape_of_good_hope",
-            "cook_strait",
-            "gibraltar",
-            "luzon",
-            "new_york",
-            "panama",
-            "san_francisco",
-            "sydney",
-            "valparaiso",
-            "yokohama",
+            "february",
+            "january",
+            "march",
         ],
+        multiple=True,
+    )
+    @normalize(
+        "product_type",
+        [
+            "climatology",
+            "historical",
+            "seasonal_forecast",
+        ],
+    )
+    @normalize(
+        "statistic",
+        [
+            "daily",
+            "monthly_10th_percentile",
+            "monthly_25th_percentile",
+            "monthly_5th_percentile",
+            "monthly_75th_percentile",
+            "monthly_90th_percentile",
+            "monthly_95th_percentile",
+            "monthly_average",
+            "seasonal_forecast_ensemble_average",
+            "seasonal_forecast_monthly_average",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "fuel_consumption_at_fixed_shaft_power",
+            "fuel_consumption_at_fixed_speed",
+            "shaft_power_at_fixed_speed",
+            "ship_speed_at_fixed_shaft_power",
+            "trip_duration_at_fixed_shaft_power",
+        ],
+        multiple=True,
     )
     @normalize(
         "year",
@@ -120,15 +128,6 @@ class sis_shipping_consumption_on_routes(Main):
         multiple=True,
     )
     @normalize(
-        "forecast_start_month",
-        [
-            "february",
-            "january",
-            "march",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -137,24 +136,24 @@ class sis_shipping_consumption_on_routes(Main):
     )
     def __init__(
         self,
-        product_type,
-        variable,
-        statistic,
-        departure_port,
         arrival_port,
-        year,
+        departure_port,
         forecast_start_month,
+        product_type,
+        statistic,
+        variable,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            product_type=product_type,
-            variable=variable,
-            statistic=statistic,
-            departure_port=departure_port,
             arrival_port=arrival_port,
-            year=year,
+            departure_port=departure_port,
             forecast_start_month=forecast_start_month,
+            product_type=product_type,
+            statistic=statistic,
+            variable=variable,
+            year=year,
             format_=format_,
             limit=limit,
         )

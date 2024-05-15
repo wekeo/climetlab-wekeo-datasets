@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,45 +16,57 @@ class efas_historical(Main):
     dataset = "EO:ECMWF:DAT:EFAS_HISTORICAL"
 
     @normalize(
-        "system_version",
+        "hday",
         [
-            "version_2_0",
-            "version_3_0",
-            "version_3_5",
-            "version_4_0",
-            "version_5_0",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
         ],
         multiple=True,
     )
     @normalize(
-        "variable",
+        "hmonth",
         [
-            "elevation",
-            "field_capacity",
-            "river_discharge_in_the_last_24_hours",
-            "river_discharge_in_the_last_6_hours",
-            "runoff_water_equivalent",
-            "snow_depth_water_equivalent",
-            "soil_depth",
-            "soil_wetness_index",
-            "upstream_area",
-            "volumetric_soil_moisture",
-            "wilting_point",
-        ],
-    )
-    @normalize(
-        "model_levels",
-        [
-            "soil_levels",
-            "surface_level",
-        ],
-    )
-    @normalize(
-        "soil_level",
-        [
-            "1",
-            "2",
-            "3",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
         multiple=True,
     )
@@ -100,57 +111,29 @@ class efas_historical(Main):
         multiple=True,
     )
     @normalize(
-        "hmonth",
+        "model_levels",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
+            "soil_levels",
+            "surface_level",
+        ],
+    )
+    @normalize(
+        "soil_level",
+        [
+            "1",
+            "2",
+            "3",
         ],
         multiple=True,
     )
     @normalize(
-        "hday",
+        "system_version",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
+            "version_2_0",
+            "version_3_0",
+            "version_3_5",
+            "version_4_0",
+            "version_5_0",
         ],
         multiple=True,
     )
@@ -165,37 +148,53 @@ class efas_historical(Main):
         multiple=True,
     )
     @normalize(
+        "variable",
+        [
+            "elevation",
+            "field_capacity",
+            "river_discharge_in_the_last_24_hours",
+            "river_discharge_in_the_last_6_hours",
+            "runoff_water_equivalent",
+            "snow_depth_water_equivalent",
+            "soil_depth",
+            "soil_wetness_index",
+            "upstream_area",
+            "volumetric_soil_moisture",
+            "wilting_point",
+        ],
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "grib.zip",
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
-        variable,
+        hday,
+        hmonth,
+        hyear,
         model_levels,
         soil_level,
-        hyear,
-        hmonth,
-        hday,
+        system_version,
         time,
-        format_=None,
+        variable,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
-            variable=variable,
+            hday=hday,
+            hmonth=hmonth,
+            hyear=hyear,
             model_levels=model_levels,
             soil_level=soil_level,
-            hyear=hyear,
-            hmonth=hmonth,
-            hday=hday,
+            system_version=system_version,
             time=time,
-            format_=format_,
+            variable=variable,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

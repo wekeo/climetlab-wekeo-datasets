@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,120 @@ class reanalysis_cerra_land(Main):
     name = "EO:ECMWF:DAT:REANALYSIS_CERRA_LAND"
     dataset = "EO:ECMWF:DAT:REANALYSIS_CERRA_LAND"
 
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "leadtime_hour",
+        [
+            "1",
+            "2",
+            "3",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "level_type",
+        [
+            "soil",
+            "surface",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "product_type",
+        [
+            "analysis",
+            "forecast",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "soil_layer",
+        [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+        ],
+        multiple=True,
+    )
     @normalize(
         "variable",
         [
@@ -55,42 +168,6 @@ class reanalysis_cerra_land(Main):
             "volumetric_soil_moisture",
             "volumetric_transpiration_stress_onset",
             "volumetric_wilting_point",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "level_type",
-        [
-            "soil",
-            "surface",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "soil_layer",
-        [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "analysis",
-            "forecast",
         ],
         multiple=True,
     )
@@ -139,84 +216,6 @@ class reanalysis_cerra_land(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "03:00",
-            "06:00",
-            "09:00",
-            "12:00",
-            "15:00",
-            "18:00",
-            "21:00",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "leadtime_hour",
-        [
-            "1",
-            "2",
-            "3",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "grib",
@@ -225,28 +224,28 @@ class reanalysis_cerra_land(Main):
     )
     def __init__(
         self,
-        variable,
-        level_type,
-        soil_layer,
-        product_type,
-        year,
-        month,
         day,
-        time,
         leadtime_hour,
+        level_type,
+        month,
+        product_type,
+        soil_layer,
+        time,
+        variable,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
-            level_type=level_type,
-            soil_layer=soil_layer,
-            product_type=product_type,
-            year=year,
-            month=month,
             day=day,
-            time=time,
             leadtime_hour=leadtime_hour,
+            level_type=level_type,
+            month=month,
+            product_type=product_type,
+            soil_layer=soil_layer,
+            time=time,
+            variable=variable,
+            year=year,
             format_=format_,
             limit=limit,
         )

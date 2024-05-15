@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,12 +16,66 @@ class satellite_cloud_properties(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_CLOUD_PROPERTIES"
 
     @normalize(
-        "product_family",
+        "climate_data_record_type",
         [
-            "cci",
-            "clara_a2",
-            "clara_a3",
+            "interim_climate_data_record",
+            "thematic_climate_data_record",
         ],
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
     )
     @normalize(
         "origin",
@@ -33,15 +86,12 @@ class satellite_cloud_properties(Main):
         ],
     )
     @normalize(
-        "variable",
+        "product_family",
         [
-            "all_variables",
-            "cloud_fraction",
-            "cloud_physical_properties_of_the_ice_phase",
-            "cloud_physical_properties_of_the_liquid_phase",
-            "cloud_top_level",
+            "cci",
+            "clara_a2",
+            "clara_a3",
         ],
-        multiple=True,
     )
     @normalize(
         "sensor_on_satellite",
@@ -55,18 +105,22 @@ class satellite_cloud_properties(Main):
         multiple=True,
     )
     @normalize(
-        "climate_data_record_type",
-        [
-            "interim_climate_data_record",
-            "thematic_climate_data_record",
-        ],
-    )
-    @normalize(
         "time_aggregation",
         [
             "daily_mean",
             "monthly_mean",
         ],
+    )
+    @normalize(
+        "variable",
+        [
+            "all_variables",
+            "cloud_fraction",
+            "cloud_physical_properties_of_the_ice_phase",
+            "cloud_physical_properties_of_the_liquid_phase",
+            "cloud_top_level",
+        ],
+        multiple=True,
     )
     @normalize(
         "year",
@@ -119,61 +173,7 @@ class satellite_cloud_properties(Main):
         ],
         multiple=True,
     )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -181,33 +181,32 @@ class satellite_cloud_properties(Main):
             "zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        product_family,
-        origin,
-        variable,
-        sensor_on_satellite,
         climate_data_record_type,
-        time_aggregation,
-        year,
-        month,
         day,
-        format_=None,
+        month,
+        origin,
+        product_family,
+        sensor_on_satellite,
+        time_aggregation,
+        variable,
+        year,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            product_family=product_family,
-            origin=origin,
-            variable=variable,
-            sensor_on_satellite=sensor_on_satellite,
             climate_data_record_type=climate_data_record_type,
-            time_aggregation=time_aggregation,
-            year=year,
-            month=month,
             day=day,
-            format_=format_,
+            month=month,
+            origin=origin,
+            product_family=product_family,
+            sensor_on_satellite=sensor_on_satellite,
+            time_aggregation=time_aggregation,
+            variable=variable,
+            year=year,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

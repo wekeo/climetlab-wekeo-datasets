@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,20 +16,20 @@ class sis_heat_and_cold_spells(Main):
     dataset = "EO:ECMWF:DAT:SIS_HEAT_AND_COLD_SPELLS"
 
     @normalize(
-        "variable",
-        [
-            "cold_spell_days",
-            "heat_wave_days",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "definition",
         [
             "climatological_related",
             "country_related",
             "health_related",
         ],
+    )
+    @normalize(
+        "ensemble_statistic",
+        [
+            "ensemble_members_average",
+            "ensemble_members_standard_deviation",
+        ],
+        multiple=True,
     )
     @normalize(
         "experiment",
@@ -41,10 +40,10 @@ class sis_heat_and_cold_spells(Main):
         multiple=True,
     )
     @normalize(
-        "ensemble_statistic",
+        "variable",
         [
-            "ensemble_members_average",
-            "ensemble_members_standard_deviation",
+            "cold_spell_days",
+            "heat_wave_days",
         ],
         multiple=True,
     )
@@ -57,18 +56,18 @@ class sis_heat_and_cold_spells(Main):
     )
     def __init__(
         self,
-        variable,
         definition,
-        experiment,
         ensemble_statistic,
+        experiment,
+        variable,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
             definition=definition,
-            experiment=experiment,
             ensemble_statistic=ensemble_statistic,
+            experiment=experiment,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

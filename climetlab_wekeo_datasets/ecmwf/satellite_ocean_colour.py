@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,72 +15,6 @@ class satellite_ocean_colour(Main):
     name = "EO:ECMWF:DAT:SATELLITE_OCEAN_COLOUR"
     dataset = "EO:ECMWF:DAT:SATELLITE_OCEAN_COLOUR"
 
-    @normalize(
-        "variable",
-        [
-            "mass_concentration_of_chlorophyll_a",
-            "remote_sensing_reflectance",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "projection",
-        [
-            "regular_latitude_longitude_grid",
-            "sinusoidal_grid",
-        ],
-    )
-    @normalize(
-        "year",
-        [
-            "1997",
-            "1998",
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "day",
         [
@@ -120,6 +53,39 @@ class satellite_ocean_colour(Main):
         multiple=True,
     )
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "projection",
+        [
+            "regular_latitude_longitude_grid",
+            "sinusoidal_grid",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "mass_concentration_of_chlorophyll_a",
+            "remote_sensing_reflectance",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "version",
         [
             "4_2",
@@ -129,6 +95,40 @@ class satellite_ocean_colour(Main):
         ],
     )
     @normalize(
+        "year",
+        [
+            "1997",
+            "1998",
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -136,15 +136,15 @@ class satellite_ocean_colour(Main):
         ],
     )
     def __init__(
-        self, variable, projection, year, month, day, version, format_=None, limit=None
+        self, day, month, projection, variable, version, year, format_=None, limit=None
     ):
         super().__init__(
-            variable=variable,
-            projection=projection,
-            year=year,
-            month=month,
             day=day,
+            month=month,
+            projection=projection,
+            variable=variable,
             version=version,
+            year=year,
             format_=format_,
             limit=limit,
         )

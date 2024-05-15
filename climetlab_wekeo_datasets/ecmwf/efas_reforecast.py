@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,99 +15,6 @@ class efas_reforecast(Main):
     name = "EO:ECMWF:DAT:EFAS_REFORECAST"
     dataset = "EO:ECMWF:DAT:EFAS_REFORECAST"
 
-    @normalize(
-        "system_version",
-        [
-            "version_4_0",
-            "version_5_0",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "control_forecast",
-            "ensemble_perturbed_forecasts",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "elevation",
-            "field_capacity",
-            "river_discharge_in_the_last_6_hours",
-            "snow_depth_water_equivalent",
-            "soil_depth",
-            "upstream_area",
-            "volumetric_soil_moisture",
-            "wilting_point",
-        ],
-    )
-    @normalize(
-        "model_levels",
-        [
-            "soil_levels",
-            "surface_level",
-        ],
-    )
-    @normalize(
-        "soil_level",
-        [
-            "1",
-            "2",
-            "3",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hyear",
-        [
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hmonth",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "hday",
         [
@@ -143,6 +49,54 @@ class efas_reforecast(Main):
             "29",
             "30",
             "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hmonth",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hyear",
+        [
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
         ],
         multiple=True,
     )
@@ -338,39 +292,84 @@ class efas_reforecast(Main):
         multiple=True,
     )
     @normalize(
+        "model_levels",
+        [
+            "soil_levels",
+            "surface_level",
+        ],
+    )
+    @normalize(
+        "product_type",
+        [
+            "control_forecast",
+            "ensemble_perturbed_forecasts",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "soil_level",
+        [
+            "1",
+            "2",
+            "3",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "system_version",
+        [
+            "version_4_0",
+            "version_5_0",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "elevation",
+            "field_capacity",
+            "river_discharge_in_the_last_6_hours",
+            "snow_depth_water_equivalent",
+            "soil_depth",
+            "upstream_area",
+            "volumetric_soil_moisture",
+            "wilting_point",
+        ],
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "grib.zip",
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
-        product_type,
-        variable,
-        model_levels,
-        soil_level,
-        hyear,
-        hmonth,
         hday,
+        hmonth,
+        hyear,
         leadtime_hour,
-        format_=None,
+        model_levels,
+        product_type,
+        soil_level,
+        system_version,
+        variable,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
-            product_type=product_type,
-            variable=variable,
-            model_levels=model_levels,
-            soil_level=soil_level,
-            hyear=hyear,
-            hmonth=hmonth,
             hday=hday,
+            hmonth=hmonth,
+            hyear=hyear,
             leadtime_hour=leadtime_hour,
-            format_=format_,
+            model_levels=model_levels,
+            product_type=product_type,
+            soil_level=soil_level,
+            system_version=system_version,
+            variable=variable,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

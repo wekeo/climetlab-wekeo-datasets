@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,11 +16,57 @@ class cems_glofas_historical(Main):
     dataset = "EO:ECMWF:DAT:CEMS_GLOFAS_HISTORICAL"
 
     @normalize(
-        "system_version",
+        "hday",
         [
-            "version_2_1",
-            "version_3_1",
-            "version_4_0",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hmonth",
+        [
+            "april",
+            "august",
+            "december",
+            "february",
+            "january",
+            "july",
+            "june",
+            "march",
+            "may",
+            "november",
+            "october",
+            "september",
         ],
         multiple=True,
     )
@@ -30,24 +75,6 @@ class cems_glofas_historical(Main):
         [
             "htessel_lisflood",
             "lisflood",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "product_type",
-        [
-            "consolidated",
-            "intermediate",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "river_discharge_in_the_last_24_hours",
-            "runoff_water_equivalent",
-            "snow_depth_water_equivalent",
-            "soil_wetness_index",
         ],
         multiple=True,
     )
@@ -104,60 +131,33 @@ class cems_glofas_historical(Main):
         multiple=True,
     )
     @normalize(
-        "hmonth",
+        "product_type",
         [
-            "april",
-            "august",
-            "december",
-            "february",
-            "january",
-            "july",
-            "june",
-            "march",
-            "may",
-            "november",
-            "october",
-            "september",
+            "consolidated",
+            "intermediate",
         ],
         multiple=True,
     )
     @normalize(
-        "hday",
+        "system_version",
         [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
+            "version_2_1",
+            "version_3_1",
+            "version_4_0",
         ],
         multiple=True,
     )
+    @normalize(
+        "variable",
+        [
+            "river_discharge_in_the_last_24_hours",
+            "runoff_water_equivalent",
+            "snow_depth_water_equivalent",
+            "soil_wetness_index",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -165,29 +165,28 @@ class cems_glofas_historical(Main):
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
-        hydrological_model,
-        product_type,
-        variable,
-        hyear,
-        hmonth,
         hday,
-        format_=None,
+        hmonth,
+        hydrological_model,
+        hyear,
+        product_type,
+        system_version,
+        variable,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
-            hydrological_model=hydrological_model,
-            product_type=product_type,
-            variable=variable,
-            hyear=hyear,
-            hmonth=hmonth,
             hday=hday,
-            format_=format_,
+            hmonth=hmonth,
+            hydrological_model=hydrological_model,
+            hyear=hyear,
+            product_type=product_type,
+            system_version=system_version,
+            variable=variable,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

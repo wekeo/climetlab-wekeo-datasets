@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,29 +16,35 @@ class satellite_ozone_v1(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_OZONE_V1"
 
     @normalize(
+        "algorithm",
+        [
+            "ubr",
+            "usask",
+        ],
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "processing_level",
         [
             "level_3",
             "level_4",
-        ],
-    )
-    @normalize(
-        "variable",
-        [
-            "anomaly_of_mole_concentration_of_ozone_in_air",
-            "atmosphere_mole_content_of_ozone",
-            "mole_concentration_of_ozone_in_air",
-            "mole_content_of_ozone_in_atmosphere_layer",
-            "mole_fraction_of_ozone_in_air",
-        ],
-    )
-    @normalize(
-        "vertical_aggregation",
-        [
-            "total_column",
-            "tropospheric_column_0_6_km",
-            "vertical_profiles_from_limb_sensors",
-            "vertical_profiles_from_nadir_sensors",
         ],
     )
     @normalize(
@@ -80,10 +85,56 @@ class satellite_ozone_v1(Main):
         multiple=True,
     )
     @normalize(
-        "algorithm",
+        "variable",
         [
-            "ubr",
-            "usask",
+            "anomaly_of_mole_concentration_of_ozone_in_air",
+            "atmosphere_mole_content_of_ozone",
+            "mole_concentration_of_ozone_in_air",
+            "mole_content_of_ozone_in_atmosphere_layer",
+            "mole_fraction_of_ozone_in_air",
+        ],
+    )
+    @normalize(
+        "version",
+        [
+            "v0001",
+            "v0002",
+            "v0003",
+            "v0004",
+            "v0005",
+            "v0006",
+            "v0007",
+            "v0008",
+            "v0009",
+            "v0020",
+            "v0021",
+            "v0022",
+            "v0023",
+            "v0024",
+            "v0025",
+            "v0100",
+            "v0101",
+            "v0200",
+            "v0300",
+            "v0400",
+            "v0500",
+            "v0600",
+            "v0700",
+            "v0800",
+            "v0900",
+            "v1000",
+            "v1100",
+            "v2000",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "vertical_aggregation",
+        [
+            "total_column",
+            "tropospheric_column_0_6_km",
+            "vertical_profiles_from_limb_sensors",
+            "vertical_profiles_from_nadir_sensors",
         ],
     )
     @normalize(
@@ -147,58 +198,6 @@ class satellite_ozone_v1(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "v0001",
-            "v0002",
-            "v0003",
-            "v0004",
-            "v0005",
-            "v0006",
-            "v0007",
-            "v0008",
-            "v0009",
-            "v0020",
-            "v0021",
-            "v0022",
-            "v0023",
-            "v0024",
-            "v0025",
-            "v0100",
-            "v0101",
-            "v0200",
-            "v0300",
-            "v0400",
-            "v0500",
-            "v0600",
-            "v0700",
-            "v0800",
-            "v0900",
-            "v1000",
-            "v1100",
-            "v2000",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -207,26 +206,26 @@ class satellite_ozone_v1(Main):
     )
     def __init__(
         self,
-        processing_level,
-        variable,
-        vertical_aggregation,
-        sensor,
         algorithm,
-        year,
         month,
+        processing_level,
+        sensor,
+        variable,
         version,
+        vertical_aggregation,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            processing_level=processing_level,
-            variable=variable,
-            vertical_aggregation=vertical_aggregation,
-            sensor=sensor,
             algorithm=algorithm,
-            year=year,
             month=month,
+            processing_level=processing_level,
+            sensor=sensor,
+            variable=variable,
             version=version,
+            vertical_aggregation=vertical_aggregation,
+            year=year,
             format_=format_,
             limit=limit,
         )

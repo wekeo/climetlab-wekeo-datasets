@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,69 @@ class insitu_observations_woudc_ozone_total_column_and_profiles(Main):
     name = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_WOUDC_OZONE_TOTAL_COLUMN_AND_PROFILES"
     dataset = "EO:ECMWF:DAT:INSITU_OBSERVATIONS_WOUDC_OZONE_TOTAL_COLUMN_AND_PROFILES"
 
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "format_",
+        [
+            "csv-lev.zip",
+            "csv-obs.zip",
+        ],
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
     @normalize(
         "observation_type",
         [
@@ -142,87 +204,24 @@ class insitu_observations_woudc_ozone_total_column_and_profiles(Main):
             "2022",
         ],
     )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize("bbox", "bounding-box(list)")
-    @normalize(
-        "format_",
-        [
-            "csv-lev.zip",
-            "csv-obs.zip",
-        ],
-    )
     def __init__(
         self,
+        bbox=None,
+        day=None,
+        format_=None,
+        month=None,
         observation_type=None,
         variable=None,
         year=None,
-        month=None,
-        day=None,
-        bbox=None,
-        format_=None,
         limit=None,
     ):
         super().__init__(
+            bbox=bbox,
+            day=day,
+            format_=format_,
+            month=month,
             observation_type=observation_type,
             variable=variable,
             year=year,
-            month=month,
-            day=day,
-            bbox=bbox,
-            format_=format_,
             limit=limit,
         )

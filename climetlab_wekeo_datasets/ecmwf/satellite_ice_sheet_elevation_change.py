@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,18 +16,18 @@ class satellite_ice_sheet_elevation_change(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_ICE_SHEET_ELEVATION_CHANGE"
 
     @normalize(
-        "domain",
-        [
-            "antarctica",
-            "greenland",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "climate_data_record_type",
         [
             "icdr",
             "tcdr",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "domain",
+        [
+            "antarctica",
+            "greenland",
         ],
         multiple=True,
     )
@@ -55,16 +54,16 @@ class satellite_ice_sheet_elevation_change(Main):
     )
     def __init__(
         self,
-        domain,
         climate_data_record_type,
+        domain,
         version,
         variable="all",
         format_=None,
         limit=None,
     ):
         super().__init__(
-            domain=domain,
             climate_data_record_type=climate_data_record_type,
+            domain=domain,
             version=version,
             variable=variable,
             format_=format_,

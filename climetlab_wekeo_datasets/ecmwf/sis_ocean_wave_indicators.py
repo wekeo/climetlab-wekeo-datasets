@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,14 +15,6 @@ class sis_ocean_wave_indicators(Main):
     name = "EO:ECMWF:DAT:SIS_OCEAN_WAVE_INDICATORS"
     dataset = "EO:ECMWF:DAT:SIS_OCEAN_WAVE_INDICATORS"
 
-    @normalize(
-        "variable",
-        [
-            "peak_wave_period",
-            "significant_wave_height",
-        ],
-        multiple=True,
-    )
     @normalize(
         "experiment",
         [
@@ -55,6 +46,14 @@ class sis_ocean_wave_indicators(Main):
         multiple=True,
     )
     @normalize(
+        "variable",
+        [
+            "peak_wave_period",
+            "significant_wave_height",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -62,13 +61,13 @@ class sis_ocean_wave_indicators(Main):
         ],
     )
     def __init__(
-        self, variable, experiment, period, statistic, format_=None, limit=None
+        self, experiment, period, statistic, variable, format_=None, limit=None
     ):
         super().__init__(
-            variable=variable,
             experiment=experiment,
             period=period,
             statistic=statistic,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

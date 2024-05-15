@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,23 +15,6 @@ class satellite_lake_water_level(Main):
     name = "EO:ECMWF:DAT:SATELLITE_LAKE_WATER_LEVEL"
     dataset = "EO:ECMWF:DAT:SATELLITE_LAKE_WATER_LEVEL"
 
-    @normalize(
-        "region",
-        [
-            "northern_africa",
-            "northern_asia",
-            "northern_europe",
-            "northern_north_america",
-            "oceania",
-            "southeastern_asia",
-            "southern_africa",
-            "southern_america",
-            "southern_europe",
-            "southern_north_america",
-            "southwestern_asia",
-        ],
-        multiple=True,
-    )
     @normalize(
         "lake",
         [
@@ -269,6 +251,23 @@ class satellite_lake_water_level(Main):
         multiple=True,
     )
     @normalize(
+        "region",
+        [
+            "northern_africa",
+            "northern_asia",
+            "northern_europe",
+            "northern_north_america",
+            "oceania",
+            "southeastern_asia",
+            "southern_africa",
+            "southern_america",
+            "southern_europe",
+            "southern_north_america",
+            "southwestern_asia",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "version",
         [
             "version_2_1",
@@ -289,10 +288,10 @@ class satellite_lake_water_level(Main):
             "zip",
         ],
     )
-    def __init__(self, region, lake, version, variable="all", format_=None, limit=None):
+    def __init__(self, lake, region, version, variable="all", format_=None, limit=None):
         super().__init__(
-            region=region,
             lake=lake,
+            region=region,
             version=version,
             variable=variable,
             format_=format_,

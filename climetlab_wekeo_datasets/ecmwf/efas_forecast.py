@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,112 +15,6 @@ class efas_forecast(Main):
     name = "EO:ECMWF:DAT:EFAS_FORECAST"
     dataset = "EO:ECMWF:DAT:EFAS_FORECAST"
 
-    @normalize(
-        "system_version",
-        [
-            "operational",
-            "version_4_0",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "originating_centre",
-        [
-            "cosmo",
-            "ecmwf",
-            "edzw",
-        ],
-    )
-    @normalize(
-        "product_type",
-        [
-            "control_forecast",
-            "ensemble_perturbed_forecasts",
-            "high_resolution_forecast",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "elevation_v2_0",
-            "elevation_v3_0",
-            "elevation_v3_5",
-            "elevation_v4_0",
-            "elevation_v5_0",
-            "field_capacity_v2_0",
-            "field_capacity_v3_0",
-            "field_capacity_v3_5",
-            "field_capacity_v4_0",
-            "field_capacity_v5_0",
-            "river_discharge_in_the_last_24_hours",
-            "river_discharge_in_the_last_6_hours",
-            "snow_depth_water_equivalent",
-            "soil_depth_v2_0",
-            "soil_depth_v3_0",
-            "soil_depth_v3_5",
-            "soil_depth_v4_0",
-            "soil_depth_v5_0",
-            "upstream_area_v2_0",
-            "upstream_area_v3_0",
-            "upstream_area_v3_5",
-            "upstream_area_v4_0",
-            "upstream_area_v5_0",
-            "volumetric_soil_moisture",
-            "wilting_point_v2_0",
-            "wilting_point_v3_0",
-            "wilting_point_v3_5",
-            "wilting_point_v4_0",
-            "wilting_point_v5_0",
-        ],
-    )
-    @normalize(
-        "model_levels",
-        [
-            "soil_levels",
-            "surface_level",
-        ],
-    )
-    @normalize(
-        "soil_level",
-        [
-            "1",
-            "2",
-            "3",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "year",
-        [
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "day",
         [
@@ -156,14 +49,6 @@ class efas_forecast(Main):
             "29",
             "30",
             "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "12:00",
         ],
         multiple=True,
     )
@@ -235,43 +120,159 @@ class efas_forecast(Main):
         multiple=True,
     )
     @normalize(
+        "model_levels",
+        [
+            "soil_levels",
+            "surface_level",
+        ],
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "originating_centre",
+        [
+            "cosmo",
+            "ecmwf",
+            "edzw",
+        ],
+    )
+    @normalize(
+        "product_type",
+        [
+            "control_forecast",
+            "ensemble_perturbed_forecasts",
+            "high_resolution_forecast",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "soil_level",
+        [
+            "1",
+            "2",
+            "3",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "system_version",
+        [
+            "operational",
+            "version_4_0",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "12:00",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "elevation_v2_0",
+            "elevation_v3_0",
+            "elevation_v3_5",
+            "elevation_v4_0",
+            "elevation_v5_0",
+            "field_capacity_v2_0",
+            "field_capacity_v3_0",
+            "field_capacity_v3_5",
+            "field_capacity_v4_0",
+            "field_capacity_v5_0",
+            "river_discharge_in_the_last_24_hours",
+            "river_discharge_in_the_last_6_hours",
+            "runoff_water_equivalent",
+            "snow_depth_water_equivalent",
+            "soil_depth_v2_0",
+            "soil_depth_v3_0",
+            "soil_depth_v3_5",
+            "soil_depth_v4_0",
+            "soil_depth_v5_0",
+            "soil_wetness_index",
+            "upstream_area_v2_0",
+            "upstream_area_v3_0",
+            "upstream_area_v3_5",
+            "upstream_area_v4_0",
+            "upstream_area_v5_0",
+            "volumetric_soil_moisture",
+            "wilting_point_v2_0",
+            "wilting_point_v3_0",
+            "wilting_point_v3_5",
+            "wilting_point_v4_0",
+            "wilting_point_v5_0",
+        ],
+    )
+    @normalize(
+        "year",
+        [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+        ],
+        multiple=True,
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "grib.zip",
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
+        day,
+        leadtime_hour,
+        model_levels,
+        month,
         originating_centre,
         product_type,
-        variable,
-        model_levels,
         soil_level,
-        year,
-        month,
-        day,
+        system_version,
         time,
-        leadtime_hour,
-        format_=None,
+        variable,
+        year,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
+            day=day,
+            leadtime_hour=leadtime_hour,
+            model_levels=model_levels,
+            month=month,
             originating_centre=originating_centre,
             product_type=product_type,
-            variable=variable,
-            model_levels=model_levels,
             soil_level=soil_level,
-            year=year,
-            month=month,
-            day=day,
+            system_version=system_version,
             time=time,
-            leadtime_hour=leadtime_hour,
-            format_=format_,
+            variable=variable,
+            year=year,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

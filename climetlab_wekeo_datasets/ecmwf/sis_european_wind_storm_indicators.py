@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,6 +16,54 @@ class sis_european_wind_storm_indicators(Main):
     dataset = "EO:ECMWF:DAT:SIS_EUROPEAN_WIND_STORM_INDICATORS"
 
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "product",
         [
             "loss_indicators",
@@ -24,14 +71,6 @@ class sis_european_wind_storm_indicators(Main):
             "summary_indicators",
             "windstorm_footprints",
             "windstorm_tracks",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "annual",
-            "decadal",
         ],
         multiple=True,
     )
@@ -67,6 +106,14 @@ class sis_european_wind_storm_indicators(Main):
             "switzerland",
             "transport",
             "united_kingdom",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "annual",
+            "decadal",
         ],
         multiple=True,
     )
@@ -115,54 +162,6 @@ class sis_european_wind_storm_indicators(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "variable",
         [
             "all",
@@ -177,23 +176,23 @@ class sis_european_wind_storm_indicators(Main):
     )
     def __init__(
         self,
-        product,
-        time_aggregation,
-        spatial_aggregation,
-        year,
-        month,
         day,
+        month,
+        product,
+        spatial_aggregation,
+        time_aggregation,
+        year,
         variable="all",
         format_=None,
         limit=None,
     ):
         super().__init__(
-            product=product,
-            time_aggregation=time_aggregation,
-            spatial_aggregation=spatial_aggregation,
-            year=year,
-            month=month,
             day=day,
+            month=month,
+            product=product,
+            spatial_aggregation=spatial_aggregation,
+            time_aggregation=time_aggregation,
+            year=year,
             variable=variable,
             format_=format_,
             limit=limit,

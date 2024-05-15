@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,17 +16,36 @@ class sis_marine_properties(Main):
     dataset = "EO:ECMWF:DAT:SIS_MARINE_PROPERTIES"
 
     @normalize(
+        "experiment",
+        [
+            "rcp4_5",
+            "rcp8_5",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "origin",
         [
             "nemo_ersem",
             "polcoms_ersem",
-        ],
-    )
-    @normalize(
-        "vertical_resolution",
-        [
-            "surface",
-            "water_column",
         ],
     )
     @normalize(
@@ -64,12 +82,11 @@ class sis_marine_properties(Main):
         multiple=True,
     )
     @normalize(
-        "experiment",
+        "vertical_resolution",
         [
-            "rcp4_5",
-            "rcp8_5",
+            "surface",
+            "water_column",
         ],
-        multiple=True,
     )
     @normalize(
         "year",
@@ -172,24 +189,6 @@ class sis_marine_properties(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -198,24 +197,24 @@ class sis_marine_properties(Main):
     )
     def __init__(
         self,
+        experiment,
+        month,
         origin,
-        vertical_resolution,
         time_aggregation,
         variable,
-        experiment,
+        vertical_resolution,
         year,
-        month,
         format_=None,
         limit=None,
     ):
         super().__init__(
+            experiment=experiment,
+            month=month,
             origin=origin,
-            vertical_resolution=vertical_resolution,
             time_aggregation=time_aggregation,
             variable=variable,
-            experiment=experiment,
+            vertical_resolution=vertical_resolution,
             year=year,
-            month=month,
             format_=format_,
             limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,6 +15,79 @@ class satellite_earth_radiation_budget(Main):
     name = "EO:ECMWF:DAT:SATELLITE_EARTH_RADIATION_BUDGET"
     dataset = "EO:ECMWF:DAT:SATELLITE_EARTH_RADIATION_BUDGET"
 
+    @normalize(
+        "climate_data_record_type",
+        [
+            "interim_climate_data_record",
+            "thematic_climate_data_record",
+        ],
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "origin",
+        [
+            "c3s",
+            "esa",
+            "eumetsat",
+            "nasa",
+            "noaa_ncei",
+            "rmib",
+        ],
+    )
     @normalize(
         "product_family",
         [
@@ -27,14 +99,21 @@ class satellite_earth_radiation_budget(Main):
         ],
     )
     @normalize(
-        "origin",
+        "sensor_on_satellite",
         [
-            "c3s",
-            "esa",
-            "eumetsat",
-            "nasa",
-            "noaa_ncei",
-            "rmib",
+            "aatsr",
+            "atsr2",
+            "slstr_on_sentinel_3a",
+            "slstr_on_sentinel_3a_3b",
+            "slstr_on_sentinel_3b",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "daily_mean",
+            "monthly_mean",
         ],
     )
     @normalize(
@@ -49,29 +128,12 @@ class satellite_earth_radiation_budget(Main):
         multiple=True,
     )
     @normalize(
-        "sensor_on_satellite",
+        "version",
         [
-            "aatsr",
-            "atsr2",
-            "slstr_on_sentinel_3a",
-            "slstr_on_sentinel_3a_3b",
-            "slstr_on_sentinel_3b",
+            "1_2_reprocessed",
+            "2_7_reprocessed",
         ],
         multiple=True,
-    )
-    @normalize(
-        "climate_data_record_type",
-        [
-            "interim_climate_data_record",
-            "thematic_climate_data_record",
-        ],
-    )
-    @normalize(
-        "time_aggregation",
-        [
-            "daily_mean",
-            "monthly_mean",
-        ],
     )
     @normalize(
         "year",
@@ -125,69 +187,7 @@ class satellite_earth_radiation_budget(Main):
         ],
         multiple=True,
     )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "1_2_reprocessed",
-            "2_7_reprocessed",
-        ],
-        multiple=True,
-    )
+    @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
         [
@@ -195,35 +195,34 @@ class satellite_earth_radiation_budget(Main):
             "zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        product_family,
-        origin,
-        variable,
-        sensor_on_satellite,
         climate_data_record_type,
-        time_aggregation,
-        year,
-        month,
         day,
+        month,
+        origin,
+        product_family,
+        sensor_on_satellite,
+        time_aggregation,
+        variable,
         version,
-        format_=None,
+        year,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            product_family=product_family,
-            origin=origin,
-            variable=variable,
-            sensor_on_satellite=sensor_on_satellite,
             climate_data_record_type=climate_data_record_type,
-            time_aggregation=time_aggregation,
-            year=year,
-            month=month,
             day=day,
+            month=month,
+            origin=origin,
+            product_family=product_family,
+            sensor_on_satellite=sensor_on_satellite,
+            time_aggregation=time_aggregation,
+            variable=variable,
             version=version,
-            format_=format_,
+            year=year,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,32 +16,13 @@ class sis_tourism_fire_danger_indicators(Main):
     dataset = "EO:ECMWF:DAT:SIS_TOURISM_FIRE_DANGER_INDICATORS"
 
     @normalize(
-        "time_aggregation",
+        "experiment",
         [
-            "annual_indicators",
-            "daily_indicators",
-            "seasonal_indicators",
+            "historical",
+            "rcp2_6",
+            "rcp4_5",
+            "rcp8_5",
         ],
-    )
-    @normalize(
-        "product_type",
-        [
-            "multi_model_best_case",
-            "multi_model_mean_case",
-            "multi_model_worst_case",
-            "single_model",
-        ],
-    )
-    @normalize(
-        "variable",
-        [
-            "daily_fire_weather_index",
-            "number_of_days_with_high_fire_danger",
-            "number_of_days_with_moderate_fire_danger",
-            "number_of_days_with_very_high_fire_danger",
-            "seasonal_fire_weather_index",
-        ],
-        multiple=True,
     )
     @normalize(
         "gcm_model",
@@ -55,15 +35,6 @@ class sis_tourism_fire_danger_indicators(Main):
             "noresm1_m",
         ],
         multiple=True,
-    )
-    @normalize(
-        "experiment",
-        [
-            "historical",
-            "rcp2_6",
-            "rcp4_5",
-            "rcp8_5",
-        ],
     )
     @normalize(
         "period",
@@ -234,6 +205,34 @@ class sis_tourism_fire_danger_indicators(Main):
         multiple=True,
     )
     @normalize(
+        "product_type",
+        [
+            "multi_model_best_case",
+            "multi_model_mean_case",
+            "multi_model_worst_case",
+            "single_model",
+        ],
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "annual_indicators",
+            "daily_indicators",
+            "seasonal_indicators",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "daily_fire_weather_index",
+            "number_of_days_with_high_fire_danger",
+            "number_of_days_with_moderate_fire_danger",
+            "number_of_days_with_very_high_fire_danger",
+            "seasonal_fire_weather_index",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "version",
         [
             "v1_0",
@@ -249,23 +248,23 @@ class sis_tourism_fire_danger_indicators(Main):
     )
     def __init__(
         self,
-        time_aggregation,
-        product_type,
-        variable,
-        gcm_model,
         experiment,
+        gcm_model,
         period,
+        product_type,
+        time_aggregation,
+        variable,
         version,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            time_aggregation=time_aggregation,
-            product_type=product_type,
-            variable=variable,
-            gcm_model=gcm_model,
             experiment=experiment,
+            gcm_model=gcm_model,
             period=period,
+            product_type=product_type,
+            time_aggregation=time_aggregation,
+            variable=variable,
             version=version,
             format_=format_,
             limit=limit,

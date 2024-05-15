@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,10 +16,58 @@ class reanalysis_era5_land_monthly_means(Main):
     dataset = "EO:ECMWF:DAT:REANALYSIS_ERA5_LAND_MONTHLY_MEANS"
 
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "product_type",
         [
             "monthly_averaged_reanalysis",
             "monthly_averaged_reanalysis_by_hour_of_day",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00",
         ],
         multiple=True,
     )
@@ -161,54 +208,6 @@ class reanalysis_era5_land_monthly_means(Main):
         ],
         multiple=True,
     )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00",
-        ],
-        multiple=True,
-    )
     @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",
@@ -220,21 +219,21 @@ class reanalysis_era5_land_monthly_means(Main):
     )
     def __init__(
         self,
+        month,
         product_type,
+        time,
         variable,
         year,
-        month,
-        time,
         bbox=None,
         format_=None,
         limit=None,
     ):
         super().__init__(
+            month=month,
             product_type=product_type,
+            time=time,
             variable=variable,
             year=year,
-            month=month,
-            time=time,
             bbox=bbox,
             format_=format_,
             limit=limit,

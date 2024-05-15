@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,82 +15,6 @@ class satellite_methane(Main):
     name = "EO:ECMWF:DAT:SATELLITE_METHANE"
     dataset = "EO:ECMWF:DAT:SATELLITE_METHANE"
 
-    @normalize(
-        "processing_level",
-        [
-            "level_2",
-            "level_3",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "ch4",
-            "xch4",
-        ],
-    )
-    @normalize(
-        "sensor_and_algorithm",
-        [
-            "iasi_metop_a_nlis",
-            "iasi_metop_b_nlis",
-            "merged_emma",
-            "merged_obs4mips",
-            "sciamachy_imap",
-            "sciamachy_wfmd",
-            "tanso2_fts2_srfp",
-            "tanso2_fts2_srpr",
-            "tanso_fts_ocfp",
-            "tanso_fts_ocpr",
-            "tanso_fts_srfp",
-            "tanso_fts_srpr",
-        ],
-    )
-    @normalize(
-        "year",
-        [
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "day",
         [
@@ -130,10 +53,64 @@ class satellite_methane(Main):
         multiple=True,
     )
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "processing_level",
+        [
+            "level_2",
+            "level_3",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "sensor_and_algorithm",
+        [
+            "iasi_metop_a_nlis",
+            "iasi_metop_b_nlis",
+            "iasi_metop_c_nlis",
+            "merged_emma",
+            "merged_obs4mips",
+            "sciamachy_imap",
+            "sciamachy_wfmd",
+            "tanso2_fts_srfp",
+            "tanso2_fts_srpr",
+            "tanso_fts_ocfp",
+            "tanso_fts_ocpr",
+            "tanso_fts_srfp",
+            "tanso_fts_srpr",
+        ],
+    )
+    @normalize(
+        "variable",
+        [
+            "ch4",
+            "xch4",
+        ],
+    )
+    @normalize(
         "version",
         [
+            "10.2",
+            "10.2",
             "2.0.0",
-            "2.0.0",
+            "2.0.1",
+            "2.0.1",
             "2.3.8",
             "2.3.8",
             "2.3.9",
@@ -146,7 +123,8 @@ class satellite_methane(Main):
             "4.2",
             "4.3",
             "4.4",
-            "4.4",
+            "4.5",
+            "4.5",
             "7.0",
             "7.1",
             "7.2",
@@ -163,6 +141,33 @@ class satellite_methane(Main):
         multiple=True,
     )
     @normalize(
+        "year",
+        [
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "format_",
         [
             "tgz",
@@ -171,24 +176,24 @@ class satellite_methane(Main):
     )
     def __init__(
         self,
-        processing_level,
-        variable,
-        sensor_and_algorithm,
-        year,
-        month,
         day,
+        month,
+        processing_level,
+        sensor_and_algorithm,
+        variable,
         version,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            processing_level=processing_level,
-            variable=variable,
-            sensor_and_algorithm=sensor_and_algorithm,
-            year=year,
-            month=month,
             day=day,
+            month=month,
+            processing_level=processing_level,
+            sensor_and_algorithm=sensor_and_algorithm,
+            variable=variable,
             version=version,
+            year=year,
             format_=format_,
             limit=limit,
         )

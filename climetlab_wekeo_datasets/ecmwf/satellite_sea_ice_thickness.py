@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,6 +16,27 @@ class satellite_sea_ice_thickness(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_SEA_ICE_THICKNESS"
 
     @normalize(
+        "cdr_type",
+        [
+            "cdr",
+            "icdr",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "satellite",
         [
             "cryosat_2",
@@ -25,12 +45,12 @@ class satellite_sea_ice_thickness(Main):
         multiple=True,
     )
     @normalize(
-        "cdr_type",
+        "version",
         [
-            "cdr",
-            "icdr",
+            "1_0",
+            "2_0",
+            "3_0",
         ],
-        multiple=True,
     )
     @normalize(
         "year",
@@ -62,27 +82,6 @@ class satellite_sea_ice_thickness(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "1_0",
-            "2_0",
-            "3_0",
-        ],
-    )
-    @normalize(
         "variable",
         [
             "all",
@@ -97,21 +96,21 @@ class satellite_sea_ice_thickness(Main):
     )
     def __init__(
         self,
-        satellite,
         cdr_type,
-        year,
         month,
+        satellite,
         version,
+        year,
         variable="all",
         format_=None,
         limit=None,
     ):
         super().__init__(
-            satellite=satellite,
             cdr_type=cdr_type,
-            year=year,
             month=month,
+            satellite=satellite,
             version=version,
+            year=year,
             variable=variable,
             format_=format_,
             limit=limit,

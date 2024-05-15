@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,15 +16,31 @@ class sis_water_hydrological_change(Main):
     dataset = "EO:ECMWF:DAT:SIS_WATER_HYDROLOGICAL_CHANGE"
 
     @normalize(
-        "variable",
+        "experiment",
         [
-            "air_temperature",
-            "groundwater_recharge",
-            "potential_evapotranspiration",
-            "precipitation",
-            "river_discharge",
-            "snow_water_equivalent",
-            "volumetric_soil_moisture",
+            "rcp_2_6",
+            "rcp_8_5",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "gcm_model",
+        [
+            "esm_chem",
+            "gfdl_esm2m",
+            "hadgem2_es",
+            "ipsl_cm5a_lr",
+            "noresm1_m",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "hydrological_model",
+        [
+            "mesoscale_hydrological_model",
+            "noah_mp",
+            "pcr_globwb",
+            "variable_infiltration_capacity",
         ],
         multiple=True,
     )
@@ -66,31 +81,15 @@ class sis_water_hydrological_change(Main):
         multiple=True,
     )
     @normalize(
-        "gcm_model",
+        "variable",
         [
-            "esm_chem",
-            "gfdl_esm2m",
-            "hadgem2_es",
-            "ipsl_cm5a_lr",
-            "noresm1_m",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "experiment",
-        [
-            "rcp_2_6",
-            "rcp_8_5",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hydrological_model",
-        [
-            "mesoscale_hydrological_model",
-            "noah_mp",
-            "pcr_globwb",
-            "variable_infiltration_capacity",
+            "air_temperature",
+            "groundwater_recharge",
+            "potential_evapotranspiration",
+            "precipitation",
+            "river_discharge",
+            "snow_water_equivalent",
+            "volumetric_soil_moisture",
         ],
         multiple=True,
     )
@@ -103,22 +102,22 @@ class sis_water_hydrological_change(Main):
     )
     def __init__(
         self,
-        variable,
+        experiment,
+        gcm_model,
+        hydrological_model,
         statistic,
         time_aggregation,
-        gcm_model,
-        experiment,
-        hydrological_model,
+        variable,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
+            experiment=experiment,
+            gcm_model=gcm_model,
+            hydrological_model=hydrological_model,
             statistic=statistic,
             time_aggregation=time_aggregation,
-            gcm_model=gcm_model,
-            experiment=experiment,
-            hydrological_model=hydrological_model,
+            variable=variable,
             format_=format_,
             limit=limit,
         )

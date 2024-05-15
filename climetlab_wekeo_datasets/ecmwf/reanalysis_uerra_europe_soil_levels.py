@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,19 +16,65 @@ class reanalysis_uerra_europe_soil_levels(Main):
     dataset = "EO:ECMWF:DAT:REANALYSIS_UERRA_EUROPE_SOIL_LEVELS"
 
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "origin",
         [
             "mescan_surfex",
             "uerra_harmonie",
-        ],
-    )
-    @normalize(
-        "variable",
-        [
-            "soil_temperature",
-            "volumetric_soil_moisture",
-            "volumetric_transpiration_stress_onset",
-            "volumetric_wilting_point",
         ],
     )
     @normalize(
@@ -51,6 +96,25 @@ class reanalysis_uerra_europe_soil_levels(Main):
             "14",
         ],
         multiple=True,
+    )
+    @normalize(
+        "time",
+        [
+            "00:00",
+            "06:00",
+            "12:00",
+            "18:00",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "soil_temperature",
+            "volumetric_soil_moisture",
+            "volumetric_transpiration_stress_onset",
+            "volumetric_wilting_point",
+        ],
     )
     @normalize(
         "year",
@@ -118,71 +182,6 @@ class reanalysis_uerra_europe_soil_levels(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "time",
-        [
-            "00:00",
-            "06:00",
-            "12:00",
-            "18:00",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "grib",
@@ -191,24 +190,24 @@ class reanalysis_uerra_europe_soil_levels(Main):
     )
     def __init__(
         self,
-        origin,
-        variable,
-        soil_level,
-        year,
-        month,
         day,
+        month,
+        origin,
+        soil_level,
         time,
+        variable,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            origin=origin,
-            variable=variable,
-            soil_level=soil_level,
-            year=year,
-            month=month,
             day=day,
+            month=month,
+            origin=origin,
+            soil_level=soil_level,
             time=time,
+            variable=variable,
+            year=year,
             format_=format_,
             limit=limit,
         )

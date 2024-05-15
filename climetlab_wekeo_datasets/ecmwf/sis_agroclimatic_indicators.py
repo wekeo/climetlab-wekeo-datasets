@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,6 +16,16 @@ class sis_agroclimatic_indicators(Main):
     dataset = "EO:ECMWF:DAT:SIS_AGROCLIMATIC_INDICATORS"
 
     @normalize(
+        "experiment",
+        [
+            "historical",
+            "rcp2_6",
+            "rcp4_5",
+            "rcp6_0",
+            "rcp8_5",
+        ],
+    )
+    @normalize(
         "origin",
         [
             "era_interim_reanalysis",
@@ -25,6 +34,25 @@ class sis_agroclimatic_indicators(Main):
             "ipsl_cm5a_lr_model",
             "miroc_esm_chem_model",
             "noresm1_m_model",
+        ],
+    )
+    @normalize(
+        "period",
+        [
+            "195101_198012",
+            "198101_201012",
+            "201101_204012",
+            "204101_207012",
+            "207101_209912",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "temporal_aggregation",
+        [
+            "10_day",
+            "annual",
+            "season",
         ],
     )
     @normalize(
@@ -60,35 +88,6 @@ class sis_agroclimatic_indicators(Main):
         multiple=True,
     )
     @normalize(
-        "experiment",
-        [
-            "historical",
-            "rcp2_6",
-            "rcp4_5",
-            "rcp6_0",
-            "rcp8_5",
-        ],
-    )
-    @normalize(
-        "temporal_aggregation",
-        [
-            "10_day",
-            "annual",
-            "season",
-        ],
-    )
-    @normalize(
-        "period",
-        [
-            "195101_198012",
-            "198101_201012",
-            "201101_204012",
-            "204101_207012",
-            "207101_209912",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "version",
         [
             "1.0",
@@ -105,21 +104,21 @@ class sis_agroclimatic_indicators(Main):
     )
     def __init__(
         self,
-        origin,
-        variable,
         experiment,
-        temporal_aggregation,
+        origin,
         period,
+        temporal_aggregation,
+        variable,
         version,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            origin=origin,
-            variable=variable,
             experiment=experiment,
-            temporal_aggregation=temporal_aggregation,
+            origin=origin,
             period=period,
+            temporal_aggregation=temporal_aggregation,
+            variable=variable,
             version=version,
             format_=format_,
             limit=limit,

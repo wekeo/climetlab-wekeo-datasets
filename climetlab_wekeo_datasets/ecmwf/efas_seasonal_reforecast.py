@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,39 +16,20 @@ class efas_seasonal_reforecast(Main):
     dataset = "EO:ECMWF:DAT:EFAS_SEASONAL_REFORECAST"
 
     @normalize(
-        "system_version",
+        "hmonth",
         [
-            "version_4_0",
-            "version_5_0",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "variable",
-        [
-            "elevation",
-            "field_capacity",
-            "river_discharge_in_the_last_24_hours",
-            "snow_depth_water_equivalent",
-            "soil_depth",
-            "upstream_area",
-            "volumetric_soil_moisture",
-            "wilting_point",
-        ],
-    )
-    @normalize(
-        "model_levels",
-        [
-            "soil_levels",
-            "surface_level",
-        ],
-    )
-    @normalize(
-        "soil_level",
-        [
-            "1",
-            "2",
-            "3",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
         multiple=True,
     )
@@ -89,24 +69,6 @@ class efas_seasonal_reforecast(Main):
             "2021",
             "2022",
             "2023",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "hmonth",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
         ],
         multiple=True,
     )
@@ -332,35 +294,72 @@ class efas_seasonal_reforecast(Main):
         multiple=True,
     )
     @normalize(
+        "model_levels",
+        [
+            "soil_levels",
+            "surface_level",
+        ],
+    )
+    @normalize(
+        "soil_level",
+        [
+            "1",
+            "2",
+            "3",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "system_version",
+        [
+            "version_4_0",
+            "version_5_0",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "elevation",
+            "field_capacity",
+            "river_discharge_in_the_last_24_hours",
+            "snow_depth_water_equivalent",
+            "soil_depth",
+            "upstream_area",
+            "volumetric_soil_moisture",
+            "wilting_point",
+        ],
+    )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
         "format_",
         [
             "grib.zip",
             "netcdf4.zip",
         ],
     )
-    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        system_version,
-        variable,
+        hmonth,
+        hyear,
+        leadtime_hour,
         model_levels,
         soil_level,
-        hyear,
-        hmonth,
-        leadtime_hour,
-        format_=None,
+        system_version,
+        variable,
         bbox=None,
+        format_=None,
         limit=None,
     ):
         super().__init__(
-            system_version=system_version,
-            variable=variable,
+            hmonth=hmonth,
+            hyear=hyear,
+            leadtime_hour=leadtime_hour,
             model_levels=model_levels,
             soil_level=soil_level,
-            hyear=hyear,
-            hmonth=hmonth,
-            leadtime_hour=leadtime_hour,
-            format_=format_,
+            system_version=system_version,
+            variable=variable,
             bbox=bbox,
+            format_=format_,
             limit=limit,
         )

@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,55 +15,6 @@ class satellite_precipitation_microwave(Main):
     name = "EO:ECMWF:DAT:SATELLITE_PRECIPITATION_MICROWAVE"
     dataset = "EO:ECMWF:DAT:SATELLITE_PRECIPITATION_MICROWAVE"
 
-    @normalize(
-        "time_aggregation",
-        [
-            "daily",
-            "monthly",
-        ],
-    )
-    @normalize(
-        "year",
-        [
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
     @normalize(
         "day",
         [
@@ -103,6 +53,55 @@ class satellite_precipitation_microwave(Main):
         multiple=True,
     )
     @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "time_aggregation",
+        [
+            "daily",
+            "monthly",
+        ],
+    )
+    @normalize(
+        "year",
+        [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "variable",
         [
             "all",
@@ -124,20 +123,20 @@ class satellite_precipitation_microwave(Main):
     )
     def __init__(
         self,
+        day,
+        month,
         time_aggregation,
         year,
-        month,
-        day,
         variable="all",
         version="v1.0",
         format_=None,
         limit=None,
     ):
         super().__init__(
+            day=day,
+            month=month,
             time_aggregation=time_aggregation,
             year=year,
-            month=month,
-            day=day,
             variable=variable,
             version=version,
             format_=format_,

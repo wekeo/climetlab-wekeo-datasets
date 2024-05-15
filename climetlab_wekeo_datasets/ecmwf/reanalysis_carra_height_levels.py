@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,24 +16,48 @@ class reanalysis_carra_height_levels(Main):
     dataset = "EO:ECMWF:DAT:REANALYSIS_CARRA_HEIGHT_LEVELS"
 
     @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "domain",
         [
             "east_domain",
             "west_domain",
         ],
-    )
-    @normalize(
-        "variable",
-        [
-            "pressure",
-            "relative_humidity",
-            "specific_cloud_ice_water_content",
-            "specific_cloud_liquid_water_content",
-            "temperature",
-            "wind_direction",
-            "wind_speed",
-        ],
-        multiple=True,
     )
     @normalize(
         "height_level",
@@ -50,6 +73,44 @@ class reanalysis_carra_height_levels(Main):
             "500_m",
             "50_m",
             "75_m",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "leadtime_hour",
+        [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "9",
+            "12",
+            "15",
+            "18",
+            "21",
+            "24",
+            "27",
+            "30",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
         multiple=True,
     )
@@ -75,22 +136,15 @@ class reanalysis_carra_height_levels(Main):
         multiple=True,
     )
     @normalize(
-        "leadtime_hour",
+        "variable",
         [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "9",
-            "12",
-            "15",
-            "18",
-            "21",
-            "24",
-            "27",
-            "30",
+            "pressure",
+            "relative_humidity",
+            "specific_cloud_ice_water_content",
+            "specific_cloud_liquid_water_content",
+            "temperature",
+            "wind_direction",
+            "wind_speed",
         ],
         multiple=True,
     )
@@ -136,61 +190,6 @@ class reanalysis_carra_height_levels(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "grib",
@@ -199,28 +198,28 @@ class reanalysis_carra_height_levels(Main):
     )
     def __init__(
         self,
+        day,
         domain,
-        variable,
         height_level,
+        leadtime_hour,
+        month,
         product_type,
         time,
-        leadtime_hour,
+        variable,
         year,
-        month,
-        day,
         format_=None,
         limit=None,
     ):
         super().__init__(
+            day=day,
             domain=domain,
-            variable=variable,
             height_level=height_level,
+            leadtime_hour=leadtime_hour,
+            month=month,
             product_type=product_type,
             time=time,
-            leadtime_hour=leadtime_hour,
+            variable=variable,
             year=year,
-            month=month,
-            day=day,
             format_=format_,
             limit=limit,
         )

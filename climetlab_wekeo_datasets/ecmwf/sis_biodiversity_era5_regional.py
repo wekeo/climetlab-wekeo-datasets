@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,11 +16,30 @@ class sis_biodiversity_era5_regional(Main):
     dataset = "EO:ECMWF:DAT:SIS_BIODIVERSITY_ERA5_REGIONAL"
 
     @normalize(
-        "region",
+        "derived_variable",
         [
-            "central_africa",
-            "europe",
-            "northern_brazil",
+            "annual_maximum",
+            "annual_maximum_of_daily_mean",
+            "annual_mean",
+            "annual_mean_of_daily_maximum",
+            "annual_mean_of_daily_minimum",
+            "annual_minimum",
+            "annual_sum",
+            "coldest_quarter",
+            "driest_quarter",
+            "end_of_season",
+            "length_of_season",
+            "maximum_length",
+            "mean_intensity",
+            "mean_length_with_minimum_5_days",
+            "monthly_mean",
+            "monthly_mean_of_daily_maximum",
+            "monthly_mean_of_daily_minimum",
+            "monthly_sum",
+            "number_of_occurrences",
+            "start_of_season",
+            "warmest_quarter",
+            "wettest_quarter",
         ],
         multiple=True,
     )
@@ -31,6 +49,25 @@ class sis_biodiversity_era5_regional(Main):
             "era5",
             "era5_land",
         ],
+    )
+    @normalize(
+        "region",
+        [
+            "central_africa",
+            "europe",
+            "northern_brazil",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "statistic",
+        [
+            "25th_quartile",
+            "75th_quartile",
+            "mean",
+            "median",
+        ],
+        multiple=True,
     )
     @normalize(
         "variable",
@@ -79,44 +116,6 @@ class sis_biodiversity_era5_regional(Main):
         multiple=True,
     )
     @normalize(
-        "derived_variable",
-        [
-            "annual_maximum",
-            "annual_maximum_of_daily_mean",
-            "annual_mean",
-            "annual_mean_of_daily_maximum",
-            "annual_mean_of_daily_minimum",
-            "annual_minimum",
-            "annual_sum",
-            "coldest_quarter",
-            "driest_quarter",
-            "end_of_season",
-            "length_of_season",
-            "maximum_length",
-            "mean_intensity",
-            "mean_length_with_minimum_5_days",
-            "monthly_mean",
-            "monthly_mean_of_daily_maximum",
-            "monthly_mean_of_daily_minimum",
-            "monthly_sum",
-            "number_of_occurrences",
-            "start_of_season",
-            "warmest_quarter",
-            "wettest_quarter",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "statistic",
-        [
-            "25th_quartile",
-            "75th_quartile",
-            "mean",
-            "median",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "version",
         [
             "1.0",
@@ -132,21 +131,21 @@ class sis_biodiversity_era5_regional(Main):
     )
     def __init__(
         self,
-        region,
-        origin,
-        variable,
         derived_variable,
+        origin,
+        region,
         statistic,
+        variable,
         version="1.0",
         format_=None,
         limit=None,
     ):
         super().__init__(
-            region=region,
-            origin=origin,
-            variable=variable,
             derived_variable=derived_variable,
+            origin=origin,
+            region=region,
             statistic=statistic,
+            variable=variable,
             version=version,
             format_=format_,
             limit=limit,

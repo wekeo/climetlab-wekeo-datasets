@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,10 +16,73 @@ class satellite_sea_ice_concentration(Main):
     dataset = "EO:ECMWF:DAT:SATELLITE_SEA_ICE_CONCENTRATION"
 
     @normalize(
+        "cdr_type",
+        [
+            "cdr",
+            "icdr",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "day",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "origin",
         [
-            "esa_cci",
-            "eumetsat_osi_saf",
+            "ESA CCI",
+            "EUMETSAT OSI SAF",
         ],
     )
     @normalize(
@@ -32,16 +94,30 @@ class satellite_sea_ice_concentration(Main):
         multiple=True,
     )
     @normalize(
-        "cdr_type",
+        "sensor",
         [
-            "cdr",
-            "icdr",
+            "amsr",
+            "ssmis",
         ],
-        multiple=True,
+    )
+    @normalize(
+        "temporal_aggregation",
+        [
+            "daily",
+            "monthly",
+        ],
+    )
+    @normalize(
+        "version",
+        [
+            "v2",
+            "v3",
+        ],
     )
     @normalize(
         "year",
         [
+            "1978",
             "1979",
             "1980",
             "1981",
@@ -87,69 +163,9 @@ class satellite_sea_ice_concentration(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
         ],
         multiple=True,
-    )
-    @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "v2",
-        ],
     )
     @normalize(
         "variable",
@@ -166,25 +182,29 @@ class satellite_sea_ice_concentration(Main):
     )
     def __init__(
         self,
+        cdr_type,
+        day,
+        month,
         origin,
         region,
-        cdr_type,
+        sensor,
+        temporal_aggregation,
+        version,
         year,
-        month,
-        day,
-        version="v2",
         variable="all",
         format_=None,
         limit=None,
     ):
         super().__init__(
+            cdr_type=cdr_type,
+            day=day,
+            month=month,
             origin=origin,
             region=region,
-            cdr_type=cdr_type,
-            year=year,
-            month=month,
-            day=day,
+            sensor=sensor,
+            temporal_aggregation=temporal_aggregation,
             version=version,
+            year=year,
             variable=variable,
             format_=format_,
             limit=limit,

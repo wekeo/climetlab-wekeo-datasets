@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -17,12 +16,57 @@ class insitu_gridded_observations_nordic(Main):
     dataset = "EO:ECMWF:DAT:INSITU_GRIDDED_OBSERVATIONS_NORDIC"
 
     @normalize(
-        "variable",
+        "day",
         [
-            "maximum_temperature",
-            "mean_temperature",
-            "minimum_temperature",
-            "precipitation",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "month",
+        [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
         ],
         multiple=True,
     )
@@ -39,6 +83,26 @@ class insitu_gridded_observations_nordic(Main):
         [
             "type_1",
             "type_2",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "variable",
+        [
+            "maximum_temperature",
+            "mean_temperature",
+            "minimum_temperature",
+            "precipitation",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "version",
+        [
+            "22_09",
+            "23_03",
+            "23_09",
+            "24_03",
         ],
         multiple=True,
     )
@@ -113,71 +177,6 @@ class insitu_gridded_observations_nordic(Main):
         multiple=True,
     )
     @normalize(
-        "month",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "day",
-        [
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "version",
-        [
-            "22_09",
-            "23_03",
-            "23_09",
-            "24_03",
-        ],
-        multiple=True,
-    )
-    @normalize(
         "format_",
         [
             "tgz",
@@ -186,24 +185,24 @@ class insitu_gridded_observations_nordic(Main):
     )
     def __init__(
         self,
-        variable,
+        day,
+        month,
         product_type,
         spatial_interpolation_method,
-        year,
-        month,
-        day,
+        variable,
         version,
+        year,
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
+            day=day,
+            month=month,
             product_type=product_type,
             spatial_interpolation_method=spatial_interpolation_method,
-            year=year,
-            month=month,
-            day=day,
+            variable=variable,
             version=version,
+            year=year,
             format_=format_,
             limit=limit,
         )

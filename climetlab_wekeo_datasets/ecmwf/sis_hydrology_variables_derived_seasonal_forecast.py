@@ -6,7 +6,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 from __future__ import annotations
-
 from climetlab.decorators import normalize
 
 from climetlab_wekeo_datasets.ecmwf.main import Main
@@ -16,19 +15,6 @@ class sis_hydrology_variables_derived_seasonal_forecast(Main):
     name = "EO:ECMWF:DAT:SIS_HYDROLOGY_VARIABLES_DERIVED_SEASONAL_FORECAST"
     dataset = "EO:ECMWF:DAT:SIS_HYDROLOGY_VARIABLES_DERIVED_SEASONAL_FORECAST"
 
-    @normalize(
-        "variable",
-        [
-            "brier_skill_score_above_normal_conditions",
-            "brier_skill_score_below_normal_conditions",
-            "continuous_ranked_probability_skill_score",
-            "fair_ranked_probability_skill_score",
-            "reference_river_discharge_lower_tercile",
-            "reference_river_discharge_upper_tercile",
-            "river_discharge",
-        ],
-        multiple=True,
-    )
     @normalize(
         "hydrological_model",
         [
@@ -43,17 +29,6 @@ class sis_hydrology_variables_derived_seasonal_forecast(Main):
             "e_hypegrid",
             "lisflood_efas",
             "vic_wur",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "year",
-        [
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
         ],
         multiple=True,
     )
@@ -76,6 +51,30 @@ class sis_hydrology_variables_derived_seasonal_forecast(Main):
         multiple=True,
     )
     @normalize(
+        "variable",
+        [
+            "brier_skill_score_above_normal_conditions",
+            "brier_skill_score_below_normal_conditions",
+            "continuous_ranked_probability_skill_score",
+            "fair_ranked_probability_skill_score",
+            "reference_river_discharge_lower_tercile",
+            "reference_river_discharge_upper_tercile",
+            "river_discharge",
+        ],
+        multiple=True,
+    )
+    @normalize(
+        "year",
+        [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+        ],
+        multiple=True,
+    )
+    @normalize(
         "version",
         [
             "1",
@@ -91,19 +90,19 @@ class sis_hydrology_variables_derived_seasonal_forecast(Main):
     )
     def __init__(
         self,
-        variable,
         hydrological_model,
-        year,
         month,
+        variable,
+        year,
         version="1",
         format_=None,
         limit=None,
     ):
         super().__init__(
-            variable=variable,
             hydrological_model=hydrological_model,
-            year=year,
             month=month,
+            variable=variable,
+            year=year,
             version=version,
             format_=format_,
             limit=limit,
