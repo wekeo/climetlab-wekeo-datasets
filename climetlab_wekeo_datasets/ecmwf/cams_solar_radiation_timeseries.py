@@ -15,6 +15,9 @@ class cams_solar_radiation_timeseries(Main):
     name = "EO:ECMWF:DAT:CAMS_SOLAR_RADIATION_TIMESERIES"
     dataset = "EO:ECMWF:DAT:CAMS_SOLAR_RADIATION_TIMESERIES"
 
+    @normalize("altitude")
+    @normalize("latitude")
+    @normalize("longitude")
     @normalize(
         "sky_type",
         [
@@ -51,15 +54,21 @@ class cams_solar_radiation_timeseries(Main):
     )
     def __init__(
         self,
+        altitude,
+        latitude,
+        longitude,
         sky_type,
         time_reference,
         time_step,
-        dtend="2024-05-13",
+        dtend="2024-05-19",
         dtstart="2004-01-01",
         format_=None,
         limit=None,
     ):
         super().__init__(
+            altitude=altitude,
+            latitude=latitude,
+            longitude=longitude,
             sky_type=sky_type,
             time_reference=time_reference,
             time_step=time_step,

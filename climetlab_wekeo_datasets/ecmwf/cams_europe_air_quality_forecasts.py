@@ -239,7 +239,7 @@ class cams_europe_air_quality_forecasts(Main):
         time,
         type,
         variable,
-        dtend="2024-05-15",
+        dtend="2024-05-21",
         dtstart="2020-08-25",
         bbox=None,
         format_=None,

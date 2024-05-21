@@ -43,6 +43,13 @@ class Main(Dataset):
                 key = "format"
             if value is not None:
                 query[key] = value
+            if key == "bbox":
+                query["bbox"] = [
+                    value[3],
+                    value[0],
+                    value[1],
+                    value[2],
+                ]
 
         limit = kwargs.get("limit")
 

@@ -81,7 +81,7 @@ class cams_global_fire_emissions_gfas(Main):
     def __init__(
         self,
         variable,
-        dtend="2024-05-14",
+        dtend="2024-05-20",
         dtstart="2003-01-01",
         format_=None,
         limit=None,

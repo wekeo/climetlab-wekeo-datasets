@@ -61,6 +61,7 @@ class satellite_humidity_profiles(Main):
             "2021",
             "2022",
             "2023",
+            "2024",
         ],
         multiple=True,
     )
