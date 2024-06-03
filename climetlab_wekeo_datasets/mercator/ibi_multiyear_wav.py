@@ -14,6 +14,8 @@ from climetlab_wekeo_datasets.mercator.main import Main
 LAYERS = [
     "cmems_mod_ibi_wav_my_0.027deg_PT1H-i_202311",  # noqa: E501 cmems_mod_ibi_wav_my_0.027deg_PT1H-i
     "cmems_mod_ibi_wav_my_0.027deg_static_202311",  # noqa: E501 cmems_mod_ibi_wav_my_0.027deg_static
+    "cmems_mod_ibi_wav_my_0.05deg-2D_PT1H-i_202012",  # noqa: E501 cmems_mod_ibi_wav_my_0.05deg-2D_PT1H-i_202012
+    "cmems_mod_ibi_wav_my_0.05deg-2D_static_202012",  # noqa: E501 cmems_mod_ibi_wav_my_0.05deg-2D_static_202012
 ]
 
 
@@ -21,8 +23,8 @@ class ibi_multiyear_wav(Main):
     name = "EO:MO:DAT:IBI_MULTIYEAR_WAV_005_006"
     dataset = "EO:MO:DAT:IBI_MULTIYEAR_WAV_005_006"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -48,6 +50,8 @@ class ibi_multiyear_wav(Main):
             "VTM10",
             "VTPK",
             "deptho",
+            "e1t",
+            "e2t",
             "latitude",
             "longitude",
             "mask",
@@ -57,8 +61,8 @@ class ibi_multiyear_wav(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2023-11-01T00:00:00Z",
         min_date="2023-11-01T00:00:00Z",
         variables=None,
@@ -78,9 +82,23 @@ class ibi_multiyear_wav(Main):
             if max_date is None:
                 max_date = "2023-11-28T00:00:00Z"
 
+        if layer == "cmems_mod_ibi_wav_my_0.05deg-2D_PT1H-i_202012":
+            if min_date is None:
+                min_date = "2020-12-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2020-12-01T00:00:00Z"
+
+        if layer == "cmems_mod_ibi_wav_my_0.05deg-2D_static_202012":
+            if min_date is None:
+                min_date = "2020-12-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2020-12-28T00:00:00Z"
+
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

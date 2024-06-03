@@ -33,8 +33,8 @@ class sealevel_eur_phy_l3_nrt(Main):
     name = "EO:MO:DAT:SEALEVEL_EUR_PHY_L3_NRT_008_059"
     dataset = "EO:MO:DAT:SEALEVEL_EUR_PHY_L3_NRT_008_059"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -65,10 +65,11 @@ class sealevel_eur_phy_l3_nrt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-04-02T12:31:27Z",
-        min_date="2022-01-01T09:14:23Z",
+        layer,
+        max_date="2024-05-06T14:18:52Z",
+        min_date="2022-11-04T00:07:18Z",
+
         variables=None,
         limit=None,
     ):
@@ -77,14 +78,14 @@ class sealevel_eur_phy_l3_nrt(Main):
                 min_date = "2022-01-01T03:04:52Z"
 
             if max_date is None:
-                max_date = "2024-04-01T19:49:52Z"
+                max_date = "2024-05-05T18:36:08Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_c2n-l3-duacs_PT1S_202311":
             if min_date is None:
                 min_date = "2022-01-01T08:04:18Z"
 
             if max_date is None:
-                max_date = "2024-04-01T15:52:00Z"
+                max_date = "2024-05-05T16:55:40Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_h2b-l3-duacs_PT0.2S_202311":
             if min_date is None:
@@ -98,83 +99,84 @@ class sealevel_eur_phy_l3_nrt(Main):
                 min_date = "2022-01-01T04:48:48Z"
 
             if max_date is None:
-                max_date = "2024-03-31T09:28:38Z"
+                max_date = "2024-05-04T16:43:48Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_j3n-l3-duacs_PT0.2S_202311":
             if min_date is None:
                 min_date = "2022-11-04T00:07:18Z"
 
             if max_date is None:
-                max_date = "2024-04-02T11:12:04Z"
+                max_date = "2024-05-06T14:18:52Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_j3n-l3-duacs_PT1S_202311":
             if min_date is None:
                 min_date = "2022-03-14T01:03:00Z"
 
             if max_date is None:
-                max_date = "2024-04-02T11:12:04Z"
+                max_date = "2024-05-06T14:18:52Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_s3a-l3-duacs_PT0.2S_202311":
             if min_date is None:
                 min_date = "2022-11-04T08:19:03Z"
 
             if max_date is None:
-                max_date = "2024-04-02T12:31:27Z"
+                max_date = "2024-05-06T12:46:38Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_s3a-l3-duacs_PT1S_202311":
             if min_date is None:
                 min_date = "2022-01-01T09:14:23Z"
 
             if max_date is None:
-                max_date = "2024-04-02T12:31:27Z"
+                max_date = "2024-05-06T12:46:37Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_s3b-l3-duacs_PT0.2S_202311":
             if min_date is None:
                 min_date = "2022-11-04T09:16:16Z"
 
             if max_date is None:
-                max_date = "2024-04-02T11:57:52Z"
+                max_date = "2024-05-06T12:16:39Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_s3b-l3-duacs_PT1S_202311":
             if min_date is None:
                 min_date = "2022-01-01T08:40:02Z"
 
             if max_date is None:
-                max_date = "2024-04-02T11:57:52Z"
+                max_date = "2024-05-06T12:16:39Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_s6a-hr-l3-duacs_PT0.2S_202311":
             if min_date is None:
                 min_date = "2022-11-04T01:16:28Z"
 
             if max_date is None:
-                max_date = "2024-04-02T12:11:58Z"
+                max_date = "2024-05-06T13:41:39Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_s6a-hr-l3-duacs_PT1S_202311":
             if min_date is None:
                 min_date = "2022-03-16T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-02T12:11:57Z"
+                max_date = "2024-05-06T13:41:39Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_swon-l3-duacs_PT0.2S_202311":
             if min_date is None:
                 min_date = "2023-11-09T00:36:43Z"
 
             if max_date is None:
-                max_date = "2024-04-02T03:49:11Z"
+                max_date = "2024-05-05T21:12:23Z"
 
         if layer == "cmems_obs-sl_eur_phy-ssh_nrt_swon-l3-duacs_PT1S_202311":
             if min_date is None:
                 min_date = "2023-11-09T00:36:44Z"
 
             if max_date is None:
-                max_date = "2024-04-02T03:49:10Z"
+                max_date = "2024-05-05T21:12:21Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

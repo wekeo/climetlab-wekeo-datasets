@@ -12,6 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
+    "dataset-wam-arctic-1hr3km-be_201912",  # noqa: E501 dataset-wam-arctic-1hr3km-be_201912
     "dataset-wam-arctic-1hr3km-be_202311",  # noqa: E501 dataset-wam-arctic-1hr3km-be_202311
 ]
 
@@ -64,18 +65,25 @@ class arctic_analysis_forecast_wav(Main):
     def __init__(
         self,
         bbox,
-        layer="dataset-wam-arctic-1hr3km-be_202311",
-        max_date="2024-04-11T12:00:00Z",
-        min_date="2021-10-01T00:00:00Z",
+        layer,
+        max_date="2023-12-08T12:00:00Z",
+        min_date="2021-01-01T00:00:00Z",
         variables=None,
         limit=None,
     ):
+        if layer == "dataset-wam-arctic-1hr3km-be_201912":
+            if min_date is None:
+                min_date = "2021-01-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-12-08T12:00:00Z"
+
         if layer == "dataset-wam-arctic-1hr3km-be_202311":
             if min_date is None:
                 min_date = "2021-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T12:00:00Z"
+                max_date = "2024-05-28T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

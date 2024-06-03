@@ -41,7 +41,7 @@ class sst_glo_phy_l4_nrt(Main):
         self,
         bbox,
         layer="cmems_obs-sst_glo_phy_nrt_l4_P1D-m_202303",
-        max_date="2024-03-18T00:00:00Z",
+        max_date="2024-05-05T00:00:00Z",
         min_date="2020-12-31T12:00:00Z",
         variables=None,
         limit=None,
@@ -51,7 +51,7 @@ class sst_glo_phy_l4_nrt(Main):
                 min_date = "2020-12-31T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-18T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

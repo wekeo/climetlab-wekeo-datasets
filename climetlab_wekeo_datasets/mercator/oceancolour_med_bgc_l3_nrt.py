@@ -26,8 +26,8 @@ class oceancolour_med_bgc_l3_nrt(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_MED_BGC_L3_NRT_009_141"
     dataset = "EO:MO:DAT:OCEANCOLOUR_MED_BGC_L3_NRT_009_141"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -89,9 +89,9 @@ class oceancolour_med_bgc_l3_nrt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-04-01T00:00:00Z",
+        layer,
+        max_date="2024-05-05T00:00:00Z",
         min_date="2023-12-03T00:00:00Z",
         variables=None,
         limit=None,
@@ -101,53 +101,53 @@ class oceancolour_med_bgc_l3_nrt(Main):
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-plankton_nrt_l3-multi-1km_P1D_202211":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-plankton_nrt_l3-olci-300m_P1D_202207":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-reflectance_nrt_l3-multi-1km_P1D_202207":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-reflectance_nrt_l3-olci-300m_P1D_202207":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-transp_nrt_l3-multi-1km_P1D_202207":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-transp_nrt_l3-olci-300m_P1D_202207":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

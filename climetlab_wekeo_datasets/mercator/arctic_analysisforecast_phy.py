@@ -23,8 +23,8 @@ class arctic_analysisforecast_phy(Main):
     name = "EO:MO:DAT:ARCTIC_ANALYSISFORECAST_PHY_002_001"
     dataset = "EO:MO:DAT:ARCTIC_ANALYSISFORECAST_PHY_002_001"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -60,10 +60,11 @@ class arctic_analysisforecast_phy(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-02-15T12:00:00Z",
+        layer,
+        max_date="2024-04-16T00:00:00Z",
         min_date="2021-11-01T00:00:00Z",
+
         variables=None,
         limit=None,
     ):
@@ -72,34 +73,35 @@ class arctic_analysisforecast_phy(Main):
                 min_date = "2021-07-05T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-10T12:00:00Z"
+                max_date = "2024-05-28T12:00:00Z"
 
         if layer == "cmems_mod_arc_phy_anfc_6km_detided_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_arc_phy_anfc_6km_detided_PT1H-i_202311":
             if min_date is None:
                 min_date = "2021-07-05T00:30:00Z"
 
             if max_date is None:
-                max_date = "2024-03-28T23:30:00Z"
+                max_date = "2024-05-28T23:30:00Z"
 
         if layer == "cmems_mod_arc_phy_anfc_6km_detided_PT6H-m_202311":
             if min_date is None:
                 min_date = "2023-09-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-21T21:00:00Z"
+                max_date = "2024-05-21T21:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_arc_bgc_anfc_ecosmo_P1D-m_202105",  # noqa: E501 Arctic ocean biogeochemistry analysis and forecast, 6.25 km daily mean
+    "cmems_mod_arc_bgc_anfc_ecosmo_P1D-m_202105",  # noqa: E501 cmems_mod_arc_bgc_anfc_ecosmo_P1D-m
     "cmems_mod_arc_bgc_anfc_ecosmo_P1M-m_202211",  # noqa: E501 cmems_mod_arc_bgc_anfc_ecosmo_P1M-m
 ]
 
@@ -21,8 +21,8 @@ class arctic_analysisforecast_bgc(Main):
     name = "EO:MO:DAT:ARCTIC_ANALYSISFORECAST_BGC_002_004"
     dataset = "EO:MO:DAT:ARCTIC_ANALYSISFORECAST_BGC_002_004"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -54,9 +54,9 @@ class arctic_analysisforecast_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-03-28T12:00:00Z",
+        layer,
+        max_date="2024-05-28T12:00:00Z",
         min_date="2019-01-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -66,18 +66,18 @@ class arctic_analysisforecast_bgc(Main):
                 min_date = "2019-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-28T12:00:00Z"
+                max_date = "2024-05-28T12:00:00Z"
 
         if layer == "cmems_mod_arc_bgc_anfc_ecosmo_P1M-m_202211":
             if min_date is None:
                 min_date = "2019-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-16T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

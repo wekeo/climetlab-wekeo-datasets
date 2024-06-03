@@ -12,7 +12,6 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_202112",  # noqa: E501 Dt merged two satellites global ocean gridded ssalto/duacs sea surface height l4 product and derived variables
     "c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_202112",  # noqa: E501 c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D
     "c3s_obs-sl_glo_phy-ssh_myint_twosat-l4-duacs-0.25deg_P1D_202311",  # noqa: E501 c3s_obs-sl_glo_phy-ssh_myint_twosat-l4-duacs-0.25deg_P1D_202311
 ]
@@ -22,8 +21,8 @@ class sealevel_glo_phy_climate_l4_my(Main):
     name = "EO:MO:DAT:SEALEVEL_GLO_PHY_CLIMATE_L4_MY_008_057"
     dataset = "EO:MO:DAT:SEALEVEL_GLO_PHY_CLIMATE_L4_MY_008_057"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -52,8 +51,8 @@ class sealevel_glo_phy_climate_l4_my(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2022-08-03T12:00:00Z",
         min_date="2022-07-31T12:00:00Z",
         variables=None,
@@ -74,8 +73,8 @@ class sealevel_glo_phy_climate_l4_my(Main):
                 max_date = "2022-08-03T12:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

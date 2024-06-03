@@ -12,7 +12,9 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
+    "cmems_mod_bal_wav_anfc_PT1h-i_202211",  # noqa: E501 cmems_mod_bal_wav_anfc_PT1h-i_202211
     "cmems_mod_bal_wav_anfc_PT1H-i_202311",  # noqa: E501 cmems_mod_bal_wav_anfc_PT1H-i
+    "cmems_mod_bal_wav_anfc_static_202112",  # noqa: E501 cmems_mod_bal_wav_anfc_static_202112
     "cmems_mod_bal_wav_anfc_static_202311",  # noqa: E501 cmems_mod_bal_wav_anfc_static
 ]
 
@@ -21,8 +23,8 @@ class balticsea_analysisforecast_wav(Main):
     name = "EO:MO:DAT:BALTICSEA_ANALYSISFORECAST_WAV_003_010"
     dataset = "EO:MO:DAT:BALTICSEA_ANALYSISFORECAST_WAV_003_010"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -57,11 +59,12 @@ class balticsea_analysisforecast_wav(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2312-12-12T00:00:00Z",
-        min_date="2021-10-01T01:00:00Z",
+        layer,
+        max_date="2024-04-08T01:00:00Z",
+        min_date="2018-12-01T01:00:00Z",
         variables=None,
+        limit=None,
     ):
         if layer == "cmems_mod_bal_wav_anfc_PT1H-i_202311":
             if min_date is None:
@@ -69,6 +72,20 @@ class balticsea_analysisforecast_wav(Main):
 
             if max_date is None:
                 max_date = "2312-12-12T00:00:00Z"
+
+        if layer == "cmems_mod_bal_wav_anfc_PT1h-i_202211":
+            if min_date is None:
+                min_date = "2018-12-01T01:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-04-08T01:00:00Z"
+
+        if layer == "cmems_mod_bal_wav_anfc_static_202112":
+            if min_date is None:
+                min_date = "2021-12-01T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2021-12-28T00:00:00Z"
 
         if layer == "cmems_mod_bal_wav_anfc_static_202311":
             if min_date is None:
@@ -78,9 +95,10 @@ class balticsea_analysisforecast_wav(Main):
                 max_date = "2023-11-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,
+            limit=limit,
         )

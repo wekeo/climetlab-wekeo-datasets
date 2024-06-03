@@ -21,8 +21,8 @@ class seaice_bal_phy_l4_my(Main):
     name = "EO:MO:DAT:SEAICE_BAL_PHY_L4_MY_011_019"
     dataset = "EO:MO:DAT:SEAICE_BAL_PHY_L4_MY_011_019"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -44,10 +44,11 @@ class seaice_bal_phy_l4_my(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2023-05-28T14:00:00Z",
         min_date="1980-11-03T14:00:00Z",
+
         variables=None,
         limit=None,
     ):
@@ -66,10 +67,11 @@ class seaice_bal_phy_l4_my(Main):
                 max_date = "2023-05-28T14:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

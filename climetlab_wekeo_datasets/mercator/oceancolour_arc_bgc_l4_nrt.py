@@ -21,8 +21,8 @@ class oceancolour_arc_bgc_l4_nrt(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L4_NRT_009_122"
     dataset = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L4_NRT_009_122"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -45,10 +45,10 @@ class oceancolour_arc_bgc_l4_nrt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2024-03-01T00:00:00Z",
-        min_date="2023-02-01T00:00:00Z",
+        min_date="2016-04-01T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -67,8 +67,8 @@ class oceancolour_arc_bgc_l4_nrt(Main):
                 max_date = "2024-03-01T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

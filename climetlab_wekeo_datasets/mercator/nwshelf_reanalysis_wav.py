@@ -55,7 +55,7 @@ class nwshelf_reanalysis_wav(Main):
         self,
         bbox,
         layer="MetO-NWS-WAV-RAN_202007",
-        max_date="2023-11-30T00:00:00Z",
+        max_date="2023-12-31T00:00:00Z",
         min_date="1980-01-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -65,7 +65,7 @@ class nwshelf_reanalysis_wav(Main):
                 min_date = "1980-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-11-30T00:00:00Z"
+                max_date = "2023-12-31T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

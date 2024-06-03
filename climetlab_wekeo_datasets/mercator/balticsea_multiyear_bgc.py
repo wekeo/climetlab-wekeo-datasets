@@ -23,8 +23,8 @@ class balticsea_multiyear_bgc(Main):
     name = "EO:MO:DAT:BALTICSEA_MULTIYEAR_BGC_003_012"
     dataset = "EO:MO:DAT:BALTICSEA_MULTIYEAR_BGC_003_012"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -54,11 +54,13 @@ class balticsea_multiyear_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2023-03-28T00:00:00Z",
-        min_date="2023-03-01T00:00:00Z",
+        layer,
+        max_date="2021-12-31T12:00:00Z",
+        min_date="1993-01-01T12:00:00Z",
+
         variables=None,
+        limit=None,
     ):
         if layer == "cmems_mod_bal_bgc_my_P1D-m_202303":
             if min_date is None:
@@ -89,9 +91,11 @@ class balticsea_multiyear_bgc(Main):
                 max_date = "2023-03-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
+            limit=limit,
         )

@@ -12,18 +12,14 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_med_phy-cur_my_4.2km_P1Y-m_202211",  # noqa: E501 Horizontal velocity (3d) - yearly mean
     "cmems_mod_med_phy-cur_my_4.2km_P1Y-m_202211",  # noqa: E501 cmems_mod_med_phy-cur_my_4.2km_P1Y-m
     "cmems_mod_med_phy-mld_my_4.2km_P1Y-m_202211",  # noqa: E501 cmems_mod_med_phy-mld_my_4.2km_P1Y-m
     "cmems_mod_med_phy-sal_my_4.2km_P1Y-m_202211",  # noqa: E501 cmems_mod_med_phy-sal_my_4.2km_P1Y-m
     "cmems_mod_med_phy-ssh_my_4.2km_P1Y-m_202211",  # noqa: E501 cmems_mod_med_phy-ssh_my_4.2km_P1Y-m
     "cmems_mod_med_phy-tem_my_4.2km_P1Y-m_202211",  # noqa: E501 cmems_mod_med_phy-tem_my_4.2km_P1Y-m
     "cmems_mod_med_phy_my_4.2km_static_202211",  # noqa: E501 cmems_mod_med_phy_my_4.2km_static
-    "med-cmcc-cur-int-m_202112",  # noqa: E501 Horizontal velocity (3d) - monthly mean
     "med-cmcc-cur-int-m_202112",  # noqa: E501 med-cmcc-cur-int-m
     "med-cmcc-cur-rean-d_202012",  # noqa: E501 med-cmcc-cur-rean-d
-    "med-cmcc-cur-rean-d_202012",  # noqa: E501 Horizontal velocity (3d) - daily mean
-    "med-cmcc-cur-rean-m_202012",  # noqa: E501 Horizontal velocity (3d) - monthly mean
     "med-cmcc-cur-rean-m_202012",  # noqa: E501 med-cmcc-cur-rean-m
     "med-cmcc-mld-int-m_202112",  # noqa: E501 med-cmcc-mld-int-m
     "med-cmcc-mld-rean-d_202012",  # noqa: E501 med-cmcc-mld-rean-d
@@ -44,8 +40,8 @@ class medsea_multiyear_phy(Main):
     name = "EO:MO:DAT:MEDSEA_MULTIYEAR_PHY_006_004"
     dataset = "EO:MO:DAT:MEDSEA_MULTIYEAR_PHY_006_004"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -72,10 +68,11 @@ class medsea_multiyear_phy(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-02-15T12:00:00Z",
+        layer,
+        max_date="2024-04-16T12:00:00Z",
         min_date="2021-07-16T12:00:00Z",
+
         variables=None,
         limit=None,
     ):
@@ -126,7 +123,7 @@ class medsea_multiyear_phy(Main):
                 min_date = "2021-07-16T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "med-cmcc-cur-rean-d_202012":
             if min_date is None:
@@ -147,7 +144,7 @@ class medsea_multiyear_phy(Main):
                 min_date = "2021-07-16T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "med-cmcc-mld-rean-d_202012":
             if min_date is None:
@@ -168,7 +165,7 @@ class medsea_multiyear_phy(Main):
                 min_date = "2021-07-16T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "med-cmcc-sal-rean-d_202012":
             if min_date is None:
@@ -189,7 +186,7 @@ class medsea_multiyear_phy(Main):
                 min_date = "2021-07-16T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "med-cmcc-ssh-rean-d_202012":
             if min_date is None:
@@ -210,7 +207,7 @@ class medsea_multiyear_phy(Main):
                 min_date = "2021-07-16T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "med-cmcc-tem-rean-d_202012":
             if min_date is None:
@@ -227,10 +224,11 @@ class medsea_multiyear_phy(Main):
                 max_date = "2022-09-01T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

@@ -40,8 +40,8 @@ class blksea_multiyear_bgc(Main):
     name = "EO:MO:DAT:BLKSEA_MULTIYEAR_BGC_007_005"
     dataset = "EO:MO:DAT:BLKSEA_MULTIYEAR_BGC_007_005"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -71,10 +71,11 @@ class blksea_multiyear_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2023-10-19T00:00:00Z",
         min_date="2023-10-16T00:00:00Z",
+
         variables=None,
         limit=None,
     ):
@@ -104,7 +105,7 @@ class blksea_multiyear_bgc(Main):
                 min_date = "2023-01-15T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-03-15T12:00:00Z"
 
         if layer == "cmems_mod_blk_bgc-car_my_2.5km_P1D-m_202311":
             if min_date is None:
@@ -132,7 +133,7 @@ class blksea_multiyear_bgc(Main):
                 min_date = "2023-01-15T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-03-15T12:00:00Z"
 
         if layer == "cmems_mod_blk_bgc-co2_my_2.5km_P1D-m_202311":
             if min_date is None:
@@ -160,7 +161,7 @@ class blksea_multiyear_bgc(Main):
                 min_date = "2023-01-15T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-03-15T12:00:00Z"
 
         if layer == "cmems_mod_blk_bgc-nut_my_2.5km_P1D-m_202311":
             if min_date is None:
@@ -188,7 +189,7 @@ class blksea_multiyear_bgc(Main):
                 min_date = "2023-01-15T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-03-15T12:00:00Z"
 
         if layer == "cmems_mod_blk_bgc-plankton_my_2.5km_P1D-m_202311":
             if min_date is None:
@@ -216,7 +217,7 @@ class blksea_multiyear_bgc(Main):
                 min_date = "2023-01-15T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-03-15T12:00:00Z"
 
         if layer == "cmems_mod_blk_bgc_my_2.5km_static_202311":
             if min_date is None:
@@ -226,10 +227,11 @@ class blksea_multiyear_bgc(Main):
                 max_date = "2023-11-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

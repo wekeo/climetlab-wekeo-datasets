@@ -41,7 +41,7 @@ class sst_glo_sst_l4_nrt_observations(Main):
         self,
         bbox,
         layer="METOFFICE-GLO-SST-L4-NRT-OBS-SST-V2",
-        max_date="2024-04-01T12:00:00Z",
+        max_date="2024-05-05T12:00:00Z",
         min_date="2006-12-31T00:00:00Z",
         variables=None,
         limit=None,
@@ -51,7 +51,7 @@ class sst_glo_sst_l4_nrt_observations(Main):
                 min_date = "2006-12-31T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

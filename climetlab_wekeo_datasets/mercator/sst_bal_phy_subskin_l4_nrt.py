@@ -41,7 +41,7 @@ class sst_bal_phy_subskin_l4_nrt(Main):
         self,
         bbox,
         layer="cmems_obs-sst_bal_phy-subskin_nrt_l4_PT1H-m_202211",
-        max_date="2024-04-01T23:00:00Z",
+        max_date="2024-05-05T23:00:00Z",
         min_date="2022-05-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -51,7 +51,7 @@ class sst_bal_phy_subskin_l4_nrt(Main):
                 min_date = "2022-05-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T23:00:00Z"
+                max_date = "2024-05-05T23:00:00Z"
 
         super().__init__(
             bbox=bbox,

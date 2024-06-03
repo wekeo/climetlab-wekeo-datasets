@@ -13,7 +13,6 @@ from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
     "cmems_mod_glo_bgc_my_0.083deg-lmtl-Fphy_PT1D-i_202211",  # noqa: E501 cmems_mod_glo_bgc_my_0.083deg-lmtl-Fphy_PT1D-i
-    "cmems_mod_glo_bgc_my_0.083deg-lmtl-Fphy_PT1D-i_202211",  # noqa: E501 Physical forcings of global ocean low and mid trophic levels biomass content hindcast
     "cmems_mod_glo_bgc_my_0.083deg-lmtl_PT1D-i_202211",  # noqa: E501 cmems_mod_glo_bgc_my_0.083deg-lmtl_PT1D-i
 ]
 
@@ -22,8 +21,8 @@ class global_multiyear_bgc(Main):
     name = "EO:MO:DAT:GLOBAL_MULTIYEAR_BGC_001_033"
     dataset = "EO:MO:DAT:GLOBAL_MULTIYEAR_BGC_001_033"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -51,8 +50,8 @@ class global_multiyear_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="9991-12-28T00:00:00Z",
         min_date="1-01-01T00:00:00Z",
         variables=None,
@@ -73,8 +72,8 @@ class global_multiyear_bgc(Main):
                 max_date = "9991-12-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

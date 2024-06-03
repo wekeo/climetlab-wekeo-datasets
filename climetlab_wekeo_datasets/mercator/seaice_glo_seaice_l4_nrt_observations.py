@@ -12,16 +12,16 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "METNO-GLO-SEAICE_DRIFT-NORTH-L4-NRT-OBS",  # noqa: E501 Arctic ice drift, l4 osisaf, 62km daily (metno-glo-seaice drift-north-l4-nrt-obs)
-    "METNO-GLO-SEAICE_DRIFT-SOUTH-L4-NRT-OBS",  # noqa: E501 Antarctic ice drift, l4 osisaf, 62km daily (metno-glo-seaice drift-south-l4-nrt-obs)
-    "osisaf_obs-si_glo_phy-sic-north_nrt_amsr2_l4_P1D-m_202304",  # noqa: E501 Arctic amsr2 ice concentration, l4 osisaf, 10km daily
-    "osisaf_obs-si_glo_phy-sic-north_nrt_ssmis_l4_P1D-m_202304",  # noqa: E501 Arctic ice concentration, l4 osisaf, 10km daily (metno-glo-seaice conc-north-l4-nrt-obs)
-    "osisaf_obs-si_glo_phy-sic-south_nrt_amsr2_l4_P1D-m_202304",  # noqa: E501 Antarctic amsr2 ice concentration, l4 osisaf, 10km daily
-    "osisaf_obs-si_glo_phy-sic-south_nrt_ssmis_l4_P1D-m_202304",  # noqa: E501 Antarctic ice concentration, l4 osisaf, 10km daily (metno-glo-seaice conc-south-l4-nrt-obs)
-    "osisaf_obs-si_glo_phy-siedge_nrt_nh-P1D_202107",  # noqa: E501 Daily sea ice edge analysis from osi saf eumetsat
-    "osisaf_obs-si_glo_phy-siedge_nrt_sh-P1D_202107",  # noqa: E501 Daily sea ice edge analysis from osi saf eumetsat
-    "osisaf_obs-si_glo_phy-sitype_nrt_nh-P1D_202107",  # noqa: E501 Daily sea ice type analysis from osi saf eumetsat
-    "osisaf_obs-si_glo_phy-sitype_nrt_sh-P1D_202107",  # noqa: E501 Daily sea ice type analysis from osi saf eumetsat
+    "METNO-GLO-SEAICE_DRIFT-NORTH-L4-NRT-OBS",  # noqa: E501 METNO-GLO-SEAICE_DRIFT-NORTH-L4-NRT-OBS
+    "METNO-GLO-SEAICE_DRIFT-SOUTH-L4-NRT-OBS",  # noqa: E501 METNO-GLO-SEAICE_DRIFT-SOUTH-L4-NRT-OBS
+    "osisaf_obs-si_glo_phy-sic-north_nrt_amsr2_l4_P1D-m_202304",  # noqa: E501 osisaf_obs-si_glo_phy-sic-north_nrt_amsr2_l4_P1D-m_202304
+    "osisaf_obs-si_glo_phy-sic-north_nrt_ssmis_l4_P1D-m_202304",  # noqa: E501 osisaf_obs-si_glo_phy-sic-north_nrt_ssmis_l4_P1D-m_202304
+    "osisaf_obs-si_glo_phy-sic-south_nrt_amsr2_l4_P1D-m_202304",  # noqa: E501 osisaf_obs-si_glo_phy-sic-south_nrt_amsr2_l4_P1D-m_202304
+    "osisaf_obs-si_glo_phy-sic-south_nrt_ssmis_l4_P1D-m_202304",  # noqa: E501 osisaf_obs-si_glo_phy-sic-south_nrt_ssmis_l4_P1D-m_202304
+    "osisaf_obs-si_glo_phy-siedge_nrt_nh-P1D_202107",  # noqa: E501 osisaf_obs-si_glo_phy-siedge_nrt_nh-P1D_202107
+    "osisaf_obs-si_glo_phy-siedge_nrt_sh-P1D_202107",  # noqa: E501 osisaf_obs-si_glo_phy-siedge_nrt_sh-P1D_202107
+    "osisaf_obs-si_glo_phy-sitype_nrt_nh-P1D_202107",  # noqa: E501 osisaf_obs-si_glo_phy-sitype_nrt_nh-P1D_202107
+    "osisaf_obs-si_glo_phy-sitype_nrt_sh-P1D_202107",  # noqa: E501 osisaf_obs-si_glo_phy-sitype_nrt_sh-P1D_202107
 ]
 
 
@@ -29,8 +29,8 @@ class seaice_glo_seaice_l4_nrt_observations(Main):
     name = "EO:MO:DAT:SEAICE_GLO_SEAICE_L4_NRT_OBSERVATIONS_011_001"
     dataset = "EO:MO:DAT:SEAICE_GLO_SEAICE_L4_NRT_OBSERVATIONS_011_001"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -68,10 +68,10 @@ class seaice_glo_seaice_l4_nrt_observations(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-04-01T12:00:00Z",
-        min_date="2023-03-23T00:00:00Z",
+        layer,
+        max_date="2024-05-05T12:00:00Z",
+        min_date="2021-06-01T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -80,74 +80,74 @@ class seaice_glo_seaice_l4_nrt_observations(Main):
                 min_date = "2017-12-30T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "METNO-GLO-SEAICE_DRIFT-SOUTH-L4-NRT-OBS":
             if min_date is None:
                 min_date = "2017-12-30T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-sic-north_nrt_amsr2_l4_P1D-m_202304":
             if min_date is None:
                 min_date = "2023-03-23T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-sic-north_nrt_ssmis_l4_P1D-m_202304":
             if min_date is None:
                 min_date = "2023-03-23T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-sic-south_nrt_amsr2_l4_P1D-m_202304":
             if min_date is None:
                 min_date = "2023-03-23T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-sic-south_nrt_ssmis_l4_P1D-m_202304":
             if min_date is None:
                 min_date = "2023-03-23T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-siedge_nrt_nh-P1D_202107":
             if min_date is None:
                 min_date = "2021-06-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-siedge_nrt_sh-P1D_202107":
             if min_date is None:
                 min_date = "2021-06-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-sitype_nrt_nh-P1D_202107":
             if min_date is None:
                 min_date = "2021-06-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         if layer == "osisaf_obs-si_glo_phy-sitype_nrt_sh-P1D_202107":
             if min_date is None:
                 min_date = "2021-06-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

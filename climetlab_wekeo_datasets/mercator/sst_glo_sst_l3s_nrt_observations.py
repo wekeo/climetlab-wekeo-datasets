@@ -16,7 +16,6 @@ LAYERS = [
     "cmems_obs-sst_glo_phy_l3s_pir_P1D-m_202311",  # noqa: E501 cmems_obs-sst_glo_phy_l3s_pir_P1D-m
     "cmems_obs-sst_glo_phy_l3s_pmw_P1D-m_202311",  # noqa: E501 cmems_obs-sst_glo_phy_l3s_pmw_P1D-m
     "IFREMER-GLOB-SST-L3-NRT-OBS_FULL_TIME_SERIE_202211",  # noqa: E501 IFREMER-GLOB-SST-L3-NRT-OBS_FULL_TIME_SERIE
-    "IFREMER-GLOB-SST-L3-NRT-OBS_FULL_TIME_SERIE_202211",  # noqa: E501 Odyssea global sea surface temperature gridded level 3s daily multi-sensor observations
 ]
 
 
@@ -24,8 +23,8 @@ class sst_glo_sst_l3s_nrt_observations(Main):
     name = "EO:MO:DAT:SST_GLO_SST_L3S_NRT_OBSERVATIONS_010_010"
     dataset = "EO:MO:DAT:SST_GLO_SST_L3S_NRT_OBSERVATIONS_010_010"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -53,8 +52,8 @@ class sst_glo_sst_l3s_nrt_observations(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2023-12-10T12:00:00Z",
         min_date="2020-12-31T12:00:00Z",
         variables=None,
@@ -89,8 +88,8 @@ class sst_glo_sst_l3s_nrt_observations(Main):
                 max_date = "2023-12-10T12:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

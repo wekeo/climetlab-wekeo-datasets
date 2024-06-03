@@ -21,8 +21,8 @@ class balticsea_reanalysis_wav(Main):
     name = "EO:MO:DAT:BALTICSEA_REANALYSIS_WAV_003_015"
     dataset = "EO:MO:DAT:BALTICSEA_REANALYSIS_WAV_003_015"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -55,11 +55,12 @@ class balticsea_reanalysis_wav(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2023-06-30T01:00:00Z",
-        min_date="1993-01-01T01:00:00Z",
+        layer,
+        max_date="2021-12-28T00:00:00Z",
+        min_date="2021-12-01T00:00:00Z",
         variables=None,
+        limit=None,
     ):
         if layer == "cmems_mod_bal_wav_my_static_202112":
             if min_date is None:
@@ -76,9 +77,10 @@ class balticsea_reanalysis_wav(Main):
                 max_date = "2023-06-30T01:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,
+            limit=limit,
         )

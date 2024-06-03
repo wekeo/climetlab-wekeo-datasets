@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "dataset-topaz6-arc-15min-3km-be_202003",  # noqa: E501 Arctic ocean physics analysis and forecast, 3 km quarter-hourly instantaneous (dataset-topaz6-tide-arc-qhr-myoceanv2-be)
+    "dataset-topaz6-arc-15min-3km-be_202003",  # noqa: E501 dataset-topaz6-arc-15min-3km-be_202003
 ]
 
 
@@ -44,7 +44,7 @@ class arctic_analysisforecast_phy_tide(Main):
         self,
         bbox,
         layer="dataset-topaz6-arc-15min-3km-be_202003",
-        max_date="2024-04-10T23:45:00Z",
+        max_date="2024-05-14T23:45:00Z",
         min_date="2018-01-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -54,7 +54,7 @@ class arctic_analysisforecast_phy_tide(Main):
                 min_date = "2018-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-10T23:45:00Z"
+                max_date = "2024-05-14T23:45:00Z"
 
         super().__init__(
             bbox=bbox,

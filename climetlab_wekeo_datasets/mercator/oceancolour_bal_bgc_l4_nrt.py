@@ -40,7 +40,7 @@ class oceancolour_bal_bgc_l4_nrt(Main):
         self,
         bbox,
         layer="cmems_obs-oc_bal_bgc-plankton_nrt_l4-olci-300m_P1M_202207",
-        max_date="2024-03-01T00:00:00Z",
+        max_date="2024-04-01T00:00:00Z",
         min_date="2022-01-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -50,7 +50,7 @@ class oceancolour_bal_bgc_l4_nrt(Main):
                 min_date = "2022-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-01T00:00:00Z"
+                max_date = "2024-04-01T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

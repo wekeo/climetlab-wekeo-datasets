@@ -26,8 +26,8 @@ class oceancolour_nws_bgc_hr_l4_nrt(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_NWS_BGC_HR_L4_NRT_009_209"
     dataset = "EO:MO:DAT:OCEANCOLOUR_NWS_BGC_HR_L4_NRT_009_209"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -54,10 +54,10 @@ class oceancolour_nws_bgc_hr_l4_nrt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-02-01T00:00:00Z",
-        min_date="2020-01-01T00:00:00Z",
+        layer,
+        max_date="2023-10-31T23:59:59Z",
+        min_date="2020-01-04T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -73,7 +73,7 @@ class oceancolour_nws_bgc_hr_l4_nrt(Main):
                 min_date = "2020-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-01T00:00:00Z"
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs_oc_nws_bgc_optics_nrt_l4-hr_P1D-m_202105":
             if min_date is None:
@@ -87,7 +87,7 @@ class oceancolour_nws_bgc_hr_l4_nrt(Main):
                 min_date = "2020-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-01T00:00:00Z"
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs_oc_nws_bgc_transp_nrt_l4-hr_P1D-m_202105":
             if min_date is None:
@@ -101,7 +101,7 @@ class oceancolour_nws_bgc_hr_l4_nrt(Main):
                 min_date = "2020-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-01T00:00:00Z"
+                max_date = "2024-03-01T00:00:00Z"
 
         if layer == "cmems_obs_oc_nws_bgc_tur-spm-chl_nrt_l4-hr-mosaic_P1D-m_202107":
             if min_date is None:
@@ -111,8 +111,8 @@ class oceancolour_nws_bgc_hr_l4_nrt(Main):
                 max_date = "2023-10-31T23:59:59Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

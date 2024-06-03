@@ -44,7 +44,7 @@ class multiobs_glo_phy_sss_l3_mynrt(Main):
         self,
         bbox,
         layer="cmems_obs-mob_glo_phy-sss_mynrt_smos_P1D_202211",
-        max_date="2024-04-01T12:00:00Z",
+        max_date="2024-05-18T12:00:00Z",
         min_date="2010-01-12T00:00:00Z",
         variables=None,
         limit=None,
@@ -54,7 +54,7 @@ class multiobs_glo_phy_sss_l3_mynrt(Main):
                 min_date = "2010-01-12T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-18T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

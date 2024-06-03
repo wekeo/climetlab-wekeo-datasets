@@ -41,7 +41,7 @@ class sst_atl_sst_l4_nrt_observations(Main):
         self,
         bbox,
         layer="IFREMER-ATL-SST-L4-NRT-OBS_FULL_TIME_SERIE_201904",
-        max_date="2024-04-01T00:00:00Z",
+        max_date="2024-05-05T00:00:00Z",
         min_date="2017-12-31T12:00:00Z",
         variables=None,
         limit=None,
@@ -51,7 +51,7 @@ class sst_atl_sst_l4_nrt_observations(Main):
                 min_date = "2017-12-31T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

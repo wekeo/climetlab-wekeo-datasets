@@ -21,8 +21,8 @@ class wave_glo_phy_spc_l3_my(Main):
     name = "EO:MO:DAT:WAVE_GLO_PHY_SPC_L3_MY_014_006"
     dataset = "EO:MO:DAT:WAVE_GLO_PHY_SPC_L3_MY_014_006"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -67,8 +67,8 @@ class wave_glo_phy_spc_l3_my(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2021-08-24T00:00:00Z",
         min_date="2021-06-08T00:00:00Z",
         variables=None,
@@ -89,8 +89,8 @@ class wave_glo_phy_spc_l3_my(Main):
                 max_date = "2021-08-24T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

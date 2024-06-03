@@ -22,8 +22,8 @@ class arctic_multiyear_bgc(Main):
     name = "EO:MO:DAT:ARCTIC_MULTIYEAR_BGC_002_005"
     dataset = "EO:MO:DAT:ARCTIC_MULTIYEAR_BGC_002_005"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -51,8 +51,8 @@ class arctic_multiyear_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2021-01-01T12:00:00Z",
         min_date="2007-01-01T00:00:00Z",
         variables=None,
@@ -80,8 +80,8 @@ class arctic_multiyear_bgc(Main):
                 max_date = "2021-01-01T12:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

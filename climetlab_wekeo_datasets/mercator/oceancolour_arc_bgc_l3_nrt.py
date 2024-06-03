@@ -22,8 +22,8 @@ class oceancolour_arc_bgc_l3_nrt(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L3_NRT_009_121"
     dataset = "EO:MO:DAT:OCEANCOLOUR_ARC_BGC_L3_NRT_009_121"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -54,37 +54,37 @@ class oceancolour_arc_bgc_l3_nrt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-04-01T12:00:00Z",
+        layer,
+        max_date="2024-04-14T12:00:00Z",
         min_date="2023-12-03T00:00:00Z",
         variables=None,
         limit=None,
     ):
         if layer == "cmems_obs-oc_arc_bgc-plankton_nrt_l3-olci-300m_P1D_202303":
             if min_date is None:
-                min_date = "2024-03-26T00:00:00Z"
+                min_date = "2024-04-22T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-02T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
 
         if layer == "cmems_obs-oc_arc_bgc-reflectance_nrt_l3-olci-300m_P1D_202303":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-04-14T12:00:00Z"
 
         if layer == "cmems_obs-oc_arc_bgc-transp_nrt_l3-olci-300m_P1D_202303":
             if min_date is None:
                 min_date = "2023-12-03T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-04-14T12:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

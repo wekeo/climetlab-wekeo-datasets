@@ -47,7 +47,7 @@ class wave_glo_phy_swh_l4_nrt(Main):
         self,
         bbox,
         layer="cmems_obs-wave_glo_phy-swh_nrt_multi-l4-2deg_P1D_202211",
-        max_date="2024-04-01T12:00:00Z",
+        max_date="2024-05-05T12:00:00Z",
         min_date="2020-01-01T12:00:00Z",
         variables=None,
         limit=None,
@@ -57,7 +57,7 @@ class wave_glo_phy_swh_l4_nrt(Main):
                 min_date = "2020-01-01T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

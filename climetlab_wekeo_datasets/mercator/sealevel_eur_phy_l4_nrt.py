@@ -51,7 +51,7 @@ class sealevel_eur_phy_l4_nrt(Main):
         self,
         bbox,
         layer="cmems_obs-sl_eur_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D_202311",
-        max_date="2024-04-02T00:00:00Z",
+        max_date="2024-05-06T00:00:00Z",
         min_date="2021-12-31T12:00:00Z",
         variables=None,
         limit=None,
@@ -61,7 +61,7 @@ class sealevel_eur_phy_l4_nrt(Main):
                 min_date = "2021-12-31T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-02T00:00:00Z"
+                max_date = "2024-05-06T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

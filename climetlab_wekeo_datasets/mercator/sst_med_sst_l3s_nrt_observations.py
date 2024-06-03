@@ -13,7 +13,7 @@ from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
     "SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_a_202311",  # noqa: E501 SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_a
-    "SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_b_202311",  # noqa: E501 SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_b
+    "SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_b",  # noqa: E501 SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_b
 ]
 
 
@@ -21,8 +21,8 @@ class sst_med_sst_l3s_nrt_observations(Main):
     name = "EO:MO:DAT:SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012"
     dataset = "EO:MO:DAT:SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -39,6 +39,7 @@ class sst_med_sst_l3s_nrt_observations(Main):
             "or_number_of_pixels",
             "quality_level",
             "sea_surface_temperature",
+            "source_of_sst",
             "sources_of_sst",
             "sses_bias",
             "sses_standard_deviation",
@@ -53,8 +54,8 @@ class sst_med_sst_l3s_nrt_observations(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="2024-04-02T00:00:00Z",
         min_date="2007-12-31T19:00:00Z",
         variables=None,
@@ -65,9 +66,9 @@ class sst_med_sst_l3s_nrt_observations(Main):
                 min_date = "2007-12-31T19:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-02T00:00:00Z"
+                max_date = "2024-05-06T00:00:00Z"
 
-        if layer == "SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_b_202311":
+        if layer == "SST_MED_SST_L3S_NRT_OBSERVATIONS_010_012_b":
             if min_date is None:
                 min_date = "2007-12-31T19:00:00Z"
 
@@ -75,8 +76,8 @@ class sst_med_sst_l3s_nrt_observations(Main):
                 max_date = "2024-04-02T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

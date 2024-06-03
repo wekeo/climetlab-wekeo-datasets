@@ -12,14 +12,14 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-sl_eur_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202112",  # noqa: E501 cmems_obs-sl_eur_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D
-    "cmems_obs-sl_eur_phy-ssh_myint_allsat-l4-duacs-0.125deg_P1D_202311",  # noqa: E501 cmems_obs-sl_eur_phy-ssh_myint_allsat-l4-duacs-0.125deg_P1D_202311
+    "dataset-carbon-rep-monthly_202211",  # noqa: E501 dataset-carbon-rep-monthly_202211
+    "dataset-carbon-rep-monthly_202311",  # noqa: E501 dataset-carbon-rep-monthly
 ]
 
 
-class sealevel_eur_phy_l4_my(Main):
-    name = "EO:MO:DAT:SEALEVEL_EUR_PHY_L4_MY_008_068"
-    dataset = "EO:MO:DAT:SEALEVEL_EUR_PHY_L4_MY_008_068"
+class multiobs_glo_bio_carbon_surface_rep(Main):
+    name = "EO:MO:DAT:MULTIOBS_GLO_BIO_CARBON_SURFACE_REP_015_008"
+    dataset = "EO:MO:DAT:MULTIOBS_GLO_BIO_CARBON_SURFACE_REP_015_008"
 
     @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
@@ -28,24 +28,23 @@ class sealevel_eur_phy_l4_my(Main):
     @normalize(
         "variables",
         [
-            "adt",
-            "crs",
-            "err_sla",
-            "err_ugosa",
-            "err_vgosa",
-            "flag_ice",
-            "lat_bnds",
+            "fgco2",
+            "fgco2_uncertainty",
             "latitude",
-            "lon_bnds",
             "longitude",
-            "nv",
-            "sla",
+            "omega_ar",
+            "omega_ar_uncertainty",
+            "omega_ca",
+            "omega_ca_uncertainty",
+            "ph",
+            "ph_uncertainty",
+            "spco2",
+            "spco2_uncertainty",
+            "talk",
+            "talk_uncertainty",
+            "tco2",
+            "tco2_uncertainty",
             "time",
-            "tpa_correction",
-            "ugos",
-            "ugosa",
-            "vgos",
-            "vgosa",
         ],
         multiple=True,
     )
@@ -53,27 +52,24 @@ class sealevel_eur_phy_l4_my(Main):
         self,
         bbox,
         layer,
-        max_date="2022-08-03T12:00:00Z",
-        min_date="2022-07-31T12:00:00Z",
+        max_date="2021-12-15T00:00:00Z",
+        min_date="1985-01-15T00:00:00Z",
         variables=None,
         limit=None,
     ):
-        if layer == "cmems_obs-sl_eur_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202112":
+        if layer == "dataset-carbon-rep-monthly_202211":
             if min_date is None:
-                min_date = "1992-12-31T12:00:00Z"
+                min_date = "1985-01-15T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-06-07T12:00:00Z"
+                max_date = "2021-12-15T00:00:00Z"
 
-        if (
-            layer
-            == "cmems_obs-sl_eur_phy-ssh_myint_allsat-l4-duacs-0.125deg_P1D_202311"
-        ):
+        if layer == "dataset-carbon-rep-monthly_202311":
             if min_date is None:
-                min_date = "2022-07-31T12:00:00Z"
+                min_date = "2023-08-21T00:00:00Z"
 
             if max_date is None:
-                max_date = "2022-08-03T12:00:00Z"
+                max_date = "2023-08-21T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

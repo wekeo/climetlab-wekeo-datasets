@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-si_ant_phy_nrt_l3-1km_P1D_202303",  # noqa: E501 Dmi-asip sea ice classification - antarctica
+    "cmems_obs-si_ant_phy_nrt_l3-1km_P1D_202303",  # noqa: E501 cmems_obs-si_ant_phy_nrt_l3-1km_P1D_202303
 ]
 
 
@@ -43,7 +43,7 @@ class seaice_ant_phy_auto_l3_nrt(Main):
         self,
         bbox,
         layer="cmems_obs-si_ant_phy_nrt_l3-1km_P1D_202303",
-        max_date="2024-04-01T12:00:00Z",
+        max_date="2024-05-05T12:00:00Z",
         min_date="2023-02-02T12:00:00Z",
         variables=None,
         limit=None,
@@ -53,7 +53,7 @@ class seaice_ant_phy_auto_l3_nrt(Main):
                 min_date = "2023-02-02T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

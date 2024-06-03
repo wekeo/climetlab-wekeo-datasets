@@ -12,11 +12,15 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
+    "cmems_obs-oc_med_bgc-optics_my_l3-multi-1km_P1D_202207",  # noqa: E501 cmems_obs-oc_med_bgc-optics_my_l3-multi-1km_P1D_202207
     "cmems_obs-oc_med_bgc-optics_my_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_med_bgc-optics_my_l3-multi-1km_P1D
+    "cmems_obs-oc_med_bgc-plankton_my_l3-multi-1km_P1D_202207",  # noqa: E501 cmems_obs-oc_med_bgc-plankton_my_l3-multi-1km_P1D_202207
     "cmems_obs-oc_med_bgc-plankton_my_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_med_bgc-plankton_my_l3-multi-1km_P1D
     "cmems_obs-oc_med_bgc-plankton_my_l3-olci-300m_P1D_202211",  # noqa: E501 cmems_obs-oc_med_bgc-plankton_my_l3-olci-300m_P1D
+    "cmems_obs-oc_med_bgc-reflectance_my_l3-multi-1km_P1D_202207",  # noqa: E501 cmems_obs-oc_med_bgc-reflectance_my_l3-multi-1km_P1D_202207
     "cmems_obs-oc_med_bgc-reflectance_my_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_med_bgc-reflectance_my_l3-multi-1km_P1D
-    "cmems_obs-oc_med_bgc-reflectance_my_l3-olci-300m_P1D_202211",  # noqa: E501 Cmems obs-oc med bgc-reflectance my l3-olci-300m p1d
+    "cmems_obs-oc_med_bgc-reflectance_my_l3-olci-300m_P1D_202211",  # noqa: E501 cmems_obs-oc_med_bgc-reflectance_my_l3-olci-300m_P1D
+    "cmems_obs-oc_med_bgc-transp_my_l3-multi-1km_P1D_202207",  # noqa: E501 cmems_obs-oc_med_bgc-transp_my_l3-multi-1km_P1D_202207
     "cmems_obs-oc_med_bgc-transp_my_l3-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_med_bgc-transp_my_l3-multi-1km_P1D
     "cmems_obs-oc_med_bgc-transp_my_l3-olci-300m_P1D_202211",  # noqa: E501 cmems_obs-oc_med_bgc-transp_my_l3-olci-300m_P1D
 ]
@@ -26,8 +30,8 @@ class oceancolour_med_bgc_l3_my(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_MED_BGC_L3_MY_009_143"
     dataset = "EO:MO:DAT:OCEANCOLOUR_MED_BGC_L3_MY_009_143"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -89,65 +93,93 @@ class oceancolour_med_bgc_l3_my(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-03-25T00:00:00Z",
-        min_date="1997-09-16T00:00:00Z",
+        layer,
+        max_date="2024-04-28T00:00:00Z",
+        min_date="2016-04-26T00:00:00Z",
         variables=None,
         limit=None,
     ):
+        if layer == "cmems_obs-oc_med_bgc-optics_my_l3-multi-1km_P1D_202207":
+            if min_date is None:
+                min_date = "1997-09-16T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-11-22T00:00:00Z"
+
         if layer == "cmems_obs-oc_med_bgc-optics_my_l3-multi-1km_P1D_202311":
             if min_date is None:
                 min_date = "1997-09-16T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-25T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
+
+        if layer == "cmems_obs-oc_med_bgc-plankton_my_l3-multi-1km_P1D_202207":
+            if min_date is None:
+                min_date = "1997-09-16T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-11-22T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-plankton_my_l3-multi-1km_P1D_202311":
             if min_date is None:
                 min_date = "1997-09-16T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-25T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-plankton_my_l3-olci-300m_P1D_202211":
             if min_date is None:
                 min_date = "2016-04-26T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-25T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
+
+        if layer == "cmems_obs-oc_med_bgc-reflectance_my_l3-multi-1km_P1D_202207":
+            if min_date is None:
+                min_date = "1997-09-16T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-11-22T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-reflectance_my_l3-multi-1km_P1D_202311":
             if min_date is None:
                 min_date = "1997-09-16T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-25T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-reflectance_my_l3-olci-300m_P1D_202211":
             if min_date is None:
                 min_date = "2016-04-26T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-25T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
+
+        if layer == "cmems_obs-oc_med_bgc-transp_my_l3-multi-1km_P1D_202207":
+            if min_date is None:
+                min_date = "1997-09-16T00:00:00Z"
+
+            if max_date is None:
+                max_date = "2023-11-22T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-transp_my_l3-multi-1km_P1D_202311":
             if min_date is None:
                 min_date = "1997-09-16T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-25T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
 
         if layer == "cmems_obs-oc_med_bgc-transp_my_l3-olci-300m_P1D_202211":
             if min_date is None:
                 min_date = "2016-04-26T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-25T00:00:00Z"
+                max_date = "2024-04-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

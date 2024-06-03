@@ -32,8 +32,8 @@ class global_analysisforecast_bgc(Main):
     name = "EO:MO:DAT:GLOBAL_ANALYSISFORECAST_BGC_001_028"
     dataset = "EO:MO:DAT:GLOBAL_ANALYSISFORECAST_BGC_001_028"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -64,10 +64,10 @@ class global_analysisforecast_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-04-05T12:00:00Z",
-        min_date="2022-10-01T00:00:00Z",
+        layer,
+        max_date="2024-04-16T12:00:00Z",
+        min_date="2021-10-01T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -76,84 +76,84 @@ class global_analysisforecast_bgc(Main):
                 min_date = "2021-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-05T12:00:00Z"
+                max_date = "2024-05-24T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-bio_anfc_0.25deg_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-12-16T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-car_anfc_0.25deg_P1D-m_202311":
             if min_date is None:
                 min_date = "2021-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-05T12:00:00Z"
+                max_date = "2024-05-24T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-car_anfc_0.25deg_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-12-16T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-co2_anfc_0.25deg_P1D-m_202311":
             if min_date is None:
                 min_date = "2021-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-05T12:00:00Z"
+                max_date = "2024-05-24T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-co2_anfc_0.25deg_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-12-16T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-nut_anfc_0.25deg_P1D-m_202311":
             if min_date is None:
                 min_date = "2021-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-05T12:00:00Z"
+                max_date = "2024-05-24T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-nut_anfc_0.25deg_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-12-16T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-optics_anfc_0.25deg_P1D-m_202311":
             if min_date is None:
                 min_date = "2022-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-05T12:00:00Z"
+                max_date = "2024-05-24T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-optics_anfc_0.25deg_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-12-16T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-pft_anfc_0.25deg_P1D-m_202311":
             if min_date is None:
                 min_date = "2021-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-05T12:00:00Z"
+                max_date = "2024-05-24T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc-pft_anfc_0.25deg_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-10-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-12-16T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "cmems_mod_glo_bgc_anfc_0.25deg_static_202311":
             if min_date is None:
@@ -163,8 +163,8 @@ class global_analysisforecast_bgc(Main):
                 max_date = "2023-11-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

@@ -45,7 +45,7 @@ class seaice_arc_phy_climate_l4_my(Main):
         self,
         bbox,
         layer="cmems_obs_si_arc_phy_my_L4-DMIOI_P1D-m_202105",
-        max_date="2022-07-01T00:00:00Z",
+        max_date="2022-12-31T12:00:00Z",
         min_date="1982-01-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -55,7 +55,7 @@ class seaice_arc_phy_climate_l4_my(Main):
                 min_date = "1982-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2022-07-01T00:00:00Z"
+                max_date = "2022-12-31T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

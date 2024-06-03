@@ -12,6 +12,15 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
+    "cmems_mod_nws_bgc-chl_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-chl_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-kd_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-kd_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-no3_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-no3_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-o2_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-o2_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-ph_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-ph_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-phyc_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-phyc_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-po4_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-po4_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-pp_anfc_7km-3D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-pp_anfc_7km-3D_P1D-m_202105
+    "cmems_mod_nws_bgc-spco2_anfc_7km-2D_P1D-m_202105",  # noqa: E501 cmems_mod_nws_bgc-spco2_anfc_7km-2D_P1D-m_202105
     "cmems_mod_nws_bgc_anfc_0.027deg-3D_P1D-m_202311",  # noqa: E501 cmems_mod_nws_bgc_anfc_0.027deg-3D_P1D-m
     "cmems_mod_nws_bgc_anfc_0.027deg-3D_P1M-m_202311",  # noqa: E501 cmems_mod_nws_bgc_anfc_0.027deg-3D_P1M-m
     "cmems_mod_nws_bgc_anfc_0.027deg-3D_static_202311",  # noqa: E501 cmems_mod_nws_bgc_anfc_0.027deg-3D_static
@@ -22,13 +31,14 @@ class nwshelf_analysisforecast_bgc(Main):
     name = "EO:MO:DAT:NWSHELF_ANALYSISFORECAST_BGC_004_002"
     dataset = "EO:MO:DAT:NWSHELF_ANALYSISFORECAST_BGC_004_002"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
+            "attn",
             "chl",
             "depth",
             "deptho",
@@ -55,26 +65,89 @@ class nwshelf_analysisforecast_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-02-15T12:00:00Z",
-        min_date="2021-09-16T00:00:00Z",
+        layer,
+        max_date="2024-01-13T12:00:00Z",
+        min_date="2019-05-01T12:00:00Z",
         variables=None,
         limit=None,
     ):
+        if layer == "cmems_mod_nws_bgc-chl_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-kd_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-no3_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-o2_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-ph_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-phyc_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-po4_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-pp_anfc_7km-3D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
+        if layer == "cmems_mod_nws_bgc-spco2_anfc_7km-2D_P1D-m_202105":
+            if min_date is None:
+                min_date = "2019-05-01T12:00:00Z"
+
+            if max_date is None:
+                max_date = "2024-01-13T12:00:00Z"
+
         if layer == "cmems_mod_nws_bgc_anfc_0.027deg-3D_P1D-m_202311":
             if min_date is None:
                 min_date = "2021-12-13T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-06T12:00:00Z"
+                max_date = "2024-05-25T12:00:00Z"
 
         if layer == "cmems_mod_nws_bgc_anfc_0.027deg-3D_P1M-m_202311":
             if min_date is None:
                 min_date = "2021-09-16T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_nws_bgc_anfc_0.027deg-3D_static_202311":
             if min_date is None:
@@ -84,8 +157,8 @@ class nwshelf_analysisforecast_bgc(Main):
                 max_date = "2023-11-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

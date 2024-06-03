@@ -45,7 +45,7 @@ class seaice_arc_seaice_l4_nrt_observations(Main):
         self,
         bbox,
         layer="DMI-ARC-SEAICE_TEMP-L4-NRT-OBS",
-        max_date="2024-04-01T12:00:00Z",
+        max_date="2024-05-05T12:00:00Z",
         min_date="2017-12-31T00:00:00Z",
         variables=None,
         limit=None,
@@ -55,7 +55,7 @@ class seaice_arc_seaice_l4_nrt_observations(Main):
                 min_date = "2017-12-31T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T12:00:00Z"
+                max_date = "2024-05-05T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

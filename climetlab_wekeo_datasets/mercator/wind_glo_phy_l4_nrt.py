@@ -12,7 +12,6 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H_202207",  # noqa: E501  global ocean - wind and stress - hourly - from scatterometer and model
     "cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H_202207",  # noqa: E501 cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H
 ]
 
@@ -21,8 +20,8 @@ class wind_glo_phy_l4_nrt(Main):
     name = "EO:MO:DAT:WIND_GLO_PHY_L4_NRT_012_004"
     dataset = "EO:MO:DAT:WIND_GLO_PHY_L4_NRT_012_004"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -63,9 +62,9 @@ class wind_glo_phy_l4_nrt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-03-18T23:00:00Z",
+        layer="cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H_202207",
+        max_date="2024-05-05T23:00:00Z",
         min_date="2021-12-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -75,11 +74,11 @@ class wind_glo_phy_l4_nrt(Main):
                 min_date = "2021-12-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-18T23:00:00Z"
+                max_date = "2024-05-05T23:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

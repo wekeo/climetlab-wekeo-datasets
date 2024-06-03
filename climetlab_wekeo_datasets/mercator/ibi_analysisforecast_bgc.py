@@ -22,8 +22,8 @@ class ibi_analysisforecast_bgc(Main):
     name = "EO:MO:DAT:IBI_ANALYSISFORECAST_BGC_005_004"
     dataset = "EO:MO:DAT:IBI_ANALYSISFORECAST_BGC_005_004"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -55,10 +55,10 @@ class ibi_analysisforecast_bgc(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2020-12-28T00:00:00Z",
-        min_date="2020-12-01T00:00:00Z",
+        layer,
+        max_date="2024-05-25T12:00:00Z",
+        min_date="2021-12-13T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -67,14 +67,14 @@ class ibi_analysisforecast_bgc(Main):
                 min_date = "2021-12-13T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-06T12:00:00Z"
+                max_date = "2024-05-25T12:00:00Z"
 
         if layer == "cmems_mod_ibi_bgc_anfc_0.027deg-3D_P1M-m_202211":
             if min_date is None:
                 min_date = "2020-12-16T12:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T12:00:00Z"
 
         if layer == "cmems_mod_ibi_bgc_anfc_0.027deg-3D_static_202012":
             if min_date is None:
@@ -84,8 +84,8 @@ class ibi_analysisforecast_bgc(Main):
                 max_date = "2020-12-28T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

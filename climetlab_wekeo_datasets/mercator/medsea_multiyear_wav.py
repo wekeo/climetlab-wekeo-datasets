@@ -22,8 +22,8 @@ class medsea_multiyear_wav(Main):
     name = "EO:MO:DAT:MEDSEA_MULTIYEAR_WAV_006_012"
     dataset = "EO:MO:DAT:MEDSEA_MULTIYEAR_WAV_006_012"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -57,10 +57,10 @@ class medsea_multiyear_wav(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2022-11-28T00:00:00Z",
-        min_date="2022-11-01T00:00:00Z",
+        layer,
+        max_date="2022-07-31T23:00:00Z",
+        min_date="1993-01-01T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -76,7 +76,7 @@ class medsea_multiyear_wav(Main):
                 min_date = "2021-07-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-29T23:00:00Z"
+                max_date = "2024-04-30T23:00:00Z"
 
         if layer == "med-hcmr-wav-rean-h_202105":
             if min_date is None:
@@ -86,8 +86,8 @@ class medsea_multiyear_wav(Main):
                 max_date = "2022-07-31T23:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

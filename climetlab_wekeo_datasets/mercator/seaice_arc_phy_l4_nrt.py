@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "esa_obs-si_arc_phy-sit_nrt_l4_multi_P1D-m_202207",  # noqa: E501 Sea ice thickness derived from merging cryosat-2 and smos ice thickness
+    "esa_obs-si_arc_phy-sit_nrt_l4_multi_P1D-m_202207",  # noqa: E501 esa_obs-si_arc_phy-sit_nrt_l4_multi_P1D-m_202207
 ]
 
 
@@ -53,7 +53,7 @@ class seaice_arc_phy_l4_nrt(Main):
         self,
         bbox,
         layer="esa_obs-si_arc_phy-sit_nrt_l4_multi_P1D-m_202207",
-        max_date="2024-03-28T12:00:00Z",
+        max_date="2024-04-10T12:00:00Z",
         min_date="2019-10-28T00:00:00Z",
         variables=None,
         limit=None,
@@ -63,7 +63,7 @@ class seaice_arc_phy_l4_nrt(Main):
                 min_date = "2019-10-28T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-28T12:00:00Z"
+                max_date = "2024-04-10T12:00:00Z"
 
         super().__init__(
             bbox=bbox,

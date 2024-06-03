@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "DMI-BALTIC-SST-L4-NRT-OBS_FULL_TIME_SERIE",  # noqa: E501 Baltic sea - sst analysis
+    "DMI-BALTIC-SST-L4-NRT-OBS_FULL_TIME_SERIE",  # noqa: E501 DMI-BALTIC-SST-L4-NRT-OBS_FULL_TIME_SERIE
 ]
 
 
@@ -41,7 +41,7 @@ class sst_bal_sst_l4_nrt_observations(Main):
         self,
         bbox,
         layer="DMI-BALTIC-SST-L4-NRT-OBS_FULL_TIME_SERIE",
-        max_date="2024-04-02T00:00:00Z",
+        max_date="2024-05-06T00:00:00Z",
         min_date="2016-01-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -51,7 +51,7 @@ class sst_bal_sst_l4_nrt_observations(Main):
                 min_date = "2016-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-02T00:00:00Z"
+                max_date = "2024-05-06T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

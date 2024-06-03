@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-wave_glo_phy-spc_nrt_multi-l4-1deg_PT3H_202112",  # noqa: E501 NRT merged global ocean gridded spectral parameters l4 product and derived variables
+    "cmems_obs-wave_glo_phy-spc_nrt_multi-l4-1deg_PT3H_202112",  # noqa: E501 cmems_obs-wave_glo_phy-spc_nrt_multi-l4-1deg_PT3H
 ]
 
 
@@ -73,7 +73,7 @@ class wave_glo_phy_spc_l4_nrt(Main):
         self,
         bbox,
         layer="cmems_obs-wave_glo_phy-spc_nrt_multi-l4-1deg_PT3H_202112",
-        max_date="2024-03-30T06:00:00Z",
+        max_date="2024-04-30T21:00:00Z",
         min_date="2021-11-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -83,7 +83,7 @@ class wave_glo_phy_spc_l4_nrt(Main):
                 min_date = "2021-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-30T06:00:00Z"
+                max_date = "2024-04-30T21:00:00Z"
 
         super().__init__(
             bbox=bbox,

@@ -15,16 +15,16 @@ LAYERS = [
     "CERSAT-GLO-SEAICE_30DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_30DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE
     "CERSAT-GLO-SEAICE_30DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_30DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE
     "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE
-    "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE
-    "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE
-    "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE
+    "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE",  # noqa: E501 CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE
+    "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE",  # noqa: E501 CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE
+    "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE",  # noqa: E501 CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE
     "CERSAT-GLO-SEAICE_6DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_6DAYS_DRIFT_ASCAT_RAN-OBS_FULL_TIME_SERIE
     "CERSAT-GLO-SEAICE_6DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE_202311",  # noqa: E501 CERSAT-GLO-SEAICE_6DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE
     "cmems_obs-si_arc_phy-drift_my_l3-ssmi_P30D_202311",  # noqa: E501 cmems_obs-si_arc_phy-drift_my_l3-ssmi_P30D
     "cmems_obs-si_arc_phy-drift_my_l3-ssmi_P3D_202311",  # noqa: E501 cmems_obs-si_arc_phy-drift_my_l3-ssmi_P3D
-    "cmems_obs-si_arc_phy_my_drift-amsr_P2D_202012",  # noqa: E501 Arctic ocean - sea ice - 2 days drift, amsr
-    "cmems_obs-si_arc_phy_my_drift-amsr_P3D_202012",  # noqa: E501 Arctic ocean - sea ice - 3 days drift, amsr
-    "cmems_obs-si_arc_phy_my_drift-amsr_P6D_202012",  # noqa: E501 Arctic ocean - sea ice - 6 days drift, amsr
+    "cmems_obs-si_arc_phy_my_drift-amsr_P2D_202012",  # noqa: E501 cmems_obs-si_arc_phy_my_drift-amsr_P2D_202012
+    "cmems_obs-si_arc_phy_my_drift-amsr_P3D_202012",  # noqa: E501 cmems_obs-si_arc_phy_my_drift-amsr_P3D_202012
+    "cmems_obs-si_arc_phy_my_drift-amsr_P6D_202012",  # noqa: E501 cmems_obs-si_arc_phy_my_drift-amsr_P6D_202012
 ]
 
 
@@ -32,8 +32,8 @@ class seaice_arc_seaice_l3_rep_observations(Main):
     name = "EO:MO:DAT:SEAICE_ARC_SEAICE_L3_REP_OBSERVATIONS_011_010"
     dataset = "EO:MO:DAT:SEAICE_ARC_SEAICE_L3_REP_OBSERVATIONS_011_010"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -50,10 +50,10 @@ class seaice_arc_seaice_l3_rep_observations(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2012-04-30T00:00:00Z",
-        min_date="1999-10-01T00:00:00Z",
+        layer,
+        max_date="2023-11-01T00:00:00Z",
+        min_date="2007-02-01T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -85,22 +85,19 @@ class seaice_arc_seaice_l3_rep_observations(Main):
                 min_date = "2007-01-31T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-11-30T00:00:00Z"
+                max_date = "2024-03-01T00:00:00Z"
 
         if (
             layer
-            == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE_202311"
+            == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_ASCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE"
         ):
             if min_date is None:
                 min_date = "2007-01-31T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-11-30T00:00:00Z"
+                max_date = "2022-11-18T00:00:00Z"
 
-        if (
-            layer
-            == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE_202311"
-        ):
+        if layer == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_RAN-OBS_FULL_TIME_SERIE":
             if min_date is None:
                 min_date = "1999-09-28T00:00:00Z"
 
@@ -109,7 +106,7 @@ class seaice_arc_seaice_l3_rep_observations(Main):
 
         if (
             layer
-            == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE_202311"
+            == "CERSAT-GLO-SEAICE_3DAYS_DRIFT_QUICKSCAT_SSMI_MERGED_RAN-OBS_FULL_TIME_SERIE"
         ):
             if min_date is None:
                 min_date = "1999-10-01T00:00:00Z"
@@ -125,7 +122,7 @@ class seaice_arc_seaice_l3_rep_observations(Main):
                 min_date = "2007-01-31T00:00:00Z"
 
             if max_date is None:
-                max_date = "2023-11-30T00:00:00Z"
+                max_date = "2024-03-01T00:00:00Z"
 
         if (
             layer
@@ -173,8 +170,8 @@ class seaice_arc_seaice_l3_rep_observations(Main):
                 max_date = "2023-05-06T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

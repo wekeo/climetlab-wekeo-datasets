@@ -22,8 +22,8 @@ class arctic_multiyear_phy(Main):
     name = "EO:MO:DAT:ARCTIC_MULTIYEAR_PHY_002_003"
     dataset = "EO:MO:DAT:ARCTIC_MULTIYEAR_PHY_002_003"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -55,10 +55,11 @@ class arctic_multiyear_phy(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2022-01-01T00:00:00Z",
-        min_date="1991-01-01T00:00:00Z",
+        layer,
+        max_date="2022-12-15T00:00:00Z",
+        min_date="1991-01-15T00:00:00Z",
+
         variables=None,
         limit=None,
     ):
@@ -84,10 +85,11 @@ class arctic_multiyear_phy(Main):
                 max_date = "2022-01-01T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

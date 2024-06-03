@@ -41,8 +41,9 @@ class sst_med_sst_l4_rep_observations(Main):
         self,
         bbox,
         layer="cmems_SST_MED_SST_L4_REP_OBSERVATIONS_010_021_202007",
-        max_date="2024-03-03T00:00:00Z",
+        max_date="2024-04-06T00:00:00Z",
         min_date="1981-08-24T19:00:00Z",
+
         variables=None,
         limit=None,
     ):
@@ -51,13 +52,14 @@ class sst_med_sst_l4_rep_observations(Main):
                 min_date = "1981-08-24T19:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-03T00:00:00Z"
+                max_date = "2024-04-06T00:00:00Z"
 
         super().__init__(
             bbox=bbox,
             layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

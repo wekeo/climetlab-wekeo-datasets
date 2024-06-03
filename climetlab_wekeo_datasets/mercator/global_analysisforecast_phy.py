@@ -13,10 +13,7 @@ from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
     "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m
-    "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m_202211",  # noqa: E501 Daily mean fields from global ocean physics analysis and forecast updated daily
-    "cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m_202211",  # noqa: E501 Monthly mean fields for product global analysisforecast phy 001 024
     "cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m
-    "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202211",  # noqa: E501 Instantaneous fields for product global analysisforecast phy 001 024
     "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202211",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i
     "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m
     "cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m
@@ -27,13 +24,9 @@ LAYERS = [
     "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m
     "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m
     "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_P1D-m
-    "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202211",  # noqa: E501 Daily mean fields from global ocean physics analysis and forecast updated daily
     "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_P1M-m
-    "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202211",  # noqa: E501 Monthly mean fields for product global analysisforecast phy 001 024
-    "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202211",  # noqa: E501 Hourly mean fields from global ocean physics analysis and forecast updated daily
     "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_PT1H-m
     "cmems_mod_glo_phy_anfc_0.083deg_static_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_static
-    "cmems_mod_glo_phy_anfc_merged-uv_PT1H-i_202211",  # noqa: E501 Hourly mean merged surface currents from oceanic circulation, tides and waves
     "cmems_mod_glo_phy_anfc_merged-uv_PT1H-i_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_merged-uv_PT1H-i
 ]
 
@@ -42,8 +35,8 @@ class global_analysisforecast_phy(Main):
     name = "EO:MO:DAT:GLOBAL_ANALYSISFORECAST_PHY_001_024"
     dataset = "EO:MO:DAT:GLOBAL_ANALYSISFORECAST_PHY_001_024"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -86,10 +79,10 @@ class global_analysisforecast_phy(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2022-11-28T00:00:00Z",
-        min_date="2022-11-01T00:00:00Z",
+        layer,
+        max_date="2024-05-22T00:00:00Z",
+        min_date="2020-11-01T00:00:00Z",
         variables=None,
         limit=None,
     ):
@@ -98,98 +91,98 @@ class global_analysisforecast_phy(Main):
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T12:00:00Z"
+                max_date = "2024-05-28T12:00:00Z"
 
         if layer == "cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-04T00:00:00Z"
+                max_date = "2024-05-21T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T12:00:00Z"
+                max_date = "2024-05-28T12:00:00Z"
 
         if layer == "cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-04T00:00:00Z"
+                max_date = "2024-05-22T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T12:00:00Z"
+                max_date = "2024-05-29T12:00:00Z"
 
         if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-04T00:00:00Z"
+                max_date = "2024-05-22T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T12:00:00Z"
+                max_date = "2024-05-29T12:00:00Z"
 
         if layer == "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T12:00:00Z"
+                max_date = "2024-05-29T12:00:00Z"
 
         if layer == "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
+                max_date = "2024-04-16T00:00:00Z"
 
         if layer == "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202211":
             if min_date is None:
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T23:30:00Z"
+                max_date = "2024-05-29T23:30:00Z"
 
         if layer == "cmems_mod_glo_phy_anfc_0.083deg_static_202211":
             if min_date is None:
@@ -203,11 +196,11 @@ class global_analysisforecast_phy(Main):
                 min_date = "2020-11-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-11T23:30:00Z"
+                max_date = "2024-05-29T23:30:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

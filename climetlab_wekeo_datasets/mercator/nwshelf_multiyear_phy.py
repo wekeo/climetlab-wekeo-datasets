@@ -33,13 +33,9 @@ LAYERS = [
     "cmems_mod_nws_phy-t_my_7km-3D_P1M-m_202012",  # noqa: E501 cmems_mod_nws_phy-t_my_7km-3D_P1M-m
     "cmems_mod_nws_phy-t_myint_7km-3D_P1M-m_202105",  # noqa: E501 cmems_mod_nws_phy-t_myint_7km-3D_P1M-m
     "cmems_mod_nws_phy-uv_my_7km-2D_PT1H-i_202112",  # noqa: E501 cmems_mod_nws_phy-uv_my_7km-2D_PT1H-i
-    "cmems_mod_nws_phy-uv_my_7km-2D_PT1H-i_202112",  # noqa: E501 Hourly-instantaneous horizontal velocity (2d)
     "cmems_mod_nws_phy-uv_my_7km-3D_P1D-m_202012",  # noqa: E501 cmems_mod_nws_phy-uv_my_7km-3D_P1D-m
-    "cmems_mod_nws_phy-uv_my_7km-3D_P1D-m_202012",  # noqa: E501 Daily-mean horizontal velocity (3d)
-    "cmems_mod_nws_phy-uv_my_7km-3D_P1M-m_202012",  # noqa: E501 Monthly-mean horizontal velocity (3d)
     "cmems_mod_nws_phy-uv_my_7km-3D_P1M-m_202012",  # noqa: E501 cmems_mod_nws_phy-uv_my_7km-3D_P1M-m
     "cmems_mod_nws_phy-uv_myint_7km-3D_P1M-m_202105",  # noqa: E501 cmems_mod_nws_phy-uv_myint_7km-3D_P1M-m
-    "cmems_mod_nws_phy-uv_myint_7km-3D_P1M-m_202105",  # noqa: E501 Monthly-mean horizontal velocity (3d)
 ]
 
 
@@ -47,8 +43,8 @@ class nwshelf_multiyear_phy(Main):
     name = "EO:MO:DAT:NWSHELF_MULTIYEAR_PHY_004_009"
     dataset = "EO:MO:DAT:NWSHELF_MULTIYEAR_PHY_004_009"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -70,8 +66,8 @@ class nwshelf_multiyear_phy(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer,
         max_date="9991-12-28T00:00:00Z",
         min_date="1-01-01T00:00:00Z",
         variables=None,
@@ -246,8 +242,8 @@ class nwshelf_multiyear_phy(Main):
                 max_date = "2024-01-16T12:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

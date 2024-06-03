@@ -21,8 +21,8 @@ class sst_glo_sst_l4_rep_observations(Main):
     name = "EO:MO:DAT:SST_GLO_SST_L4_REP_OBSERVATIONS_010_024"
     dataset = "EO:MO:DAT:SST_GLO_SST_L4_REP_OBSERVATIONS_010_024"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -43,10 +43,11 @@ class sst_glo_sst_l4_rep_observations(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2022-11-01T00:00:00Z",
-        min_date="2017-01-01T00:00:00Z",
+        layer,
+        max_date="2017-01-01T00:00:00Z",
+        min_date="1981-09-01T00:00:00Z",
+
         variables=None,
         limit=None,
     ):
@@ -65,10 +66,11 @@ class sst_glo_sst_l4_rep_observations(Main):
                 max_date = "2017-01-01T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
+            
             variables=variables,
             limit=limit,
         )

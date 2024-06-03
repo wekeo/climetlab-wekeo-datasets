@@ -48,7 +48,7 @@ class sst_bal_sst_l3s_nrt_observations(Main):
         self,
         bbox,
         layer="DMI-BALTIC-SST-L3S-NRT-OBS_FULL_TIME_SERIE_201904",
-        max_date="2024-03-30T00:00:00Z",
+        max_date="2024-05-06T00:00:00Z",
         min_date="2019-03-11T00:00:00Z",
         variables=None,
         limit=None,
@@ -58,7 +58,7 @@ class sst_bal_sst_l3s_nrt_observations(Main):
                 min_date = "2019-03-11T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-03-30T00:00:00Z"
+                max_date = "2024-05-06T00:00:00Z"
 
         super().__init__(
             bbox=bbox,

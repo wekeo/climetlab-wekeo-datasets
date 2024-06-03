@@ -13,7 +13,6 @@ from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
     "cnes_obs-sl_glo_phy-mdt_my_0.125deg_P20Y_202012",  # noqa: E501 cnes_obs-sl_glo_phy-mdt_my_0.125deg_P20Y
-    "cnes_obs-sl_glo_phy-mdt_my_0.125deg_P20Y_202012",  # noqa: E501 Hybrid mdt cnes cls22 cmems2020
 ]
 
 
@@ -21,8 +20,8 @@ class sealevel_glo_phy_mdt(Main):
     name = "EO:MO:DAT:SEALEVEL_GLO_PHY_MDT_008_063"
     dataset = "EO:MO:DAT:SEALEVEL_GLO_PHY_MDT_008_063"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -46,8 +45,8 @@ class sealevel_glo_phy_mdt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer="cnes_obs-sl_glo_phy-mdt_my_0.125deg_P20Y_202012",
         max_date="2013-01-01T00:00:00Z",
         min_date="1993-01-01T00:00:00Z",
         variables=None,
@@ -61,8 +60,8 @@ class sealevel_glo_phy_mdt(Main):
                 max_date = "2013-01-01T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

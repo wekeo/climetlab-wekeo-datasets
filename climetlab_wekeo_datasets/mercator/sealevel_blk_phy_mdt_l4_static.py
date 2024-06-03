@@ -12,7 +12,6 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-sl_blk_phy-mdt_my_l4-0.0625deg_P20Y_202105",  # noqa: E501 Mdt cmems 2020 blk
     "cmems_obs-sl_blk_phy-mdt_my_l4-0.0625deg_P20Y_202105",  # noqa: E501 cmems_obs-sl_blk_phy-mdt_my_l4-0.0625deg_P20Y
 ]
 
@@ -21,8 +20,8 @@ class sealevel_blk_phy_mdt_l4_static(Main):
     name = "EO:MO:DAT:SEALEVEL_BLK_PHY_MDT_L4_STATIC_008_067"
     dataset = "EO:MO:DAT:SEALEVEL_BLK_PHY_MDT_L4_STATIC_008_067"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -47,8 +46,8 @@ class sealevel_blk_phy_mdt_l4_static(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
+        layer="cmems_obs-sl_blk_phy-mdt_my_l4-0.0625deg_P20Y_202105",
         max_date="2013-01-01T00:00:00Z",
         min_date="1993-01-01T00:00:00Z",
         variables=None,
@@ -62,8 +61,8 @@ class sealevel_blk_phy_mdt_l4_static(Main):
                 max_date = "2013-01-01T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,

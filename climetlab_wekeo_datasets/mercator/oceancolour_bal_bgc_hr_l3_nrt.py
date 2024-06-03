@@ -23,8 +23,8 @@ class oceancolour_bal_bgc_hr_l3_nrt(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_BAL_BGC_HR_L3_NRT_009_202"
     dataset = "EO:MO:DAT:OCEANCOLOUR_BAL_BGC_HR_L3_NRT_009_202"
 
-    @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("layer", LAYERS)
     @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
@@ -68,9 +68,9 @@ class oceancolour_bal_bgc_hr_l3_nrt(Main):
     )
     def __init__(
         self,
-        layer,
         bbox,
-        max_date="2024-04-01T00:00:00Z",
+        layer,
+        max_date="2024-05-05T00:00:00Z",
         min_date="2020-01-01T00:00:00Z",
         variables=None,
         limit=None,
@@ -80,32 +80,32 @@ class oceancolour_bal_bgc_hr_l3_nrt(Main):
                 min_date = "2020-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs_oc_bal_bgc_optics_nrt_l3-hr_P1D-m_202105":
             if min_date is None:
                 min_date = "2020-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs_oc_bal_bgc_transp_nrt_l3-hr_P1D-m_202105":
             if min_date is None:
                 min_date = "2020-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         if layer == "cmems_obs_oc_bal_bgc_tur-spm-chl_nrt_l3-hr-mosaic_P1D-m_202107":
             if min_date is None:
                 min_date = "2020-01-01T00:00:00Z"
 
             if max_date is None:
-                max_date = "2024-04-01T00:00:00Z"
+                max_date = "2024-05-05T00:00:00Z"
 
         super().__init__(
-            layer=layer,
             bbox=bbox,
+            layer=layer,
             max_date=max_date,
             min_date=min_date,
             variables=variables,
