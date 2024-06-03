@@ -51,7 +51,6 @@ class wave_glo_phy_swh_l3_nrt(Main):
         layer,
         max_date="2024-05-06T15:52:13Z",
         min_date="2023-08-01T04:38:25Z",
-
         variables=None,
         limit=None,
     ):
@@ -130,7 +129,6 @@ class wave_glo_phy_swh_l3_nrt(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

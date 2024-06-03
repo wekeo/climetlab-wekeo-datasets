@@ -72,7 +72,6 @@ class medsea_multiyear_phy(Main):
         layer,
         max_date="2024-04-16T12:00:00Z",
         min_date="2021-07-16T12:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -228,7 +227,6 @@ class medsea_multiyear_phy(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

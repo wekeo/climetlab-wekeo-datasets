@@ -47,7 +47,6 @@ class sst_glo_sst_l4_rep_observations(Main):
         layer,
         max_date="2017-01-01T00:00:00Z",
         min_date="1981-09-01T00:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -70,7 +69,6 @@ class sst_glo_sst_l4_rep_observations(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

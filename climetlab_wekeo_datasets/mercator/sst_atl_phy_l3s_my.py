@@ -47,7 +47,6 @@ class sst_atl_phy_l3s_my(Main):
         layer="cmems_obs-sst_atl_phy_my_l3s_P1D-m_202211",
         max_date="2022-01-02T00:00:00Z",
         min_date="1982-01-01T00:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -63,7 +62,6 @@ class sst_atl_phy_l3s_my(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

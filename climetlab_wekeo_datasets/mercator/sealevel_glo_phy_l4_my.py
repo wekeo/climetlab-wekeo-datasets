@@ -57,7 +57,6 @@ class sealevel_glo_phy_l4_my(Main):
         layer,
         max_date="2022-08-03T12:00:00Z",
         min_date="2022-07-31T12:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -87,7 +86,6 @@ class sealevel_glo_phy_l4_my(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

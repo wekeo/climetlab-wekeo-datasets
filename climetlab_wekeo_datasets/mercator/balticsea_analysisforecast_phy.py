@@ -71,7 +71,6 @@ class balticsea_analysisforecast_phy(Main):
         layer,
         max_date="2021-12-28T00:00:00Z",
         min_date="2021-12-01T00:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -164,7 +163,6 @@ class balticsea_analysisforecast_phy(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

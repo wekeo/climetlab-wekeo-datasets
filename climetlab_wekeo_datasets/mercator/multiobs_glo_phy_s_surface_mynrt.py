@@ -52,7 +52,6 @@ class multiobs_glo_phy_s_surface_mynrt(Main):
         layer,
         max_date="2024-05-14T00:00:00Z",
         min_date="2023-09-07T00:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -117,7 +116,6 @@ class multiobs_glo_phy_s_surface_mynrt(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

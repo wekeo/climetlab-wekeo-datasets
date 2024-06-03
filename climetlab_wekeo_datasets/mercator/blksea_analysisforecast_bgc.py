@@ -84,7 +84,6 @@ class blksea_analysisforecast_bgc(Main):
         layer,
         max_date="2024-04-11T12:00:00Z",
         min_date="2021-08-05T12:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -289,7 +288,6 @@ class blksea_analysisforecast_bgc(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

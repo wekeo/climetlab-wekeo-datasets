@@ -58,7 +58,6 @@ class balticsea_multiyear_bgc(Main):
         layer,
         max_date="2021-12-31T12:00:00Z",
         min_date="1993-01-01T12:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -95,7 +94,6 @@ class balticsea_multiyear_bgc(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

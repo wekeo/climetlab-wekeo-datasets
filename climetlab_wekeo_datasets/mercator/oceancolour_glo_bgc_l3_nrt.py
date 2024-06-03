@@ -108,7 +108,6 @@ class oceancolour_glo_bgc_l3_nrt(Main):
         layer,
         max_date="2024-05-05T00:00:00Z",
         min_date="2023-12-02T19:10:33Z",
-
         variables=None,
         limit=None,
     ):
@@ -208,7 +207,6 @@ class oceancolour_glo_bgc_l3_nrt(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

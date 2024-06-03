@@ -59,7 +59,6 @@ class arctic_multiyear_phy(Main):
         layer,
         max_date="2022-12-15T00:00:00Z",
         min_date="1991-01-15T00:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -89,7 +88,6 @@ class arctic_multiyear_phy(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

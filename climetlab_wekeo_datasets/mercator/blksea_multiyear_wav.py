@@ -67,7 +67,6 @@ class blksea_multiyear_wav(Main):
         layer,
         max_date="2023-11-07T00:00:00Z",
         min_date="2022-09-01T00:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -104,7 +103,6 @@ class blksea_multiyear_wav(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

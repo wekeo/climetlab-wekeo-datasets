@@ -75,7 +75,6 @@ class blksea_multiyear_bgc(Main):
         layer,
         max_date="2023-10-19T00:00:00Z",
         min_date="2023-10-16T00:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -231,7 +230,6 @@ class blksea_multiyear_bgc(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

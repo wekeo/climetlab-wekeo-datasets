@@ -40,7 +40,6 @@ class sst_bs_phy_l3s_my(Main):
         layer="cmems_obs-sst_bs_phy_my_l3s_P1D-m_202211",
         max_date="2024-04-06T00:00:00Z",
         min_date="1981-08-24T19:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -56,7 +55,6 @@ class sst_bs_phy_l3s_my(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )

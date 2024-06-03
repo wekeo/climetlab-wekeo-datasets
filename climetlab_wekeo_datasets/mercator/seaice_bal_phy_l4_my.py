@@ -48,7 +48,6 @@ class seaice_bal_phy_l4_my(Main):
         layer,
         max_date="2023-05-28T14:00:00Z",
         min_date="1980-11-03T14:00:00Z",
-
         variables=None,
         limit=None,
     ):
@@ -71,7 +70,6 @@ class seaice_bal_phy_l4_my(Main):
             layer=layer,
             max_date=max_date,
             min_date=min_date,
-            
             variables=variables,
             limit=limit,
         )
