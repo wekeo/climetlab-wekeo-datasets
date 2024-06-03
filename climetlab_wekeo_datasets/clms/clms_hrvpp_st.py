@@ -12,80 +12,44 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.clms.main import Main
 
 
-class clms_global_gdmp_300m_v1_10daily_netcdf(Main):
-    name = "EO:CLMS:DAT:CLMS_GLOBAL_GDMP_300M_V1_10DAILY_NETCDF"
-    dataset = "EO:CLMS:DAT:CLMS_GLOBAL_GDMP_300M_V1_10DAILY_NETCDF"
+class clms_hrvpp_st(Main):
+    name = "EO:EEA:DAT:CLMS_HRVPP_ST"
+    dataset = "EO:EEA:DAT:CLMS_HRVPP_ST"
 
-    @normalize(
-        "acquisitionType",
-        [
-            "NOMINAL",
-        ],
-    )
     @normalize("bbox", "bounding-box(list)")
     @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
-        "platform",
+        "platformSerialIdentifier",
         [
-            "PROBA-V",
-            "SENTINEL-3",
-        ],
-        multiple=True,
-    )
-    @normalize(
-        "processingCenter",
-        [
-            "VITO",
+            "S2A, S2B",
         ],
     )
-    @normalize(
-        "productGroupId",
-        [
-            "RT0",
-            "RT1",
-            "RT2",
-            "RT5",
-            "RT6",
-        ],
-        multiple=True,
-    )
+    @normalize("processingDate", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "productType",
         [
-            "GDMP300",
-        ],
-    )
-    @normalize(
-        "productionStatus",
-        [
-            "ARCHIVED",
-            "CANCELLED",
+            "PPI",
+            "QFLAG",
         ],
         multiple=True,
     )
     @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
-        acquisitionType=None,
         bbox=None,
         end=None,
-        platform=None,
-        processingCenter=None,
-        productGroupId=None,
+        platformSerialIdentifier=None,
+        processingDate=None,
         productType=None,
-        productionStatus=None,
         start=None,
         limit=None,
     ):
         super().__init__(
-            acquisitionType=acquisitionType,
             bbox=bbox,
             end=end,
-            platform=platform,
-            processingCenter=processingCenter,
-            productGroupId=productGroupId,
+            platformSerialIdentifier=platformSerialIdentifier,
+            processingDate=processingDate,
             productType=productType,
-            productionStatus=productionStatus,
             start=start,
             limit=limit,
         )
