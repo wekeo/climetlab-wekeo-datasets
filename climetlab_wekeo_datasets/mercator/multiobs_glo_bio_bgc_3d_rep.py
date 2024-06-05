@@ -12,7 +12,6 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs_glo_bgc3d_rep_clim_202112",  # noqa: E501 cmems_obs_glo_bgc3d_rep_clim_202112
     "cmems_obs_glo_bgc3d_rep_weekly_202112",  # noqa: E501 cmems_obs_glo_bgc3d_rep_weekly
 ]
 
@@ -21,10 +20,6 @@ class multiobs_glo_bio_bgc_3d_rep(Main):
     name = "EO:MO:DAT:MULTIOBS_GLO_BIO_BGC_3D_REP_015_010"
     dataset = "EO:MO:DAT:MULTIOBS_GLO_BIO_BGC_3D_REP_015_010"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -32,43 +27,109 @@ class multiobs_glo_bio_bgc_3d_rep(Main):
             "bbp_error",
             "chl",
             "chl_error",
-            "depth",
-            "latitude",
-            "longitude",
             "poc",
             "poc_error",
-            "time",
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "maximum_depth",
+        [
+            "-5",
+            "-10",
+            "-15",
+            "-20",
+            "-25",
+            "-30",
+            "-35",
+            "-40",
+            "-45",
+            "-50",
+            "-55",
+            "-60",
+            "-65",
+            "-70",
+            "-80",
+            "-90",
+            "-100",
+            "-125",
+            "-150",
+            "-175",
+            "-200",
+            "-225",
+            "-250",
+            "-275",
+            "-300",
+            "-350",
+            "-400",
+            "-450",
+            "-500",
+            "-550",
+            "-600",
+            "-700",
+            "-800",
+            "-900",
+            "-1000",
+            "0",
+        ],
+    )
+    @normalize(
+        "minimum_depth",
+        [
+            "-5",
+            "-10",
+            "-15",
+            "-20",
+            "-25",
+            "-30",
+            "-35",
+            "-40",
+            "-45",
+            "-50",
+            "-55",
+            "-60",
+            "-65",
+            "-70",
+            "-80",
+            "-90",
+            "-100",
+            "-125",
+            "-150",
+            "-175",
+            "-200",
+            "-225",
+            "-250",
+            "-275",
+            "-300",
+            "-350",
+            "-400",
+            "-450",
+            "-500",
+            "-550",
+            "-600",
+            "-700",
+            "-800",
+            "-900",
+            "-1000",
+            "0",
+        ],
+    )
     def __init__(
         self,
-        bbox,
-        layer,
-        max_date="2023-01-03T00:00:00Z",
-        min_date="1998-01-07T00:00:00Z",
-        variables=None,
+        variables,
+        layer="cmems_obs_glo_bgc3d_rep_weekly_202112",
+        bbox=None,
+        maximum_depth=None,
+        minimum_depth=None,
         limit=None,
     ):
-        if layer == "cmems_obs_glo_bgc3d_rep_clim_202112":
-            if min_date is None:
-                min_date = "2021-09-06T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2021-09-06T00:00:00Z"
-
-        if layer == "cmems_obs_glo_bgc3d_rep_weekly_202112":
-            if min_date is None:
-                min_date = "1998-01-07T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-01-03T00:00:00Z"
-
         super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
             variables=variables,
+            layer=layer,
+            bbox=bbox,
+            maximum_depth=maximum_depth,
+            minimum_depth=minimum_depth,
             limit=limit,
         )

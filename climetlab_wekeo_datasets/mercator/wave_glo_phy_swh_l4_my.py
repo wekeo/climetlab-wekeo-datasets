@@ -20,10 +20,6 @@ class wave_glo_phy_swh_l4_my(Main):
     name = "EO:MO:DAT:WAVE_GLO_PHY_SWH_L4_MY_014_007"
     dataset = "EO:MO:DAT:WAVE_GLO_PHY_SWH_L4_MY_014_007"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -34,36 +30,16 @@ class wave_glo_phy_swh_l4_my(Main):
             "VAVH_INST",
             "VAVH_INST_NBR",
             "VAVH_INST_SCORE",
-            "lat_bnds",
-            "latitude",
-            "lon_bnds",
-            "longitude",
-            "nv",
-            "time",
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        bbox,
+        variables,
         layer="cmems_obs-wave_glo_phy-swh_my_multi-l4-2deg_P1D_202112",
-        max_date="2020-12-31T12:00:00Z",
-        min_date="2002-01-15T12:00:00Z",
-        variables=None,
+        bbox=None,
         limit=None,
     ):
-        if layer == "cmems_obs-wave_glo_phy-swh_my_multi-l4-2deg_P1D_202112":
-            if min_date is None:
-                min_date = "2002-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2020-12-31T12:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)

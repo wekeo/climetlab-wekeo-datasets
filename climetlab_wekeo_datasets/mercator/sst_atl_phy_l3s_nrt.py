@@ -23,17 +23,12 @@ class sst_atl_phy_l3s_nrt(Main):
     name = "EO:MO:DAT:SST_ATL_PHY_L3S_NRT_010_037"
     dataset = "EO:MO:DAT:SST_ATL_PHY_L3S_NRT_010_037"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "adjusted_sea_surface_temperature",
             "bias_to_reference_sst",
-            "lat",
-            "lon",
             "or_latitude",
             "or_longitude",
             "or_number_of_pixels",
@@ -42,56 +37,12 @@ class sst_atl_phy_l3s_nrt(Main):
             "sea_surface_temperature",
             "sea_surface_temperature_stddev",
             "solar_zenith_angle",
-            "sources_of_sst",
             "sses_bias",
             "sses_standard_deviation",
             "sst_dtime",
-            "time",
         ],
         multiple=True,
     )
-    def __init__(
-        self,
-        bbox,
-        layer,
-        max_date="2023-12-10T12:00:00Z",
-        min_date="2020-12-31T12:00:00Z",
-        variables=None,
-        limit=None,
-    ):
-        if layer == "cmems_obs-sst_atl_phy_l3s_gir_P1D-m_202311":
-            if min_date is None:
-                min_date = "2020-12-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-12-10T12:00:00Z"
-
-        if layer == "cmems_obs-sst_atl_phy_l3s_pir_P1D-m_202311":
-            if min_date is None:
-                min_date = "2020-12-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-12-10T12:00:00Z"
-
-        if layer == "cmems_obs-sst_atl_phy_l3s_pmw_P1D-m_202311":
-            if min_date is None:
-                min_date = "2020-12-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-12-10T12:00:00Z"
-
-        if layer == "cmems_obs-sst_atl_phy_nrt_l3s_P1D-m_202211":
-            if min_date is None:
-                min_date = "2020-12-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-12-10T12:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+    @normalize("bbox", "bounding-box(list)")
+    def __init__(self, layer, variables, bbox=None, limit=None):
+        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)

@@ -20,10 +20,6 @@ class nwshelf_reanalysis_wav(Main):
     name = "EO:MO:DAT:NWSHELF_REANALYSIS_WAV_004_015"
     dataset = "EO:MO:DAT:NWSHELF_REANALYSIS_WAV_004_015"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -44,34 +40,12 @@ class nwshelf_reanalysis_wav(Main):
             "VTM02",
             "VTM10",
             "VTPK",
-            "crs",
-            "latitude",
-            "longitude",
-            "time",
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
-        self,
-        bbox,
-        layer="MetO-NWS-WAV-RAN_202007",
-        max_date="2023-12-31T00:00:00Z",
-        min_date="1980-01-01T00:00:00Z",
-        variables=None,
-        limit=None,
+        self, variables, layer="MetO-NWS-WAV-RAN_202007", bbox=None, limit=None
     ):
-        if layer == "MetO-NWS-WAV-RAN_202007":
-            if min_date is None:
-                min_date = "1980-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-12-31T00:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)

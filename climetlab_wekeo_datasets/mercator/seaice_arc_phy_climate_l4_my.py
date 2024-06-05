@@ -20,48 +20,27 @@ class seaice_arc_phy_climate_l4_my(Main):
     name = "EO:MO:DAT:SEAICE_ARC_PHY_CLIMATE_L4_MY_011_016"
     dataset = "EO:MO:DAT:SEAICE_ARC_PHY_CLIMATE_L4_MY_011_016"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "analysed_st",
             "analysis_error",
-            "lat",
-            "lon",
             "mask",
             "observation_max",
             "observation_min",
             "observation_num",
             "observation_std",
             "sea_ice_fraction",
-            "time",
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        bbox,
+        variables,
         layer="cmems_obs_si_arc_phy_my_L4-DMIOI_P1D-m_202105",
-        max_date="2022-12-31T12:00:00Z",
-        min_date="1982-01-01T00:00:00Z",
-        variables=None,
+        bbox=None,
         limit=None,
     ):
-        if layer == "cmems_obs_si_arc_phy_my_L4-DMIOI_P1D-m_202105":
-            if min_date is None:
-                min_date = "1982-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2022-12-31T12:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)

@@ -13,8 +13,6 @@ from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
     "cmems_mod_blk_wav_my_2.5km_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_wav_my_2.5km_PT1H-i
-    "cmems_mod_blk_wav_my_2.5km_static_202211",  # noqa: E501 cmems_mod_blk_wav_my_2.5km_static
-    "cmems_mod_blk_wav_myint_2.5km_PT1H-i_202211",  # noqa: E501 cmems_mod_blk_wav_myint_2.5km_PT1H-i_202211
     "cmems_mod_blk_wav_myint_2.5km_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_wav_myint_2.5km_PT1H-i
 ]
 
@@ -23,10 +21,7 @@ class blksea_multiyear_wav(Main):
     name = "EO:MO:DAT:BLKSEA_MULTIYEAR_WAV_007_006"
     dataset = "EO:MO:DAT:BLKSEA_MULTIYEAR_WAV_007_006"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -48,61 +43,10 @@ class blksea_multiyear_wav(Main):
             "VTM01_WW",
             "VTM02",
             "VTM10",
-            "VTMX",
             "VTPK",
-            "VZMX",
-            "e1t",
-            "e2t",
-            "lat",
-            "latitude",
-            "lon",
-            "longitude",
-            "time",
         ],
         multiple=True,
     )
-    def __init__(
-        self,
-        bbox,
-        layer,
-        max_date="2023-11-07T00:00:00Z",
-        min_date="2022-09-01T00:00:00Z",
-        variables=None,
-        limit=None,
-    ):
-        if layer == "cmems_mod_blk_wav_my_2.5km_PT1H-i_202311":
-            if min_date is None:
-                min_date = "2023-05-25T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-09T00:00:00Z"
-
-        if layer == "cmems_mod_blk_wav_my_2.5km_static_202211":
-            if min_date is None:
-                min_date = "2022-11-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2022-11-28T00:00:00Z"
-
-        if layer == "cmems_mod_blk_wav_myint_2.5km_PT1H-i_202211":
-            if min_date is None:
-                min_date = "2022-09-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-07T00:00:00Z"
-
-        if layer == "cmems_mod_blk_wav_myint_2.5km_PT1H-i_202311":
-            if min_date is None:
-                min_date = "2023-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-30T23:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+    @normalize("bbox", "bounding-box(list)")
+    def __init__(self, layer, variables, bbox=None, limit=None):
+        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)

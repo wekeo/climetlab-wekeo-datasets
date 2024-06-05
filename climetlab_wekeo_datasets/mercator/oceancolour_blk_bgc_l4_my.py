@@ -12,9 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202207",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202207
     "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202311",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D
-    "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202207",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202207
     "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202311",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M
     "cmems_obs-oc_blk_bgc-plankton_my_l4-olci-300m_P1M_202211",  # noqa: E501 cmems_obs-oc_blk_bgc-plankton_my_l4-olci-300m_P1M
 ]
@@ -24,71 +22,16 @@ class oceancolour_blk_bgc_l4_my(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_BLK_BGC_L4_MY_009_154"
     dataset = "EO:MO:DAT:OCEANCOLOUR_BLK_BGC_L4_MY_009_154"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "CHL",
             "CHL_count",
             "CHL_error",
-            "lat",
-            "lon",
-            "time",
         ],
         multiple=True,
     )
-    def __init__(
-        self,
-        bbox,
-        layer,
-        max_date="2024-04-24T00:00:00Z",
-        min_date="1997-09-16T00:00:00Z",
-        variables=None,
-        limit=None,
-    ):
-        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202207":
-            if min_date is None:
-                min_date = "1997-09-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-18T00:00:00Z"
-
-        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-gapfree-multi-1km_P1D_202311":
-            if min_date is None:
-                min_date = "1997-09-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-24T00:00:00Z"
-
-        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202207":
-            if min_date is None:
-                min_date = "1997-09-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-31T00:00:00Z"
-
-        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-multi-1km_P1M_202311":
-            if min_date is None:
-                min_date = "1997-09-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-01T00:00:00Z"
-
-        if layer == "cmems_obs-oc_blk_bgc-plankton_my_l4-olci-300m_P1M_202211":
-            if min_date is None:
-                min_date = "2016-04-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-01T00:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+    @normalize("bbox", "bounding-box(list)")
+    def __init__(self, layer, variables, bbox=None, limit=None):
+        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)

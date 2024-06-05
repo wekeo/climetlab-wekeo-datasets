@@ -43,209 +43,93 @@ class nwshelf_multiyear_phy(Main):
     name = "EO:MO:DAT:NWSHELF_MULTIYEAR_PHY_004_009"
     dataset = "EO:MO:DAT:NWSHELF_MULTIYEAR_PHY_004_009"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "bottomT",
-            "depth",
-            "latitude",
-            "longitude",
             "mlotst",
             "so",
             "thetao",
-            "time",
             "uo",
             "vo",
             "zos",
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "maximum_depth",
+        [
+            "-3",
+            "-10",
+            "-15",
+            "-20",
+            "-30",
+            "-50",
+            "-75",
+            "-100",
+            "-125",
+            "-150",
+            "-200",
+            "-250",
+            "-300",
+            "-400",
+            "-500",
+            "-600",
+            "-750",
+            "-1000",
+            "-1500",
+            "-2000",
+            "-3000",
+            "-4000",
+            "-5000",
+            "0",
+        ],
+    )
+    @normalize(
+        "minimum_depth",
+        [
+            "-3",
+            "-10",
+            "-15",
+            "-20",
+            "-30",
+            "-50",
+            "-75",
+            "-100",
+            "-125",
+            "-150",
+            "-200",
+            "-250",
+            "-300",
+            "-400",
+            "-500",
+            "-600",
+            "-750",
+            "-1000",
+            "-1500",
+            "-2000",
+            "-3000",
+            "-4000",
+            "-5000",
+            "0",
+        ],
+    )
     def __init__(
         self,
-        bbox,
         layer,
-        max_date="9991-12-28T00:00:00Z",
-        min_date="1-01-01T00:00:00Z",
-        variables=None,
+        variables,
+        bbox=None,
+        maximum_depth=None,
+        minimum_depth=None,
         limit=None,
     ):
-        if layer == "cmems_mod_nws_phy-bottomt_my_7km-2D_P1D-m_202012":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-bottomt_my_7km-2D_P1M-m_202012":
-            if min_date is None:
-                min_date = "1993-01-16T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-08-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-bottomt_my_7km-2D_PT1H-i_202112":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-bottomt_myint_7km-2D_P1M-m_202105":
-            if min_date is None:
-                min_date = "2021-05-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-01-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-mld_my_7km-2D_P1D-m_202012":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-mld_my_7km-2D_P1M-m_202012":
-            if min_date is None:
-                min_date = "1993-01-16T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-08-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-mld_my_7km-2D_PT1H-i_202112":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-mld_myint_7km-2D_P1M-m_202105":
-            if min_date is None:
-                min_date = "2021-05-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-01-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-s_my_7km-3D_P1D-m_202012":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-s_my_7km-3D_P1M-m_202012":
-            if min_date is None:
-                min_date = "1993-01-16T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-08-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-s_myint_7km-3D_P1M-m_202105":
-            if min_date is None:
-                min_date = "2021-05-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-01-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_P1D-m_202012":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_P1M-m_202012":
-            if min_date is None:
-                min_date = "1993-01-16T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-08-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-ssh_my_7km-2D_PT1H-i_202112":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-ssh_myint_7km-2D_P1M-m_202105":
-            if min_date is None:
-                min_date = "2021-05-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-01-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-sss_my_7km-2D_PT1H-i_202112":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-sst_my_7km-2D_PT1H-i_202112":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-t_my_7km-3D_P1D-m_202012":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-t_my_7km-3D_P1M-m_202012":
-            if min_date is None:
-                min_date = "1993-01-16T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-08-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-t_myint_7km-3D_P1M-m_202105":
-            if min_date is None:
-                min_date = "2021-05-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-01-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-uv_my_7km-2D_PT1H-i_202112":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-uv_my_7km-3D_P1D-m_202012":
-            if min_date is None:
-                min_date = "1-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "9991-12-28T00:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-uv_my_7km-3D_P1M-m_202012":
-            if min_date is None:
-                min_date = "1993-01-16T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-08-16T12:00:00Z"
-
-        if layer == "cmems_mod_nws_phy-uv_myint_7km-3D_P1M-m_202105":
-            if min_date is None:
-                min_date = "2021-05-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-01-16T12:00:00Z"
-
         super().__init__(
-            bbox=bbox,
             layer=layer,
-            max_date=max_date,
-            min_date=min_date,
             variables=variables,
+            bbox=bbox,
+            maximum_depth=maximum_depth,
+            minimum_depth=minimum_depth,
             limit=limit,
         )

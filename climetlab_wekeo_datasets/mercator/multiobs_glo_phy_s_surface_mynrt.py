@@ -16,10 +16,6 @@ LAYERS = [
     "cmems_obs-mob_glo_phy-sss_my_multi_P1M_202311",  # noqa: E501 cmems_obs-mob_glo_phy-sss_my_multi_P1M
     "cmems_obs-mob_glo_phy-sss_nrt_multi_P1D_202311",  # noqa: E501 cmems_obs-mob_glo_phy-sss_nrt_multi_P1D
     "cmems_obs-mob_glo_phy-sss_nrt_multi_P1M_202311",  # noqa: E501 cmems_obs-mob_glo_phy-sss_nrt_multi_P1M
-    "dataset-sss-ssd-nrt-monthly_202012",  # noqa: E501 dataset-sss-ssd-nrt-monthly_202012
-    "dataset-sss-ssd-nrt-weekly_202012",  # noqa: E501 dataset-sss-ssd-nrt-weekly_202012
-    "dataset-sss-ssd-rep-monthly_202012",  # noqa: E501 dataset-sss-ssd-rep-monthly_202012
-    "dataset-sss-ssd-rep-weekly_202012",  # noqa: E501 dataset-sss-ssd-rep-weekly_202012
 ]
 
 
@@ -27,95 +23,125 @@ class multiobs_glo_phy_s_surface_mynrt(Main):
     name = "EO:MO:DAT:MULTIOBS_GLO_PHY_S_SURFACE_MYNRT_015_013"
     dataset = "EO:MO:DAT:MULTIOBS_GLO_PHY_S_SURFACE_MYNRT_015_013"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
-            "depth",
             "dos",
             "dos_error",
-            "lat",
-            "lon",
             "sea_ice_fraction",
             "sos",
             "sos_error",
-            "time",
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "end_datetime",
+        [
+            "2021-01-01T00:00:00Z",
+            "2021-02-01T00:00:00Z",
+            "2021-03-01T00:00:00Z",
+            "2021-04-01T00:00:00Z",
+            "2021-05-01T00:00:00Z",
+            "2021-06-01T00:00:00Z",
+            "2021-07-01T00:00:00Z",
+            "2021-08-01T00:00:00Z",
+            "2021-09-01T00:00:00Z",
+            "2021-10-01T00:00:00Z",
+            "2021-11-01T00:00:00Z",
+            "2021-12-01T00:00:00Z",
+            "2022-01-01T00:00:00Z",
+            "2022-02-01T00:00:00Z",
+            "2022-03-01T00:00:00Z",
+            "2022-04-01T00:00:00Z",
+            "2022-05-01T00:00:00Z",
+            "2022-06-01T00:00:00Z",
+            "2022-07-01T00:00:00Z",
+            "2022-08-01T00:00:00Z",
+            "2022-09-01T00:00:00Z",
+            "2022-10-01T00:00:00Z",
+            "2022-11-01T00:00:00Z",
+            "2022-12-01T00:00:00Z",
+            "2023-01-01T00:00:00Z",
+            "2023-02-01T00:00:00Z",
+            "2023-03-01T00:00:00Z",
+            "2023-04-01T00:00:00Z",
+            "2023-05-01T00:00:00Z",
+            "2023-06-01T00:00:00Z",
+            "2023-07-01T00:00:00Z",
+            "2023-08-01T00:00:00Z",
+            "2023-09-01T00:00:00Z",
+            "2023-10-01T00:00:00Z",
+            "2023-11-01T00:00:00Z",
+            "2023-12-01T00:00:00Z",
+            "2024-01-01T00:00:00Z",
+            "2024-02-01T00:00:00Z",
+            "2024-03-01T00:00:00Z",
+            "2024-04-01T00:00:00Z",
+            "2024-05-01T00:00:00Z",
+        ],
+    )
+    @normalize(
+        "start_datetime",
+        [
+            "2021-01-01T00:00:00Z",
+            "2021-02-01T00:00:00Z",
+            "2021-03-01T00:00:00Z",
+            "2021-04-01T00:00:00Z",
+            "2021-05-01T00:00:00Z",
+            "2021-06-01T00:00:00Z",
+            "2021-07-01T00:00:00Z",
+            "2021-08-01T00:00:00Z",
+            "2021-09-01T00:00:00Z",
+            "2021-10-01T00:00:00Z",
+            "2021-11-01T00:00:00Z",
+            "2021-12-01T00:00:00Z",
+            "2022-01-01T00:00:00Z",
+            "2022-02-01T00:00:00Z",
+            "2022-03-01T00:00:00Z",
+            "2022-04-01T00:00:00Z",
+            "2022-05-01T00:00:00Z",
+            "2022-06-01T00:00:00Z",
+            "2022-07-01T00:00:00Z",
+            "2022-08-01T00:00:00Z",
+            "2022-09-01T00:00:00Z",
+            "2022-10-01T00:00:00Z",
+            "2022-11-01T00:00:00Z",
+            "2022-12-01T00:00:00Z",
+            "2023-01-01T00:00:00Z",
+            "2023-02-01T00:00:00Z",
+            "2023-03-01T00:00:00Z",
+            "2023-04-01T00:00:00Z",
+            "2023-05-01T00:00:00Z",
+            "2023-06-01T00:00:00Z",
+            "2023-07-01T00:00:00Z",
+            "2023-08-01T00:00:00Z",
+            "2023-09-01T00:00:00Z",
+            "2023-10-01T00:00:00Z",
+            "2023-11-01T00:00:00Z",
+            "2023-12-01T00:00:00Z",
+            "2024-01-01T00:00:00Z",
+            "2024-02-01T00:00:00Z",
+            "2024-03-01T00:00:00Z",
+            "2024-04-01T00:00:00Z",
+            "2024-05-01T00:00:00Z",
+        ],
+    )
     def __init__(
         self,
-        bbox,
         layer,
-        max_date="2024-05-14T00:00:00Z",
-        min_date="2023-09-07T00:00:00Z",
-        variables=None,
+        variables,
+        bbox=None,
+        end_datetime=None,
+        start_datetime=None,
         limit=None,
     ):
-        if layer == "cmems_obs-mob_glo_phy-sss_my_multi_P1D_202311":
-            if min_date is None:
-                min_date = "2023-03-22T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-16T00:00:00Z"
-
-        if layer == "cmems_obs-mob_glo_phy-sss_my_multi_P1M_202311":
-            if min_date is None:
-                min_date = "2023-10-06T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-17T00:00:00Z"
-
-        if layer == "cmems_obs-mob_glo_phy-sss_nrt_multi_P1D_202311":
-            if min_date is None:
-                min_date = "2023-09-07T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-14T00:00:00Z"
-
-        if layer == "cmems_obs-mob_glo_phy-sss_nrt_multi_P1M_202311":
-            if min_date is None:
-                min_date = "2023-10-09T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-15T00:00:00Z"
-
-        if layer == "dataset-sss-ssd-nrt-monthly_202012":
-            if min_date is None:
-                min_date = "2022-10-27T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-05-31T00:00:00Z"
-
-        if layer == "dataset-sss-ssd-nrt-weekly_202012":
-            if min_date is None:
-                min_date = "2022-11-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-27T00:00:00Z"
-
-        if layer == "dataset-sss-ssd-rep-monthly_202012":
-            if min_date is None:
-                min_date = "2020-09-04T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2022-10-24T00:00:00Z"
-
-        if layer == "dataset-sss-ssd-rep-weekly_202012":
-            if min_date is None:
-                min_date = "2020-09-04T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2022-11-01T00:00:00Z"
-
         super().__init__(
-            bbox=bbox,
             layer=layer,
-            max_date=max_date,
-            min_date=min_date,
             variables=variables,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
             limit=limit,
         )

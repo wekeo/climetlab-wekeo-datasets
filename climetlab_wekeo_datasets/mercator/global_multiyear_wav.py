@@ -12,7 +12,6 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_glo_wav_my_0.2_PT3H-i_202112",  # noqa: E501 cmems_mod_glo_wav_my_0.2_PT3H-i_202112
     "cmems_mod_glo_wav_my_0.2deg_PT3H-i_202311",  # noqa: E501 cmems_mod_glo_wav_my_0.2deg_PT3H-i
     "cmems_mod_glo_wav_myint_0.2deg_PT3H-i_202311",  # noqa: E501 cmems_mod_glo_wav_myint_0.2deg_PT3H-i
 ]
@@ -22,10 +21,7 @@ class global_multiyear_wav(Main):
     name = "EO:MO:DAT:GLOBAL_MULTIYEAR_WAV_001_032"
     dataset = "EO:MO:DAT:GLOBAL_MULTIYEAR_WAV_001_032"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -46,47 +42,9 @@ class global_multiyear_wav(Main):
             "VTM02",
             "VTM10",
             "VTPK",
-            "latitude",
-            "longitude",
-            "time",
         ],
         multiple=True,
     )
-    def __init__(
-        self,
-        bbox,
-        layer,
-        max_date="2021-12-31T21:00:00Z",
-        min_date="1993-01-01T00:00:00Z",
-        variables=None,
-        limit=None,
-    ):
-        if layer == "cmems_mod_glo_wav_my_0.2_PT3H-i_202112":
-            if min_date is None:
-                min_date = "1993-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2021-12-31T21:00:00Z"
-
-        if layer == "cmems_mod_glo_wav_my_0.2deg_PT3H-i_202311":
-            if min_date is None:
-                min_date = "1993-01-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-04-30T21:00:00Z"
-
-        if layer == "cmems_mod_glo_wav_myint_0.2deg_PT3H-i_202311":
-            if min_date is None:
-                min_date = "2023-05-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-01-31T21:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+    @normalize("bbox", "bounding-box(list)")
+    def __init__(self, layer, variables, bbox=None, limit=None):
+        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)
