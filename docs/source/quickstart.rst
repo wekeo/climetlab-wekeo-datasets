@@ -16,7 +16,7 @@ Once the plugin is installed, it can be used directly into a Jupyter notebook.
     "wekeo-eum-metop-glb-sst-nc",
     dtstart="2021-01-18",
     dtend="2021-01-19",
-)
+    )
 
     ds = cmlds.to_xarray()
     ds.sea_surface_temperature.isel(time=0).plot()
