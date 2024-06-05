@@ -17,15 +17,15 @@ The minimum required argument for the function ``load_dataset`` is the dataset i
 
 The CliMetLab dataset id can be derived from the dataset id inside the WEkEO viewer. For example:
 
-- WEkEO dataset id: ``EO:CLMS:DAT:CGLS_HOURLY_LST_GLOBAL_V2``
-- CliMetLab dataset id: ``wekeo-clms-cgls-hourly-lst-global-v2``
+- WEkEO dataset id: ``EO:CLMS:DAT:CLMS_GLOBAL_LST_5KM_V2_HOURLY_NETCDF``
+- CliMetLab dataset id: ``wekeo-clms-clms-global-lst-5km-v1-hourly-netcdf``
 
 .. code-block:: python
 
     import climetlab as cml
 
     ds = cml.load_dataset(
-        "wekeo-clms-cgls-hourly-lst-global-v2"
+        "wekeo-clms-clms-global-lst-5km-v1-hourly-netcdf"
     )
 
 
@@ -47,15 +47,10 @@ The WEkEO CliMetLab Plugin offers a translation function which translates the WE
     from climetlab_wekeo_datasets import hda2cml
 
     api_request = {
-    "datasetId": "EO:CLMS:DAT:CGLS_HOURLY_LST_GLOBAL_V2",
-    "dateRangeSelectValues": [
-            {
-            "name": "dtrange",
-            "start": "2021-07-01T00:00:00.000Z",
-            "end": "2021-07-02T00:00:00.000Z"
-            }
-        ]
-    }
+        "dataset_id": "EO:CLMS:DAT:CLMS_GLOBAL_LST_5KM_V2_HOURLY_NETCDF",
+        "start": "2021-07-01T00:00:00.000Z",
+        "end": "2021-07-02T00:00:00.000Z"
+        }
 
     ds_id, args = hda2cml(api_request) 
 
@@ -83,7 +78,7 @@ Now, a CliMetLab query for WEkEO data can be created:
     import climetlab as cml
 
     ds = cml.load_dataset(
-        "wekeo-clms-cgls-hourly-lst-global-v2",
+        "wekeo-clms-clms-global-lst-5km-v1-hourly-netcdf",
         start="2021-07-01T00:00:00Z",
         end="2021-07-01T23:59:59Z",
     )
@@ -101,7 +96,7 @@ This query triggers the download of a subset of a single dataset.
     import climetlab as cml
 
     ds = cml.load_dataset(
-        "wekeo-clms-cgls-hourly-lst-global-v2",
+        "wekeo-clms-clms-global-lst-5km-v1-hourly-netcdf",
         start="2021-07-01T00:00:00Z",
         end="2021-07-01T23:59:59Z",
     )
@@ -150,7 +145,7 @@ If we want to compare the LST of 2021-07-01 with the LST of the previous year, i
     import matplotlib.pyplot as plt
 
     ds_v1 = cml.load_dataset(
-        "wekeo-clms-cgls-hourly-lst-global-v1",
+        "wekeo-clms-clms-global-lst-5km-v1-hourly-netcdf",
         start="2020-07-01T00:00:00Z",
         end="2020-07-01T23:59:59Z",
     )
@@ -210,24 +205,49 @@ This raises the error:
 
 The original exception reveals that the datasets have identical variable names, which is why they cannot be merged to a single xarray.
 
-The single datasets downloaded by CliMetLab can be accessed by ``ds.source.sources``. In a loop each dataset can be converted to xarray separetely.
+A workaroud is to access the two variables separately using the climetlab, rename the variable names accordingly and merge them afterwards. 
 
 .. code-block:: python
 
-    import xarray as xr
-    datasets = [xr.open_dataset(s) for s in cmlds.source.sources]
+    dscml_temp=cml.load_dataset(
+    "wekeo-ecmwf-sis-water-hydrological-change",
+    variable=[
+        "air_temperature"],
+    time_aggregation=["autumn", "spring"],
+    format_="zip",
+    gcm_model="esm_chem",
+    statistic="change_in_the_annual_mean",
+    experiment="rcp_8_5",
+    hydrological_model="pcr_globwb")
 
-The datasets can be merged after manually changing theit variable names using xarray.
+    ds_temp = dscml_temp.to_xarray()
 
 .. code-block:: python
 
-    datasets[0] = datasets[0].rename({"relative_change": "prec_relative_change"})
-    datasets[0] = datasets[0].rename({"ref_var_threshold": "prec_ref_var_threshold"})[['prec_relative_change', 'prec_ref_var_threshold']]
+    dscml_prec=cml.load_dataset(
+    "wekeo-ecmwf-sis-water-hydrological-change",
+    variable=[
+        "precipitation"],
+    time_aggregation=["autumn", "spring"],
+    format_="zip",
+    gcm_model="esm_chem",
+    statistic="change_in_the_annual_mean",
+    experiment="rcp_8_5",
+    hydrological_model="pcr_globwb")
 
-    datasets[1] = datasets[1].rename({"absolute_change": "temp_absolute_change"})
-    datasets[1] = datasets[1].rename({"ref_var_threshold": "temp_ref_var_threshold"})[['temp_absolute_change', 'temp_ref_var_threshold']]
+    ds_prec = dscml_prec.to_xarray()
 
-    xarr = xr.merge(datasets)
+The datasets can be merged after manually changing their variable names using xarray.
+
+.. code-block:: python
+
+    ds_prec = ds_prec.rename({"relative_change": "prec_relative_change"})
+    ds_prec = ds_prec.rename({"ref_var_threshold": "prec_ref_var_threshold"})[['prec_relative_change', 'prec_ref_var_threshold']]
+
+    ds_temp = ds_temp.rename({"absolute_change": "temp_absolute_change"})
+    ds_temp = ds_temp.rename({"ref_var_threshold": "temp_ref_var_threshold"})[['temp_absolute_change', 'temp_ref_var_threshold']]
+
+    xarr = xr.merge([ds_prec, ds_temp])
 
 Caching and Storage of CliMetLab datasets
 -----------------------------------------
@@ -300,7 +320,7 @@ The first entry of the time series shows the sea surface temperature observation
 
 
 
-The observation data is merges with a second dataset - the sea surface temperature anomalies in the same time period. This creates a single xarray with two variables. 
+The observation data is merged with a second dataset - the sea surface temperature anomalies in the same time period. This creates a single xarray with two variables. 
 
 .. code-block:: python
 
@@ -383,7 +403,7 @@ For example, the diurnal cycle of temperature averaged across Germany can be ext
 .. image:: ../images/plot-temp-daily-cycle.png
     :width: 400
 
-It is possible to do arithmtic operations of the differnt time steps of the dataset. Next, the temperature difference between 00:00 UTM and 12:00 UTM is shown across the globe. 
+It is possible to do arithmtic operations of the different time steps of the dataset. Next, the temperature difference between 00:00 UTM and 12:00 UTM is shown across the globe. 
 The temperature difference is inverted with the changing day and night cycle across the globe. 
 
 

@@ -13,13 +13,13 @@ Once the plugin is installed, it can be used directly into a Jupyter notebook.
     client = Client()
 
     cmlds = cml.load_dataset(
-        "wekeo-clms-cgls-hourly-lst-global-v2",
-        start="2021-01-18",
-        end="2021-01-19",
-    )
+    "wekeo-eum-metop-glb-sst-nc",
+    dtstart="2021-01-18",
+    dtend="2021-01-19",
+)
 
     ds = cmlds.to_xarray()
-    ds.LST.plot(x="lon", y="lat")
+    ds.sea_surface_temperature.isel(time=0).plot()
 
     client.shutdown()
 
@@ -46,41 +46,18 @@ Once the request is copied into the clipboard, you can use it following the exam
     import climetlab as cml
     from climetlab_wekeo_datasets import hda2cml
 
+    # Instantiate a default Dask distributed client to handle data
+    client = Client()
+
     query = {
-        "datasetId": "EO:ECMWF:DAT:CAMS_EUROPE_AIR_QUALITY_FORECASTS",
-        "boundingBoxValues": [
-            {
-            "name": "area",
-            "bbox": [
-                3.694591996044645,
-                35.907220595373886,
-                14.939002418789217,
-                42.61449357770201
-            ]}
-        ],
-        "dateRangeSelectValues": [
-            {
-                "name": "date",
-                "start": "2023-08-25T00:00:00.000Z",
-                "end": "2023-10-31T23:59:59.999Z"
-            }
-        ],
-        "multiStringSelectValues": [
-            {
-            "name": "variable",
-            "value": [
-                "alder_pollen",
-                "ammonia"
-            ]},
-            ...
-        ],
-        "stringChoiceValues": [
-            {
-                "name": "format",
-                "value": "netcdf"
-            }
-        ]
+    "dataset_id": "EO:EUM:DAT:METOP:GLB-SST-NC",
+    "dtstart": "2021-01-18T00:00:00.000Z",
+    "dtend": "2021-01-19T00:00:00.000Z",
+    "sat": "Metop-B",
+    "type": "OSSTGLBN"
     }
 
     entry_point, arguments = hda2cml(query)
-    dataset = cml.load_dataset(entry_point, **arguments)
+    cmlds = cml.load_dataset(entry_point, **arguments)
+
+    ds = cmlds.to_xarray()
