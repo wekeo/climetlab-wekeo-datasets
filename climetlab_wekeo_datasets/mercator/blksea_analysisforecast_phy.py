@@ -12,51 +12,33 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_blk_phy-cur_anfc_2.5km_P1D-m_202211",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_2.5km_P1D-m_202211
     "cmems_mod_blk_phy-cur_anfc_2.5km_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_2.5km_P1D-m
-    "cmems_mod_blk_phy-cur_anfc_2.5km_P1M-m_202211",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_2.5km_P1M-m_202211
     "cmems_mod_blk_phy-cur_anfc_2.5km_P1M-m_202311",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_2.5km_P1M-m
     "cmems_mod_blk_phy-cur_anfc_2.5km_PT15M-i_202311",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_2.5km_PT15M-i
-    "cmems_mod_blk_phy-cur_anfc_2.5km_PT1H-m_202211",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_2.5km_PT1H-m_202211
     "cmems_mod_blk_phy-cur_anfc_2.5km_PT1H-m_202311",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_2.5km_PT1H-m
     "cmems_mod_blk_phy-cur_anfc_detided_2.5km_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_detided_2.5km_P1D-m
     "cmems_mod_blk_phy-cur_anfc_mrm-500m_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_mrm-500m_P1D-m
     "cmems_mod_blk_phy-cur_anfc_mrm-500m_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_phy-cur_anfc_mrm-500m_PT1H-i
-    "cmems_mod_blk_phy-mld_anfc_2.5km_P1D-m_202211",  # noqa: E501 cmems_mod_blk_phy-mld_anfc_2.5km_P1D-m_202211
     "cmems_mod_blk_phy-mld_anfc_2.5km_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-mld_anfc_2.5km_P1D-m
-    "cmems_mod_blk_phy-mld_anfc_2.5km_P1M-m_202211",  # noqa: E501 cmems_mod_blk_phy-mld_anfc_2.5km_P1M-m_202211
     "cmems_mod_blk_phy-mld_anfc_2.5km_P1M-m_202311",  # noqa: E501 cmems_mod_blk_phy-mld_anfc_2.5km_P1M-m
-    "cmems_mod_blk_phy-mld_anfc_2.5km_PT1H-m_202211",  # noqa: E501 cmems_mod_blk_phy-mld_anfc_2.5km_PT1H-m_202211
     "cmems_mod_blk_phy-mld_anfc_2.5km_PT1H-m_202311",  # noqa: E501 cmems_mod_blk_phy-mld_anfc_2.5km_PT1H-m
-    "cmems_mod_blk_phy-sal_anfc_2.5km_P1D-m_202211",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_2.5km_P1D-m_202211
     "cmems_mod_blk_phy-sal_anfc_2.5km_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_2.5km_P1D-m
-    "cmems_mod_blk_phy-sal_anfc_2.5km_P1M-m_202211",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_2.5km_P1M-m_202211
     "cmems_mod_blk_phy-sal_anfc_2.5km_P1M-m_202311",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_2.5km_P1M-m
-    "cmems_mod_blk_phy-sal_anfc_2.5km_PT1H-m_202211",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_2.5km_PT1H-m_202211
     "cmems_mod_blk_phy-sal_anfc_2.5km_PT1H-m_202311",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_2.5km_PT1H-m
     "cmems_mod_blk_phy-sal_anfc_mrm-500m_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_mrm-500m_P1D-m
     "cmems_mod_blk_phy-sal_anfc_mrm-500m_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_phy-sal_anfc_mrm-500m_PT1H-i
-    "cmems_mod_blk_phy-ssh_anfc_2.5km_P1D-m_202211",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_2.5km_P1D-m_202211
     "cmems_mod_blk_phy-ssh_anfc_2.5km_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_2.5km_P1D-m
-    "cmems_mod_blk_phy-ssh_anfc_2.5km_P1M-m_202211",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_2.5km_P1M-m_202211
     "cmems_mod_blk_phy-ssh_anfc_2.5km_P1M-m_202311",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_2.5km_P1M-m
     "cmems_mod_blk_phy-ssh_anfc_2.5km_PT15M-i_202311",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_2.5km_PT15M-i
-    "cmems_mod_blk_phy-ssh_anfc_2.5km_PT1H-m_202211",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_2.5km_PT1H-m_202211
     "cmems_mod_blk_phy-ssh_anfc_2.5km_PT1H-m_202311",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_2.5km_PT1H-m
     "cmems_mod_blk_phy-ssh_anfc_detided_2.5km_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_detided_2.5km_P1D-m
     "cmems_mod_blk_phy-ssh_anfc_mrm-500m_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_mrm-500m_P1D-m
     "cmems_mod_blk_phy-ssh_anfc_mrm-500m_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_phy-ssh_anfc_mrm-500m_PT1H-i
-    "cmems_mod_blk_phy-tem_anfc_2.5km_P1D-m_202211",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_2.5km_P1D-m_202211
     "cmems_mod_blk_phy-tem_anfc_2.5km_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_2.5km_P1D-m
-    "cmems_mod_blk_phy-tem_anfc_2.5km_P1M-m_202211",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_2.5km_P1M-m_202211
     "cmems_mod_blk_phy-tem_anfc_2.5km_P1M-m_202311",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_2.5km_P1M-m
-    "cmems_mod_blk_phy-tem_anfc_2.5km_PT1H-m_202211",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_2.5km_PT1H-m_202211
     "cmems_mod_blk_phy-tem_anfc_2.5km_PT1H-m_202311",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_2.5km_PT1H-m
     "cmems_mod_blk_phy-tem_anfc_mrm-500m_P1D-m_202311",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_mrm-500m_P1D-m
     "cmems_mod_blk_phy-tem_anfc_mrm-500m_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_phy-tem_anfc_mrm-500m_PT1H-i
-    "cmems_mod_blk_phy_anfc_2.5km_static_202211",  # noqa: E501 cmems_mod_blk_phy_anfc_2.5km_static_202211
-    "cmems_mod_blk_phy_anfc_2.5km_static_202311",  # noqa: E501 cmems_mod_blk_phy_anfc_2.5km_static
-    "cmems_mod_blk_phy_anfc_mrm-500m_static_202311",  # noqa: E501 cmems_mod_blk_phy_anfc_mrm-500m_static
 ]
 
 
@@ -64,29 +46,14 @@ class blksea_analysisforecast_phy(Main):
     name = "EO:MO:DAT:BLKSEA_ANALYSISFORECAST_PHY_007_001"
     dataset = "EO:MO:DAT:BLKSEA_ANALYSISFORECAST_PHY_007_001"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "bottomT",
-            "depth",
-            "deptho",
-            "e1t",
-            "e2t",
-            "e3t",
-            "lat",
-            "latitude",
-            "lon",
-            "longitude",
-            "mask",
-            "mdt",
             "mlotst",
             "so",
             "thetao",
-            "time",
             "uo",
             "vo",
             "wo",
@@ -94,335 +61,6 @@ class blksea_analysisforecast_phy(Main):
         ],
         multiple=True,
     )
-    def __init__(
-        self,
-        bbox,
-        layer,
-        max_date="2023-11-28T00:00:00Z",
-        min_date="2023-11-01T00:00:00Z",
-        variables=None,
-        limit=None,
-    ):
-        if layer == "cmems_mod_blk_phy-cur_anfc_2.5km_P1D-m_202211":
-            if min_date is None:
-                min_date = "2022-01-23T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-29T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-28T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_2.5km_P1M-m_202211":
-            if min_date is None:
-                min_date = "2022-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2022-01-14T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_2.5km_PT15M-i_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-24T00:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_2.5km_PT1H-m_202211":
-            if min_date is None:
-                min_date = "2022-10-24T00:30:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-24T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_2.5km_PT1H-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-23T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_detided_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-27T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_mrm-500m_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-10T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-cur_anfc_mrm-500m_PT1H-i_202311":
-            if min_date is None:
-                min_date = "2022-09-12T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-mld_anfc_2.5km_P1D-m_202211":
-            if min_date is None:
-                min_date = "2022-01-23T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-29T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-mld_anfc_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-28T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-mld_anfc_2.5km_P1M-m_202211":
-            if min_date is None:
-                min_date = "2022-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-mld_anfc_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2022-01-14T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-mld_anfc_2.5km_PT1H-m_202211":
-            if min_date is None:
-                min_date = "2022-10-24T00:30:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-24T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-mld_anfc_2.5km_PT1H-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-23T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_2.5km_P1D-m_202211":
-            if min_date is None:
-                min_date = "2022-01-23T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-29T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-28T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_2.5km_P1M-m_202211":
-            if min_date is None:
-                min_date = "2022-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2022-01-14T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_2.5km_PT1H-m_202211":
-            if min_date is None:
-                min_date = "2022-10-24T00:30:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-24T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_2.5km_PT1H-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-23T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_mrm-500m_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-10T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-sal_anfc_mrm-500m_PT1H-i_202311":
-            if min_date is None:
-                min_date = "2022-09-12T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_2.5km_P1D-m_202211":
-            if min_date is None:
-                min_date = "2022-01-23T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-29T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-28T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_2.5km_P1M-m_202211":
-            if min_date is None:
-                min_date = "2022-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2022-01-14T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_2.5km_PT15M-i_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-24T00:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_2.5km_PT1H-m_202211":
-            if min_date is None:
-                min_date = "2022-10-24T00:30:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-24T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_2.5km_PT1H-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-23T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_detided_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-27T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_mrm-500m_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-10T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-ssh_anfc_mrm-500m_PT1H-i_202311":
-            if min_date is None:
-                min_date = "2022-09-12T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_2.5km_P1D-m_202211":
-            if min_date is None:
-                min_date = "2022-01-23T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-29T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-28T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_2.5km_P1M-m_202211":
-            if min_date is None:
-                min_date = "2022-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-02-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2022-01-14T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_2.5km_PT1H-m_202211":
-            if min_date is None:
-                min_date = "2022-10-24T00:30:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-24T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_2.5km_PT1H-m_202311":
-            if min_date is None:
-                min_date = "2021-12-21T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-23T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_mrm-500m_P1D-m_202311":
-            if min_date is None:
-                min_date = "2021-12-10T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T12:00:00Z"
-
-        if layer == "cmems_mod_blk_phy-tem_anfc_mrm-500m_PT1H-i_202311":
-            if min_date is None:
-                min_date = "2022-09-12T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-26T23:30:00Z"
-
-        if layer == "cmems_mod_blk_phy_anfc_2.5km_static_202211":
-            if min_date is None:
-                min_date = "2022-11-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2022-11-28T00:00:00Z"
-
-        if layer == "cmems_mod_blk_phy_anfc_2.5km_static_202311":
-            if min_date is None:
-                min_date = "2023-11-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-28T00:00:00Z"
-
-        if layer == "cmems_mod_blk_phy_anfc_mrm-500m_static_202311":
-            if min_date is None:
-                min_date = "2023-11-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-28T00:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+    @normalize("bbox", "bounding-box(list)")
+    def __init__(self, layer, variables, bbox=None, limit=None):
+        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)

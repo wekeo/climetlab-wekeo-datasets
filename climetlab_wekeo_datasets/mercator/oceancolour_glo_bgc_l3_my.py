@@ -21,10 +21,7 @@ class oceancolour_glo_bgc_l3_my(Main):
     name = "EO:MO:DAT:OCEANCOLOUR_GLO_BGC_L3_MY_009_107"
     dataset = "EO:MO:DAT:OCEANCOLOUR_GLO_BGC_L3_MY_009_107"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -44,40 +41,9 @@ class oceancolour_glo_bgc_l3_my(Main):
             "RRS510",
             "RRS560",
             "RRS665",
-            "latitude",
-            "longitude",
-            "time",
         ],
         multiple=True,
     )
-    def __init__(
-        self,
-        bbox,
-        layer,
-        max_date="2024-03-31T00:00:00Z",
-        min_date="1997-09-04T00:00:00Z",
-        variables=None,
-        limit=None,
-    ):
-        if layer == "c3s_obs-oc_glo_bgc-plankton_my_l3-multi-4km_P1D_202303":
-            if min_date is None:
-                min_date = "1997-09-04T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-31T00:00:00Z"
-
-        if layer == "c3s_obs-oc_glo_bgc-reflectance_my_l3-multi-4km_P1D_202303":
-            if min_date is None:
-                min_date = "1997-09-04T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-31T00:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+    @normalize("bbox", "bounding-box(list)")
+    def __init__(self, layer, variables, bbox=None, limit=None):
+        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)

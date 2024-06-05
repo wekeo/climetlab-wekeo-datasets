@@ -20,44 +20,23 @@ class sst_glo_phy_l4_nrt(Main):
     name = "EO:MO:DAT:SST_GLO_PHY_L4_NRT_010_043"
     dataset = "EO:MO:DAT:SST_GLO_PHY_L4_NRT_010_043"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "analysed_sst",
             "analysis_error",
-            "lat",
-            "lon",
             "mask",
             "sea_ice_fraction",
-            "time",
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        bbox,
+        variables,
         layer="cmems_obs-sst_glo_phy_nrt_l4_P1D-m_202303",
-        max_date="2024-05-05T00:00:00Z",
-        min_date="2020-12-31T12:00:00Z",
-        variables=None,
+        bbox=None,
         limit=None,
     ):
-        if layer == "cmems_obs-sst_glo_phy_nrt_l4_P1D-m_202303":
-            if min_date is None:
-                min_date = "2020-12-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-05T00:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)

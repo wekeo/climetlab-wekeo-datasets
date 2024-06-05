@@ -20,26 +20,15 @@ class sealevel_eur_phy_l4_nrt(Main):
     name = "EO:MO:DAT:SEALEVEL_EUR_PHY_L4_NRT_008_060"
     dataset = "EO:MO:DAT:SEALEVEL_EUR_PHY_L4_NRT_008_060"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "adt",
-            "crs",
             "err_sla",
             "err_ugosa",
             "err_vgosa",
             "flag_ice",
-            "lat_bnds",
-            "latitude",
-            "lon_bnds",
-            "longitude",
-            "nv",
             "sla",
-            "time",
             "ugos",
             "ugosa",
             "vgos",
@@ -47,27 +36,13 @@ class sealevel_eur_phy_l4_nrt(Main):
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        bbox,
+        variables,
         layer="cmems_obs-sl_eur_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D_202311",
-        max_date="2024-05-06T00:00:00Z",
-        min_date="2021-12-31T12:00:00Z",
-        variables=None,
+        bbox=None,
         limit=None,
     ):
-        if layer == "cmems_obs-sl_eur_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D_202311":
-            if min_date is None:
-                min_date = "2021-12-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-06T00:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)

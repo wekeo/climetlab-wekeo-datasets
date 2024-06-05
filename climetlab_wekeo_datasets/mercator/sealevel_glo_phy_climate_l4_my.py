@@ -13,7 +13,6 @@ from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
     "c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_202112",  # noqa: E501 c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D
-    "c3s_obs-sl_glo_phy-ssh_myint_twosat-l4-duacs-0.25deg_P1D_202311",  # noqa: E501 c3s_obs-sl_glo_phy-ssh_myint_twosat-l4-duacs-0.25deg_P1D_202311
 ]
 
 
@@ -21,26 +20,15 @@ class sealevel_glo_phy_climate_l4_my(Main):
     name = "EO:MO:DAT:SEALEVEL_GLO_PHY_CLIMATE_L4_MY_008_057"
     dataset = "EO:MO:DAT:SEALEVEL_GLO_PHY_CLIMATE_L4_MY_008_057"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "adt",
-            "crs",
             "err_sla",
             "err_ugosa",
             "err_vgosa",
             "flag_ice",
-            "lat_bnds",
-            "latitude",
-            "lon_bnds",
-            "longitude",
-            "nv",
             "sla",
-            "time",
             "tpa_correction",
             "ugos",
             "ugosa",
@@ -49,34 +37,13 @@ class sealevel_glo_phy_climate_l4_my(Main):
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        bbox,
-        layer,
-        max_date="2022-08-03T12:00:00Z",
-        min_date="2022-07-31T12:00:00Z",
-        variables=None,
+        variables,
+        layer="c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_202112",
+        bbox=None,
         limit=None,
     ):
-        if layer == "c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_202112":
-            if min_date is None:
-                min_date = "1992-12-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-06-07T12:00:00Z"
-
-        if layer == "c3s_obs-sl_glo_phy-ssh_myint_twosat-l4-duacs-0.25deg_P1D_202311":
-            if min_date is None:
-                min_date = "2022-07-31T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2022-08-03T12:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)

@@ -21,55 +21,20 @@ class seaice_bal_phy_l4_my(Main):
     name = "EO:MO:DAT:SEAICE_BAL_PHY_L4_MY_011_019"
     dataset = "EO:MO:DAT:SEAICE_BAL_PHY_L4_MY_011_019"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "concentration_range",
-            "crs",
             "ice_concentration",
             "ice_thickness",
-            "lat",
-            "lon",
             "product_quality",
             "sea_ice_classification",
             "sea_ice_extent",
             "thickness_range",
-            "time",
         ],
         multiple=True,
     )
-    def __init__(
-        self,
-        bbox,
-        layer,
-        max_date="2023-05-28T14:00:00Z",
-        min_date="1980-11-03T14:00:00Z",
-        variables=None,
-        limit=None,
-    ):
-        if layer == "cmems_obs-si_bal_phy-sit_my_l4-1km_P1D-m_202211":
-            if min_date is None:
-                min_date = "1980-11-03T14:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-05-28T14:00:00Z"
-
-        if layer == "cmems_obs-si_bal_seaice-conc_my_1km_202112":
-            if min_date is None:
-                min_date = "1980-11-03T14:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-05-28T14:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+    @normalize("bbox", "bounding-box(list)")
+    def __init__(self, layer, variables, bbox=None, limit=None):
+        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)

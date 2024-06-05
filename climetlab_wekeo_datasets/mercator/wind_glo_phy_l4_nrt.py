@@ -20,10 +20,6 @@ class wind_glo_phy_l4_nrt(Main):
     name = "EO:MO:DAT:WIND_GLO_PHY_L4_NRT_012_004"
     dataset = "EO:MO:DAT:WIND_GLO_PHY_L4_NRT_012_004"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
@@ -34,8 +30,6 @@ class wind_glo_phy_l4_nrt(Main):
             "eastward_wind",
             "eastward_wind_bias",
             "eastward_wind_sdd",
-            "lat",
-            "lon",
             "northward_stress",
             "northward_stress_bias",
             "northward_stress_sdd",
@@ -50,7 +44,6 @@ class wind_glo_phy_l4_nrt(Main):
             "stress_divergence",
             "stress_divergence_bias",
             "stress_divergence_dv",
-            "time",
             "wind_curl",
             "wind_curl_bias",
             "wind_curl_dv",
@@ -60,27 +53,13 @@ class wind_glo_phy_l4_nrt(Main):
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
     def __init__(
         self,
-        bbox,
+        variables,
         layer="cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H_202207",
-        max_date="2024-05-05T23:00:00Z",
-        min_date="2021-12-01T00:00:00Z",
-        variables=None,
+        bbox=None,
         limit=None,
     ):
-        if layer == "cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H_202207":
-            if min_date is None:
-                min_date = "2021-12-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-05T23:00:00Z"
-
-        super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
-            variables=variables,
-            limit=limit,
-        )
+        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)

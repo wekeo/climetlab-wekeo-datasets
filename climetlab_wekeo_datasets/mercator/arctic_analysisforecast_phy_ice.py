@@ -12,9 +12,6 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_arc_phy_anfc_nextsim_hm_202211",  # noqa: E501 cmems_mod_arc_phy_anfc_nextsim_hm_202211
-    "cmems_mod_arc_phy_anfc_nextsim_hm_202311",  # noqa: E501 cmems_mod_arc_phy_anfc_nextsim_hm_202311
-    "cmems_mod_arc_phy_anfc_nextsim_P1M-m_202211",  # noqa: E501 cmems_mod_arc_phy_anfc_nextsim_P1M-m_202211
     "cmems_mod_arc_phy_anfc_nextsim_P1M-m_202311",  # noqa: E501 cmems_mod_arc_phy_anfc_nextsim_P1M-m
 ]
 
@@ -23,15 +20,9 @@ class arctic_analysisforecast_phy_ice(Main):
     name = "EO:MO:DAT:ARCTIC_ANALYSISFORECAST_PHY_ICE_002_011"
     dataset = "EO:MO:DAT:ARCTIC_ANALYSISFORECAST_PHY_ICE_002_011"
 
-    @normalize("bbox", "bounding-box(list)")
-    @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
-            "latitude",
-            "longitude",
             "si_ridge_ratio",
             "siage",
             "sialb",
@@ -40,58 +31,153 @@ class arctic_analysisforecast_phy_ice(Main):
             "siconc_young",
             "sisnthick",
             "sithick",
-            "stereographic",
-            "time",
-            "time_bnds",
             "vxsi",
             "vysi",
-            "x",
-            "y",
         ],
         multiple=True,
     )
+    @normalize("layer", LAYERS)
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "end_datetime",
+        [
+            "2019-08-01T00:00:00Z",
+            "2019-09-01T00:00:00Z",
+            "2019-10-01T00:00:00Z",
+            "2019-11-01T00:00:00Z",
+            "2019-12-01T00:00:00Z",
+            "2020-01-01T00:00:00Z",
+            "2020-02-01T00:00:00Z",
+            "2020-03-01T00:00:00Z",
+            "2020-04-01T00:00:00Z",
+            "2020-05-01T00:00:00Z",
+            "2020-06-01T00:00:00Z",
+            "2020-07-01T00:00:00Z",
+            "2020-08-01T00:00:00Z",
+            "2020-09-01T00:00:00Z",
+            "2020-10-01T00:00:00Z",
+            "2020-11-01T00:00:00Z",
+            "2020-12-01T00:00:00Z",
+            "2021-01-01T00:00:00Z",
+            "2021-02-01T00:00:00Z",
+            "2021-03-01T00:00:00Z",
+            "2021-04-01T00:00:00Z",
+            "2021-05-01T00:00:00Z",
+            "2021-06-01T00:00:00Z",
+            "2021-07-01T00:00:00Z",
+            "2021-08-01T00:00:00Z",
+            "2021-09-01T00:00:00Z",
+            "2021-10-01T00:00:00Z",
+            "2021-11-01T00:00:00Z",
+            "2021-12-01T00:00:00Z",
+            "2022-01-01T00:00:00Z",
+            "2022-02-01T00:00:00Z",
+            "2022-03-01T00:00:00Z",
+            "2022-04-01T00:00:00Z",
+            "2022-05-01T00:00:00Z",
+            "2022-06-01T00:00:00Z",
+            "2022-07-01T00:00:00Z",
+            "2022-08-01T00:00:00Z",
+            "2022-09-01T00:00:00Z",
+            "2022-10-01T00:00:00Z",
+            "2022-11-01T00:00:00Z",
+            "2022-12-01T00:00:00Z",
+            "2023-01-01T00:00:00Z",
+            "2023-02-01T00:00:00Z",
+            "2023-03-01T00:00:00Z",
+            "2023-04-01T00:00:00Z",
+            "2023-05-01T00:00:00Z",
+            "2023-06-01T00:00:00Z",
+            "2023-07-01T00:00:00Z",
+            "2023-08-01T00:00:00Z",
+            "2023-09-01T00:00:00Z",
+            "2023-10-01T00:00:00Z",
+            "2023-11-01T00:00:00Z",
+            "2023-12-01T00:00:00Z",
+            "2024-01-01T00:00:00Z",
+            "2024-02-01T00:00:00Z",
+            "2024-03-01T00:00:00Z",
+            "2024-04-01T00:00:00Z",
+            "2024-05-01T00:00:00Z",
+        ],
+    )
+    @normalize(
+        "start_datetime",
+        [
+            "2019-08-01T00:00:00Z",
+            "2019-09-01T00:00:00Z",
+            "2019-10-01T00:00:00Z",
+            "2019-11-01T00:00:00Z",
+            "2019-12-01T00:00:00Z",
+            "2020-01-01T00:00:00Z",
+            "2020-02-01T00:00:00Z",
+            "2020-03-01T00:00:00Z",
+            "2020-04-01T00:00:00Z",
+            "2020-05-01T00:00:00Z",
+            "2020-06-01T00:00:00Z",
+            "2020-07-01T00:00:00Z",
+            "2020-08-01T00:00:00Z",
+            "2020-09-01T00:00:00Z",
+            "2020-10-01T00:00:00Z",
+            "2020-11-01T00:00:00Z",
+            "2020-12-01T00:00:00Z",
+            "2021-01-01T00:00:00Z",
+            "2021-02-01T00:00:00Z",
+            "2021-03-01T00:00:00Z",
+            "2021-04-01T00:00:00Z",
+            "2021-05-01T00:00:00Z",
+            "2021-06-01T00:00:00Z",
+            "2021-07-01T00:00:00Z",
+            "2021-08-01T00:00:00Z",
+            "2021-09-01T00:00:00Z",
+            "2021-10-01T00:00:00Z",
+            "2021-11-01T00:00:00Z",
+            "2021-12-01T00:00:00Z",
+            "2022-01-01T00:00:00Z",
+            "2022-02-01T00:00:00Z",
+            "2022-03-01T00:00:00Z",
+            "2022-04-01T00:00:00Z",
+            "2022-05-01T00:00:00Z",
+            "2022-06-01T00:00:00Z",
+            "2022-07-01T00:00:00Z",
+            "2022-08-01T00:00:00Z",
+            "2022-09-01T00:00:00Z",
+            "2022-10-01T00:00:00Z",
+            "2022-11-01T00:00:00Z",
+            "2022-12-01T00:00:00Z",
+            "2023-01-01T00:00:00Z",
+            "2023-02-01T00:00:00Z",
+            "2023-03-01T00:00:00Z",
+            "2023-04-01T00:00:00Z",
+            "2023-05-01T00:00:00Z",
+            "2023-06-01T00:00:00Z",
+            "2023-07-01T00:00:00Z",
+            "2023-08-01T00:00:00Z",
+            "2023-09-01T00:00:00Z",
+            "2023-10-01T00:00:00Z",
+            "2023-11-01T00:00:00Z",
+            "2023-12-01T00:00:00Z",
+            "2024-01-01T00:00:00Z",
+            "2024-02-01T00:00:00Z",
+            "2024-03-01T00:00:00Z",
+            "2024-04-01T00:00:00Z",
+            "2024-05-01T00:00:00Z",
+        ],
+    )
     def __init__(
         self,
-        bbox,
-        layer,
-        max_date="2024-04-10T23:30:00Z",
-        min_date="2019-08-01T00:29:59Z",
-        variables=None,
+        variables,
+        layer="cmems_mod_arc_phy_anfc_nextsim_P1M-m_202311",
+        bbox=None,
+        end_datetime=None,
+        start_datetime=None,
         limit=None,
     ):
-        if layer == "cmems_mod_arc_phy_anfc_nextsim_P1M-m_202211":
-            if min_date is None:
-                min_date = "2019-08-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-16T12:00:00Z"
-
-        if layer == "cmems_mod_arc_phy_anfc_nextsim_P1M-m_202311":
-            if min_date is None:
-                min_date = "2019-08-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-16T12:00:00Z"
-
-        if layer == "cmems_mod_arc_phy_anfc_nextsim_hm_202211":
-            if min_date is None:
-                min_date = "2019-08-01T00:29:59Z"
-
-            if max_date is None:
-                max_date = "2024-04-10T23:30:00Z"
-
-        if layer == "cmems_mod_arc_phy_anfc_nextsim_hm_202311":
-            if min_date is None:
-                min_date = "2019-08-01T00:29:59Z"
-
-            if max_date is None:
-                max_date = "2024-05-27T23:30:00Z"
-
         super().__init__(
-            bbox=bbox,
-            layer=layer,
-            max_date=max_date,
-            min_date=min_date,
             variables=variables,
+            layer=layer,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
             limit=limit,
         )

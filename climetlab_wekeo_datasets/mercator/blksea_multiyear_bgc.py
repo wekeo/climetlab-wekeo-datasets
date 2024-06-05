@@ -32,7 +32,6 @@ LAYERS = [
     "cmems_mod_blk_bgc-plankton_my_2.5km_P1M-m_202311",  # noqa: E501 cmems_mod_blk_bgc-plankton_my_2.5km_P1M-m
     "cmems_mod_blk_bgc-plankton_my_2.5km_P1Y-m_202311",  # noqa: E501 cmems_mod_blk_bgc-plankton_my_2.5km_P1Y-m
     "cmems_mod_blk_bgc-plankton_myint_2.5km_P1M-m_202311",  # noqa: E501 cmems_mod_blk_bgc-plankton_myint_2.5km_P1M-m
-    "cmems_mod_blk_bgc_my_2.5km_static_202311",  # noqa: E501 cmems_mod_blk_bgc_my_2.5km_static
 ]
 
 
@@ -40,22 +39,13 @@ class blksea_multiyear_bgc(Main):
     name = "EO:MO:DAT:BLKSEA_MULTIYEAR_BGC_007_005"
     dataset = "EO:MO:DAT:BLKSEA_MULTIYEAR_BGC_007_005"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
             "chl",
-            "depth",
-            "deptho",
-            "deptho_lev",
             "dissic",
             "fpco2",
-            "latitude",
-            "longitude",
-            "mask",
             "no3",
             "nppv",
             "o2",
@@ -65,171 +55,196 @@ class blksea_multiyear_bgc(Main):
             "po4",
             "spco2",
             "talk",
-            "time",
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "end_datetime",
+        [
+            "2023-01-01T00:00:00Z",
+            "2023-02-01T00:00:00Z",
+            "2023-03-01T00:00:00Z",
+            "2023-04-01T00:00:00Z",
+            "2023-05-01T00:00:00Z",
+            "2023-06-01T00:00:00Z",
+            "2023-07-01T00:00:00Z",
+            "2023-08-01T00:00:00Z",
+            "2023-09-01T00:00:00Z",
+            "2023-10-01T00:00:00Z",
+            "2023-11-01T00:00:00Z",
+            "2023-12-01T00:00:00Z",
+            "2024-01-01T00:00:00Z",
+            "2024-02-01T00:00:00Z",
+            "2024-03-01T00:00:00Z",
+        ],
+    )
+    @normalize(
+        "maximum_depth",
+        [
+            "-0.2546195089817047",
+            "-0.7741973996162415",
+            "-1.3163247108459473",
+            "-1.8850828409194946",
+            "-10.680734634399414",
+            "-1008.3468627929688",
+            "-108.27497100830078",
+            "-1114.811767578125",
+            "-12.15567684173584",
+            "-1227.0989990234375",
+            "-125.23257446289062",
+            "-13.824886322021484",
+            "-1344.841064453125",
+            "-144.83216857910156",
+            "-1467.6365966796875",
+            "-15.722981452941895",
+            "-1595.0645751953125",
+            "-167.42984008789062",
+            "-17.890621185302734",
+            "-1726.698974609375",
+            "-1862.119384765625",
+            "-193.40847778320312",
+            "-2.485290050506592",
+            "-20.37550163269043",
+            "-2000.9207763671875",
+            "-2142.72021484375",
+            "-223.173095703125",
+            "-2287.16162109375",
+            "-23.233518600463867",
+            "-2433.66650390625",
+            "-257.1440124511719",
+            "-26.53006362915039",
+            "-295.74755859375",
+            "-3.122633695602417",
+            "-3.8038270473480225",
+            "-30.34151840209961",
+            "-339.40447998046875",
+            "-34.75691604614258",
+            "-388.5162658691406",
+            "-39.87977981567383",
+            "-4.53679084777832",
+            "-443.45037841796875",
+            "-45.83015060424805",
+            "-5.330871105194092",
+            "-504.5245056152344",
+            "-52.74676513671875",
+            "-571.9923095703125",
+            "-6.197091579437256",
+            "-60.789329528808594",
+            "-646.030517578125",
+            "-7.14845085144043",
+            "-70.1408462524414",
+            "-726.7300415039062",
+            "-8.200271606445312",
+            "-81.0099105834961",
+            "-814.0908203125",
+            "-9.370611190795898",
+            "-908.0220336914062",
+            "-93.63275146484375",
+        ],
+    )
+    @normalize(
+        "minimum_depth",
+        [
+            "-0.2546195089817047",
+            "-0.7741973996162415",
+            "-1.3163247108459473",
+            "-1.8850828409194946",
+            "-10.680734634399414",
+            "-1008.3468627929688",
+            "-108.27497100830078",
+            "-1114.811767578125",
+            "-12.15567684173584",
+            "-1227.0989990234375",
+            "-125.23257446289062",
+            "-13.824886322021484",
+            "-1344.841064453125",
+            "-144.83216857910156",
+            "-1467.6365966796875",
+            "-15.722981452941895",
+            "-1595.0645751953125",
+            "-167.42984008789062",
+            "-17.890621185302734",
+            "-1726.698974609375",
+            "-1862.119384765625",
+            "-193.40847778320312",
+            "-2.485290050506592",
+            "-20.37550163269043",
+            "-2000.9207763671875",
+            "-2142.72021484375",
+            "-223.173095703125",
+            "-2287.16162109375",
+            "-23.233518600463867",
+            "-2433.66650390625",
+            "-257.1440124511719",
+            "-26.53006362915039",
+            "-295.74755859375",
+            "-3.122633695602417",
+            "-3.8038270473480225",
+            "-30.34151840209961",
+            "-339.40447998046875",
+            "-34.75691604614258",
+            "-388.5162658691406",
+            "-39.87977981567383",
+            "-4.53679084777832",
+            "-443.45037841796875",
+            "-45.83015060424805",
+            "-5.330871105194092",
+            "-504.5245056152344",
+            "-52.74676513671875",
+            "-571.9923095703125",
+            "-6.197091579437256",
+            "-60.789329528808594",
+            "-646.030517578125",
+            "-7.14845085144043",
+            "-70.1408462524414",
+            "-726.7300415039062",
+            "-8.200271606445312",
+            "-81.0099105834961",
+            "-814.0908203125",
+            "-9.370611190795898",
+            "-908.0220336914062",
+            "-93.63275146484375",
+        ],
+    )
+    @normalize(
+        "start_datetime",
+        [
+            "2023-01-01T00:00:00Z",
+            "2023-02-01T00:00:00Z",
+            "2023-03-01T00:00:00Z",
+            "2023-04-01T00:00:00Z",
+            "2023-05-01T00:00:00Z",
+            "2023-06-01T00:00:00Z",
+            "2023-07-01T00:00:00Z",
+            "2023-08-01T00:00:00Z",
+            "2023-09-01T00:00:00Z",
+            "2023-10-01T00:00:00Z",
+            "2023-11-01T00:00:00Z",
+            "2023-12-01T00:00:00Z",
+            "2024-01-01T00:00:00Z",
+            "2024-02-01T00:00:00Z",
+            "2024-03-01T00:00:00Z",
+        ],
+    )
     def __init__(
         self,
-        bbox,
         layer,
-        max_date="2023-10-19T00:00:00Z",
-        min_date="2023-10-16T00:00:00Z",
-        variables=None,
+        variables,
+        bbox=None,
+        end_datetime=None,
+        maximum_depth=None,
+        minimum_depth=None,
+        start_datetime=None,
         limit=None,
     ):
-        if layer == "cmems_mod_blk_bgc-bio_my_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2023-10-13T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-13T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-bio_my_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-bio_my_2.5km_P1Y-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-bio_myint_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-car_my_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2023-10-13T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-13T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-car_my_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-car_my_2.5km_P1Y-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-car_myint_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-co2_my_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2023-10-13T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-13T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-co2_my_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-co2_my_2.5km_P1Y-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-co2_myint_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-nut_my_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2023-10-13T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-13T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-nut_my_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-nut_my_2.5km_P1Y-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-nut_myint_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-plankton_my_2.5km_P1D-m_202311":
-            if min_date is None:
-                min_date = "2023-10-13T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-13T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-plankton_my_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-plankton_my_2.5km_P1Y-m_202311":
-            if min_date is None:
-                min_date = "2023-10-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-10-19T00:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc-plankton_myint_2.5km_P1M-m_202311":
-            if min_date is None:
-                min_date = "2023-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-03-15T12:00:00Z"
-
-        if layer == "cmems_mod_blk_bgc_my_2.5km_static_202311":
-            if min_date is None:
-                min_date = "2023-11-01T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-28T00:00:00Z"
-
         super().__init__(
-            bbox=bbox,
             layer=layer,
-            max_date=max_date,
-            min_date=min_date,
             variables=variables,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            maximum_depth=maximum_depth,
+            minimum_depth=minimum_depth,
+            start_datetime=start_datetime,
             limit=limit,
         )

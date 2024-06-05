@@ -23,19 +23,12 @@ class multiobs_glo_phy_tsuv_3d_mynrt(Main):
     name = "EO:MO:DAT:MULTIOBS_GLO_PHY_TSUV_3D_MYNRT_015_012"
     dataset = "EO:MO:DAT:MULTIOBS_GLO_PHY_TSUV_3D_MYNRT_015_012"
 
-    @normalize("bbox", "bounding-box(list)")
     @normalize("layer", LAYERS)
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
     @normalize(
         "variables",
         [
-            "depth",
-            "latitude",
-            "longitude",
             "mlotst",
             "so",
-            "time",
             "to",
             "ugo",
             "vgo",
@@ -43,48 +36,131 @@ class multiobs_glo_phy_tsuv_3d_mynrt(Main):
         ],
         multiple=True,
     )
+    @normalize("bbox", "bounding-box(list)")
+    @normalize(
+        "maximum_depth",
+        [
+            "-5",
+            "-10",
+            "-15",
+            "-20",
+            "-25",
+            "-30",
+            "-35",
+            "-40",
+            "-45",
+            "-50",
+            "-55",
+            "-60",
+            "-65",
+            "-70",
+            "-80",
+            "-90",
+            "-100",
+            "-125",
+            "-150",
+            "-175",
+            "-200",
+            "-225",
+            "-250",
+            "-275",
+            "-300",
+            "-350",
+            "-400",
+            "-450",
+            "-500",
+            "-550",
+            "-600",
+            "-700",
+            "-800",
+            "-900",
+            "-1000",
+            "-1100",
+            "-1200",
+            "-1300",
+            "-1400",
+            "-1500",
+            "-1750",
+            "-2000",
+            "-2500",
+            "-3000",
+            "-3500",
+            "-4000",
+            "-4500",
+            "-5000",
+            "-5500",
+            "0",
+        ],
+    )
+    @normalize(
+        "minimum_depth",
+        [
+            "-5",
+            "-10",
+            "-15",
+            "-20",
+            "-25",
+            "-30",
+            "-35",
+            "-40",
+            "-45",
+            "-50",
+            "-55",
+            "-60",
+            "-65",
+            "-70",
+            "-80",
+            "-90",
+            "-100",
+            "-125",
+            "-150",
+            "-175",
+            "-200",
+            "-225",
+            "-250",
+            "-275",
+            "-300",
+            "-350",
+            "-400",
+            "-450",
+            "-500",
+            "-550",
+            "-600",
+            "-700",
+            "-800",
+            "-900",
+            "-1000",
+            "-1100",
+            "-1200",
+            "-1300",
+            "-1400",
+            "-1500",
+            "-1750",
+            "-2000",
+            "-2500",
+            "-3000",
+            "-3500",
+            "-4000",
+            "-4500",
+            "-5000",
+            "-5500",
+            "0",
+        ],
+    )
     def __init__(
         self,
-        bbox,
         layer,
-        max_date="2023-11-13T00:00:00Z",
-        min_date="2020-11-06T00:00:00Z",
-        variables=None,
+        variables,
+        bbox=None,
+        maximum_depth=None,
+        minimum_depth=None,
         limit=None,
     ):
-        if layer == "dataset-armor-3d-nrt-monthly_202012":
-            if min_date is None:
-                min_date = "2019-01-15T12:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-04-15T12:00:00Z"
-
-        if layer == "dataset-armor-3d-nrt-weekly_202012":
-            if min_date is None:
-                min_date = "2020-11-16T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2024-05-08T00:00:00Z"
-
-        if layer == "dataset-armor-3d-rep-monthly_202012":
-            if min_date is None:
-                min_date = "2020-11-06T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-13T00:00:00Z"
-
-        if layer == "dataset-armor-3d-rep-weekly_202012":
-            if min_date is None:
-                min_date = "2020-10-23T00:00:00Z"
-
-            if max_date is None:
-                max_date = "2023-11-29T00:00:00Z"
-
         super().__init__(
-            bbox=bbox,
             layer=layer,
-            max_date=max_date,
-            min_date=min_date,
             variables=variables,
+            bbox=bbox,
+            maximum_depth=maximum_depth,
+            minimum_depth=minimum_depth,
             limit=limit,
         )
