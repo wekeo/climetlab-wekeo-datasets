@@ -162,6 +162,8 @@ class balticsea_multiyear_bgc(Main):
             "-91.30695343017578",
         ],
     )
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
@@ -169,6 +171,8 @@ class balticsea_multiyear_bgc(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
+        end_datetime="2021-12-01T00:00:00Z",
+        start_datetime="1993-01-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(
@@ -177,5 +181,7 @@ class balticsea_multiyear_bgc(Main):
             bbox=bbox,
             maximum_depth=maximum_depth,
             minimum_depth=minimum_depth,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
             limit=limit,
         )

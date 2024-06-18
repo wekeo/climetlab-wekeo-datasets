@@ -253,6 +253,7 @@ setuptools.setup(
             "wekeo-mercator-global-analysisforecast-phy=climetlab_wekeo_datasets.mercator.global_analysisforecast_phy:global_analysisforecast_phy",  # noqa: E501
             "wekeo-mercator-global-analysisforecast-wav=climetlab_wekeo_datasets.mercator.global_analysisforecast_wav:global_analysisforecast_wav",  # noqa: E501
             "wekeo-mercator-global-multiyear-bgc=climetlab_wekeo_datasets.mercator.global_multiyear_bgc:global_multiyear_bgc",  # noqa: E501
+            "wekeo-mercator-global-multiyear-bgc=climetlab_wekeo_datasets.mercator.global_multiyear_bgc:global_multiyear_bgc",  # noqa: E501
             "wekeo-mercator-global-multiyear-phy=climetlab_wekeo_datasets.mercator.global_multiyear_phy:global_multiyear_phy",  # noqa: E501
             "wekeo-mercator-global-multiyear-phy-ens=climetlab_wekeo_datasets.mercator.global_multiyear_phy_ens:global_multiyear_phy_ens",  # noqa: E501
             "wekeo-mercator-global-multiyear-wav=climetlab_wekeo_datasets.mercator.global_multiyear_wav:global_multiyear_wav",  # noqa: E501
@@ -264,7 +265,6 @@ setuptools.setup(
             "wekeo-mercator-ibi-multiyear-wav=climetlab_wekeo_datasets.mercator.ibi_multiyear_wav:ibi_multiyear_wav",  # noqa: E501
             "wekeo-mercator-insitu-glo-phy-ts-oa-my=climetlab_wekeo_datasets.mercator.insitu_glo_phy_ts_oa_my:insitu_glo_phy_ts_oa_my",  # noqa: E501
             "wekeo-mercator-insitu-glo-phy-ts-oa-nrt=climetlab_wekeo_datasets.mercator.insitu_glo_phy_ts_oa_nrt:insitu_glo_phy_ts_oa_nrt",  # noqa: E501
-            "wekeo-mercator-insitu-glo-phy-uv-discrete-my=climetlab_wekeo_datasets.mercator.insitu_glo_phy_uv_discrete_my:insitu_glo_phy_uv_discrete_my",  # noqa: E501
             "wekeo-mercator-medsea-analysisforecast-bgc=climetlab_wekeo_datasets.mercator.medsea_analysisforecast_bgc:medsea_analysisforecast_bgc",  # noqa: E501
             "wekeo-mercator-medsea-analysisforecast-phy=climetlab_wekeo_datasets.mercator.medsea_analysisforecast_phy:medsea_analysisforecast_phy",  # noqa: E501
             "wekeo-mercator-medsea-analysisforecast-wav=climetlab_wekeo_datasets.mercator.medsea_analysisforecast_wav:medsea_analysisforecast_wav",  # noqa: E501
@@ -303,7 +303,9 @@ setuptools.setup(
             "wekeo-mercator-oceancolour-blk-bgc-l4-my=climetlab_wekeo_datasets.mercator.oceancolour_blk_bgc_l4_my:oceancolour_blk_bgc_l4_my",  # noqa: E501
             "wekeo-mercator-oceancolour-blk-bgc-l4-nrt=climetlab_wekeo_datasets.mercator.oceancolour_blk_bgc_l4_nrt:oceancolour_blk_bgc_l4_nrt",  # noqa: E501
             "wekeo-mercator-oceancolour-glo-bgc-l3-my=climetlab_wekeo_datasets.mercator.oceancolour_glo_bgc_l3_my:oceancolour_glo_bgc_l3_my",  # noqa: E501
+            "wekeo-mercator-oceancolour-glo-bgc-l3-my=climetlab_wekeo_datasets.mercator.oceancolour_glo_bgc_l3_my:oceancolour_glo_bgc_l3_my",  # noqa: E501
             "wekeo-mercator-oceancolour-glo-bgc-l3-nrt=climetlab_wekeo_datasets.mercator.oceancolour_glo_bgc_l3_nrt:oceancolour_glo_bgc_l3_nrt",  # noqa: E501
+            "wekeo-mercator-oceancolour-glo-bgc-l4-my=climetlab_wekeo_datasets.mercator.oceancolour_glo_bgc_l4_my:oceancolour_glo_bgc_l4_my",  # noqa: E501
             "wekeo-mercator-oceancolour-glo-bgc-l4-my=climetlab_wekeo_datasets.mercator.oceancolour_glo_bgc_l4_my:oceancolour_glo_bgc_l4_my",  # noqa: E501
             "wekeo-mercator-oceancolour-glo-bgc-l4-nrt=climetlab_wekeo_datasets.mercator.oceancolour_glo_bgc_l4_nrt:oceancolour_glo_bgc_l4_nrt",  # noqa: E501
             "wekeo-mercator-oceancolour-ibi-bgc-hr-l3-nrt=climetlab_wekeo_datasets.mercator.oceancolour_ibi_bgc_hr_l3_nrt:oceancolour_ibi_bgc_hr_l3_nrt",  # noqa: E501
@@ -325,48 +327,6 @@ setuptools.setup(
             "wekeo-mercator-seaice-bal-seaice-l4-nrt-observations=climetlab_wekeo_datasets.mercator.seaice_bal_seaice_l4_nrt_observations:seaice_bal_seaice_l4_nrt_observations",  # noqa: E501
             "wekeo-mercator-seaice-glo-phy-climate-l3-my=climetlab_wekeo_datasets.mercator.seaice_glo_phy_climate_l3_my:seaice_glo_phy_climate_l3_my",  # noqa: E501
             "wekeo-mercator-seaice-glo-seaice-l4-rep-observations=climetlab_wekeo_datasets.mercator.seaice_glo_seaice_l4_rep_observations:seaice_glo_seaice_l4_rep_observations",  # noqa: E501
-            "wekeo-mercator-sealevel-eur-phy-l3-my=climetlab_wekeo_datasets.mercator.sealevel_eur_phy_l3_my:sealevel_eur_phy_l3_my",  # noqa: E501
-            "wekeo-mercator-sealevel-eur-phy-l3-nrt=climetlab_wekeo_datasets.mercator.sealevel_eur_phy_l3_nrt:sealevel_eur_phy_l3_nrt",  # noqa: E501
-            "wekeo-mercator-sealevel-eur-phy-l4-my=climetlab_wekeo_datasets.mercator.sealevel_eur_phy_l4_my:sealevel_eur_phy_l4_my",  # noqa: E501
-            "wekeo-mercator-sealevel-eur-phy-l4-nrt=climetlab_wekeo_datasets.mercator.sealevel_eur_phy_l4_nrt:sealevel_eur_phy_l4_nrt",  # noqa: E501
-            "wekeo-mercator-sealevel-glo-phy-climate-l4-my=climetlab_wekeo_datasets.mercator.sealevel_glo_phy_climate_l4_my:sealevel_glo_phy_climate_l4_my",  # noqa: E501
-            "wekeo-mercator-sealevel-glo-phy-l3-my=climetlab_wekeo_datasets.mercator.sealevel_glo_phy_l3_my:sealevel_glo_phy_l3_my",  # noqa: E501
-            "wekeo-mercator-sealevel-glo-phy-l3-nrt=climetlab_wekeo_datasets.mercator.sealevel_glo_phy_l3_nrt:sealevel_glo_phy_l3_nrt",  # noqa: E501
-            "wekeo-mercator-sealevel-glo-phy-l4-my=climetlab_wekeo_datasets.mercator.sealevel_glo_phy_l4_my:sealevel_glo_phy_l4_my",  # noqa: E501
-            "wekeo-mercator-sealevel-glo-phy-l4-nrt=climetlab_wekeo_datasets.mercator.sealevel_glo_phy_l4_nrt:sealevel_glo_phy_l4_nrt",  # noqa: E501
-            "wekeo-mercator-sst-atl-phy-l3s-my=climetlab_wekeo_datasets.mercator.sst_atl_phy_l3s_my:sst_atl_phy_l3s_my",  # noqa: E501
-            "wekeo-mercator-sst-atl-phy-l3s-nrt=climetlab_wekeo_datasets.mercator.sst_atl_phy_l3s_nrt:sst_atl_phy_l3s_nrt",  # noqa: E501
-            "wekeo-mercator-sst-atl-sst-l4-nrt-observations=climetlab_wekeo_datasets.mercator.sst_atl_sst_l4_nrt_observations:sst_atl_sst_l4_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-atl-sst-l4-rep-observations=climetlab_wekeo_datasets.mercator.sst_atl_sst_l4_rep_observations:sst_atl_sst_l4_rep_observations",  # noqa: E501
-            "wekeo-mercator-sst-bal-phy-l3s-my=climetlab_wekeo_datasets.mercator.sst_bal_phy_l3s_my:sst_bal_phy_l3s_my",  # noqa: E501
-            "wekeo-mercator-sst-bal-phy-subskin-l4-nrt=climetlab_wekeo_datasets.mercator.sst_bal_phy_subskin_l4_nrt:sst_bal_phy_subskin_l4_nrt",  # noqa: E501
-            "wekeo-mercator-sst-bal-sst-l3s-nrt-observations=climetlab_wekeo_datasets.mercator.sst_bal_sst_l3s_nrt_observations:sst_bal_sst_l3s_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-bal-sst-l4-rep-observations=climetlab_wekeo_datasets.mercator.sst_bal_sst_l4_rep_observations:sst_bal_sst_l4_rep_observations",  # noqa: E501
-            "wekeo-mercator-sst-bs-phy-l3s-my=climetlab_wekeo_datasets.mercator.sst_bs_phy_l3s_my:sst_bs_phy_l3s_my",  # noqa: E501
-            "wekeo-mercator-sst-bs-phy-subskin-l4-nrt=climetlab_wekeo_datasets.mercator.sst_bs_phy_subskin_l4_nrt:sst_bs_phy_subskin_l4_nrt",  # noqa: E501
-            "wekeo-mercator-sst-bs-sst-l3s-nrt-observations=climetlab_wekeo_datasets.mercator.sst_bs_sst_l3s_nrt_observations:sst_bs_sst_l3s_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-bs-sst-l4-nrt-observations=climetlab_wekeo_datasets.mercator.sst_bs_sst_l4_nrt_observations:sst_bs_sst_l4_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-bs-sst-l4-rep-observations=climetlab_wekeo_datasets.mercator.sst_bs_sst_l4_rep_observations:sst_bs_sst_l4_rep_observations",  # noqa: E501
-            "wekeo-mercator-sst-glo-phy-l3s-my=climetlab_wekeo_datasets.mercator.sst_glo_phy_l3s_my:sst_glo_phy_l3s_my",  # noqa: E501
-            "wekeo-mercator-sst-glo-phy-l4-nrt=climetlab_wekeo_datasets.mercator.sst_glo_phy_l4_nrt:sst_glo_phy_l4_nrt",  # noqa: E501
-            "wekeo-mercator-sst-glo-sst-l3s-nrt-observations=climetlab_wekeo_datasets.mercator.sst_glo_sst_l3s_nrt_observations:sst_glo_sst_l3s_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-glo-sst-l4-nrt-observations=climetlab_wekeo_datasets.mercator.sst_glo_sst_l4_nrt_observations:sst_glo_sst_l4_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-glo-sst-l4-rep-observations=climetlab_wekeo_datasets.mercator.sst_glo_sst_l4_rep_observations:sst_glo_sst_l4_rep_observations",  # noqa: E501
-            "wekeo-mercator-sst-med-phy-l3s-my=climetlab_wekeo_datasets.mercator.sst_med_phy_l3s_my:sst_med_phy_l3s_my",  # noqa: E501
-            "wekeo-mercator-sst-med-phy-subskin-l4-nrt=climetlab_wekeo_datasets.mercator.sst_med_phy_subskin_l4_nrt:sst_med_phy_subskin_l4_nrt",  # noqa: E501
-            "wekeo-mercator-sst-med-sst-l3s-nrt-observations=climetlab_wekeo_datasets.mercator.sst_med_sst_l3s_nrt_observations:sst_med_sst_l3s_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-med-sst-l4-nrt-observations=climetlab_wekeo_datasets.mercator.sst_med_sst_l4_nrt_observations:sst_med_sst_l4_nrt_observations",  # noqa: E501
-            "wekeo-mercator-sst-med-sst-l4-rep-observations=climetlab_wekeo_datasets.mercator.sst_med_sst_l4_rep_observations:sst_med_sst_l4_rep_observations",  # noqa: E501
-            "wekeo-mercator-wave-glo-phy-spc-l4-nrt=climetlab_wekeo_datasets.mercator.wave_glo_phy_spc_l4_nrt:wave_glo_phy_spc_l4_nrt",  # noqa: E501
-            "wekeo-mercator-wave-glo-phy-swh-l3-my=climetlab_wekeo_datasets.mercator.wave_glo_phy_swh_l3_my:wave_glo_phy_swh_l3_my",  # noqa: E501
-            "wekeo-mercator-wave-glo-phy-swh-l3-nrt=climetlab_wekeo_datasets.mercator.wave_glo_phy_swh_l3_nrt:wave_glo_phy_swh_l3_nrt",  # noqa: E501
-            "wekeo-mercator-wave-glo-phy-swh-l4-my=climetlab_wekeo_datasets.mercator.wave_glo_phy_swh_l4_my:wave_glo_phy_swh_l4_my",  # noqa: E501
-            "wekeo-mercator-wave-glo-phy-swh-l4-nrt=climetlab_wekeo_datasets.mercator.wave_glo_phy_swh_l4_nrt:wave_glo_phy_swh_l4_nrt",  # noqa: E501
-            "wekeo-mercator-wind-glo-phy-climate-l4-my=climetlab_wekeo_datasets.mercator.wind_glo_phy_climate_l4_my:wind_glo_phy_climate_l4_my",  # noqa: E501
-            "wekeo-mercator-wind-glo-phy-l3-my=climetlab_wekeo_datasets.mercator.wind_glo_phy_l3_my:wind_glo_phy_l3_my",  # noqa: E501
-            "wekeo-mercator-wind-glo-phy-l3-nrt=climetlab_wekeo_datasets.mercator.wind_glo_phy_l3_nrt:wind_glo_phy_l3_nrt",  # noqa: E501
-            "wekeo-mercator-wind-glo-phy-l4-my=climetlab_wekeo_datasets.mercator.wind_glo_phy_l4_my:wind_glo_phy_l4_my",  # noqa: E501
-            "wekeo-mercator-wind-glo-phy-l4-nrt=climetlab_wekeo_datasets.mercator.wind_glo_phy_l4_nrt:wind_glo_phy_l4_nrt",  # noqa: E501
         ]
         # source plugins would be here
         # "climetlab.sources": []

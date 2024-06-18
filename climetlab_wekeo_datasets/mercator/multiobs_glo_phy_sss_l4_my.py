@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202211",  # noqa: E501 cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W
+    "cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202211",  # noqa: E501 cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202211
 ]
 
 
@@ -39,11 +39,22 @@ class multiobs_glo_phy_sss_l4_my(Main):
     )
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         variables,
         layer="cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202211",
         bbox=None,
+        end_datetime="2023-06-29T00:00:00Z",
+        start_datetime="2010-12-30T00:00:00Z",
         limit=None,
     ):
-        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)
+        super().__init__(
+            variables=variables,
+            layer=layer,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
+            limit=limit,
+        )

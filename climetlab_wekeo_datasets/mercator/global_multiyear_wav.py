@@ -46,5 +46,22 @@ class global_multiyear_wav(Main):
         multiple=True,
     )
     @normalize("bbox", "bounding-box(list)")
-    def __init__(self, layer, variables, bbox=None, limit=None):
-        super().__init__(layer=layer, variables=variables, bbox=bbox, limit=limit)
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    def __init__(
+        self,
+        layer,
+        variables,
+        bbox=None,
+        end_datetime="2023-04-30T21:00:00Z",
+        start_datetime="1993-01-01T00:00:00Z",
+        limit=None,
+    ):
+        super().__init__(
+            layer=layer,
+            variables=variables,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
+            limit=limit,
+        )

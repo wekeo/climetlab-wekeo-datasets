@@ -98,41 +98,15 @@ class oceancolour_glo_bgc_l4_nrt(Main):
         multiple=True,
     )
     @normalize("bbox", "bounding-box(list)")
-    @normalize(
-        "end_datetime",
-        [
-            "2023-09-01T00:00:00Z",
-            "2023-10-01T00:00:00Z",
-            "2023-11-01T00:00:00Z",
-            "2023-12-01T00:00:00Z",
-            "2024-01-01T00:00:00Z",
-            "2024-02-01T00:00:00Z",
-            "2024-03-01T00:00:00Z",
-            "2024-04-01T00:00:00Z",
-            "2024-05-01T00:00:00Z",
-        ],
-    )
-    @normalize(
-        "start_datetime",
-        [
-            "2023-09-01T00:00:00Z",
-            "2023-10-01T00:00:00Z",
-            "2023-11-01T00:00:00Z",
-            "2023-12-01T00:00:00Z",
-            "2024-01-01T00:00:00Z",
-            "2024-02-01T00:00:00Z",
-            "2024-03-01T00:00:00Z",
-            "2024-04-01T00:00:00Z",
-            "2024-05-01T00:00:00Z",
-        ],
-    )
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
         variables,
         bbox=None,
-        end_datetime=None,
-        start_datetime=None,
+        end_datetime="2024-05-01T00:00:00Z",
+        start_datetime="2023-09-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

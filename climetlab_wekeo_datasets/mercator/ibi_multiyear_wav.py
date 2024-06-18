@@ -47,11 +47,22 @@ class ibi_multiyear_wav(Main):
     )
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         variables,
         layer="cmems_mod_ibi_wav_my_0.027deg_PT1H-i_202311",
         bbox=None,
+        end_datetime="2021-12-26T23:00:00Z",
+        start_datetime="1993-01-02T00:00:00Z",
         limit=None,
     ):
-        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)
+        super().__init__(
+            variables=variables,
+            layer=layer,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
+            limit=limit,
+        )

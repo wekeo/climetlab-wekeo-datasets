@@ -60,26 +60,6 @@ class blksea_multiyear_bgc(Main):
     )
     @normalize("bbox", "bounding-box(list)")
     @normalize(
-        "end_datetime",
-        [
-            "2023-01-01T00:00:00Z",
-            "2023-02-01T00:00:00Z",
-            "2023-03-01T00:00:00Z",
-            "2023-04-01T00:00:00Z",
-            "2023-05-01T00:00:00Z",
-            "2023-06-01T00:00:00Z",
-            "2023-07-01T00:00:00Z",
-            "2023-08-01T00:00:00Z",
-            "2023-09-01T00:00:00Z",
-            "2023-10-01T00:00:00Z",
-            "2023-11-01T00:00:00Z",
-            "2023-12-01T00:00:00Z",
-            "2024-01-01T00:00:00Z",
-            "2024-02-01T00:00:00Z",
-            "2024-03-01T00:00:00Z",
-        ],
-    )
-    @normalize(
         "maximum_depth",
         [
             "-0.2546195089817047",
@@ -207,44 +187,26 @@ class blksea_multiyear_bgc(Main):
             "-93.63275146484375",
         ],
     )
-    @normalize(
-        "start_datetime",
-        [
-            "2023-01-01T00:00:00Z",
-            "2023-02-01T00:00:00Z",
-            "2023-03-01T00:00:00Z",
-            "2023-04-01T00:00:00Z",
-            "2023-05-01T00:00:00Z",
-            "2023-06-01T00:00:00Z",
-            "2023-07-01T00:00:00Z",
-            "2023-08-01T00:00:00Z",
-            "2023-09-01T00:00:00Z",
-            "2023-10-01T00:00:00Z",
-            "2023-11-01T00:00:00Z",
-            "2023-12-01T00:00:00Z",
-            "2024-01-01T00:00:00Z",
-            "2024-02-01T00:00:00Z",
-            "2024-03-01T00:00:00Z",
-        ],
-    )
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
         variables,
         bbox=None,
-        end_datetime=None,
         maximum_depth=None,
         minimum_depth=None,
-        start_datetime=None,
+        end_datetime="2022-12-01T00:00:00Z",
+        start_datetime="1992-01-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(
             layer=layer,
             variables=variables,
             bbox=bbox,
-            end_datetime=end_datetime,
             maximum_depth=maximum_depth,
             minimum_depth=minimum_depth,
+            end_datetime=end_datetime,
             start_datetime=start_datetime,
             limit=limit,
         )

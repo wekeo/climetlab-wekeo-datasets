@@ -26,6 +26,7 @@ PREFIXES = {
     "eo:ecmwf": "ecmwf",
     "eo:eum": "eum",
     "eo:mo": "mercator",
+    "eo:eea": "clms",
 }
 
 PATTERN_SHORT = re.compile(r"^-[\d]{3}-[\d]{3}$")
@@ -44,6 +45,16 @@ def payload_to_args(payload) -> Dict:
     for key in reserved_words:
         if key in payload:
             payload[f"{key}_"] = payload.pop(key)
+
+    if "bbox" in payload:
+        # HDA v2 order is WSEN, cml expects NWSE
+        bbox = payload["bbox"]
+        payload["bbox"] = [
+            bbox[3],
+            bbox[0],
+            bbox[1],
+            bbox[2],
+        ]
 
     del payload["dataset_id"]
     return payload

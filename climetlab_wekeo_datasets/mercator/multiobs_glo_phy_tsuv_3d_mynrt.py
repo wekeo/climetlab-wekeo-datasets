@@ -147,6 +147,8 @@ class multiobs_glo_phy_tsuv_3d_mynrt(Main):
             "0",
         ],
     )
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         layer,
@@ -154,6 +156,8 @@ class multiobs_glo_phy_tsuv_3d_mynrt(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
+        end_datetime="2022-12-28T00:00:00Z",
+        start_datetime="1993-01-06T00:00:00Z",
         limit=None,
     ):
         super().__init__(
@@ -162,5 +166,7 @@ class multiobs_glo_phy_tsuv_3d_mynrt(Main):
             bbox=bbox,
             maximum_depth=maximum_depth,
             minimum_depth=minimum_depth,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
             limit=limit,
         )

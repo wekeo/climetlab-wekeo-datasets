@@ -36,7 +36,22 @@ class seaice_arc_seaice_l4_nrt_observations(Main):
     )
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
-        self, variables, layer="DMI-ARC-SEAICE_TEMP-L4-NRT-OBS", bbox=None, limit=None
+        self,
+        variables,
+        layer="DMI-ARC-SEAICE_TEMP-L4-NRT-OBS",
+        bbox=None,
+        end_datetime="2024-06-17T00:00:00Z",
+        start_datetime="2018-01-01T00:00:00Z",
+        limit=None,
     ):
-        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)
+        super().__init__(
+            variables=variables,
+            layer=layer,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
+            limit=limit,
+        )

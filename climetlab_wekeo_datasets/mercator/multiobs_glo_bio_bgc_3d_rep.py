@@ -116,6 +116,8 @@ class multiobs_glo_bio_bgc_3d_rep(Main):
             "0",
         ],
     )
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         variables,
@@ -123,6 +125,8 @@ class multiobs_glo_bio_bgc_3d_rep(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
+        end_datetime="2021-12-29T00:00:00Z",
+        start_datetime="1998-01-07T00:00:00Z",
         limit=None,
     ):
         super().__init__(
@@ -131,5 +135,7 @@ class multiobs_glo_bio_bgc_3d_rep(Main):
             bbox=bbox,
             maximum_depth=maximum_depth,
             minimum_depth=minimum_depth,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
             limit=limit,
         )

@@ -39,11 +39,22 @@ class seaice_arc_phy_climate_l3_my(Main):
     )
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         variables,
         layer="cmems_obs-si_arc_phy_my_L3S-DMIOI_P1D-m_202211",
         bbox=None,
+        end_datetime="2022-12-31T00:00:00Z",
+        start_datetime="1982-01-01T00:00:00Z",
         limit=None,
     ):
-        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)
+        super().__init__(
+            variables=variables,
+            layer=layer,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
+            limit=limit,
+        )

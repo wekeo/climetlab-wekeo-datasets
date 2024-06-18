@@ -47,11 +47,22 @@ class nwshelf_analysisforecast_wav(Main):
     )
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
     def __init__(
         self,
         variables,
         layer="cmems_mod_nws_wav_anfc_0.05deg_PT1H-i_202309",
         bbox=None,
+        end_datetime="2024-06-26T23:00:00Z",
+        start_datetime="2022-10-06T00:00:00Z",
         limit=None,
     ):
-        super().__init__(variables=variables, layer=layer, bbox=bbox, limit=limit)
+        super().__init__(
+            variables=variables,
+            layer=layer,
+            bbox=bbox,
+            end_datetime=end_datetime,
+            start_datetime=start_datetime,
+            limit=limit,
+        )
