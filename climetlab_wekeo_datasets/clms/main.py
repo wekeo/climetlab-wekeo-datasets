@@ -43,7 +43,7 @@ class Main(Dataset):
                 key = "format"
             if value is not None:
                 query[key] = value
-            if key == "bbox":
+            if key == "bbox" and query.get("bbox") is not None:
                 query["bbox"] = [
                     value[3],
                     value[0],
