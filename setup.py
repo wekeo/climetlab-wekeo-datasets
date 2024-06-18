@@ -253,7 +253,6 @@ setuptools.setup(
             "wekeo-mercator-global-analysisforecast-phy=climetlab_wekeo_datasets.mercator.global_analysisforecast_phy:global_analysisforecast_phy",  # noqa: E501
             "wekeo-mercator-global-analysisforecast-wav=climetlab_wekeo_datasets.mercator.global_analysisforecast_wav:global_analysisforecast_wav",  # noqa: E501
             "wekeo-mercator-global-multiyear-bgc=climetlab_wekeo_datasets.mercator.global_multiyear_bgc:global_multiyear_bgc",  # noqa: E501
-            "wekeo-mercator-global-multiyear-bgc=climetlab_wekeo_datasets.mercator.global_multiyear_bgc:global_multiyear_bgc",  # noqa: E501
             "wekeo-mercator-global-multiyear-phy=climetlab_wekeo_datasets.mercator.global_multiyear_phy:global_multiyear_phy",  # noqa: E501
             "wekeo-mercator-global-multiyear-phy-ens=climetlab_wekeo_datasets.mercator.global_multiyear_phy_ens:global_multiyear_phy_ens",  # noqa: E501
             "wekeo-mercator-global-multiyear-wav=climetlab_wekeo_datasets.mercator.global_multiyear_wav:global_multiyear_wav",  # noqa: E501
