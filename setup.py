@@ -232,17 +232,7 @@ setuptools.setup(
             # Eumetsat
             "wekeo-eum-metop-glb-sst-nc=climetlab_wekeo_datasets.eumetsat.eum_metop_glb_sst_nc:eum_metop_glb_sst_nc",  # noqa: E501
             # Mercator
-            "wekeo-mercator-arctic-analysisforecast-bgc=climetlab_wekeo_datasets.mercator.arctic_analysisforecast_bgc:arctic_analysisforecast_bgc,  # noqa: E501"
-            "wekeo-mercator-arctic-analysisforecast-phy-ice=climetlab_wekeo_datasets.mercator.arctic_analysisforecast_phy_ice:arctic_analysisforecast_phy_ice,  # noqa: E501"
-            "wekeo-mercator-arctic-analysisforecast-phy=climetlab_wekeo_datasets.mercator.arctic_analysisforecast_phy:arctic_analysisforecast_phy,  # noqa: E501"
-            "wekeo-mercator-arctic-multiyear-bgc=climetlab_wekeo_datasets.mercator.arctic_multiyear_bgc:arctic_multiyear_bgc,  # noqa: E501"
-            "wekeo-mercator-arctic-multiyear-phy=climetlab_wekeo_datasets.mercator.arctic_multiyear_phy:arctic_multiyear_phy,  # noqa: E501"
-            "wekeo-mercator-balticsea-analysisforecast-bgc=climetlab_wekeo_datasets.mercator.balticsea_analysisforecast_bgc:balticsea_analysisforecast_bgc,  # noqa: E501"
-            "wekeo-mercator-balticsea-analysisforecast-phy=climetlab_wekeo_datasets.mercator.balticsea_analysisforecast_phy:balticsea_analysisforecast_phy,  # noqa: E501"
-            "wekeo-mercator-balticsea-analysisforecast-wav=climetlab_wekeo_datasets.mercator.balticsea_analysisforecast_wav:balticsea_analysisforecast_wav,  # noqa: E501"
-            "wekeo-mercator-balticsea-multiyear-bgc=climetlab_wekeo_datasets.mercator.balticsea_multiyear_bgc:balticsea_multiyear_bgc,  # noqa: E501"
-            "wekeo-mercator-balticsea-multiyear-phy=climetlab_wekeo_datasets.mercator.balticsea_multiyear_phy:balticsea_multiyear_phy,  # noqa: E501"
-            "            "wekeo-mercator-arctic-analysisforecast-bgc=climetlab_wekeo_datasets.mercator.arctic_analysisforecast_bgc:arctic_analysisforecast_bgc",  # noqa: E501
+            "wekeo-mercator-arctic-analysisforecast-bgc=climetlab_wekeo_datasets.mercator.arctic_analysisforecast_bgc:arctic_analysisforecast_bgc",  # noqa: E501
             "wekeo-mercator-arctic-analysisforecast-phy-ice=climetlab_wekeo_datasets.mercator.arctic_analysisforecast_phy_ice:arctic_analysisforecast_phy_ice",  # noqa: E501
             "wekeo-mercator-arctic-analysisforecast-phy=climetlab_wekeo_datasets.mercator.arctic_analysisforecast_phy:arctic_analysisforecast_phy",  # noqa: E501
             "wekeo-mercator-arctic-multiyear-bgc=climetlab_wekeo_datasets.mercator.arctic_multiyear_bgc:arctic_multiyear_bgc",  # noqa: E501
