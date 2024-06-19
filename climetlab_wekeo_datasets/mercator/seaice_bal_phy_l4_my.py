@@ -36,8 +36,8 @@ class seaice_bal_phy_l4_my(Main):
         multiple=True,
     )
     @normalize("bbox", "bounding-box(list)")
-    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     def __init__(
         self,
         layer,

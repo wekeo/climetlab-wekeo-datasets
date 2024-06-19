@@ -28,8 +28,8 @@ class balticsea_multiyear_phy(Main):
 
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
-    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("max_date", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
+    @normalize("min_date", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     @normalize(
         "variables",
         [

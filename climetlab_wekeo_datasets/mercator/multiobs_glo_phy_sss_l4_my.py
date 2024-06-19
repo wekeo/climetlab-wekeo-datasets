@@ -39,8 +39,8 @@ class multiobs_glo_phy_sss_l4_my(Main):
     )
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
-    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     def __init__(
         self,
         variables,

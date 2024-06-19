@@ -17,14 +17,14 @@ class clms_hrvpp_st(Main):
     dataset = "EO:EEA:DAT:CLMS_HRVPP_ST"
 
     @normalize("bbox", "bounding-box(list)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("end", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     @normalize(
         "platformSerialIdentifier",
         [
             "S2A, S2B",
         ],
     )
-    @normalize("processingDate", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("processingDate", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     @normalize(
         "productType",
         [
@@ -33,7 +33,7 @@ class clms_hrvpp_st(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     def __init__(
         self,
         bbox=None,

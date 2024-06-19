@@ -31,8 +31,8 @@ class oceancolour_nws_bgc_hr_l3_nrt(Main):
     )
     @normalize("layer", LAYERS)
     @normalize("bbox", "bounding-box(list)")
-    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("end_datetime", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
+    @normalize("start_datetime", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     def __init__(
         self,
         variables,

@@ -23,7 +23,7 @@ class clms_global_fcover_1km_v2_10daily_netcdf(Main):
         ],
     )
     @normalize("bbox", "bounding-box(list)")
-    @normalize("end", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("end", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     @normalize(
         "platform",
         [
@@ -63,7 +63,7 @@ class clms_global_fcover_1km_v2_10daily_netcdf(Main):
         ],
         multiple=True,
     )
-    @normalize("start", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("start", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     def __init__(
         self,
         acquisitionType=None,
