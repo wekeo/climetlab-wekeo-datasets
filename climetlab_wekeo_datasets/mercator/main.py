@@ -37,9 +37,10 @@ class Main(Dataset):
     }
 
     def __init__(self, *args, **kwargs):
-        layer = kwargs["layer"]
+        layer = kwargs.pop("layer")
 
         query = {"dataset_id": f"{self.dataset}:{layer}"}
+        limit = kwargs.pop("limit", None)
 
         for key, value in kwargs.items():
             if key == "format_":
@@ -51,8 +52,6 @@ class Main(Dataset):
             # Remove completely the variables argument
             # or the API will return an Unprocessable Entity
             del query["variables"]
-
-        limit = kwargs.get("limit")
 
         self.source = cml.load_source("wekeo", query, limit)
         self._xarray = None

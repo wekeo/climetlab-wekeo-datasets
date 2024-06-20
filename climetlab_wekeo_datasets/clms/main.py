@@ -38,6 +38,8 @@ class Main(Dataset):
     def __init__(self, *args, **kwargs):
         query = {"dataset_id": f"{self.dataset}"}
 
+        limit = kwargs.pop("limit", None)
+
         for key, value in kwargs.items():
             if key == "format_":
                 key = "format"
@@ -45,13 +47,11 @@ class Main(Dataset):
                 query[key] = value
             if key == "bbox" and query.get("bbox") is not None:
                 query["bbox"] = [
-                    value[3],
-                    value[0],
-                    value[1],
-                    value[2],
+                    value[3],  # W
+                    value[0],  # S
+                    value[1],  # E
+                    value[2],  # N
                 ]
-
-        limit = kwargs.get("limit")
 
         self.source = cml.load_source("wekeo", query, limit)
         self._xarray = None
