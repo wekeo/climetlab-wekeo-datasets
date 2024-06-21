@@ -146,8 +146,8 @@ class nwshelf_multiyear_bgc(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2024-03-01T00:00:00Z",
-        start_datetime="2022-07-01T00:00:00Z",
+        end_datetime="2023-08-31T00:00:00Z",
+        start_datetime="1993-01-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

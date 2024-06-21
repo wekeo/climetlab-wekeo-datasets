@@ -58,8 +58,8 @@ class global_analysisforecast_bgc(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-06-21T00:00:00Z",
-        start_datetime="2021-11-01T00:00:00Z",
+        end_datetime="2024-05-01T00:00:00Z",
+        start_datetime="2021-10-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

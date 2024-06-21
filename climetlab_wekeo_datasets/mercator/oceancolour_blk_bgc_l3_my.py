@@ -82,8 +82,8 @@ class oceancolour_blk_bgc_l3_my(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-06-10T00:00:00Z",
-        start_datetime="2016-04-26T00:00:00Z",
+        end_datetime="2024-06-11T00:00:00Z",
+        start_datetime="1997-09-16T00:00:00Z",
         limit=None,
     ):
         super().__init__(

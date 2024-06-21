@@ -69,7 +69,7 @@ class medsea_analysisforecast_phy(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-05-01T00:00:00Z",
+        end_datetime="2024-06-24T23:45:00Z",
         start_datetime="2021-11-01T00:00:00Z",
         limit=None,
     ):

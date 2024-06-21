@@ -328,7 +328,7 @@ class medsea_multiyear_bgc(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2022-01-01T00:00:00Z",
+        end_datetime="2022-07-01T00:00:00Z",
         start_datetime="1999-01-01T00:00:00Z",
         limit=None,
     ):

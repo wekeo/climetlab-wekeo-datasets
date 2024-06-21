@@ -162,7 +162,7 @@ class global_multiyear_phy(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2021-06-30T00:00:00Z",
+        end_datetime="1993-12-01T00:00:00Z",
         start_datetime="1993-01-01T00:00:00Z",
         limit=None,
     ):

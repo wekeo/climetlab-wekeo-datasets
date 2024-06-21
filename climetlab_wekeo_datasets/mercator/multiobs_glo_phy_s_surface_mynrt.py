@@ -43,7 +43,7 @@ class multiobs_glo_phy_s_surface_mynrt(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-06-12T00:00:00Z",
+        end_datetime="2024-05-01T00:00:00Z",
         start_datetime="2021-01-01T00:00:00Z",
         limit=None,
     ):

@@ -17,9 +17,9 @@ class eum_metop_glb_sst_nc(Main):
     dataset = "EO:EUM:DAT:METOP:GLB-SST-NC"
 
     @normalize("bbox", "bounding-box(list)")
-    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("publication", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
+    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
+    @normalize("publication", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     @normalize(
         "sat",
         [

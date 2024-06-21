@@ -156,8 +156,8 @@ class multiobs_glo_phy_tsuv_3d_mynrt(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2022-12-28T00:00:00Z",
-        start_datetime="1993-01-06T00:00:00Z",
+        end_datetime="2022-12-01T00:00:00Z",
+        start_datetime="1993-01-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

@@ -68,8 +68,8 @@ class multiobs_glo_phy_mynrt(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2024-05-01T00:00:00Z",
-        start_datetime="2022-01-01T00:00:00Z",
+        end_datetime="2023-12-31T00:00:00Z",
+        start_datetime="1993-01-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

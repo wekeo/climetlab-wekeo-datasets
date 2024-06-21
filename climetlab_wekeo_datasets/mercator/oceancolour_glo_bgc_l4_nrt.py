@@ -106,7 +106,7 @@ class oceancolour_glo_bgc_l4_nrt(Main):
         variables,
         bbox=None,
         end_datetime="2024-05-01T00:00:00Z",
-        start_datetime="2023-09-01T00:00:00Z",
+        start_datetime="2023-04-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

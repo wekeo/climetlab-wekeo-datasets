@@ -38,7 +38,7 @@ class oceancolour_bal_bgc_hr_l3_nrt(Main):
         variables,
         layer="cmems_obs_oc_bal_bgc_tur-spm-chl_nrt_l3-hr-mosaic_P1D-m_202107",
         bbox=None,
-        end_datetime="2024-06-16T00:00:00Z",
+        end_datetime="2024-06-18T00:00:00Z",
         start_datetime="2020-01-01T00:00:00Z",
         limit=None,
     ):

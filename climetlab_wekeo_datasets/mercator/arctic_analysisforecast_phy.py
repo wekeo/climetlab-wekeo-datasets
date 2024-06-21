@@ -146,8 +146,8 @@ class arctic_analysisforecast_phy(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2024-05-01T00:00:00Z",
-        start_datetime="2021-11-01T00:00:00Z",
+        end_datetime="2024-06-27T00:00:00Z",
+        start_datetime="2021-07-05T00:00:00Z",
         limit=None,
     ):
         super().__init__(

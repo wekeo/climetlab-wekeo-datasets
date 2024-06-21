@@ -160,8 +160,8 @@ class ibi_analysisforecast_phy(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2024-06-21T00:00:00Z",
-        start_datetime="2021-04-03T00:00:00Z",
+        end_datetime="2024-05-01T00:00:00Z",
+        start_datetime="2020-12-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

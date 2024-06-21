@@ -45,7 +45,7 @@ class oceancolour_med_bgc_l4_my(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2022-12-31T00:00:00Z",
+        end_datetime="2024-06-07T00:00:00Z",
         start_datetime="1997-09-16T00:00:00Z",
         limit=None,
     ):

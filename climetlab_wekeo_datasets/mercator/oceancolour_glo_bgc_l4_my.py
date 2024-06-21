@@ -38,7 +38,7 @@ class oceancolour_glo_bgc_l4_my(Main):
         variables,
         layer="c3s_obs-oc_glo_bgc-plankton_my_l4-multi-4km_P1M_202207",
         bbox=None,
-        end_datetime="2024-04-01T00:00:00Z",
+        end_datetime="2024-05-01T00:00:00Z",
         start_datetime="1997-09-01T00:00:00Z",
         limit=None,
     ):

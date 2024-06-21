@@ -162,8 +162,8 @@ class nwshelf_analysisforecast_bgc(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2024-04-01T00:00:00Z",
-        start_datetime="2021-09-01T00:00:00Z",
+        end_datetime="2024-06-22T00:00:00Z",
+        start_datetime="2021-11-13T00:00:00Z",
         limit=None,
     ):
         super().__init__(

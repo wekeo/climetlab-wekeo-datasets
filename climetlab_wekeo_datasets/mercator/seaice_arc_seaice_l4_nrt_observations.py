@@ -43,7 +43,7 @@ class seaice_arc_seaice_l4_nrt_observations(Main):
         variables,
         layer="DMI-ARC-SEAICE_TEMP-L4-NRT-OBS",
         bbox=None,
-        end_datetime="2024-06-17T00:00:00Z",
+        end_datetime="2024-06-19T00:00:00Z",
         start_datetime="2018-01-01T00:00:00Z",
         limit=None,
     ):

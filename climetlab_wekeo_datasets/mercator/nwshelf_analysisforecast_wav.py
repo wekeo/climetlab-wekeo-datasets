@@ -54,7 +54,7 @@ class nwshelf_analysisforecast_wav(Main):
         variables,
         layer="cmems_mod_nws_wav_anfc_0.05deg_PT1H-i_202309",
         bbox=None,
-        end_datetime="2024-06-26T23:00:00Z",
+        end_datetime="2024-06-27T23:00:00Z",
         start_datetime="2022-10-06T00:00:00Z",
         limit=None,
     ):

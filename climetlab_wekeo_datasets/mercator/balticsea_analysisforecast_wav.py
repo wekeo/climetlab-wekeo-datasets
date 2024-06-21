@@ -54,7 +54,7 @@ class balticsea_analysisforecast_wav(Main):
         variables,
         layer="cmems_mod_bal_wav_anfc_PT1H-i_202311",
         bbox=None,
-        end_datetime="2024-06-23T12:00:00Z",
+        end_datetime="2024-06-26T00:00:00Z",
         start_datetime="2021-10-01T01:00:00Z",
         limit=None,
     ):

@@ -42,7 +42,7 @@ class seaice_glo_seaice_l4_rep_observations(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-06-01T00:00:00Z",
+        end_datetime="2024-06-03T00:00:00Z",
         start_datetime="2021-01-01T00:00:00Z",
         limit=None,
     ):

@@ -53,8 +53,8 @@ class medsea_multiyear_wav(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2022-07-31T23:00:00Z",
-        start_datetime="1993-01-01T00:00:00Z",
+        end_datetime="2024-05-31T23:00:00Z",
+        start_datetime="2021-07-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

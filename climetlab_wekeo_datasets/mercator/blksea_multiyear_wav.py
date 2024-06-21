@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_blk_wav_my_2.5km_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_wav_my_2.5km_PT1H-i
+    "cmems_mod_blk_wav_my_2.5km_PT1H-i_202406",  # noqa: E501 cmems_mod_blk_wav_my_2.5km_PT1H-i
     "cmems_mod_blk_wav_myint_2.5km_PT1H-i_202311",  # noqa: E501 cmems_mod_blk_wav_myint_2.5km_PT1H-i
 ]
 
@@ -55,8 +55,8 @@ class blksea_multiyear_wav(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-05-31T23:00:00Z",
-        start_datetime="2023-01-01T00:00:00Z",
+        end_datetime="2022-12-31T23:00:00Z",
+        start_datetime="1950-01-07T00:00:00Z",
         limit=None,
     ):
         super().__init__(

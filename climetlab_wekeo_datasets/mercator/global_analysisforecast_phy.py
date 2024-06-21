@@ -12,20 +12,20 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m
-    "cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m
-    "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202211",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i
-    "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m
-    "cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m
-    "cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i_202211",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i
-    "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m
-    "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m
-    "cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202211",  # noqa: E501 cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i
-    "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m
-    "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m
-    "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_P1D-m
-    "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_P1M-m
-    "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_PT1H-m
+    "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m_202406",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m
+    "cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m_202406",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m
+    "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202406",  # noqa: E501 cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i
+    "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m_202406",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m
+    "cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m_202406",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m
+    "cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i_202406",  # noqa: E501 cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i
+    "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m_202406",  # noqa: E501 cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m
+    "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m_202406",  # noqa: E501 cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m
+    "cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202406",  # noqa: E501 cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i
+    "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m_202406",  # noqa: E501 cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m
+    "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m_202406",  # noqa: E501 cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m
+    "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202406",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_P1D-m
+    "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202406",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_P1M-m
+    "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202406",  # noqa: E501 cmems_mod_glo_phy_anfc_0.083deg_PT1H-m
     "cmems_mod_glo_phy_anfc_merged-uv_PT1H-i_202211",  # noqa: E501 cmems_mod_glo_phy_anfc_merged-uv_PT1H-i
 ]
 
@@ -186,8 +186,8 @@ class global_analysisforecast_phy(Main):
         bbox=None,
         maximum_depth=None,
         minimum_depth=None,
-        end_datetime="2024-06-19T00:00:00Z",
-        start_datetime="2020-11-01T00:00:00Z",
+        end_datetime="2024-06-11T00:00:00Z",
+        start_datetime="2022-06-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

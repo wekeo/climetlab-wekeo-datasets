@@ -73,7 +73,7 @@ class oceancolour_bal_bgc_l3_nrt(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-06-17T00:00:00Z",
+        end_datetime="2024-06-19T00:00:00Z",
         start_datetime="2023-04-18T00:00:00Z",
         limit=None,
     ):

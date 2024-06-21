@@ -46,8 +46,8 @@ class seaice_arc_seaice_l3_rep_observations(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="1999-12-01T00:00:00Z",
-        start_datetime="1992-01-01T00:00:00Z",
+        end_datetime="2012-04-01T00:00:00Z",
+        start_datetime="1999-10-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(

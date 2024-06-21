@@ -53,7 +53,7 @@ class global_analysisforecast_wav(Main):
         variables,
         layer="cmems_mod_glo_wav_anfc_0.083deg_PT3H-i_202311",
         bbox=None,
-        end_datetime="2024-06-28T00:00:00Z",
+        end_datetime="2024-06-30T00:00:00Z",
         start_datetime="2021-10-01T03:00:00Z",
         limit=None,
     ):

@@ -191,8 +191,8 @@ class cams_global_reanalysis_eac4(Main):
         ],
         multiple=True,
     )
-    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%SZ)")
-    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%SZ)")
+    @normalize("dtend", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
+    @normalize("dtstart", "date(%Y-%m-%dT%H:%M:%S.%fZ)")
     @normalize("bbox", "bounding-box(list)")
     @normalize(
         "format_",

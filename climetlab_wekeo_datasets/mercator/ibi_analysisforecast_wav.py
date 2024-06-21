@@ -54,7 +54,7 @@ class ibi_analysisforecast_wav(Main):
         variables,
         layer="cmems_mod_ibi_wav_anfc_0.05deg_PT1H-i_202311",
         bbox=None,
-        end_datetime="2024-06-26T23:00:00Z",
+        end_datetime="2024-06-27T23:00:00Z",
         start_datetime="2021-11-27T00:00:00Z",
         limit=None,
     ):

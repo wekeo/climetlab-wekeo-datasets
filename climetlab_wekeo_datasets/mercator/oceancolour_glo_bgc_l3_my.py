@@ -52,7 +52,7 @@ class oceancolour_glo_bgc_l3_my(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2024-04-30T00:00:00Z",
+        end_datetime="2024-05-31T00:00:00Z",
         start_datetime="1997-09-04T00:00:00Z",
         limit=None,
     ):

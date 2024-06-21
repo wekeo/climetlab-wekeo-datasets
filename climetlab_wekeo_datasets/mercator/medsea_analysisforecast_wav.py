@@ -54,7 +54,7 @@ class medsea_analysisforecast_wav(Main):
         variables,
         layer="cmems_mod_med_wav_anfc_4.2km_PT1H-i_202311",
         bbox=None,
-        end_datetime="2024-06-27T11:00:00Z",
+        end_datetime="2024-06-28T11:00:00Z",
         start_datetime="2021-11-30T00:00:00Z",
         limit=None,
     ):

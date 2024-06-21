@@ -12,7 +12,7 @@ from climetlab.decorators import normalize
 from climetlab_wekeo_datasets.mercator.main import Main
 
 LAYERS = [
-    "cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202211",  # noqa: E501 cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202211
+    "cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202406",  # noqa: E501 cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W
 ]
 
 
@@ -31,6 +31,7 @@ class multiobs_glo_phy_sss_l4_my(Main):
             "rho",
             "spiciness0",
             "sss",
+            "sss_corr_smap",
             "sss_corr_smos",
             "sss_isas",
             "sst",
@@ -44,10 +45,10 @@ class multiobs_glo_phy_sss_l4_my(Main):
     def __init__(
         self,
         variables,
-        layer="cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202211",
+        layer="cmems_obs-mob_glo_phy-sss_my_multi-oi_P1W_202406",
         bbox=None,
-        end_datetime="2023-06-29T00:00:00Z",
-        start_datetime="2010-12-30T00:00:00Z",
+        end_datetime="2023-12-21T00:00:00Z",
+        start_datetime="2010-06-03T00:00:00Z",
         limit=None,
     ):
         super().__init__(

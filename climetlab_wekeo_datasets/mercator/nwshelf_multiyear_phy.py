@@ -65,8 +65,8 @@ class nwshelf_multiyear_phy(Main):
         layer,
         variables,
         bbox=None,
-        end_datetime="2023-09-01T00:00:00Z",
-        start_datetime="1993-01-01T01:00:00Z",
+        end_datetime="2023-08-31T00:00:00Z",
+        start_datetime="1993-01-01T00:00:00Z",
         limit=None,
     ):
         super().__init__(
